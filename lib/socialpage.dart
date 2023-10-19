@@ -91,7 +91,7 @@ class SocialPage extends StatelessWidget {
                           Icon(Icons.mail_outline_outlined),
                           SizedBox(width: 10),
                           Text(
-                            'EMAIL',
+                            'Personal ID',
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: 16,
@@ -142,7 +142,7 @@ class SocialPage extends StatelessWidget {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            'GOOGLE',
+                            'ISPM',
                             style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 16,

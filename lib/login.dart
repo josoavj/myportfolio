@@ -37,7 +37,7 @@ class LoginPage extends StatelessWidget {
                   DelayedAnimation(
                     delay: 1500,
                     child: Text(
-                      "Connect email address",
+                      "Connect to levelmind",
                       style: GoogleFonts.poppins(
                         color: d_color,
                         fontSize: 25,
