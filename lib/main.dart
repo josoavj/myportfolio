@@ -17,8 +17,8 @@ class lvlmind extends StatelessWidget {
       theme: ThemeData(
         // This is the theme of your application.
 
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 105, 45, 208)),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 57, 21, 118)),
         useMaterial3: true,
       ),
       home: const HomePage(title: 'Acceuil'),
