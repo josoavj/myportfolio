@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/homepage.dart';
 import 'package:lvlmind/main.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class LoginPage extends StatelessWidget {
   @override
@@ -39,10 +38,10 @@ class LoginPage extends StatelessWidget {
                     delay: 1100,
                     child: Text(
                       "Connect to levelmind",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
+                        fontFamily: 'TiltNeon',
+                        fontSize: 20,
                         color: d_color,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w600,
                       ),
                     ),
                   ),
@@ -51,10 +50,10 @@ class LoginPage extends StatelessWidget {
                     delay: 1500,
                     child: Text(
                       "It's recommended to connect with your ID.",
-                      style: GoogleFonts.poppins(
-                        color: Colors.grey[600],
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
+                      style: TextStyle(
+                        fontFamily: 'Josefin',
+                        fontSize: 15,
+                        color: Colors.black45,
                       ),
                     ),
                   ),
@@ -79,10 +78,9 @@ class LoginPage extends StatelessWidget {
                 ),
                 child: Text(
                   'CONFIRM',
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w600,
+                  style: TextStyle(
+                    fontFamily: 'PatrickHand',
+                    color: Colors.black,
                   ),
                 ),
                 onPressed: () {
@@ -108,10 +106,11 @@ class LoginPage extends StatelessWidget {
                     delay: 3500,
                     child: Text(
                       "SKIP",
-                      style: GoogleFonts.poppins(
+                      style: TextStyle(
+                        fontFamily: 'PatrickHand',
+                        fontSize: 15,
+                        fontWeight: FontWeight.w600,
                         color: Colors.black,
-                        fontSize: 17,
-                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/main.dart';
 import 'package:lvlmind/socialpage.dart';
@@ -47,19 +46,19 @@ class WelcomePage extends StatelessWidget {
                   // Our application's logo
                 ),
               ),
-              DelayedAnimation(
-                delay: 3500,
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    top: 30,
-                    bottom: 20,
-                  ),
+
+              // Nom du projet
+              const DelayedAnimation(
+                delay: 2000,
+                child: SizedBox(
+                  height: 100,
                   child: Text(
-                    "Online learning with levelmind",
+                    "lvlmind",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 83, 86, 145),
-                      fontSize: 18,
+                    style: TextStyle(
+                      fontFamily: 'PatrickHand',
+                      fontSize: 20,
+                      color: Color.fromARGB(255, 95, 9, 110),
                     ),
                   ),
                 ),
@@ -71,12 +70,32 @@ class WelcomePage extends StatelessWidget {
                     top: 30,
                     bottom: 20,
                   ),
-                  child: Text(
+                  child: const Text(
+                    "Online learning with levelmind",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'TiltNeon',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blueAccent,
+                    ),
+                  ),
+                ),
+              ),
+              DelayedAnimation(
+                delay: 3500,
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    top: 30,
+                    bottom: 20,
+                  ),
+                  child: const Text(
                     "Build skills with courses, certificates and degrees online from world class universities",
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.poppins(
-                      color: const Color.fromARGB(255, 83, 86, 145),
+                    style: TextStyle(
+                      fontFamily: 'TiltNeon',
                       fontSize: 15,
+                      color: Color.fromARGB(255, 49, 113, 225),
                     ),
                   ),
                 ),

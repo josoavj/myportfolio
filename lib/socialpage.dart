@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/login.dart';
 import 'package:lvlmind/main.dart';
@@ -45,22 +44,23 @@ class SocialPage extends StatelessWidget {
                   horizontal: 30,
                 ),
                 child: Column(
-                  children: [
+                  children: const [
                     Text(
                       "Your adventure begins here and now.",
-                      style: GoogleFonts.poppins(
-                        color: d_color,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w600,
+                      style: TextStyle(
+                        fontFamily: 'PatrickHand',
+                        fontSize: 20,
+                        color: Colors.grey,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    SizedBox(height: 10),
                     Text(
                       "Train your  mind to gain more knowledge with levelmind",
                       textAlign: TextAlign.center,
-                      style: GoogleFonts.poppins(
-                        color: Colors.grey,
+                      style: TextStyle(
+                        fontFamily: 'TiltNeon',
                         fontSize: 15,
+                        color: Colors.grey,
                       ),
                     ),
                   ],
@@ -92,17 +92,17 @@ class SocialPage extends StatelessWidget {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.send_sharp), //A modifier
-                          const SizedBox(width: 10),
+                        children: const [
+                          Icon(Icons.send_sharp), //A modifier
+                          SizedBox(width: 10),
                           Text(
                             'Connect with Personal ID',
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                            style: TextStyle(
+                              fontFamily: 'TiltNeon',
+                              fontSize: 15,
+                              color: Colors.black,
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
