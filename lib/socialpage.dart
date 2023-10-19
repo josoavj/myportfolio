@@ -29,7 +29,7 @@ class SocialPage extends StatelessWidget {
               delay: 1500,
               child: Container(
                 height: 280,
-                child: Image.asset('images/yoga_3.png'),
+                child: Image.asset('../images/lvlmind logo.png'),
               ),
             ),
             DelayedAnimation(
@@ -42,7 +42,7 @@ class SocialPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "Change starts here",
+                      "It's start here",
                       style: GoogleFonts.poppins(
                         color: d_color,
                         fontSize: 16,
@@ -137,12 +137,12 @@ class SocialPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            'images/google.png',
+                            '../images/lvlmind logo.png',
                             height: 20,
                           ),
                           SizedBox(width: 10),
                           Text(
-                            'ISPM',
+                            'SEND',
                             style: GoogleFonts.poppins(
                               color: Colors.black,
                               fontSize: 16,

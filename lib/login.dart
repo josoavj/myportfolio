@@ -49,7 +49,7 @@ class LoginPage extends StatelessWidget {
                   DelayedAnimation(
                     delay: 2500,
                     child: Text(
-                      "It's recommended to connect your email address for us to better protect your information.",
+                      "It's recommended to connect with your ID.",
                       style: GoogleFonts.poppins(
                         color: Colors.grey[600],
                         fontSize: 16,
