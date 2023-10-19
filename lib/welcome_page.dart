@@ -21,14 +21,14 @@ class WelcomePage extends StatelessWidget {
                 delay: 1500,
                 child: Container(
                   height: 170,
-                  child: Image.asset('images/yoga_1.png'),
+                  child: Image.asset('images/ispmlogo.png'),
                 ),
               ),
               DelayedAnimation(
                 delay: 2500,
                 child: Container(
                   height: 400,
-                  child: Image.asset('images/yoga_2.jpeg'),
+                  child: Image.asset('images/lvlmind logo.png'),
                 ),
               ),
               DelayedAnimation(
