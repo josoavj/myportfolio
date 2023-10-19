@@ -28,14 +28,14 @@ class SocialPage extends StatelessWidget {
         child: Column(
           children: [
             DelayedAnimation(
-              delay: 1500,
+              delay: 1200,
               child: SizedBox(
                 height: 280,
-                child: Image.asset('../images/lvlmind logo.png'),
+                child: Image.asset(''),
               ),
             ),
             DelayedAnimation(
-              delay: 2500,
+              delay: 1700,
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   vertical: 40,
@@ -44,7 +44,7 @@ class SocialPage extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      "It's start here",
+                      "Your adventure begins here and now.",
                       style: GoogleFonts.poppins(
                         color: d_color,
                         fontSize: 16,
@@ -53,7 +53,7 @@ class SocialPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "Train your mind to be better with lvlmind",
+                      "Train your d mind to gain more knowledge with lvlmind",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: Colors.grey,
@@ -90,7 +90,7 @@ class SocialPage extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Icon(Icons.mail_outline_outlined), //A modifier
+                          const Icon(Icons.send_sharp), //A modifier
                           const SizedBox(width: 10),
                           Text(
                             'Personal ID',
@@ -139,7 +139,7 @@ class SocialPage extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.asset(
-                            '../images/lvlmind logo.png',
+                            '',
                             height: 20,
                           ),
                           // Bouton d'envoi d'un message
