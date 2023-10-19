@@ -2,48 +2,50 @@
 import 'dart:async'; // Bibliothèque utile pour l'ensemble du code
 import 'package:flutter/material.dart';
 
-class DelayedAnimation extends StatelessWidget {
+class DelayedAnimation extends StatefulWidget {
+  final Widget child;
+  final int delay;
+  const DelayedAnimation({required this.delay, required this.child});
+
   @override
   _DelayedAnimationState createState() => _DelayedAnimationState();
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
-
-  final Widget Child; // Widget à animer 
-  final int delay; // Délai d'apparition du widget en millisecondes
-  const DelayedAnimation({required this.delay, required this.Child});
 }
+
 class _DelayedAnimationState extends State<DelayedAnimation>
- with SingleTickerProviderStateMixin{
-  [...]
- @override
-  Widget build(BuildContext context){
-    return [...];
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<Offset> _animOffset;
+  @override
+  void initState() {
+    super.initState();
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 800),
+    );
+
+    final curve = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.decelerate,
+    );
+
+    _animOffset = Tween<Offset>(
+      begin: Offset(0.0, -0.35),
+      end: Offset.zero,
+    ).animate(curve);
+
+    Timer(Duration(milliseconds: widget.delay), () {
+      _controller.forward();
+    });
   }
- late AnimationController controller;
- late Animation<Offset> animateOffset;
 
-  void initState(){
-    super.initState();  
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _controller,
+      child: SlideTransition(
+        position: _animOffset,
+        child: widget.child,
+      ),
+    );
   }
-
-  controller = AnimationController(
-    vsync: this,
-    duration: Duration(milliseconds: 800),
-  );
-
-  final curve = CurvedAnimation(
-    curve: Curves.decelerate,
-    parent: controller, 
-  );
-
- animatedOffset = Tween<Offset>(
-    begin: Offset(0.0, -0.35), 
-    end: Offset.zero).animate(curve);
-
-Time(Duration(milliseconds: widget.delay),(){
-  controller.forward();
-});
 }
-
