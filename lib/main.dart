@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lvlmind/animate.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lvlmind/welcome_page.dart';
 

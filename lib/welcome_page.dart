@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/main.dart';
-
-import 'socialpage.dart';
+import 'package:lvlmind/socialpage.dart';
 
 class WelcomePage extends StatelessWidget {
   @override

@@ -51,7 +51,7 @@ class SocialPage extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Text(
-                      "Save your progress to access your personal training program!",
+                      "Train your mind to be better with lvlmind",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: Colors.grey,
@@ -116,6 +116,7 @@ class SocialPage extends StatelessWidget {
                         primary: Color(0xFF576dff),
                         padding: EdgeInsets.all(13),
                       ),
+                      child: null,
                     ),
                     SizedBox(height: 20),
                     ElevatedButton(
