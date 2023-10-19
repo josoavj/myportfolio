@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:lvlmind/animate.dart';
+import 'package:lvlmind/homepage.dart';
 import 'package:lvlmind/main.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -15,7 +16,7 @@ class LoginPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(
             Icons.close,
-            color: Colors.black,
+            color: Color.fromARGB(255, 24, 11, 199),
             size: 30,
           ),
           onPressed: () {
@@ -29,13 +30,13 @@ class LoginPage extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(
                 vertical: 40,
-                horizontal: 30,
+                horizontal: 15,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   DelayedAnimation(
-                    delay: 1500,
+                    delay: 1100,
                     child: Text(
                       "Connect to levelmind",
                       style: GoogleFonts.poppins(
@@ -47,7 +48,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   SizedBox(height: 22),
                   DelayedAnimation(
-                    delay: 2500,
+                    delay: 1500,
                     child: Text(
                       "It's recommended to connect with your ID.",
                       style: GoogleFonts.poppins(
@@ -62,9 +63,9 @@ class LoginPage extends StatelessWidget {
             ),
             SizedBox(height: 35),
             LoginForm(),
-            SizedBox(height: 125),
+            SizedBox(height: 70),
             DelayedAnimation(
-              delay: 5500,
+              delay: 2000,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: StadiumBorder(),
@@ -72,8 +73,8 @@ class LoginPage extends StatelessWidget {
                   // Du coup je l'ai remplacé par backgroundColor
                   backgroundColor: d_color,
                   padding: EdgeInsets.symmetric(
-                    horizontal: 125,
-                    vertical: 13,
+                    horizontal: 90,
+                    vertical: 15,
                   ),
                 ),
                 child: Text(
@@ -81,14 +82,14 @@ class LoginPage extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     color: Colors.white,
                     fontSize: 15,
-                    fontWeight: FontWeight.w500,
+                    fontWeight: FontWeight.w600,
                   ),
                 ),
                 onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => lvlmind(),
+                      builder: (context) => Homepage(),
                     ),
                   );
                 },
@@ -104,13 +105,13 @@ class LoginPage extends StatelessWidget {
                     Navigator.pop(context);
                   },
                   child: DelayedAnimation(
-                    delay: 6500,
+                    delay: 3500,
                     child: Text(
                       "SKIP",
                       style: GoogleFonts.poppins(
                         color: Colors.black,
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
                   ),
@@ -141,7 +142,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           DelayedAnimation(
-            delay: 3500,
+            delay: 1800,
             child: TextField(
               decoration: InputDecoration(
                 labelText: 'Your ID',
@@ -153,7 +154,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           SizedBox(height: 30),
           DelayedAnimation(
-            delay: 4500,
+            delay: 1900,
             child: TextField(
               obscureText: _obscureText,
               decoration: InputDecoration(

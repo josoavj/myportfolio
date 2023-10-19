@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/login.dart';
 import 'package:lvlmind/main.dart';
+import 'package:lvlmind/formulaire.dart';
 
 class SocialPage extends StatelessWidget {
   const SocialPage({super.key});
@@ -31,7 +34,7 @@ class SocialPage extends StatelessWidget {
               delay: 1200,
               child: SizedBox(
                 height: 280,
-                child: Image.asset(''),
+                child: Image.asset('../images/lvlmind.png'),
               ),
             ),
             DelayedAnimation(
@@ -53,7 +56,7 @@ class SocialPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      "Train your d mind to gain more knowledge with lvlmind",
+                      "Train your  mind to gain more knowledge with levelmind",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.poppins(
                         color: Colors.grey,
@@ -65,7 +68,7 @@ class SocialPage extends StatelessWidget {
               ),
             ),
             DelayedAnimation(
-              delay: 3500,
+              delay: 2500,
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   vertical: 14,
@@ -93,7 +96,7 @@ class SocialPage extends StatelessWidget {
                           const Icon(Icons.send_sharp), //A modifier
                           const SizedBox(width: 10),
                           Text(
-                            'Personal ID',
+                            'Connect with Personal ID',
                             style: GoogleFonts.poppins(
                               color: Colors.white,
                               fontSize: 16,
@@ -109,7 +112,7 @@ class SocialPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => LoginPage(),
+                            builder: (context) => Formulaire(),
                           ),
                         );
                       },
@@ -118,42 +121,7 @@ class SocialPage extends StatelessWidget {
                         backgroundColor: const Color(0xFF576dff),
                         padding: const EdgeInsets.all(13),
                       ),
-                      child: null,
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => LoginPage(),
-                          ),
-                        );
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        backgroundColor: Colors.white,
-                        padding: const EdgeInsets.all(13),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            '',
-                            height: 20,
-                          ),
-                          // Bouton d'envoi d'un message
-                          const SizedBox(width: 10),
-                          Text(
-                            'SEND',
-                            style: GoogleFonts.poppins(
-                              color: Colors.black,
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: const Text('Create Account'),
                     ),
                     const SizedBox(height: 20),
                   ],

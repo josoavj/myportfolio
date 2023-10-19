@@ -10,7 +10,7 @@ class WelcomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 154, 143, 205),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
@@ -19,18 +19,31 @@ class WelcomePage extends StatelessWidget {
           ),
           child: Column(
             children: [
+              // Pour le logo de l'ISPM
               DelayedAnimation(
                 delay: 1500,
                 child: SizedBox(
-                  height: 170,
+                  height: 100,
                   child: Image.asset('../images/ispmlogo.png'),
                 ),
               ),
-              DelayedAnimation(
-                delay: 2500,
+
+              // Juste pour l'espacement
+              const DelayedAnimation(
+                delay: 2000,
                 child: SizedBox(
-                  height: 400,
-                  child: Image.asset('../images/lvlmind logo.png'),
+                  height: 100,
+                  child: null,
+                  // Our application's logo
+                ),
+              ),
+
+              // Pour notre logo
+              DelayedAnimation(
+                delay: 2000,
+                child: SizedBox(
+                  height: 100,
+                  child: Image.asset('../images/lvlmind.png'),
                   // Our application's logo
                 ),
               ),
@@ -45,8 +58,25 @@ class WelcomePage extends StatelessWidget {
                     "Online learning with levelmind",
                     textAlign: TextAlign.center,
                     style: GoogleFonts.poppins(
-                      color: Color.fromARGB(255, 4, 8, 85),
-                      fontSize: 16,
+                      color: const Color.fromARGB(255, 83, 86, 145),
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              ),
+              DelayedAnimation(
+                delay: 3500,
+                child: Container(
+                  margin: const EdgeInsets.only(
+                    top: 30,
+                    bottom: 20,
+                  ),
+                  child: Text(
+                    "Build skills with courses, certificates and degrees online from world class universities",
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.poppins(
+                      color: const Color.fromARGB(255, 83, 86, 145),
+                      fontSize: 15,
                     ),
                   ),
                 ),
@@ -60,15 +90,16 @@ class WelcomePage extends StatelessWidget {
                         backgroundColor: d_color,
                         shape: const StadiumBorder(),
                         padding: const EdgeInsets.all(13)),
-                    child: const Text('GET STARTED'),
+                    // onHover: ,
                     onPressed: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SocialPage(),
+                          builder: (context) => const SocialPage(),
                         ),
                       );
                     },
+                    child: const Text('GET STARTED'),
                   ),
                 ),
               ),
