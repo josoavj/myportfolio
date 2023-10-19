@@ -68,7 +68,9 @@ class LoginPage extends StatelessWidget {
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   shape: StadiumBorder(),
-                  primary: d_color,
+                  // J'ai utilisé primary mais elle est obsolète
+                  // Du coup je l'ai remplacé par backgroundColor
+                  backgroundColor: d_color,
                   padding: EdgeInsets.symmetric(
                     horizontal: 125,
                     vertical: 13,
@@ -124,6 +126,7 @@ class LoginPage extends StatelessWidget {
 
 class LoginForm extends StatefulWidget {
   @override
+  // ignore: library_private_types_in_public_api
   _LoginFormState createState() => _LoginFormState();
 }
 

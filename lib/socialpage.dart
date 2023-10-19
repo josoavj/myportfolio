@@ -5,6 +5,8 @@ import 'package:lvlmind/login.dart';
 import 'package:lvlmind/main.dart';
 
 class SocialPage extends StatelessWidget {
+  const SocialPage({super.key});
+  // Added a constructor
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +14,7 @@ class SocialPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.white.withOpacity(0),
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
             size: 30,
@@ -27,7 +29,7 @@ class SocialPage extends StatelessWidget {
           children: [
             DelayedAnimation(
               delay: 1500,
-              child: Container(
+              child: SizedBox(
                 height: 280,
                 child: Image.asset('../images/lvlmind logo.png'),
               ),
@@ -49,7 +51,7 @@ class SocialPage extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Text(
                       "Train your mind to be better with lvlmind",
                       textAlign: TextAlign.center,
@@ -65,7 +67,7 @@ class SocialPage extends StatelessWidget {
             DelayedAnimation(
               delay: 3500,
               child: Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                   vertical: 14,
                   horizontal: 40,
                 ),
@@ -81,15 +83,15 @@ class SocialPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(),
-                        primary: d_color,
-                        padding: EdgeInsets.all(13),
+                        shape: const StadiumBorder(),
+                        backgroundColor: d_color,
+                        padding: const EdgeInsets.all(13),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.mail_outline_outlined),
-                          SizedBox(width: 10),
+                          const Icon(Icons.mail_outline_outlined), //A modifier
+                          const SizedBox(width: 10),
                           Text(
                             'Personal ID',
                             style: GoogleFonts.poppins(
@@ -101,7 +103,7 @@ class SocialPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -112,13 +114,13 @@ class SocialPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(),
-                        primary: Color(0xFF576dff),
-                        padding: EdgeInsets.all(13),
+                        shape: const StadiumBorder(),
+                        backgroundColor: const Color(0xFF576dff),
+                        padding: const EdgeInsets.all(13),
                       ),
                       child: null,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -129,9 +131,9 @@ class SocialPage extends StatelessWidget {
                         );
                       },
                       style: ElevatedButton.styleFrom(
-                        shape: StadiumBorder(),
-                        primary: Colors.white,
-                        padding: EdgeInsets.all(13),
+                        shape: const StadiumBorder(),
+                        backgroundColor: Colors.white,
+                        padding: const EdgeInsets.all(13),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -140,7 +142,8 @@ class SocialPage extends StatelessWidget {
                             '../images/lvlmind logo.png',
                             height: 20,
                           ),
-                          SizedBox(width: 10),
+                          // Bouton d'envoi d'un message
+                          const SizedBox(width: 10),
                           Text(
                             'SEND',
                             style: GoogleFonts.poppins(
@@ -152,7 +155,7 @@ class SocialPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                   ],
                 ),
               ),
