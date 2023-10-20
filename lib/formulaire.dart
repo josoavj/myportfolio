@@ -1,6 +1,4 @@
 // ignore_for_file: unused_import, no_logic_in_create_state, camel_case_types, avoid_web_libraries_in_flutter
-
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/main.dart';
