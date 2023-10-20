@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/main.dart';
 import 'package:lvlmind/socialpage.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class WelcomePage extends StatelessWidget {
   const WelcomePage({super.key});
@@ -13,8 +14,8 @@ class WelcomePage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(
-            vertical: 60,
-            horizontal: 30,
+            vertical: 100,
+            horizontal: 50,
           ),
           child: Column(
             children: [
@@ -23,7 +24,7 @@ class WelcomePage extends StatelessWidget {
                 delay: 1500,
                 child: SizedBox(
                   height: 100,
-                  child: Image.asset('../images/ispmlogo.png'),
+                  child: Image.asset('/images/ispmlogo.png'),
                 ),
               ),
 
@@ -42,40 +43,40 @@ class WelcomePage extends StatelessWidget {
                 delay: 2000,
                 child: SizedBox(
                   height: 100,
-                  child: Image.asset('../images/lvlmind.png'),
+                  child: Image.asset('/images/lvlmind.png'),
                   // Our application's logo
                 ),
               ),
 
               // Nom du projet
-              const DelayedAnimation(
+              DelayedAnimation(
                 delay: 2000,
                 child: SizedBox(
                   height: 100,
                   child: Text(
                     "lvlmind",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'PatrickHand',
-                      fontSize: 20,
-                      color: Color.fromARGB(255, 95, 9, 110),
+                    style: GoogleFonts.josefinSans(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.deepPurpleAccent,
                     ),
                   ),
                 ),
               ),
+
               DelayedAnimation(
                 delay: 3500,
                 child: Container(
                   margin: const EdgeInsets.only(
-                    top: 30,
-                    bottom: 20,
+                    top: 50,
+                    bottom: 30,
                   ),
-                  child: const Text(
-                    "Online learning with levelmind",
+                  child: Text(
+                    'Online learning with levelmind',
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'TiltNeon',
-                      fontSize: 20,
+                    style: GoogleFonts.josefinSans(
+                      fontSize: 30,
                       fontWeight: FontWeight.bold,
                       color: Colors.blueAccent,
                     ),
@@ -89,13 +90,13 @@ class WelcomePage extends StatelessWidget {
                     top: 30,
                     bottom: 20,
                   ),
-                  child: const Text(
+                  child: Text(
                     "Build skills with courses, certificates and degrees online from world class universities",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontFamily: 'TiltNeon',
-                      fontSize: 15,
-                      color: Color.fromARGB(255, 49, 113, 225),
+                    style: GoogleFonts.josefinSans(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w500,
+                      color: const Color.fromARGB(255, 71, 136, 250),
                     ),
                   ),
                 ),
@@ -118,7 +119,12 @@ class WelcomePage extends StatelessWidget {
                         ),
                       );
                     },
-                    child: const Text('GET STARTED'),
+                    child: Text(
+                      'GET STARTED',
+                      style: GoogleFonts.tiltNeon(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
                   ),
                 ),
               ),

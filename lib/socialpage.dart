@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/login.dart';
 import 'package:lvlmind/main.dart';
@@ -32,8 +33,10 @@ class SocialPage extends StatelessWidget {
             DelayedAnimation(
               delay: 1200,
               child: SizedBox(
-                height: 280,
-                child: Image.asset('../images/lvlmind.png'),
+                height: 250,
+                child: Image(
+                  image: AssetImage('/images/lvlmind.png'),
+                ),
               ),
             ),
             DelayedAnimation(
@@ -41,26 +44,25 @@ class SocialPage extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   vertical: 40,
-                  horizontal: 30,
+                  horizontal: 50,
                 ),
                 child: Column(
-                  children: const [
+                  children: [
                     Text(
                       "Your adventure begins here and now.",
-                      style: TextStyle(
-                        fontFamily: 'PatrickHand',
-                        fontSize: 20,
-                        color: Colors.grey,
+                      style: GoogleFonts.josefinSans(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.lightBlue,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 30),
                     Text(
                       "Train your  mind to gain more knowledge with levelmind",
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontFamily: 'TiltNeon',
-                        fontSize: 15,
-                        color: Colors.grey,
+                      style: GoogleFonts.josefinSans(
+                        fontSize: 20,
+                        color: Colors.blue,
                       ),
                     ),
                   ],
@@ -71,8 +73,8 @@ class SocialPage extends StatelessWidget {
               delay: 2500,
               child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 14,
-                  horizontal: 40,
+                  vertical: 20,
+                  horizontal: 60,
                 ),
                 child: Column(
                   children: [
@@ -92,13 +94,12 @@ class SocialPage extends StatelessWidget {
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
+                        children: [
                           Icon(Icons.send_sharp), //A modifier
                           SizedBox(width: 10),
                           Text(
                             'Connect with Personal ID',
-                            style: TextStyle(
-                              fontFamily: 'TiltNeon',
+                            style: GoogleFonts.josefinSans(
                               fontSize: 15,
                               color: Colors.black,
                             ),
@@ -106,7 +107,7 @@ class SocialPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 120),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -121,7 +122,13 @@ class SocialPage extends StatelessWidget {
                         backgroundColor: const Color(0xFF576dff),
                         padding: const EdgeInsets.all(13),
                       ),
-                      child: const Text('Create Account'),
+                      child: Text(
+                        'Create Account',
+                        style: GoogleFonts.josefinSans(
+                          fontSize: 15,
+                          color: Colors.black,
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 20),
                   ],

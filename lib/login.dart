@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/homepage.dart';
 import 'package:lvlmind/main.dart';
+import 'package:google_fonts/google_fonts.dart';
+// Suite à une erreur sur les polices que j'ait télechargé
+// J'ai du revenir à googlefonts
 
 class LoginPage extends StatelessWidget {
   @override
@@ -28,8 +31,8 @@ class LoginPage extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.symmetric(
-                vertical: 40,
-                horizontal: 15,
+                vertical: 100,
+                horizontal: 50,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,10 +40,10 @@ class LoginPage extends StatelessWidget {
                   DelayedAnimation(
                     delay: 1100,
                     child: Text(
-                      "Connect to levelmind",
-                      style: TextStyle(
-                        fontFamily: 'TiltNeon',
-                        fontSize: 20,
+                      'Connect to levelmind',
+                      style: GoogleFonts.patrickHandSc(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w700,
                         color: d_color,
                       ),
                     ),
@@ -49,10 +52,9 @@ class LoginPage extends StatelessWidget {
                   DelayedAnimation(
                     delay: 1500,
                     child: Text(
-                      "It's recommended to connect with your ID.",
-                      style: TextStyle(
-                        fontFamily: 'Josefin',
-                        fontSize: 15,
+                      'It' 's recommended to connect with your ID.',
+                      style: GoogleFonts.josefinSans(
+                        fontSize: 20,
                         color: Colors.black45,
                       ),
                     ),
@@ -60,9 +62,9 @@ class LoginPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 35),
+            SizedBox(height: 45),
             LoginForm(),
-            SizedBox(height: 70),
+            SizedBox(height: 100),
             DelayedAnimation(
               delay: 2000,
               child: ElevatedButton(
@@ -78,8 +80,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 child: Text(
                   'CONFIRM',
-                  style: TextStyle(
-                    fontFamily: 'PatrickHand',
+                  style: GoogleFonts.patrickHandSc(
                     color: Colors.black,
                   ),
                 ),
@@ -105,9 +106,8 @@ class LoginPage extends StatelessWidget {
                   child: DelayedAnimation(
                     delay: 3500,
                     child: Text(
-                      "SKIP",
-                      style: TextStyle(
-                        fontFamily: 'PatrickHand',
+                      "Return",
+                      style: GoogleFonts.josefinSans(
                         fontSize: 15,
                         fontWeight: FontWeight.w600,
                         color: Colors.black,
@@ -145,7 +145,7 @@ class _LoginFormState extends State<LoginForm> {
             child: TextField(
               decoration: InputDecoration(
                 labelText: 'Your ID',
-                labelStyle: TextStyle(
+                labelStyle: GoogleFonts.tiltNeon(
                   color: Colors.grey[400],
                 ),
               ),
@@ -157,7 +157,7 @@ class _LoginFormState extends State<LoginForm> {
             child: TextField(
               obscureText: _obscureText,
               decoration: InputDecoration(
-                labelStyle: TextStyle(
+                labelStyle: GoogleFonts.tiltNeon(
                   color: Colors.grey[400],
                 ),
                 labelText: 'Password',
