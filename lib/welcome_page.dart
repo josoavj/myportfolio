@@ -58,8 +58,8 @@ class WelcomePage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: GoogleFonts.josefinSans(
                       fontSize: 25,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.deepPurpleAccent,
+                      fontWeight: FontWeight.w800,
+                      color: const Color.fromARGB(197, 124, 77, 255),
                     ),
                   ),
                 ),

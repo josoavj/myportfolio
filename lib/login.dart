@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(
             Icons.close,
-            color: Color.fromARGB(255, 24, 11, 199),
+            color: Colors.blueAccent,
             size: 30,
           ),
           onPressed: () {
@@ -72,7 +72,7 @@ class LoginPage extends StatelessWidget {
                   shape: StadiumBorder(),
                   // J'ai utilisé primary mais elle est obsolète
                   // Du coup je l'ai remplacé par backgroundColor
-                  backgroundColor: d_color,
+                  backgroundColor: Colors.blueAccent,
                   padding: EdgeInsets.symmetric(
                     horizontal: 90,
                     vertical: 15,
@@ -164,7 +164,7 @@ class _LoginFormState extends State<LoginForm> {
                 suffixIcon: IconButton(
                   icon: Icon(
                     Icons.visibility,
-                    color: Colors.black,
+                    color: Colors.blueAccent,
                   ),
                   onPressed: () {
                     setState(() {

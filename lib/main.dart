@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:lvlmind/welcome_page.dart';
 
 // ignore: constant_identifier_names
-const d_color = Color.fromARGB(255, 11, 73, 173);
+const d_color = Colors.blueAccent;
+// ignore: constant_identifier_names
+const b_color = Colors.white;
 
 void main() {
   runApp(const lvlmind());

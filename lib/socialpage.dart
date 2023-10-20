@@ -19,7 +19,7 @@ class SocialPage extends StatelessWidget {
         leading: IconButton(
           icon: const Icon(
             Icons.arrow_back,
-            color: Colors.black,
+            color: Colors.blueAccent,
             size: 30,
           ),
           onPressed: () {
@@ -44,7 +44,7 @@ class SocialPage extends StatelessWidget {
               child: Container(
                 margin: const EdgeInsets.symmetric(
                   vertical: 40,
-                  horizontal: 50,
+                  horizontal: 30,
                 ),
                 child: Column(
                   children: [
@@ -53,16 +53,16 @@ class SocialPage extends StatelessWidget {
                       style: GoogleFonts.josefinSans(
                         fontSize: 30,
                         fontWeight: FontWeight.w700,
-                        color: Colors.lightBlue,
+                        color: Colors.blueGrey,
                       ),
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 10),
                     Text(
-                      "Train your  mind to gain more knowledge with levelmind",
+                      "Train your mind to gain more knowledge with levelmind",
                       textAlign: TextAlign.center,
                       style: GoogleFonts.josefinSans(
                         fontSize: 20,
-                        color: Colors.blue,
+                        color: Colors.blueAccent,
                       ),
                     ),
                   ],
@@ -73,7 +73,7 @@ class SocialPage extends StatelessWidget {
               delay: 2500,
               child: Container(
                 margin: const EdgeInsets.symmetric(
-                  vertical: 20,
+                  vertical: 15,
                   horizontal: 60,
                 ),
                 child: Column(
@@ -89,13 +89,13 @@ class SocialPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
-                        backgroundColor: d_color,
+                        backgroundColor: Colors.blueAccent,
                         padding: const EdgeInsets.all(13),
                       ),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(Icons.send_sharp), //A modifier
+                          //Icon(Icons.send_sharp), //A modifier
                           SizedBox(width: 10),
                           Text(
                             'Connect with Personal ID',
@@ -107,7 +107,7 @@ class SocialPage extends StatelessWidget {
                         ],
                       ),
                     ),
-                    const SizedBox(height: 120),
+                    const SizedBox(height: 50),
                     ElevatedButton(
                       onPressed: () {
                         Navigator.push(
@@ -119,7 +119,7 @@ class SocialPage extends StatelessWidget {
                       },
                       style: ElevatedButton.styleFrom(
                         shape: const StadiumBorder(),
-                        backgroundColor: const Color(0xFF576dff),
+                        backgroundColor: Colors.white,
                         padding: const EdgeInsets.all(13),
                       ),
                       child: Text(
