@@ -26,11 +26,3 @@ class Formulaire extends StatelessWidget {
     );
   }
 }
-
-class form extends StatefulWidget{
-  const form({super.key});
-  
-  @override
-  FormState createState() => FormState();
-  @override
-}

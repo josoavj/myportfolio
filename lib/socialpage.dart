@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/login.dart';
-import 'package:lvlmind/main.dart';
 import 'package:lvlmind/formulaire.dart';
 
 class SocialPage extends StatelessWidget {
