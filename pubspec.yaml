@@ -71,9 +71,24 @@ flutter:
 #        - assets/asset: fonts/PatrickHandSC-Regular.ttf
 
   # To add assets to your application, add an assets section, like this:
-assets:
-  - images/ispmlogo.png
-  - images/lvlmind.png
+  assets:
+     - images/
+     - images/lvlmind.png
+     - fonts/
+
+  
+  fonts:
+    - family: PatrickHand 
+      fonts:
+      - asset: fonts/PatrickHandSC-Regular.ttf
+
+    - family: Josefin
+      fonts:
+      - asset: fonts/JosefinSans-VariableFont_wght.ttf
+    
+    - family: TiltNeon 
+      fonts:
+      - asset: fonts/TiltNeon-Regular.ttf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

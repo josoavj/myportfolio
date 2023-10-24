@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:lvlmind/animate.dart';
 import 'package:lvlmind/main.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
@@ -12,12 +11,9 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "LEVELMIND",
-          style: GoogleFonts.patrickHandSc(),
+        title: const Text(
+          "Welcome",
         ),
-        centerTitle: true,
-        iconTheme: const IconThemeData(),
       ),
     );
   }

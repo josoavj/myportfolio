@@ -14,13 +14,11 @@ void main() {
 
 class lvlmind extends StatelessWidget {
   const lvlmind({super.key});
-  // Ajout d'un constructeur
+
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'lvlmind',
-      debugShowCheckedModeBanner: false,
-      home: WelcomePage(),
-    );
+    // TODO: implement build
+    throw UnimplementedError();
   }
+  // Ajout d'un constructeur
 }
