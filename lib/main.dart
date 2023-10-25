@@ -8,12 +8,12 @@ const d_color = Colors.blueAccent;
 const b_color = Colors.white;
 
 void main() {
-  runApp(const lvlmind());
+  runApp(const portfolio());
 }
 // Recommendation: Ajout de const avant lvlmind et Material app
 
-class lvlmind extends StatelessWidget {
-  const lvlmind({super.key});
+class portfolio extends StatelessWidget {
+  const portfolio({super.key});
 
   @override
   Widget build(BuildContext context) {
