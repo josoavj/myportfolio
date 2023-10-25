@@ -1,8 +1,8 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:lvlmind/animate.dart';
-import 'package:lvlmind/main.dart';
+import 'package:portfolio/animate.dart';
+import 'package:portfolio/main.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({super.key});
