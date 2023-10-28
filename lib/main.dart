@@ -2,11 +2,6 @@
 import 'package:flutter/material.dart';
 import 'package:portfolio/welcome_page.dart';
 
-// ignore: constant_identifier_names
-const d_color = Colors.blueAccent;
-// ignore: constant_identifier_names
-const b_color = Colors.white;
-
 void main() {
   runApp(const portfolio());
 }
@@ -17,8 +12,11 @@ class portfolio extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return const MaterialApp(
+      title: 'My Portfolio',
+      debugShowCheckedModeBanner: false,
+      home: welcomepage(),
+    );
   }
   // Ajout d'un constructeur
 }
