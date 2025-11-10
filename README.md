@@ -4,4 +4,4 @@ Un simple portfolio pour représenter mes compétences et mon parcours en tant q
 
 ## Notice
 
-Test be fotsiny io
+C'est encore une version betâ
