@@ -1,21 +1,24 @@
-//import 'package:flutter/animation.dart';
-import 'dart:async'; // Bibliothèque utile pour l'ensemble du code
+import 'dart:async';
 import 'package:flutter/material.dart';
 
 class DelayedAnimation extends StatefulWidget {
   final Widget child;
   final int delay;
-  const DelayedAnimation({super.key, required this.delay, required this.child});
+  const DelayedAnimation({
+    super.key,
+    required this.delay,
+    required this.child,
+  });
 
   @override
-  // ignore: library_private_types_in_public_api
-  _DelayedAnimationState createState() => _DelayedAnimationState();
+  State<DelayedAnimation> createState() => _DelayedAnimationState();
 }
 
 class _DelayedAnimationState extends State<DelayedAnimation>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<Offset> _animOffset;
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +41,12 @@ class _DelayedAnimationState extends State<DelayedAnimation>
     Timer(Duration(milliseconds: widget.delay), () {
       _controller.forward();
     });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
