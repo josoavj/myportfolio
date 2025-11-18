@@ -1,0 +1,360 @@
+import 'package:flutter/material.dart';
+import 'package:myportfolio/constants/app_constants.dart';
+import 'package:myportfolio/services/url_launcher_service.dart';
+import 'package:myportfolio/widgets/section_title.dart';
+
+class ContactSection extends StatefulWidget {
+  const ContactSection({super.key});
+
+  @override
+  State<ContactSection> createState() => _ContactSectionState();
+}
+
+class _ContactSectionState extends State<ContactSection> {
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final messageController = TextEditingController();
+
+  void _sendEmail() {
+    if (nameController.text.isEmpty ||
+        emailController.text.isEmpty ||
+        messageController.text.isEmpty) {
+      debugPrint('Tous les champs sont requis');
+      return;
+    }
+
+    final String subject = 'Contact Portfolio - ${nameController.text}';
+    final String body =
+        'Nom: ${nameController.text}\nEmail: ${emailController.text}\n\nMessage:\n${messageController.text}';
+
+    UrlLauncherService.launchEmail(
+      email: 'votre.email@example.com',
+      subject: subject,
+      body: body,
+    );
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    emailController.dispose();
+    messageController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      color: AppConstants.secondaryDark,
+      child: Column(
+        children: [
+          const SectionTitle(title: 'Contactez-moi'),
+          const SizedBox(height: 40),
+          Text(
+            'Je suis ouvert aux collaborations et discussions!',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.grey[300],
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 40),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 1200),
+            child: LayoutBuilder(
+              builder: (context, constraints) {
+                final isDesktop = constraints.maxWidth > 900;
+
+                if (isDesktop) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 3,
+                        child: _buildContactForm(),
+                      ),
+                      const SizedBox(width: 40),
+                      Expanded(
+                        flex: 2,
+                        child: _buildContactInfo(),
+                      ),
+                    ],
+                  );
+                } else {
+                  return Column(
+                    children: [
+                      _buildContactForm(),
+                      const SizedBox(height: 30),
+                      _buildContactInfo(),
+                    ],
+                  );
+                }
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildContactForm() {
+    return Container(
+      padding: const EdgeInsets.all(30),
+      decoration: BoxDecoration(
+        color: AppConstants.primaryDark,
+        borderRadius: BorderRadius.circular(15),
+        border: Border.all(color: Colors.blue.withOpacity(0.2)),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text(
+            'Envoyez-moi un message',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          const SizedBox(height: 25),
+          _buildTextField(
+            controller: nameController,
+            label: 'Nom',
+            icon: Icons.person,
+          ),
+          const SizedBox(height: 20),
+          _buildTextField(
+            controller: emailController,
+            label: 'Email',
+            icon: Icons.email,
+            keyboardType: TextInputType.emailAddress,
+          ),
+          const SizedBox(height: 20),
+          _buildTextField(
+            controller: messageController,
+            label: 'Message',
+            icon: Icons.message,
+            maxLines: 5,
+          ),
+          const SizedBox(height: 25),
+          ElevatedButton(
+            onPressed: _sendEmail,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(Icons.send),
+                SizedBox(width: 10),
+                Text(
+                  'Envoyer le message',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTextField({
+    required TextEditingController controller,
+    required String label,
+    required IconData icon,
+    int maxLines = 1,
+    TextInputType? keyboardType,
+  }) {
+    return TextField(
+      controller: controller,
+      maxLines: maxLines,
+      keyboardType: keyboardType,
+      style: const TextStyle(color: Colors.white),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(color: Colors.grey[400]),
+        prefixIcon: Icon(icon, color: Colors.blue),
+        filled: true,
+        fillColor: AppConstants.secondaryDark,
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.grey[700]!),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(color: Colors.grey[700]!),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.blue, width: 2),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildContactInfo() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Container(
+          padding: const EdgeInsets.all(25),
+          decoration: BoxDecoration(
+            color: AppConstants.primaryDark,
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.blue.withOpacity(0.2)),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'Contact Direct',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
+              const SizedBox(height: 25),
+              _buildContactInfoItem(
+                icon: Icons.chat,
+                title: 'WhatsApp',
+                subtitle: '+261 33 60 223 60',
+                onTap: () =>
+                    UrlLauncherService.launchURL(AppConstants.whatsappUrl),
+              ),
+              const SizedBox(height: 20),
+              _buildContactInfoItem(
+                icon: Icons.location_on,
+                title: 'Localisation',
+                subtitle: AppConstants.location,
+              ),
+              const SizedBox(height: 20),
+              _buildContactInfoItem(
+                icon: Icons.work_outline,
+                title: 'Organisation',
+                subtitle: 'APEXNova Labs',
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 20),
+        SizedBox(
+          width: double.infinity,
+          child: ElevatedButton.icon(
+            onPressed: () =>
+                UrlLauncherService.launchURL(AppConstants.whatsappUrl),
+            icon: const Icon(Icons.phone, size: 24),
+            label: const Text(
+              'WhatsApp',
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            ),
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF25D366),
+              foregroundColor: Colors.white,
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 15),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton.icon(
+            onPressed: () =>
+                UrlLauncherService.launchURL(AppConstants.githubUrl),
+            icon: const Icon(Icons.code),
+            label: const Text('GitHub'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.white,
+              side: const BorderSide(color: Colors.blue),
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
+        const SizedBox(height: 15),
+        SizedBox(
+          width: double.infinity,
+          child: OutlinedButton.icon(
+            onPressed: () =>
+                UrlLauncherService.launchURL(AppConstants.linkedinUrl),
+            icon: const Icon(Icons.work),
+            label: const Text('LinkedIn'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: Colors.white,
+              side: const BorderSide(color: Colors.blue),
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildContactInfoItem({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+    VoidCallback? onTap,
+  }) {
+    return InkWell(
+      onTap: onTap,
+      child: Row(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: Colors.blue.withOpacity(0.1),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Icon(icon, color: Colors.blue, size: 24),
+          ),
+          const SizedBox(width: 15),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    color: Colors.grey[400],
+                    fontSize: 13,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  subtitle,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 15,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ],
+            ),
+          ),
+          if (onTap != null)
+            const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.blue,
+              size: 16,
+            ),
+        ],
+      ),
+    );
+  }
+}
