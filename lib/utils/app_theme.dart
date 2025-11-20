@@ -31,7 +31,7 @@ class AppTheme {
   // Titres - Lexend Bold
   static TextStyle titleLarge({Color? color}) {
     return GoogleFonts.lexend(
-      fontSize: 48,
+      fontSize: 40,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
     );
@@ -39,7 +39,7 @@ class AppTheme {
 
   static TextStyle titleMedium({Color? color}) {
     return GoogleFonts.lexend(
-      fontSize: 32,
+      fontSize: 28,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
     );
@@ -47,7 +47,7 @@ class AppTheme {
 
   static TextStyle titleSmall({Color? color}) {
     return GoogleFonts.lexend(
-      fontSize: 24,
+      fontSize: 22,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
     );
@@ -56,7 +56,7 @@ class AppTheme {
   // Sous-titres - Poppins
   static TextStyle subtitle({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 20,
+      fontSize: 17,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w300,
     );
@@ -64,7 +64,7 @@ class AppTheme {
 
   static TextStyle subtitleSmall({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 16,
+      fontSize: 14,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
     );
@@ -73,7 +73,7 @@ class AppTheme {
   // Corps du texte - Poppins
   static TextStyle bodyLarge({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 18,
+      fontSize: 16,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
     );
@@ -81,7 +81,7 @@ class AppTheme {
 
   static TextStyle bodyMedium({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 16,
+      fontSize: 15,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
     );
@@ -89,7 +89,7 @@ class AppTheme {
 
   static TextStyle bodySmall({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 14,
+      fontSize: 13,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
     );
@@ -98,7 +98,7 @@ class AppTheme {
   // Labels et tags - Poppins SemiBold
   static TextStyle label({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 14,
+      fontSize: 13,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w600,
     );
@@ -106,7 +106,7 @@ class AppTheme {
 
   static TextStyle labelSmall({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 12,
+      fontSize: 11,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w600,
     );
@@ -115,7 +115,7 @@ class AppTheme {
   // Caption - Poppins Regular
   static TextStyle caption({Color? color}) {
     return GoogleFonts.poppins(
-      fontSize: 12,
+      fontSize: 11,
       color: color ?? Colors.grey[500],
       fontWeight: FontWeight.w400,
     );
