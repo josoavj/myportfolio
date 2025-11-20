@@ -45,10 +45,8 @@ class HeaderSection extends StatelessWidget {
                 ),
                 child: CircleAvatar(
                   backgroundColor: AppConstants.secondaryDark,
-                  child: Icon(
-                    Icons.person,
-                    size: isSmall ? 60 : 80,
-                    color: Colors.blue,
+                  backgroundImage: NetworkImage(
+                    'https://media.licdn.com/dms/image/v2/D4D35AQGEQi8W_whRJQ/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1700827537879?e=1764262800&v=beta&t=xjdRdpj1LoC0p3tTJItdB6oVUrCeWzJrOJFdB1dyYi0',
                   ),
                 ),
               ),

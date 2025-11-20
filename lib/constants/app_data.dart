@@ -204,7 +204,7 @@ class AppData {
       'Sécurité & Networking': [
         Skill(name: 'Cybersécurité', level: 0.85, color: Colors.red),
         Skill(name: 'Networking', level: 0.8, color: Colors.indigo),
-        Skill(name: 'Fortinet', level: 0.75, color: Colors.deepOrange),
+        Skill(name: 'Kali Linux', level: 0.75, color: Colors.red),
         Skill(name: 'Firewall Config', level: 0.8, color: Colors.purple),
       ],
     };
@@ -217,8 +217,6 @@ class AppData {
       {'name': 'Python', 'icon': '🐍', 'color': Colors.yellow},
       {'name': 'JavaScript', 'icon': '⚡', 'color': Colors.yellow},
       {'name': 'Java', 'icon': '☕', 'color': Colors.red},
-      {'name': 'C#', 'icon': '#️⃣', 'color': Colors.purple},
-      {'name': 'C++', 'icon': '➕', 'color': Colors.blue},
       {'name': 'Shell', 'icon': '🔧', 'color': Colors.grey},
       // Frameworks & Librairies
       {'name': 'Flutter', 'icon': '📱', 'color': Colors.blue},
@@ -226,7 +224,6 @@ class AppData {
       {'name': 'Node.js', 'icon': '🟢', 'color': Colors.green},
       {'name': 'Express.js', 'icon': '🚀', 'color': Colors.grey},
       {'name': 'Firebase', 'icon': '🔥', 'color': Colors.amber},
-      {'name': 'KivyMD', 'icon': '🎨', 'color': Colors.purple},
       // Bases de Données
       {'name': 'MySQL', 'icon': '🗄️', 'color': Colors.blue},
       {'name': 'Elasticsearch', 'icon': '🔍', 'color': Colors.teal},
@@ -246,10 +243,7 @@ class AppData {
       // Sécurité & Networking
       {'name': 'Security', 'icon': '🔐', 'color': Colors.red},
       {'name': 'Networking', 'icon': '🔗', 'color': Colors.indigo},
-      {'name': 'Fortinet', 'icon': '🛡️', 'color': Colors.deepOrange},
-      // Autres technologies
-      {'name': 'Electron', 'icon': '⚛️', 'color': Colors.grey},
-      {'name': 'Kivy', 'icon': '🎮', 'color': Colors.purple},
+      {'name': 'Kali Linux', 'icon': '🐉', 'color': Colors.red},
       {'name': 'Machine Learning', 'icon': '🤖', 'color': Colors.deepPurple},
     ];
   }
