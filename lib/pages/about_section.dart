@@ -40,10 +40,14 @@ class AboutSection extends StatelessWidget {
                       const Icon(Icons.emoji_events,
                           color: Colors.amber, size: 28),
                       const SizedBox(width: 10),
-                      Text(
-                        'Top 15 Développeur GitHub Madagascar',
-                        style: AppTheme.titleMedium(color: Colors.amber),
-                        textAlign: TextAlign.center,
+                      Flexible(
+                        child: Text(
+                          'Top 15 Développeur GitHub Madagascar',
+                          style: AppTheme.titleMedium(color: Colors.amber),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
+                        ),
                       ),
                     ],
                   ),

@@ -79,9 +79,12 @@ class ExperienceCard extends StatelessWidget {
                           Icon(Icons.business,
                               size: 16, color: Colors.grey[500]),
                           const SizedBox(width: 5),
-                          Text(
-                            experience.company,
-                            style: AppTheme.subtitle(color: experience.color),
+                          Flexible(
+                            child: Text(
+                              experience.company,
+                              style: AppTheme.subtitle(color: experience.color),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),

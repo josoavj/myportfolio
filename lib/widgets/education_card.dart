@@ -96,6 +96,8 @@ class EducationCard extends StatelessWidget {
                   Text(
                     education.school,
                     style: AppTheme.subtitle(color: education.color),
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -103,9 +105,12 @@ class EducationCard extends StatelessWidget {
                       Icon(Icons.calendar_today,
                           size: 14, color: Colors.grey[500]),
                       const SizedBox(width: 5),
-                      Text(
-                        education.period,
-                        style: AppTheme.labelSmall(),
+                      Flexible(
+                        child: Text(
+                          education.period,
+                          style: AppTheme.labelSmall(),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                       const SizedBox(width: 15),
                       Icon(Icons.location_on,
