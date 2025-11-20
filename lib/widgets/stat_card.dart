@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class StatCard extends StatelessWidget {
   final IconData icon;
@@ -49,19 +50,12 @@ class StatCard extends StatelessWidget {
             const SizedBox(height: 15),
             Text(
               title,
-              style: TextStyle(
-                fontSize: 28,
-                fontWeight: FontWeight.bold,
-                color: color,
-              ),
+              style: AppTheme.titleMedium(color: color),
             ),
             const SizedBox(height: 8),
             Text(
               subtitle,
-              style: TextStyle(
-                fontSize: 14,
-                color: Colors.grey[400],
-              ),
+              style: AppTheme.labelSmall(),
               textAlign: TextAlign.center,
             ),
           ],

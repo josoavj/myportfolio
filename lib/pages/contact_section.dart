@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/services/url_launcher_service.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 
 class ContactSection extends StatefulWidget {
@@ -53,10 +54,7 @@ class _ContactSectionState extends State<ContactSection> {
           const SizedBox(height: 40),
           Text(
             'Je suis ouvert aux collaborations et discussions!',
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.grey[300],
-            ),
+            style: AppTheme.bodyLarge(),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 40),
@@ -329,19 +327,12 @@ class _ContactSectionState extends State<ContactSection> {
               children: [
                 Text(
                   title,
-                  style: TextStyle(
-                    color: Colors.grey[400],
-                    fontSize: 13,
-                  ),
+                  style: AppTheme.labelSmall(),
                 ),
                 const SizedBox(height: 4),
                 Text(
                   subtitle,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: AppTheme.subtitle(),
                   overflow: TextOverflow.ellipsis,
                 ),
               ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class SectionTitle extends StatelessWidget {
   final String title;
@@ -16,11 +17,7 @@ class SectionTitle extends StatelessWidget {
       children: [
         Text(
           emoji != null ? '$emoji $title' : title,
-          style: const TextStyle(
-            fontSize: 36,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: AppTheme.titleLarge(),
         ),
         const SizedBox(height: 10),
         Container(

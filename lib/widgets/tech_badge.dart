@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class TechBadge extends StatelessWidget {
   final String name;
@@ -50,11 +51,7 @@ class TechBadge extends StatelessWidget {
             const SizedBox(width: 8),
             Text(
               name,
-              style: TextStyle(
-                color: color,
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
+              style: AppTheme.label(color: color),
             ),
           ],
         ),

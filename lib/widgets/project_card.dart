@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/services/url_launcher_service.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class ProjectCard extends StatelessWidget {
   final Map<String, dynamic> project;
@@ -40,28 +41,20 @@ class ProjectCard extends StatelessWidget {
                 const SizedBox(width: 5),
                 Text(
                   '${project['stars']}',
-                  style: TextStyle(color: Colors.grey[400]),
+                  style: AppTheme.subtitleSmall(),
                 ),
               ],
             ),
             const SizedBox(height: 15),
             Text(
               project['name'],
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
+              style: AppTheme.titleMedium(),
             ),
             const SizedBox(height: 10),
             Expanded(
               child: Text(
                 project['description'],
-                style: TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey[400],
-                  height: 1.4,
-                ),
+                style: AppTheme.bodyMedium(),
                 maxLines: 4,
                 overflow: TextOverflow.ellipsis,
               ),
@@ -80,7 +73,7 @@ class ProjectCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 Text(
                   project['language'],
-                  style: TextStyle(color: Colors.grey[400], fontSize: 14),
+                  style: AppTheme.labelSmall(),
                 ),
               ],
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class SkillBar extends StatelessWidget {
   final String name;
@@ -29,19 +30,11 @@ class SkillBar extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: TextStyle(
-                      color: Colors.grey[300],
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                    ),
+                    style: AppTheme.bodyLarge(),
                   ),
                   Text(
                     '${(value * 100).toInt()}%',
-                    style: TextStyle(
-                      color: color,
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: AppTheme.label(color: color),
                   ),
                 ],
               ),

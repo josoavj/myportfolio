@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/models/education.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class EducationCard extends StatelessWidget {
   final Education education;
@@ -70,11 +71,7 @@ class EducationCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           education.degree,
-                          style: const TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                          style: AppTheme.titleMedium(),
                         ),
                       ),
                       Container(
@@ -90,11 +87,7 @@ class EducationCard extends StatelessWidget {
                         ),
                         child: Text(
                           education.status,
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: education.color,
-                            fontWeight: FontWeight.bold,
-                          ),
+                          style: AppTheme.labelSmall(color: education.color),
                         ),
                       ),
                     ],
@@ -102,11 +95,7 @@ class EducationCard extends StatelessWidget {
                   const SizedBox(height: 8),
                   Text(
                     education.school,
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: education.color,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: AppTheme.subtitle(color: education.color),
                   ),
                   const SizedBox(height: 8),
                   Row(
@@ -116,10 +105,7 @@ class EducationCard extends StatelessWidget {
                       const SizedBox(width: 5),
                       Text(
                         education.period,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[400],
-                        ),
+                        style: AppTheme.labelSmall(),
                       ),
                       const SizedBox(width: 15),
                       Icon(Icons.location_on,
@@ -128,10 +114,7 @@ class EducationCard extends StatelessWidget {
                       Flexible(
                         child: Text(
                           education.location,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Colors.grey[400],
-                          ),
+                          style: AppTheme.labelSmall(),
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -140,11 +123,7 @@ class EducationCard extends StatelessWidget {
                   const SizedBox(height: 15),
                   Text(
                     education.description,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey[300],
-                      height: 1.5,
-                    ),
+                    style: AppTheme.bodyMedium(),
                   ),
                 ],
               ),

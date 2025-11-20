@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/social_button.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -53,21 +54,13 @@ class HeaderSection extends StatelessWidget {
               const SizedBox(height: 30),
               Text(
                 AppConstants.heroName,
-                style: TextStyle(
-                  fontSize: isSmall ? 32 : 48,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: AppTheme.titleLarge(),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 AppConstants.heroTitle,
-                style: TextStyle(
-                  fontSize: isSmall ? 16 : 20,
-                  color: Colors.grey[400],
-                  fontWeight: FontWeight.w300,
-                ),
+                style: AppTheme.subtitle(),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
@@ -79,7 +72,7 @@ class HeaderSection extends StatelessWidget {
                   Flexible(
                     child: Text(
                       AppConstants.location,
-                      style: TextStyle(color: Colors.grey[400]),
+                      style: AppTheme.subtitleSmall(),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/skill_bar.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
@@ -54,11 +55,7 @@ class SkillsSection extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8, bottom: 20),
               child: Text(
                 category,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: AppTheme.titleMedium(),
               ),
             ),
             ...skills.map((skill) => SkillBar(
@@ -163,10 +160,7 @@ class SkillsSection extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           'Simulation de graphique type GitHub',
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[500],
-          ),
+          style: AppTheme.subtitleSmall(),
         ),
         const SizedBox(height: 30),
         _buildContributionHeatmap(),
@@ -258,10 +252,7 @@ class SkillsSection extends StatelessWidget {
       height: 12,
       child: Text(
         day,
-        style: TextStyle(
-          color: Colors.grey[600],
-          fontSize: 10,
-        ),
+        style: AppTheme.caption(),
       ),
     );
   }
@@ -304,7 +295,7 @@ class SkillsSection extends StatelessWidget {
       children: [
         Text(
           'Moins',
-          style: TextStyle(color: Colors.grey[600], fontSize: 12),
+          style: AppTheme.labelSmall(),
         ),
         const SizedBox(width: 8),
         _buildContributionSquare(0),
@@ -319,7 +310,7 @@ class SkillsSection extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           'Plus',
-          style: TextStyle(color: Colors.grey[600], fontSize: 12),
+          style: AppTheme.labelSmall(),
         ),
       ],
     );

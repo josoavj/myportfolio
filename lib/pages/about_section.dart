@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 
 class AboutSection extends StatelessWidget {
@@ -20,11 +21,7 @@ class AboutSection extends StatelessWidget {
               'Je travaille sur des projets variés allant du développement mobile avec Flutter '
               'aux configurations de serveurs et bases de données. Membre de l\'équipe APEXNova Labs, '
               'je contribue à des projets open source et explore continuellement de nouvelles technologies.',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[300],
-                height: 1.6,
-              ),
+              style: AppTheme.bodyLarge(),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 40),
@@ -45,11 +42,7 @@ class AboutSection extends StatelessWidget {
                       const SizedBox(width: 10),
                       Text(
                         'Top 15 Développeur GitHub Madagascar',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.amber,
-                        ),
+                        style: AppTheme.titleMedium(color: Colors.amber),
                         textAlign: TextAlign.center,
                       ),
                     ],
@@ -57,10 +50,7 @@ class AboutSection extends StatelessWidget {
                   const SizedBox(height: 15),
                   Text(
                     'Classement basé sur les contributions publiques',
-                    style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 14,
-                    ),
+                    style: AppTheme.subtitleSmall(),
                   ),
                 ],
               ),
