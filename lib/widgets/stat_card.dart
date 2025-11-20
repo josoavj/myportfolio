@@ -20,7 +20,7 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSmall = MediaQuery.of(context).size.width < 600;
-    
+
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 800),
@@ -52,9 +52,9 @@ class StatCard extends StatelessWidget {
             SizedBox(height: isSmall ? 10 : 15),
             Text(
               title,
-              style: isSmall 
-                ? AppTheme.titleSmallMobile(color: color)
-                : AppTheme.titleMedium(color: color),
+              style: isSmall
+                  ? AppTheme.titleSmallMobile(color: color)
+                  : AppTheme.titleMedium(color: color),
             ),
             SizedBox(height: isSmall ? 6 : 8),
             Text(

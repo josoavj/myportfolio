@@ -19,7 +19,7 @@ class FooterSection extends StatelessWidget {
           ),
           const SizedBox(height: 10),
           Text(
-            'Développé avec Flutter ❤️',
+            'Développé avec Flutter',
             style: AppTheme.labelSmall(),
             textAlign: TextAlign.center,
           ),
