@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/models/experience.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class ExperienceCard extends StatelessWidget {
   final Experience experience;
@@ -70,11 +71,7 @@ class ExperienceCard extends StatelessWidget {
                     children: [
                       Text(
                         experience.role,
-                        style: const TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: AppTheme.titleMedium(),
                       ),
                       const SizedBox(height: 8),
                       Row(
@@ -82,12 +79,11 @@ class ExperienceCard extends StatelessWidget {
                           Icon(Icons.business,
                               size: 16, color: Colors.grey[500]),
                           const SizedBox(width: 5),
-                          Text(
-                            experience.company,
-                            style: TextStyle(
-                              fontSize: 16,
-                              color: experience.color,
-                              fontWeight: FontWeight.w600,
+                          Flexible(
+                            child: Text(
+                              experience.company,
+                              style: AppTheme.subtitle(color: experience.color),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                         ],
@@ -101,10 +97,7 @@ class ExperienceCard extends StatelessWidget {
                           Flexible(
                             child: Text(
                               experience.period,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey[400],
-                              ),
+                              style: AppTheme.labelSmall(),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -115,10 +108,7 @@ class ExperienceCard extends StatelessWidget {
                           Flexible(
                             child: Text(
                               experience.location,
-                              style: TextStyle(
-                                fontSize: 14,
-                                color: Colors.grey[400],
-                              ),
+                              style: AppTheme.labelSmall(),
                               overflow: TextOverflow.ellipsis,
                             ),
                           ),
@@ -132,20 +122,12 @@ class ExperienceCard extends StatelessWidget {
             const SizedBox(height: 20),
             Text(
               experience.description,
-              style: TextStyle(
-                fontSize: 15,
-                color: Colors.grey[300],
-                height: 1.5,
-              ),
+              style: AppTheme.bodyLarge(),
             ),
             const SizedBox(height: 20),
             Text(
               'Réalisations clés :',
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey[200],
-              ),
+              style: AppTheme.subtitle(),
             ),
             const SizedBox(height: 10),
             ...experience.achievements.map((achievement) {
@@ -163,11 +145,7 @@ class ExperienceCard extends StatelessWidget {
                     Expanded(
                       child: Text(
                         achievement,
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[400],
-                          height: 1.4,
-                        ),
+                        style: AppTheme.bodySmall(),
                       ),
                     ),
                   ],

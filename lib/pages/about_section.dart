@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 
 class AboutSection extends StatelessWidget {
@@ -7,29 +8,31 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSmall = MediaQuery.of(context).size.width < 600;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      padding: EdgeInsets.symmetric(
+        horizontal: isSmall ? 15 : 20,
+        vertical: isSmall ? 60 : 80,
+      ),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1000),
         child: Column(
           children: [
             const SectionTitle(title: 'À propos de moi'),
-            const SizedBox(height: 40),
+            SizedBox(height: isSmall ? 25 : 40),
             Text(
               'Développeur passionné par Linux, le networking et la cybersécurité. '
               'Je travaille sur des projets variés allant du développement mobile avec Flutter '
               'aux configurations de serveurs et bases de données. Membre de l\'équipe APEXNova Labs, '
               'je contribue à des projets open source et explore continuellement de nouvelles technologies.',
-              style: TextStyle(
-                fontSize: 18,
-                color: Colors.grey[300],
-                height: 1.6,
-              ),
+              style:
+                  isSmall ? AppTheme.bodyLargeMobile() : AppTheme.bodyLarge(),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: isSmall ? 25 : 40),
             Container(
-              padding: const EdgeInsets.all(30),
+              padding: EdgeInsets.all(isSmall ? 20 : 30),
               decoration: BoxDecoration(
                 color: AppConstants.secondaryDark,
                 borderRadius: BorderRadius.circular(15),
@@ -43,24 +46,21 @@ class AboutSection extends StatelessWidget {
                       const Icon(Icons.emoji_events,
                           color: Colors.amber, size: 28),
                       const SizedBox(width: 10),
-                      Text(
-                        'Top 15 Développeur GitHub Madagascar',
-                        style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.amber,
+                      Flexible(
+                        child: Text(
+                          'Top 15 Développeur GitHub Madagascar',
+                          style: AppTheme.titleMedium(color: Colors.amber),
+                          textAlign: TextAlign.center,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
                   const SizedBox(height: 15),
                   Text(
                     'Classement basé sur les contributions publiques',
-                    style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 14,
-                    ),
+                    style: AppTheme.subtitleSmall(),
                   ),
                 ],
               ),

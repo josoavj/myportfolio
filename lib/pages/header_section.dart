@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/social_button.dart';
 
 class HeaderSection extends StatelessWidget {
@@ -45,43 +46,39 @@ class HeaderSection extends StatelessWidget {
                 ),
                 child: CircleAvatar(
                   backgroundColor: AppConstants.secondaryDark,
-                  child: Icon(
-                    Icons.person,
-                    size: isSmall ? 60 : 80,
-                    color: Colors.blue,
+                  backgroundImage: NetworkImage(
+                    'https://media.licdn.com/dms/image/v2/D4D35AQGEQi8W_whRJQ/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1700827537879?e=1764262800&v=beta&t=xjdRdpj1LoC0p3tTJItdB6oVUrCeWzJrOJFdB1dyYi0',
                   ),
                 ),
               ),
               const SizedBox(height: 30),
               Text(
                 AppConstants.heroName,
-                style: TextStyle(
-                  fontSize: isSmall ? 32 : 48,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: isSmall
+                    ? AppTheme.titleLargeMobile()
+                    : AppTheme.titleLarge(),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 AppConstants.heroTitle,
-                style: TextStyle(
-                  fontSize: isSmall ? 16 : 20,
-                  color: Colors.grey[400],
-                  fontWeight: FontWeight.w300,
-                ),
+                style:
+                    isSmall ? AppTheme.subtitleMobile() : AppTheme.subtitle(),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.location_on, color: Colors.grey[400], size: 20),
+                  Icon(Icons.location_on,
+                      color: Colors.grey[400], size: isSmall ? 16 : 20),
                   const SizedBox(width: 5),
                   Flexible(
                     child: Text(
                       AppConstants.location,
-                      style: TextStyle(color: Colors.grey[400]),
+                      style: isSmall
+                          ? AppTheme.subtitleSmallMobile()
+                          : AppTheme.subtitleSmall(),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
 class FooterSection extends StatelessWidget {
   const FooterSection({super.key});
@@ -13,13 +14,13 @@ class FooterSection extends StatelessWidget {
         children: [
           Text(
             '© 2025 Josoa Vonjiniaina. Tous droits réservés.',
-            style: TextStyle(color: Colors.grey[500]),
+            style: AppTheme.caption(),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 10),
           Text(
-            'Développé avec Flutter ❤️',
-            style: TextStyle(color: Colors.grey[600], fontSize: 14),
+            'Développé avec Flutter',
+            style: AppTheme.labelSmall(),
             textAlign: TextAlign.center,
           ),
         ],

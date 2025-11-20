@@ -2,13 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
+import 'package:myportfolio/services/github_service.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/skill_bar.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
 import 'package:myportfolio/widgets/tech_badge.dart';
 
-class SkillsSection extends StatelessWidget {
+class SkillsSection extends StatefulWidget {
   const SkillsSection({super.key});
+
+  @override
+  State<SkillsSection> createState() => _SkillsSectionState();
+}
+
+class _SkillsSectionState extends State<SkillsSection> {
+  late Future<List<int>> _contributionsFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _contributionsFuture = GitHubService.getUserContributions();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,11 +69,7 @@ class SkillsSection extends StatelessWidget {
               padding: const EdgeInsets.only(left: 8, bottom: 20),
               child: Text(
                 category,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                ),
+                style: AppTheme.titleMedium(),
               ),
             ),
             ...skills.map((skill) => SkillBar(
@@ -107,7 +118,7 @@ class SkillsSection extends StatelessWidget {
             ),
             StatCard(
               icon: Icons.people,
-              title: 'APEXNova',
+              title: 'APEXNova Labs',
               subtitle: 'Membre Actif',
               color: Colors.purple,
               width: isMobile ? constraints.maxWidth : 200,
@@ -163,10 +174,7 @@ class SkillsSection extends StatelessWidget {
         const SizedBox(height: 10),
         Text(
           'Simulation de graphique type GitHub',
-          style: TextStyle(
-            fontSize: 14,
-            color: Colors.grey[500],
-          ),
+          style: AppTheme.subtitleSmall(),
         ),
         const SizedBox(height: 30),
         _buildContributionHeatmap(),
@@ -177,79 +185,112 @@ class SkillsSection extends StatelessWidget {
   }
 
   Widget _buildContributionHeatmap() {
-    final random = [
-      [0, 1, 2, 1, 3, 2, 0],
-      [2, 3, 1, 2, 4, 3, 1],
-      [1, 2, 3, 4, 3, 2, 1],
-      [3, 4, 2, 3, 2, 1, 2],
-      [2, 1, 3, 2, 4, 3, 2],
-      [4, 3, 2, 1, 2, 3, 1],
-      [1, 2, 1, 3, 2, 1, 0],
-      [2, 3, 4, 3, 2, 1, 2],
-      [3, 2, 1, 2, 3, 4, 3],
-      [1, 2, 3, 2, 1, 2, 3],
-      [2, 4, 3, 2, 1, 3, 2],
-      [3, 1, 2, 4, 3, 2, 1],
-    ];
+    return FutureBuilder<List<int>>(
+      future: _contributionsFuture,
+      builder: (context, snapshot) {
+        List<List<int>> weeks = [];
 
-    return SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Container(
-        padding: const EdgeInsets.all(20),
-        decoration: BoxDecoration(
-          color: AppConstants.primaryDark,
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: Colors.blue.withOpacity(0.2)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+        if (snapshot.hasData) {
+          final contributions = snapshot.data!;
+          // Organiser les contributions en semaines (12 semaines x 7 jours)
+          for (int i = 0; i < contributions.length; i += 7) {
+            weeks.add(contributions.sublist(i,
+                (i + 7 > contributions.length ? contributions.length : i + 7)));
+          }
+        } else if (snapshot.hasError) {
+          // Fallback aux données par défaut si erreur
+          weeks = [
+            [0, 1, 2, 1, 3, 2, 0],
+            [2, 3, 1, 2, 4, 3, 1],
+            [1, 2, 3, 4, 3, 2, 1],
+            [3, 4, 2, 3, 2, 1, 2],
+            [2, 1, 3, 2, 4, 3, 2],
+            [4, 3, 2, 1, 2, 3, 1],
+            [1, 2, 1, 3, 2, 1, 0],
+            [2, 3, 4, 3, 2, 1, 2],
+            [3, 2, 1, 2, 3, 4, 3],
+            [1, 2, 3, 2, 1, 2, 3],
+            [2, 4, 3, 2, 1, 3, 2],
+            [3, 1, 2, 4, 3, 2, 1],
+          ];
+        } else {
+          // Données par défaut en loading
+          weeks = [
+            [0, 1, 2, 1, 3, 2, 0],
+            [2, 3, 1, 2, 4, 3, 1],
+            [1, 2, 3, 4, 3, 2, 1],
+            [3, 4, 2, 3, 2, 1, 2],
+            [2, 1, 3, 2, 4, 3, 2],
+            [4, 3, 2, 1, 2, 3, 1],
+            [1, 2, 1, 3, 2, 1, 0],
+            [2, 3, 4, 3, 2, 1, 2],
+            [3, 2, 1, 2, 3, 4, 3],
+            [1, 2, 3, 2, 1, 2, 3],
+            [2, 4, 3, 2, 1, 3, 2],
+            [3, 1, 2, 4, 3, 2, 1],
+          ];
+        }
+
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Container(
+            padding: const EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: AppConstants.primaryDark,
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.blue.withOpacity(0.2)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  width: 40,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      _buildDayLabel('Lun'),
-                      const SizedBox(height: 15),
-                      _buildDayLabel('Mer'),
-                      const SizedBox(height: 15),
-                      _buildDayLabel('Ven'),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Column(
-                  children: random.map((week) {
-                    return Row(
-                      children: week.asMap().entries.map((entry) {
-                        final index = entry.key;
-                        final level = entry.value;
-                        return Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: TweenAnimationBuilder<double>(
-                            tween: Tween(begin: 0.0, end: 1.0),
-                            duration:
-                                Duration(milliseconds: 800 + (index * 100)),
-                            curve: Curves.easeOut,
-                            builder: (context, value, child) {
-                              return Opacity(
-                                opacity: value,
-                                child: _buildContributionSquare(level),
-                              );
-                            },
-                          ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 40,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          _buildDayLabel('Lun'),
+                          const SizedBox(height: 15),
+                          _buildDayLabel('Mer'),
+                          const SizedBox(height: 15),
+                          _buildDayLabel('Ven'),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Column(
+                      children: weeks.map((week) {
+                        return Row(
+                          children: week.asMap().entries.map((entry) {
+                            final index = entry.key;
+                            final level = entry.value;
+                            return Padding(
+                              padding: const EdgeInsets.all(2),
+                              child: TweenAnimationBuilder<double>(
+                                tween: Tween(begin: 0.0, end: 1.0),
+                                duration:
+                                    Duration(milliseconds: 800 + (index * 100)),
+                                curve: Curves.easeOut,
+                                builder: (context, value, child) {
+                                  return Opacity(
+                                    opacity: value,
+                                    child: _buildContributionSquare(level),
+                                  );
+                                },
+                              ),
+                            );
+                          }).toList(),
                         );
                       }).toList(),
-                    );
-                  }).toList(),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
@@ -258,10 +299,7 @@ class SkillsSection extends StatelessWidget {
       height: 12,
       child: Text(
         day,
-        style: TextStyle(
-          color: Colors.grey[600],
-          fontSize: 10,
-        ),
+        style: AppTheme.caption(),
       ),
     );
   }
@@ -304,7 +342,7 @@ class SkillsSection extends StatelessWidget {
       children: [
         Text(
           'Moins',
-          style: TextStyle(color: Colors.grey[600], fontSize: 12),
+          style: AppTheme.labelSmall(),
         ),
         const SizedBox(width: 8),
         _buildContributionSquare(0),
@@ -319,7 +357,7 @@ class SkillsSection extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           'Plus',
-          style: TextStyle(color: Colors.grey[600], fontSize: 12),
+          style: AppTheme.labelSmall(),
         ),
       ],
     );
