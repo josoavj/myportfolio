@@ -19,6 +19,8 @@ class StatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSmall = MediaQuery.of(context).size.width < 600;
+    
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 800),
@@ -31,7 +33,7 @@ class StatCard extends StatelessWidget {
       },
       child: Container(
         width: width,
-        padding: const EdgeInsets.all(25),
+        padding: EdgeInsets.all(isSmall ? 15 : 25),
         decoration: BoxDecoration(
           color: const Color(0xFF0D1117),
           borderRadius: BorderRadius.circular(15),
@@ -46,13 +48,15 @@ class StatCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Icon(icon, size: 40, color: color),
-            const SizedBox(height: 15),
+            Icon(icon, size: isSmall ? 32 : 40, color: color),
+            SizedBox(height: isSmall ? 10 : 15),
             Text(
               title,
-              style: AppTheme.titleMedium(color: color),
+              style: isSmall 
+                ? AppTheme.titleSmallMobile(color: color)
+                : AppTheme.titleMedium(color: color),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: isSmall ? 6 : 8),
             Text(
               subtitle,
               style: AppTheme.labelSmall(),

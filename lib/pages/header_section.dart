@@ -54,25 +54,31 @@ class HeaderSection extends StatelessWidget {
               const SizedBox(height: 30),
               Text(
                 AppConstants.heroName,
-                style: AppTheme.titleLarge(),
+                style: isSmall
+                    ? AppTheme.titleLargeMobile()
+                    : AppTheme.titleLarge(),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Text(
                 AppConstants.heroTitle,
-                style: AppTheme.subtitle(),
+                style:
+                    isSmall ? AppTheme.subtitleMobile() : AppTheme.subtitle(),
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.location_on, color: Colors.grey[400], size: 20),
+                  Icon(Icons.location_on,
+                      color: Colors.grey[400], size: isSmall ? 16 : 20),
                   const SizedBox(width: 5),
                   Flexible(
                     child: Text(
                       AppConstants.location,
-                      style: AppTheme.subtitleSmall(),
+                      style: isSmall
+                          ? AppTheme.subtitleSmallMobile()
+                          : AppTheme.subtitleSmall(),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),

@@ -13,11 +13,13 @@ class SectionTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSmall = MediaQuery.of(context).size.width < 600;
+
     return Column(
       children: [
         Text(
           emoji != null ? '$emoji $title' : title,
-          style: AppTheme.titleLarge(),
+          style: isSmall ? AppTheme.titleMediumMobile() : AppTheme.titleLarge(),
         ),
         const SizedBox(height: 10),
         Container(

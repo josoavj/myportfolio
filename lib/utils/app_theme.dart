@@ -120,4 +120,55 @@ class AppTheme {
       fontWeight: FontWeight.w400,
     );
   }
+
+  // ========== VARIANTES MOBILES ==========
+  // Pour une meilleure lisibilité et adaptation sur petits écrans
+
+  static TextStyle titleLargeMobile({Color? color}) {
+    return GoogleFonts.lexend(
+      fontSize: 32,
+      fontWeight: FontWeight.bold,
+      color: color ?? Colors.white,
+    );
+  }
+
+  static TextStyle titleMediumMobile({Color? color}) {
+    return GoogleFonts.lexend(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: color ?? Colors.white,
+    );
+  }
+
+  static TextStyle titleSmallMobile({Color? color}) {
+    return GoogleFonts.lexend(
+      fontSize: 20,
+      fontWeight: FontWeight.bold,
+      color: color ?? Colors.white,
+    );
+  }
+
+  static TextStyle subtitleMobile({Color? color}) {
+    return GoogleFonts.poppins(
+      fontSize: 15,
+      color: color ?? Colors.grey[400],
+      fontWeight: FontWeight.w300,
+    );
+  }
+
+  static TextStyle subtitleSmallMobile({Color? color}) {
+    return GoogleFonts.poppins(
+      fontSize: 13,
+      color: color ?? Colors.grey[400],
+      fontWeight: FontWeight.w400,
+    );
+  }
+
+  static TextStyle bodyLargeMobile({Color? color}) {
+    return GoogleFonts.poppins(
+      fontSize: 14,
+      color: color ?? Colors.white,
+      fontWeight: FontWeight.w400,
+    );
+  }
 }

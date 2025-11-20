@@ -8,25 +8,31 @@ class AboutSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isSmall = MediaQuery.of(context).size.width < 600;
+
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      padding: EdgeInsets.symmetric(
+        horizontal: isSmall ? 15 : 20,
+        vertical: isSmall ? 60 : 80,
+      ),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1000),
         child: Column(
           children: [
             const SectionTitle(title: 'À propos de moi'),
-            const SizedBox(height: 40),
+            SizedBox(height: isSmall ? 25 : 40),
             Text(
               'Développeur passionné par Linux, le networking et la cybersécurité. '
               'Je travaille sur des projets variés allant du développement mobile avec Flutter '
               'aux configurations de serveurs et bases de données. Membre de l\'équipe APEXNova Labs, '
               'je contribue à des projets open source et explore continuellement de nouvelles technologies.',
-              style: AppTheme.bodyLarge(),
+              style:
+                  isSmall ? AppTheme.bodyLargeMobile() : AppTheme.bodyLarge(),
               textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 40),
+            SizedBox(height: isSmall ? 25 : 40),
             Container(
-              padding: const EdgeInsets.all(30),
+              padding: EdgeInsets.all(isSmall ? 20 : 30),
               decoration: BoxDecoration(
                 color: AppConstants.secondaryDark,
                 borderRadius: BorderRadius.circular(15),
