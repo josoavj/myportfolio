@@ -70,7 +70,8 @@ class AppData {
         location: 'Antananarivo, Madagascar',
         description:
             'Formation avancée en systèmes d\'information, réseaux et télécommunications. '
-            'Spécialisation en architecture logicielle, sécurité des systèmes et technologies cloud.',
+            'Spécialisation en architecture logicielle, sécurité des systèmes et technologies cloud. '
+            'Parcours ESIIA (Électronique, Systèmes Informatiques, Informatique et Intelligence Artificielle).',
         icon: Icons.school,
         color: Colors.blue,
         status: 'En cours',
