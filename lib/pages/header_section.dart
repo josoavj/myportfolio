@@ -3,6 +3,7 @@ import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/social_button.dart';
+import 'package:myportfolio/widgets/cv_download_button.dart';
 
 class HeaderSection extends StatefulWidget {
   const HeaderSection({super.key});
@@ -94,6 +95,7 @@ class _HeaderSectionState extends State<HeaderSection> {
               const SizedBox(height: 40),
               AnimationUtils.staggeredFadeSlide(
                 children: [
+                  CVDownloadButton(isSmall: isSmall),
                   SocialButton(
                     icon: Icons.code,
                     label: 'GitHub',
