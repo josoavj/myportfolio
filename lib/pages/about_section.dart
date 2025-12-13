@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
+import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 
-class AboutSection extends StatelessWidget {
+class AboutSection extends StatefulWidget {
   const AboutSection({super.key});
 
+  @override
+  State<AboutSection> createState() => _AboutSectionState();
+}
+
+class _AboutSectionState extends State<AboutSection> {
   @override
   Widget build(BuildContext context) {
     final isSmall = MediaQuery.of(context).size.width < 600;
@@ -29,7 +35,7 @@ class AboutSection extends StatelessWidget {
               style:
                   isSmall ? AppTheme.bodyLargeMobile() : AppTheme.bodyLarge(),
               textAlign: TextAlign.center,
-            ),
+            ).withFadeIn(delay: const Duration(milliseconds: 200)),
             SizedBox(height: isSmall ? 25 : 40),
             Container(
               padding: EdgeInsets.all(isSmall ? 20 : 30),
@@ -56,14 +62,20 @@ class AboutSection extends StatelessWidget {
                         ),
                       ),
                     ],
+                  ).withSlideUp(
+                    delay: const Duration(milliseconds: 300),
+                    distance: 15.0,
                   ),
                   const SizedBox(height: 15),
                   Text(
                     'Classement basé sur les contributions publiques',
                     style: AppTheme.subtitleSmall(),
-                  ),
+                  ).withFadeIn(delay: const Duration(milliseconds: 400)),
                 ],
               ),
+            ).withSlideUp(
+              delay: const Duration(milliseconds: 250),
+              distance: 20.0,
             ),
           ],
         ),

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Configuration centralisée du thème et des polices
 class AppTheme {
-  // Polices
+  // Police unique - Lexend pour tout
   static TextStyle lexendRegular(
     double fontSize, {
     Color? color,
@@ -41,7 +41,7 @@ class AppTheme {
     );
   }
 
-  // Sous-titres - Lexend
+  // Sous-titres - Lexend Light
   static TextStyle subtitle({Color? color}) {
     return GoogleFonts.lexend(
       fontSize: 17,
@@ -58,7 +58,7 @@ class AppTheme {
     );
   }
 
-  // Corps du texte - Lexend
+  // Corps du texte - Lexend Regular
   static TextStyle bodyLarge({Color? color}) {
     return GoogleFonts.lexend(
       fontSize: 16,
