@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/services/cv_download_service.dart';
-import 'package:myportfolio/utils/app_theme.dart';
 
 class CVDownloadButton extends StatefulWidget {
-  final bool isSmall;
   final VoidCallback? onError;
 
   const CVDownloadButton({
     super.key,
-    this.isSmall = false,
     this.onError,
   });
 
@@ -47,6 +44,13 @@ class _CVDownloadButtonState extends State<CVDownloadButton> {
         ),
       );
       widget.onError?.call();
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('CV ouvert avec succès'),
+          duration: Duration(seconds: 1),
+        ),
+      );
     }
   }
 
@@ -54,54 +58,42 @@ class _CVDownloadButtonState extends State<CVDownloadButton> {
   Widget build(BuildContext context) {
     final isCVAvailable = CVDownloadService.isCVAvailable(AppConstants.cvUrl);
 
-    return Material(
-      color: Colors.transparent,
-      child: InkWell(
-        onTap: _isLoading ? null : _downloadCV,
-        borderRadius: BorderRadius.circular(8),
-        child: Container(
-          padding: EdgeInsets.symmetric(
-            horizontal: widget.isSmall ? 12 : 16,
-            vertical: widget.isSmall ? 8 : 12,
-          ),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: isCVAvailable ? Colors.blue : Colors.grey,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(8),
-            color: Colors.transparent,
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              if (_isLoading)
-                SizedBox(
-                  width: widget.isSmall ? 16 : 20,
-                  height: widget.isSmall ? 16 : 20,
-                  child: CircularProgressIndicator(
-                    strokeWidth: 2,
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      isCVAvailable ? Colors.blue : Colors.grey,
-                    ),
-                  ),
-                )
-              else
-                Icon(
-                  Icons.download,
-                  color: isCVAvailable ? Colors.blue : Colors.grey,
-                  size: widget.isSmall ? 16 : 20,
-                ),
-              const SizedBox(width: 8),
-              Text(
-                'CV',
-                style: AppTheme.subtitle(
-                  color: isCVAvailable ? Colors.blue : Colors.grey,
-                ),
-              ),
-            ],
+    if (_isLoading) {
+      return ElevatedButton.icon(
+        onPressed: null,
+        icon: const SizedBox(
+          width: 20,
+          height: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
         ),
+        label: const Text('CV'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.blue.shade700,
+          foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+          disabledBackgroundColor: Colors.blue.shade700,
+        ),
+      );
+    }
+
+    return ElevatedButton.icon(
+      onPressed: isCVAvailable ? _downloadCV : null,
+      icon: Icon(Icons.download, size: 20),
+      label: const Text('CV'),
+      style: ElevatedButton.styleFrom(
+        backgroundColor: isCVAvailable ? Colors.blue.shade700 : Colors.grey,
+        foregroundColor: Colors.white,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
+        disabledBackgroundColor: Colors.grey,
       ),
     );
   }

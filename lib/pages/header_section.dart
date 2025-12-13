@@ -95,7 +95,7 @@ class _HeaderSectionState extends State<HeaderSection> {
               const SizedBox(height: 40),
               AnimationUtils.staggeredFadeSlide(
                 children: [
-                  CVDownloadButton(isSmall: isSmall),
+                  const CVDownloadButton(),
                   SocialButton(
                     icon: Icons.code,
                     label: 'GitHub',
