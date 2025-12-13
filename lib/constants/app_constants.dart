@@ -23,10 +23,10 @@ class AppConstants {
   static const String linkedinUrl =
       'https://www.linkedin.com/in/josoavonjiniaina';
   static const String facebookUrl =
-      'https://www.facebook.com/josoa.vonjiniaina.17';
+      'https://www.facebook.com/josoa.vonjiniaina';
   static const String twitterUrl = 'https://twitter.com/j_Josoa';
   static const String whatsappUrl = 'https://wa.me/261336022360';
-  static const String emailUrl = 'mailto:votre.email@example.com';
+  static const String emailUrl = 'mailto:josoavonjiniaina13@gmail.com';
 
   // Animations
   static const int fadeAnimationDuration = 1500;
