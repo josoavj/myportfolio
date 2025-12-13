@@ -37,10 +37,10 @@ class ExperienceCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppConstants.secondaryDark,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: experience.color.withOpacity(0.3)),
+          border: Border.all(color: experience.color.withValues(alpha: 0.3)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               blurRadius: 15,
               offset: const Offset(0, 5),
             ),
@@ -55,7 +55,7 @@ class ExperienceCard extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(15),
                   decoration: BoxDecoration(
-                    color: experience.color.withOpacity(0.1),
+                    color: experience.color.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Icon(

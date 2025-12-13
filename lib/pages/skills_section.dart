@@ -255,7 +255,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             decoration: BoxDecoration(
               color: AppConstants.primaryDark,
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(color: Colors.blue.withOpacity(0.2)),
+              border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,11 +327,11 @@ class _SkillsSectionState extends State<SkillsSection> {
         case 0:
           return AppConstants.secondaryDark;
         case 1:
-          return Colors.green.withOpacity(0.3);
+          return Colors.green.withValues(alpha: 0.3);
         case 2:
-          return Colors.green.withOpacity(0.5);
+          return Colors.green.withValues(alpha: 0.5);
         case 3:
-          return Colors.green.withOpacity(0.7);
+          return Colors.green.withValues(alpha: 0.7);
         case 4:
           return Colors.green;
         default:
@@ -346,7 +346,7 @@ class _SkillsSectionState extends State<SkillsSection> {
         color: getColor(),
         borderRadius: BorderRadius.circular(2),
         border: Border.all(
-          color: Colors.grey.withOpacity(0.2),
+          color: Colors.grey.withValues(alpha: 0.2),
           width: 0.5,
         ),
       ),

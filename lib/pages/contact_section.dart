@@ -103,7 +103,7 @@ class _ContactSectionState extends State<ContactSection> {
       decoration: BoxDecoration(
         color: AppConstants.primaryDark,
         borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.blue.withOpacity(0.2)),
+        border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -216,7 +216,7 @@ class _ContactSectionState extends State<ContactSection> {
           decoration: BoxDecoration(
             color: AppConstants.primaryDark,
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.blue.withOpacity(0.2)),
+            border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -333,7 +333,7 @@ class _ContactSectionState extends State<ContactSection> {
           Container(
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: Colors.blue.withOpacity(0.1),
+              color: Colors.blue.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Icon(icon, color: Colors.blue, size: 24),

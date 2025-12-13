@@ -37,10 +37,10 @@ class EducationCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: AppConstants.secondaryDark,
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: education.color.withOpacity(0.3)),
+          border: Border.all(color: education.color.withValues(alpha: 0.3)),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.3),
+              color: Colors.black.withValues(alpha: 0.3),
               blurRadius: 15,
               offset: const Offset(0, 5),
             ),
@@ -52,7 +52,7 @@ class EducationCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(15),
               decoration: BoxDecoration(
-                color: education.color.withOpacity(0.1),
+                color: education.color.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
               child: Icon(
@@ -78,7 +78,7 @@ class EducationCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 6),
                         decoration: BoxDecoration(
-                          color: education.color.withOpacity(0.2),
+                          color: education.color.withValues(alpha: 0.2),
                           borderRadius: BorderRadius.circular(20),
                           border: Border.all(
                             color: education.color,

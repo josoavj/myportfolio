@@ -26,7 +26,7 @@ class _HeaderSectionState extends State<HeaderSection> {
           colors: [
             AppConstants.primaryDark,
             const Color(0xFF161B22),
-            Colors.blue.shade900.withOpacity(0.3),
+            Colors.blue.shade900.withValues(alpha: 0.3),
           ],
         ),
       ),
@@ -44,7 +44,7 @@ class _HeaderSectionState extends State<HeaderSection> {
                   border: Border.all(color: Colors.blue, width: 3),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.blue.withOpacity(0.5),
+                      color: Colors.blue.withValues(alpha: 0.5),
                       blurRadius: 20,
                       spreadRadius: 5,
                     ),

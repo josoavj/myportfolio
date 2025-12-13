@@ -42,7 +42,7 @@ class _AboutSectionState extends State<AboutSection> {
               decoration: BoxDecoration(
                 color: AppConstants.secondaryDark,
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.blue.withOpacity(0.2)),
+                border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
               ),
               child: Column(
                 children: [

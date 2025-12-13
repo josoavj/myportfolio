@@ -7,7 +7,6 @@ class GitHubService {
   static const String _username = 'josoavj';
   static final _cacheService = CacheService();
   static const String _contributionsCacheKey = 'github_contributions';
-  static const String _userDataCacheKey = 'github_user_data';
 
   /// Récupère les données de contribution de l'utilisateur GitHub avec cache
   static Future<List<int>> getUserContributions() async {
@@ -34,7 +33,6 @@ class GitHubService {
       }
       return _getDefaultContributions();
     } catch (e) {
-      print('Erreur lors de la récupération des contributions: $e');
       return _getDefaultContributions();
     }
   }
@@ -156,7 +154,6 @@ class GitHubService {
       }
       return 0;
     } catch (e) {
-      print('Erreur: $e');
       return 0;
     }
   }
@@ -178,7 +175,6 @@ class GitHubService {
       }
       return 0;
     } catch (e) {
-      print('Erreur: $e');
       return 0;
     }
   }
