@@ -4,6 +4,7 @@ import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/services/github_service.dart';
 import 'package:myportfolio/utils/app_theme.dart';
+import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/skill_bar.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
@@ -60,6 +61,7 @@ class _SkillsSectionState extends State<SkillsSection> {
   List<Widget> _buildSkillCategories(
       Map<String, List<Skill>> skillsByCategory) {
     List<Widget> widgets = [];
+    int categoryIndex = 0;
     skillsByCategory.forEach((category, skills) {
       widgets.add(
         Column(
@@ -70,17 +72,29 @@ class _SkillsSectionState extends State<SkillsSection> {
               child: Text(
                 category,
                 style: AppTheme.titleMedium(),
+              ).withSlideUp(
+                delay: Duration(milliseconds: 100 + (categoryIndex * 50)),
+                distance: 15.0,
               ),
             ),
-            ...skills.map((skill) => SkillBar(
-                  name: skill.name,
-                  level: skill.level,
-                  color: skill.color,
-                )),
+            ...skills.asMap().entries.map((entry) {
+              final skillIndex = entry.key;
+              final skill = entry.value;
+              return SkillBar(
+                name: skill.name,
+                level: skill.level,
+                color: skill.color,
+              ).withFadeIn(
+                delay: Duration(
+                  milliseconds: 200 + (categoryIndex * 50) + (skillIndex * 30),
+                ),
+              );
+            }),
           ],
         ),
       );
       widgets.add(const SizedBox(height: 50));
+      categoryIndex++;
     });
     return widgets;
   }
@@ -101,28 +115,28 @@ class _SkillsSectionState extends State<SkillsSection> {
               subtitle: 'Projets Complétés',
               color: Colors.blue,
               width: isMobile ? constraints.maxWidth : 200,
-            ),
+            ).withScaleIn(delay: const Duration(milliseconds: 300)),
             StatCard(
               icon: Icons.star,
               title: '56',
               subtitle: 'GitHub Stars',
               color: Colors.amber,
               width: isMobile ? constraints.maxWidth : 200,
-            ),
+            ).withScaleIn(delay: const Duration(milliseconds: 400)),
             StatCard(
               icon: Icons.terminal,
               title: '3+',
               subtitle: 'Années d\'Expérience',
               color: Colors.green,
               width: isMobile ? constraints.maxWidth : 200,
-            ),
+            ).withScaleIn(delay: const Duration(milliseconds: 500)),
             StatCard(
               icon: Icons.people,
               title: 'APEXNova Labs',
               subtitle: 'Membre Actif',
               color: Colors.purple,
               width: isMobile ? constraints.maxWidth : 200,
-            ),
+            ).withScaleIn(delay: const Duration(milliseconds: 600)),
           ],
         );
       },
@@ -139,7 +153,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
-        ),
+        ).withFadeIn(delay: const Duration(milliseconds: 200)),
         const SizedBox(height: 30),
         Wrap(
           spacing: 12,
@@ -153,6 +167,9 @@ class _SkillsSectionState extends State<SkillsSection> {
               icon: badge['icon'] as String,
               color: badge['color'] as Color,
               index: index,
+            ).withSlideUp(
+              delay: Duration(milliseconds: 300 + (index * 40)),
+              distance: 10.0,
             );
           }).toList(),
         ),
