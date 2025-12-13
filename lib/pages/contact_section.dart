@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/services/url_launcher_service.dart';
 import 'package:myportfolio/utils/app_theme.dart';
+import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 
 class ContactSection extends StatefulWidget {
@@ -56,7 +57,7 @@ class _ContactSectionState extends State<ContactSection> {
             'Je suis ouvert aux collaborations et discussions!',
             style: AppTheme.bodyLarge(),
             textAlign: TextAlign.center,
-          ),
+          ).withFadeIn(delay: const Duration(milliseconds: 200)),
           const SizedBox(height: 40),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
@@ -114,12 +115,13 @@ class _ContactSectionState extends State<ContactSection> {
               fontWeight: FontWeight.bold,
               color: Colors.white,
             ),
-          ),
+          ).withFadeIn(delay: const Duration(milliseconds: 300)),
           const SizedBox(height: 25),
           _buildTextField(
             controller: nameController,
             label: 'Nom',
             icon: Icons.person,
+            delay: 350,
           ),
           const SizedBox(height: 20),
           _buildTextField(
@@ -127,6 +129,7 @@ class _ContactSectionState extends State<ContactSection> {
             label: 'Email',
             icon: Icons.email,
             keyboardType: TextInputType.emailAddress,
+            delay: 400,
           ),
           const SizedBox(height: 20),
           _buildTextField(
@@ -134,6 +137,7 @@ class _ContactSectionState extends State<ContactSection> {
             label: 'Message',
             icon: Icons.message,
             maxLines: 5,
+            delay: 450,
           ),
           const SizedBox(height: 25),
           ElevatedButton(
@@ -156,9 +160,15 @@ class _ContactSectionState extends State<ContactSection> {
                 ),
               ],
             ),
+          ).withSlideUp(
+            delay: const Duration(milliseconds: 500),
+            distance: 10.0,
           ),
         ],
       ),
+    ).withSlideUp(
+      delay: const Duration(milliseconds: 250),
+      distance: 20.0,
     );
   }
 
@@ -167,6 +177,7 @@ class _ContactSectionState extends State<ContactSection> {
     required String label,
     required IconData icon,
     int maxLines = 1,
+    int delay = 0,
     TextInputType? keyboardType,
   }) {
     return TextField(
@@ -193,7 +204,7 @@ class _ContactSectionState extends State<ContactSection> {
           borderSide: const BorderSide(color: Colors.blue, width: 2),
         ),
       ),
-    );
+    ).withFadeIn(delay: Duration(milliseconds: delay));
   }
 
   Widget _buildContactInfo() {
@@ -217,7 +228,7 @@ class _ContactSectionState extends State<ContactSection> {
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
                 ),
-              ),
+              ).withFadeIn(delay: const Duration(milliseconds: 300)),
               const SizedBox(height: 25),
               _buildContactInfoItem(
                 icon: Icons.chat,
@@ -225,21 +236,27 @@ class _ContactSectionState extends State<ContactSection> {
                 subtitle: '+261 33 60 223 60',
                 onTap: () =>
                     UrlLauncherService.launchURL(AppConstants.whatsappUrl),
+                delay: 350,
               ),
               const SizedBox(height: 20),
               _buildContactInfoItem(
                 icon: Icons.location_on,
                 title: 'Localisation',
                 subtitle: AppConstants.location,
+                delay: 400,
               ),
               const SizedBox(height: 20),
               _buildContactInfoItem(
                 icon: Icons.work_outline,
                 title: 'Organisation',
                 subtitle: 'APEXNova Labs',
+                delay: 450,
               ),
             ],
           ),
+        ).withSlideUp(
+          delay: const Duration(milliseconds: 250),
+          distance: 20.0,
         ),
         const SizedBox(height: 20),
         SizedBox(
@@ -261,7 +278,7 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
           ),
-        ),
+        ).withScaleIn(delay: const Duration(milliseconds: 500)),
         const SizedBox(height: 15),
         SizedBox(
           width: double.infinity,
@@ -279,7 +296,7 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
           ),
-        ),
+        ).withScaleIn(delay: const Duration(milliseconds: 550)),
         const SizedBox(height: 15),
         SizedBox(
           width: double.infinity,
@@ -297,7 +314,7 @@ class _ContactSectionState extends State<ContactSection> {
               ),
             ),
           ),
-        ),
+        ).withScaleIn(delay: const Duration(milliseconds: 600)),
       ],
     );
   }
@@ -306,6 +323,7 @@ class _ContactSectionState extends State<ContactSection> {
     required IconData icon,
     required String title,
     required String subtitle,
+    int delay = 0,
     VoidCallback? onTap,
   }) {
     return InkWell(
@@ -346,6 +364,6 @@ class _ContactSectionState extends State<ContactSection> {
             ),
         ],
       ),
-    );
+    ).withFadeIn(delay: Duration(milliseconds: delay));
   }
 }

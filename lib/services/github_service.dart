@@ -1,12 +1,25 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'cache_service.dart';
 
 class GitHubService {
   static const String _baseUrl = 'https://api.github.com';
   static const String _username = 'josoavj';
+  static final _cacheService = CacheService();
+  static const String _contributionsCacheKey = 'github_contributions';
+  static const String _userDataCacheKey = 'github_user_data';
 
-  /// Récupère les données de contribution de l'utilisateur GitHub
+  /// Récupère les données de contribution de l'utilisateur GitHub avec cache
   static Future<List<int>> getUserContributions() async {
+    return _cacheService.getOrCompute(
+      _contributionsCacheKey,
+      _fetchUserContributions,
+      ttl: const Duration(minutes: 60), // Cache pour 1 heure
+    );
+  }
+
+  /// Récupère les contributions depuis l'API
+  static Future<List<int>> _fetchUserContributions() async {
     try {
       final response = await http
           .get(

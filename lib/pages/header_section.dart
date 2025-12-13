@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
+import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/social_button.dart';
 
-class HeaderSection extends StatelessWidget {
+class HeaderSection extends StatefulWidget {
   const HeaderSection({super.key});
 
+  @override
+  State<HeaderSection> createState() => _HeaderSectionState();
+}
+
+class _HeaderSectionState extends State<HeaderSection> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -49,7 +55,7 @@ class HeaderSection extends StatelessWidget {
                   backgroundImage: NetworkImage(
                     'https://media.licdn.com/dms/image/v2/D4D35AQGEQi8W_whRJQ/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1700827537879?e=1764262800&v=beta&t=xjdRdpj1LoC0p3tTJItdB6oVUrCeWzJrOJFdB1dyYi0',
                   ),
-                ),
+                ).withScaleIn(),
               ),
               const SizedBox(height: 30),
               Text(
@@ -58,14 +64,15 @@ class HeaderSection extends StatelessWidget {
                     ? AppTheme.titleLargeMobile()
                     : AppTheme.titleLarge(),
                 textAlign: TextAlign.center,
-              ),
+              ).withFadeIn(delay: const Duration(milliseconds: 200)),
               const SizedBox(height: 10),
               Text(
                 AppConstants.heroTitle,
                 style:
                     isSmall ? AppTheme.subtitleMobile() : AppTheme.subtitle(),
                 textAlign: TextAlign.center,
-              ),
+              ).withSlideUp(
+                  distance: 20.0, delay: const Duration(milliseconds: 300)),
               const SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -83,12 +90,9 @@ class HeaderSection extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
+              ).withFadeIn(delay: const Duration(milliseconds: 400)),
               const SizedBox(height: 40),
-              Wrap(
-                spacing: 15,
-                runSpacing: 15,
-                alignment: WrapAlignment.center,
+              AnimationUtils.staggeredFadeSlide(
                 children: [
                   SocialButton(
                     icon: Icons.code,
@@ -111,6 +115,9 @@ class HeaderSection extends StatelessWidget {
                     url: AppConstants.twitterUrl,
                   ),
                 ],
+                baseDelay: const Duration(milliseconds: 500),
+                staggerDelay: const Duration(milliseconds: 100),
+                builder: (child, animation) => child,
               ),
             ],
           ),
