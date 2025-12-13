@@ -16,18 +16,6 @@ class AppTheme {
     );
   }
 
-  static TextStyle poppinsRegular(
-    double fontSize, {
-    Color? color,
-    FontWeight fontWeight = FontWeight.normal,
-  }) {
-    return GoogleFonts.poppins(
-      fontSize: fontSize,
-      color: color,
-      fontWeight: fontWeight,
-    );
-  }
-
   // Titres - Lexend Bold
   static TextStyle titleLarge({Color? color}) {
     return GoogleFonts.lexend(
@@ -53,9 +41,9 @@ class AppTheme {
     );
   }
 
-  // Sous-titres - Poppins
+  // Sous-titres - Lexend
   static TextStyle subtitle({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 17,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w300,
@@ -63,16 +51,16 @@ class AppTheme {
   }
 
   static TextStyle subtitleSmall({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 14,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
     );
   }
 
-  // Corps du texte - Poppins
+  // Corps du texte - Lexend
   static TextStyle bodyLarge({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 16,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
@@ -80,7 +68,7 @@ class AppTheme {
   }
 
   static TextStyle bodyMedium({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 15,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
@@ -88,16 +76,16 @@ class AppTheme {
   }
 
   static TextStyle bodySmall({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 13,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
     );
   }
 
-  // Labels et tags - Poppins SemiBold
+  // Labels et tags - Lexend SemiBold
   static TextStyle label({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 13,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w600,
@@ -105,16 +93,16 @@ class AppTheme {
   }
 
   static TextStyle labelSmall({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 11,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w600,
     );
   }
 
-  // Caption - Poppins Regular
+  // Caption - Lexend Regular
   static TextStyle caption({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 11,
       color: color ?? Colors.grey[500],
       fontWeight: FontWeight.w400,
@@ -149,7 +137,7 @@ class AppTheme {
   }
 
   static TextStyle subtitleMobile({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 15,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w300,
@@ -157,7 +145,7 @@ class AppTheme {
   }
 
   static TextStyle subtitleSmallMobile({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 13,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
@@ -165,7 +153,7 @@ class AppTheme {
   }
 
   static TextStyle bodyLargeMobile({Color? color}) {
-    return GoogleFonts.poppins(
+    return GoogleFonts.lexend(
       fontSize: 14,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
