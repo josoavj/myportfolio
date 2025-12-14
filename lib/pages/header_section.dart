@@ -53,8 +53,8 @@ class _HeaderSectionState extends State<HeaderSection> {
                 ),
                 child: CircleAvatar(
                   backgroundColor: AppConstants.secondaryDark,
-                  backgroundImage: NetworkImage(
-                    'https://media.licdn.com/dms/image/v2/D4D35AQGEQi8W_whRJQ/profile-framedphoto-shrink_200_200/profile-framedphoto-shrink_200_200/0/1700827537879?e=1764262800&v=beta&t=xjdRdpj1LoC0p3tTJItdB6oVUrCeWzJrOJFdB1dyYi0',
+                  backgroundImage: AssetImage(
+                    'assets/LogoPrincipalFinal.png',
                   ),
                 ).withScaleIn(),
               ),

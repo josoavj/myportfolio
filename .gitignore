@@ -48,4 +48,9 @@ app.*.map.json
 .windows/
 .ios/
 .linux/
+
+# Secrets and sensitive configuration
+lib/config/secrets.dart
+.env
+.env.local
 .macos/
