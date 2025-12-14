@@ -28,8 +28,8 @@ class AppConstants {
   static const String whatsappUrl = 'https://wa.me/261336022360';
   static const String emailUrl = 'mailto:josoavonjiniaina13@gmail.com';
 
-  // CV - À compléter avec le lien vers votre CV
-  static const String cvUrl = '';  // Exemple: 'https://drive.google.com/...' ou 'https://github.com/.../raw/main/cv.pdf'
+  // CV 
+  static const String cvUrl = ''; 
 
   // Animations
   static const int fadeAnimationDuration = 1500;
