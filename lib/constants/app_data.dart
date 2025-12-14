@@ -16,7 +16,9 @@ class AppData {
             'Développement d\'applications web et mobile. Contribution aux projets open source. '
             'Travail sur des solutions de sécurité et networking.',
         achievements: [
-          'Développement de lvlmindapp (18+ stars sur GitHub)',
+          'Prospectius - Plateforme CRM complète de gestion de prospects et clients',
+          'Planificator - Système de planification avec base de données MySQL',
+          'Segma - Logiciel de segmentation d\'images utilisant le modèle SAM',
           'Contribution aux projets open source de l\'équipe',
           'Configuration et optimisation de serveurs Linux',
         ],
@@ -26,7 +28,7 @@ class AppData {
       Experience(
         role: 'Développeur Back-End (Stage)',
         company: 'SFI Ankorondrano',
-        period: '2023',
+        period: '2024 (3 mois)',
         location: 'Ankorondrano, Antananarivo',
         description:
             'Stage de développement d\'un système complet de monitoring et collecte de données. '
@@ -45,12 +47,13 @@ class AppData {
       Experience(
         role: 'Développeur Back-End',
         company: 'Projets Universitaires & Freelance',
-        period: '2021 - 2023',
+        period: '2021 - 2024',
         location: 'Madagascar',
         description: 'Développement de solutions back-end pour divers projets. '
             'Conception et implémentation de bases de données et APIs.',
         achievements: [
-          'Prospectius (dbProspectius) - Base de données et API',
+          'Développement de lvlmindapp (18+ stars sur GitHub) - Frontend Only',
+          'Prospectius (dbProspectius) - Base de données CRM complète',
           'Planificator (dbPlanificator) - Système de planification',
           'Application Casier Judiciaire N3 (13+ stars sur GitHub)',
           'Elasticsearch NodeJS Server pour données Fortinet (14+ stars)',
@@ -300,17 +303,17 @@ class AppData {
         Skill(name: 'Flutter', level: 0.9, color: Colors.blue),
         Skill(name: 'Node.js', level: 0.85, color: Colors.green),
         Skill(name: 'Express.js', level: 0.8, color: Colors.grey),
-        Skill(name: 'React', level: 0.7, color: Colors.cyan),
+        Skill(name: 'React', level: 0.5, color: Colors.cyan),
       ],
       'Bases de Données': [
         Skill(name: 'MySQL', level: 0.85, color: Colors.blue),
         Skill(name: 'Elasticsearch', level: 0.8, color: Colors.teal),
-        Skill(name: 'Hive', level: 0.75, color: Colors.green),
+        Skill(name: 'Hive', level: 0.5, color: Colors.green),
       ],
       'DevOps & Outils': [
         Skill(name: 'Linux', level: 0.9, color: Colors.orange),
         Skill(name: 'Git', level: 0.9, color: Colors.orange),
-        Skill(name: 'Nginx', level: 0.7, color: Colors.green),
+        Skill(name: 'Nginx', level: 0.6, color: Colors.green),
         Skill(name: 'Bash', level: 0.85, color: Colors.grey),
       ],
       'Sécurité & Networking': [
