@@ -183,11 +183,11 @@ class GitHubService {
   static Future<List<Map<String, dynamic>>> getRepositories(
       {int perPage = 30, int page = 1}) async {
     try {
+      final url =
+          '$_restApiUrl/users/$_username/repos?per_page=$perPage&page=$page&sort=stars&order=desc';
       final response = await http
           .get(
-            Uri.parse(
-              '$_restApiUrl/users/$_username/repos?per_page=$perPage&page=$page&sort=stars&order=desc',
-            ),
+            Uri.parse(url),
             headers: _headers,
           )
           .timeout(const Duration(seconds: 10));
@@ -199,6 +199,23 @@ class GitHubService {
       return [];
     } catch (e) {
       return [];
+    }
+  }
+
+  /// Récupère le total des stars de tous les repos
+  static Future<int> getTotalStars() async {
+    try {
+      final repos = await getRepositories(perPage: 100);
+      int totalStars = 0;
+      for (var repo in repos) {
+        final starCount = repo['stargazers_count'];
+        if (starCount != null) {
+          totalStars += starCount as int;
+        }
+      }
+      return totalStars;
+    } catch (e) {
+      return 0;
     }
   }
 
