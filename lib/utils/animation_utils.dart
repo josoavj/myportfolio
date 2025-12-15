@@ -43,7 +43,7 @@ class AnimationUtils {
   /// Animation fade-in simple avec support du delay
   static Widget fadeIn({
     required Widget child,
-    Duration duration = const Duration(milliseconds: 800),
+    Duration duration = const Duration(milliseconds: 1200),
     Duration delay = Duration.zero,
   }) {
     return DelayedAnimation(
@@ -65,7 +65,7 @@ class AnimationUtils {
   /// Animation slide-up depuis le bas avec support du delay
   static Widget slideUp({
     required Widget child,
-    Duration duration = const Duration(milliseconds: 800),
+    Duration duration = const Duration(milliseconds: 1200),
     Duration delay = Duration.zero,
     double distance = 30.0,
   }) {
@@ -91,7 +91,7 @@ class AnimationUtils {
   /// Animation scale avec bounce et support du delay
   static Widget scaleIn({
     required Widget child,
-    Duration duration = const Duration(milliseconds: 600),
+    Duration duration = const Duration(milliseconds: 1000),
     Duration delay = Duration.zero,
   }) {
     return DelayedAnimation(
@@ -116,7 +116,7 @@ class AnimationUtils {
     required List<Widget> children,
     Duration baseDelay = Duration.zero,
     Duration staggerDelay = const Duration(milliseconds: 100),
-    Duration duration = const Duration(milliseconds: 600),
+    Duration duration = const Duration(milliseconds: 900),
     required Widget Function(Widget, Animation<double>) builder,
   }) {
     return Wrap(
@@ -190,14 +190,14 @@ class AnimationUtils {
 /// Extension pour ajouter facilement des animations aux widgets
 extension AnimationExtension on Widget {
   Widget withFadeIn({
-    Duration duration = const Duration(milliseconds: 800),
+    Duration duration = const Duration(milliseconds: 1200),
     Duration delay = Duration.zero,
   }) {
     return AnimationUtils.fadeIn(child: this, duration: duration, delay: delay);
   }
 
   Widget withSlideUp({
-    Duration duration = const Duration(milliseconds: 800),
+    Duration duration = const Duration(milliseconds: 1200),
     Duration delay = Duration.zero,
     double distance = 30.0,
   }) {
@@ -210,7 +210,7 @@ extension AnimationExtension on Widget {
   }
 
   Widget withScaleIn({
-    Duration duration = const Duration(milliseconds: 600),
+    Duration duration = const Duration(milliseconds: 1000),
     Duration delay = Duration.zero,
   }) {
     return AnimationUtils.scaleIn(
