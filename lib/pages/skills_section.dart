@@ -115,8 +115,8 @@ class _SkillsSectionState extends State<SkillsSection> {
             ).withScaleIn(delay: const Duration(milliseconds: 300)),
             StatCard(
               icon: Icons.star,
-              title: '56',
-              subtitle: 'GitHub Stars',
+              title: '439',
+              subtitle: 'Stars GitHub',
               color: Colors.amber,
               width: isMobile ? constraints.maxWidth : 200,
             ).withScaleIn(delay: const Duration(milliseconds: 400)),
