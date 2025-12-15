@@ -10,12 +10,16 @@ class GitHubStatsWidget extends StatefulWidget {
 }
 
 class _GitHubStatsWidgetState extends State<GitHubStatsWidget> {
-  late Future _statsFuture;
+  late Future<dynamic> _statsFuture;
+  late Future<Map<String, int>> _languagesFuture;
+  late Future<int> _starsFuture;
 
   @override
   void initState() {
     super.initState();
     _statsFuture = GitHubService.getGitHubStats();
+    _languagesFuture = GitHubService.getTopLanguages();
+    _starsFuture = GitHubService.getTotalStars();
   }
 
   @override
@@ -57,7 +61,8 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget> {
         }
 
         return Container(
-          padding: const EdgeInsets.all(20),
+          padding:
+              isMobile ? const EdgeInsets.all(12) : const EdgeInsets.all(20),
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -75,36 +80,55 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget> {
             children: [
               Text(
                 'Statistiques GitHub',
-                style: AppTheme.titleSmall(),
+                style: isMobile ? AppTheme.subtitle() : AppTheme.titleSmall(),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               // Stat principale - responsive
               Container(
-                padding: const EdgeInsets.all(15),
+                padding: isMobile
+                    ? const EdgeInsets.all(12)
+                    : const EdgeInsets.all(15),
                 decoration: BoxDecoration(
                   color: Colors.blue.withValues(alpha: 0.1),
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: Colors.blue.withValues(alpha: 0.3)),
                 ),
                 child: isMobile
-                    ? Column(
+                    ? GridView.count(
+                        crossAxisCount: 3,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 8,
+                        childAspectRatio: 0.9,
                         children: [
                           _StatCard(
-                            label: 'Contributions Totales',
+                            label: 'Total',
                             value: stats.totalContributions.toString(),
                             icon: Icons.favorite,
                           ),
-                          const SizedBox(height: 20),
                           _StatCard(
                             label: 'Cette Année',
                             value: stats.thisYearContributions.toString(),
                             icon: Icons.calendar_today,
                           ),
-                          const SizedBox(height: 20),
-                          _StatCard(
-                            label: 'Plus Long Streak',
-                            value: '${stats.longestStreak}j',
-                            icon: Icons.local_fire_department,
+                          FutureBuilder<int>(
+                            future: _starsFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.hasError) {
+                                return _StatCard(
+                                  label: 'Stars',
+                                  value: '0',
+                                  icon: Icons.star,
+                                );
+                              }
+                              final stars = snapshot.data ?? 0;
+                              return _StatCard(
+                                label: 'Stars',
+                                value: stars.toString(),
+                                icon: Icons.star,
+                              );
+                            },
                           ),
                         ],
                       )
@@ -129,50 +153,118 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget> {
                         ],
                       ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 16),
               // Contributions par année
               Text(
                 'Contributions par Année',
-                style: AppTheme.subtitle(),
+                style:
+                    isMobile ? AppTheme.subtitleSmall() : AppTheme.subtitle(),
               ),
               const SizedBox(height: 12),
               ...stats.contributionsByYear.entries
                   .toList()
                   .reversed
                   .map((entry) => Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        padding: const EdgeInsets.only(bottom: 8),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              '${entry.key}',
-                              style: AppTheme.subtitleSmall(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  '${entry.key}',
+                                  style: isMobile
+                                      ? AppTheme.labelSmall()
+                                      : AppTheme.subtitleSmall(),
+                                ),
+                                Text(
+                                  '${entry.value}',
+                                  style: isMobile
+                                      ? AppTheme.labelSmall(color: Colors.blue)
+                                      : AppTheme.subtitleSmall(
+                                          color: Colors.blue),
+                                ),
+                              ],
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 12),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(4),
-                                  child: LinearProgressIndicator(
-                                    value: entry.value / 520,
-                                    minHeight: 6,
-                                    backgroundColor: Colors.grey[800],
-                                    valueColor: AlwaysStoppedAnimation<Color>(
-                                      Colors.blue,
-                                    ),
-                                  ),
+                            const SizedBox(height: 4),
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(3),
+                              child: LinearProgressIndicator(
+                                value: entry.value / 3580,
+                                minHeight: isMobile ? 4 : 6,
+                                backgroundColor: Colors.grey[800],
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.blue,
                                 ),
                               ),
-                            ),
-                            Text(
-                              '${entry.value}',
-                              style: AppTheme.subtitleSmall(color: Colors.blue),
                             ),
                           ],
                         ),
                       ))
                   .toList(),
+              const SizedBox(height: 20),
+              // Langages les plus utilisés
+              Text(
+                'Langages Principaux',
+                style:
+                    isMobile ? AppTheme.subtitleSmall() : AppTheme.subtitle(),
+              ),
+              const SizedBox(height: 12),
+              FutureBuilder<Map<String, int>>(
+                future: _languagesFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const SizedBox(
+                      height: 30,
+                      child: CircularProgressIndicator(
+                        valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                      ),
+                    );
+                  }
+
+                  if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Text(
+                      'Chargement des langages...',
+                      style: AppTheme.subtitleSmall(),
+                    );
+                  }
+
+                  final languages = snapshot.data!;
+                  return Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: languages.entries
+                        .map((entry) => Container(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: Colors.blue.withValues(alpha: 0.15),
+                                borderRadius: BorderRadius.circular(20),
+                                border: Border.all(
+                                    color: Colors.blue.withValues(alpha: 0.3)),
+                              ),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(Icons.code,
+                                      size: 14,
+                                      color:
+                                          Colors.blue.withValues(alpha: 0.7)),
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    entry.key,
+                                    style: isMobile
+                                        ? AppTheme.labelSmall()
+                                        : AppTheme.subtitleSmall(),
+                                  ),
+                                ],
+                              ),
+                            ))
+                        .toList(),
+                  );
+                },
+              ),
             ],
           ),
         );
