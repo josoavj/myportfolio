@@ -59,9 +59,9 @@ class AppData {
         achievements: [
           'lvlmindapp - Application e-learning mobile Flutter avec 19 stars sur GitHub',
           'myportfolio - Portfolio multiplateforme Flutter intégré à l\'API GitHub (7 stars)',
-          'ProspectiusFinal (dbProspectiius) - Base de données CRM complète (7 stars)',
+          'ProspectiusFinal - Plateforme CRM complète pour la gestion de prospects et clients (7 stars)',
           'PlanificatorFinal - Application desktop Flutter pour planification (4 stars)',
-          'Algo_Jacobi - Implémentation algorithme avec Python et visualisation (9 stars)',
+          'elasticsearchconfig - Configuration et optimisation Elasticsearch (5 stars)',
           'elasticsearch-nodejs-server - Solution de monitoring Fortinet (15 stars)',
           'Contribution à 43 projets open source sur GitHub',
           'Participation à des TP avancés d\'algorithmique et machine learning',
@@ -285,23 +285,55 @@ class AppData {
             'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de vos réalisations. Accessible sur tous les appareils avec une interface cohérente et professionnelle.',
       ),
       Project(
-        name: 'Algo_Jacobi',
+        name: 'ProspectiusFinal',
         description:
-            'Implémentation en Python de l\'algorithme de Jacobi pour résolution de systèmes linéaires',
-        language: 'Python',
-        stars: 9,
-        url: 'https://github.com/josoavj/Algo_Jacobi',
-        technologies: ['Python', 'NumPy', 'Matplotlib', 'Jupyter Notebook'],
+            'Plateforme CRM complète pour la gestion de prospects et clients',
+        language: 'Dart',
+        stars: 7,
+        url: 'https://github.com/josoavj/ProspectiusFinal',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Provider',
+        ],
         features: [
-          'Implémentation efficace de l\'algorithme de Jacobi',
-          'Visualisation graphique des résultats',
-          'Gestion des matrices et vecteurs',
-          'Critères de convergence configurables',
-          'Exemples et test cases complets',
-          'Documentation mathématique détaillée',
+          'Gestion complète des prospects et clients',
+          'Système de suivi et pipelines de vente',
+          'Analytics et rapports détaillés',
+          'Notifications temps réel',
+          'Architecture MVVM avec Provider',
+          'Recherche et filtrage avancés',
         ],
         detailedDescription:
-            'Implémentation complète et documentée de l\'algorithme de Jacobi en Python pour la résolution de systèmes linéaires. Utilise NumPy pour les opérations matricielles et Matplotlib pour la visualisation des résultats. Inclut des exemples d\'utilisation et des critères de convergence configurables.',
+            'ProspectiusFinal est une plateforme CRM professionnelle développée en Flutter pour la gestion complète des prospects et clients. Utilise Firebase et Firestore pour le stockage des données en temps réel. Offre des outils de suivi, d\'analyse et de gestion des pipelines de vente avec une interface intuitive et multiplateforme.',
+      ),
+      Project(
+        name: 'elasticsearchconfig',
+        description:
+            'Configuration et optimisation avancée d\'Elasticsearch pour la recherche et l\'analyse de données',
+        language: 'Bash',
+        stars: 5,
+        url: 'https://github.com/josoavj/elasticsearchconfig',
+        technologies: [
+          'Elasticsearch',
+          'Bash',
+          'Docker',
+          'Kibana',
+          'Filebeat',
+          'Linux'
+        ],
+        features: [
+          'Scripts de configuration Elasticsearch optimisés',
+          'Gestion des indices et mappings',
+          'Configuration Filebeat automatisée',
+          'Pipelines de traitement de données',
+          'Monitoring avec Kibana',
+          'Backup et restore procedures',
+          'Performance tuning et scaling',
+          'Documentation et exemples complets',
+        ],
+        detailedDescription:
+            'Dépôt de configuration et d\'optimisation pour Elasticsearch. Inclut des scripts bash réutilisables pour l\'installation, la configuration et la gestion des clusters Elasticsearch. Couvre les aspects de monitoring avec Kibana, l\'intégration de Filebeat et les meilleures pratiques de performance.',
       ),
     ];
   }
