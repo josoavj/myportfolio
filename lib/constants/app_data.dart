@@ -186,7 +186,13 @@ class AppData {
         language: 'Dart',
         stars: 4,
         url: 'https://github.com/josoavj/PlanificatorFinal',
-        technologies: ['Flutter', 'Dart', 'Provider', 'SQLite', 'Material Design'],
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Provider',
+          'SQLite',
+          'Material Design'
+        ],
         features: [
           'Interface multiplateforme Flutter (Android, iOS, Windows, Linux, macOS)',
           'Gestion complète des tâches et plannings',
