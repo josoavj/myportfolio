@@ -1,0 +1,15 @@
+[build]
+  command = "flutter build web --release"
+  publish = "build/web"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production]
+  environment = { GITHUB_TOKEN = "@github-token" }
+
+[context.deploy-preview]
+  environment = { GITHUB_TOKEN = "@github-token" }
