@@ -15,7 +15,7 @@ class AppConstants {
   static const String appTitle = 'Josoa Vonjiniaina - Portfolio';
   static const String heroName = 'Josoa Vonjiniaina';
   static const String heroTitle =
-      'Full Stack Developer | Linux & Security Enthusiast';
+      'Full Stack Developer | Mobile & Backend Specialist | Cybersecurity Enthusiast';
   static const String location = 'Antananarivo, Madagascar';
 
   // URLs
@@ -28,8 +28,8 @@ class AppConstants {
   static const String whatsappUrl = 'https://wa.me/261336022360';
   static const String emailUrl = 'mailto:josoavonjiniaina13@gmail.com';
 
-  // CV 
-  static const String cvUrl = ''; 
+  // CV
+  static const String cvUrl = '';
 
   // Animations
   static const int fadeAnimationDuration = 1500;

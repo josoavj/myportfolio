@@ -13,14 +13,16 @@ class AppData {
         period: '2023 - Présent',
         location: 'Antananarivo, Madagascar',
         description:
-            'Développement d\'applications web et mobile. Contribution aux projets open source. '
-            'Travail sur des solutions de sécurité et networking.',
+            'Développement d\'applications web et mobile multiplateforme. Contribution active à des projets open source. '
+            'Travail sur des solutions avancées de sécurité, networking et data analytics.',
         achievements: [
-          'Prospectius - Plateforme CRM complète de gestion de prospects et clients',
-          'Planificator - Système de planification avec base de données MySQL',
-          'Segma - Logiciel de segmentation d\'images utilisant le modèle SAM',
-          'Contribution aux projets open source de l\'équipe',
-          'Configuration et optimisation de serveurs Linux',
+          'ProspectiusFinal - Plateforme CRM complète de gestion de prospects et clients (7 stars)',
+          'Planificator - Système desktop de planification avec architecture KivyMD et MySQL (10 stars)',
+          'PlanificatorFinal - Version améliorée du système de planification',
+          'Segma - Logiciel de segmentation d\'images utilisant SAM Model (6 stars)',
+          'Contributions actives aux projets open source de l\'équipe',
+          'Configuration et optimisation avancée de serveurs Linux',
+          'Implémentation d\'algorithmes complexes (Jacobi, Machine Learning)',
         ],
         icon: Icons.business,
         color: Colors.blue,
@@ -33,30 +35,37 @@ class AppData {
         description:
             'Stage de développement d\'un système complet de monitoring et collecte de données. '
             'Mise en place de l\'infrastructure Elasticsearch, développement de serveurs NodeJS/Express, '
-            'et configuration avancée pour le traitement des données Fortinet.',
+            'et configuration avancée pour le traitement des données Fortinet avec architecture asynchrone.',
         achievements: [
-          'Plateforme sfiDashMonitoring - Dashboard React avec Elasticsearch',
-          'Serveur elasticsearch-nodejs-server pour filtrer données Fortinet (14+ stars)',
-          'Configuration complète d\'Elasticsearch sur Ubuntu Server (12+ stars)',
-          'Déploiement et configuration de Kibana et Grafana',
-          'Optimisation des performances et de la collecte de données',
+          'sfiDashMonitoring - Dashboard React avec Elasticsearch en temps réel (6 stars)',
+          'elasticsearch-nodejs-server - Serveur pour filtrer données Fortinet (15 stars)',
+          'Intégration Filebeat et Kibana pour monitoring complète',
+          'Configuration d\'Elasticsearch et Grafana',
+          'API REST robuste avec authentification JWT',
+          'Architecture socket.io pour communication temps réel',
+          'Optimisation des performances de la collecte de données',
         ],
         icon: Icons.code,
         color: Colors.orange,
       ),
       Experience(
-        role: 'Développeur Back-End',
+        role: 'Développeur Full Stack',
         company: 'Projets Universitaires & Freelance',
         period: '2021 - 2024',
         location: 'Madagascar',
-        description: 'Développement de solutions back-end pour divers projets. '
-            'Conception et implémentation de bases de données et APIs.',
+        description:
+            'Développement de solutions complètes full stack incluant applications mobiles, '
+            'applications desktop, APIs et bases de données. '
+            'Conception et implémentation architectures robustes avec technologies modernes.',
         achievements: [
-          'Développement de lvlmindapp (18+ stars sur GitHub) - Frontend Only',
-          'Prospectius (dbProspectius) - Base de données CRM complète',
-          'Planificator (dbPlanificator) - Système de planification',
-          'Application Casier Judiciaire N3 (13+ stars sur GitHub)',
-          'Elasticsearch NodeJS Server pour données Fortinet (14+ stars)',
+          'lvlmindapp - Application e-learning mobile Flutter avec 19 stars sur GitHub',
+          'myportfolio - Portfolio multiplateforme Flutter intégré à l\'API GitHub (7 stars)',
+          'ProspectiusFinal (dbProspectiius) - Base de données CRM complète (7 stars)',
+          'Planificator - Système desktop Python avec KivyMD et MySQL (10 stars)',
+          'Algo_Jacobi - Implémentation algorithme avec Python et visualisation (9 stars)',
+          'elasticsearch-nodejs-server - Solution de monitoring Fortinet (15 stars)',
+          'Contribution à 43 projets open source sur GitHub',
+          'Participation à des TP avancés d\'algorithmique et machine learning',
         ],
         icon: Icons.storage,
         color: Colors.green,
@@ -125,7 +134,7 @@ class AppData {
         description:
             'Application mobile Flutter pour la gestion de l\'apprentissage et du développement personnel',
         language: 'Dart',
-        stars: 18,
+        stars: 19,
         url: 'https://github.com/josoavj/lvlmindapp',
         technologies: [
           'Flutter',
@@ -151,7 +160,7 @@ class AppData {
         description:
             'Logiciel de segmentation d\'images utilisant le modèle SAM (Segment Anything Model)',
         language: 'Dart',
-        stars: 0,
+        stars: 6,
         url: 'https://github.com/josoavj/segma',
         technologies: [
           'Flutter',
@@ -172,30 +181,30 @@ class AppData {
             'Segma est un logiciel innovant de segmentation d\'images utilisant le puissant modèle SAM (Segment Anything Model). Développé en Flutter pour le frontend et Python pour le backend, il offre une solution multi-plateforme pour le traitement d\'images et la computer vision. Interface intuitive avec API REST pour une intégration facile dans d\'autres applications.',
       ),
       Project(
-        name: 'Casier-Judiciaire-N3',
+        name: 'Planificator',
         description:
-            'Logiciel de saisie sécurisé pour le Casier Judiciaire National N3',
-        language: 'Java',
-        stars: 13,
-        url: 'https://github.com/josoavj/Casier-Judiciare-N3',
-        technologies: ['Java', 'MySQL', 'Swing/AWT', 'JDBC', 'Maven', 'JPA'],
+            'Plateforme desktop Python avec interface KivyMD pour planification et gestion de tâches',
+        language: 'Python',
+        stars: 10,
+        url: 'https://github.com/josoavj/Planificator',
+        technologies: ['Python', 'KivyMD', 'MySQL', 'aiomysql', 'asyncio'],
         features: [
-          'Application desktop avec interface Swing complète',
-          'Gestion des bulletins du Casier Judiciaire',
-          'Saisie sécurisée des informations personnelles',
-          'Gestion des données sensibles',
-          'Requêtes CRUD optimisées',
-          'Architecture Maven pour gestion des dépendances',
+          'Interface multi-plateforme avec KivyMD',
+          'Gestion complète des tâches et plannings',
+          'Base de données MySQL avec connexions asynchrones',
+          'Opérations CRUD optimisées',
+          'Système de notifications avancé',
+          'Architecture modulaire et extensible',
         ],
         detailedDescription:
-            'Logiciel desktop professionnel pour le Casier Judiciaire N3, conçu pour faciliter la saisie et la gestion des informations des personnes lors des demandes de bulletin. Développé en Java avec interface Swing/AWT, il offre une solution robuste avec MySQL comme base de données. Architecture complète avec Maven et JPA pour l\'accès aux données.',
+            'Application desktop de planification complète développée en Python avec KivyMD pour l\'interface utilisateur. Utilise MySQL pour la persistance des données avec aiomysql pour les opérations asynchrones. Parfaite pour la gestion des projets, tâches et plannings avec interface intuitive et responsive.',
       ),
       Project(
         name: 'sfiDashMonitoring',
         description:
             'Plateforme de monitoring en temps réel avec React et Elasticsearch',
         language: 'JavaScript',
-        stars: 1,
+        stars: 6,
         url: 'https://github.com/josoavj/sfiDashMonitoring',
         technologies: [
           'React',
@@ -219,73 +228,74 @@ class AppData {
 
       // Projets secondaires
       Project(
-        name: 'dbPlanificator',
+        name: 'elasticsearch-nodejs-server',
         description:
-            'Base de données MySQL et scripts Python pour système de planification',
-        language: 'Python',
-        stars: 11,
-        url: 'https://github.com/josoavj/dbPlanificator',
+            'Serveur NodeJS pour filtrer et traiter les données Fortinet avec Elasticsearch',
+        language: 'JavaScript',
+        stars: 15,
+        url: 'https://github.com/josoavj/elasticsearch-nodejs-server',
         technologies: [
-          'MySQL',
-          'Python',
-          'mysql-connector-python',
-          'Bcrypt',
-          'Scripts SQL'
+          'Node.js',
+          'Express.js',
+          'Elasticsearch',
+          'Filebeat',
+          'Kibana',
+          'Docker'
         ],
         features: [
-          'Schéma MySQL complet pour planification',
-          'Scripts Python CRUD pour gestion des données',
-          'Gestion des contrats et clients',
-          'Suivi des plannings et traitements',
-          'Gestion des factures et historique',
-          'Hachage sécurisé des mots de passe avec Bcrypt',
+          'Intégration complète avec Elasticsearch et Kibana',
+          'Filtrage avancé des données Fortinet',
+          'API REST pour requêtes de données',
+          'Configuration Filebeat automatisée',
+          'Gestion des indices et mappings',
+          'Documentation Docker complète',
         ],
         detailedDescription:
-            'Système complet de base de données MySQL couplé avec des scripts Python pour la gestion de planification. Inclut des requêtes CRUD optimisées, gestion des contrats, plannings, factures et suivi des opérations. Développé avec Python pour l\'accès aux données et Bcrypt pour la sécurité. Prend en charge les recherches avancées et le regroupement par catégories.',
+            'Serveur Node.js/Express conçu pour traiter et filtrer les données Fortinet en utilisant Elasticsearch. Développé pendant le stage chez SFI, il fournit une API robuste pour l\'accès aux données, la gestion des indices et des mappings. Inclut configuration Filebeat et Kibana pour une solution de monitoring complète.',
       ),
       Project(
-        name: 'ProspectiusFinal',
-        description: 'Plateforme CRM pour la gestion des prospects et clients',
+        name: 'myportfolio',
+        description:
+            'Application portfolio mobile multiplateforme développée en Flutter',
         language: 'Dart',
-        stars: 1,
-        url: 'https://github.com/josoavj/ProspectiusFinal',
+        stars: 7,
+        url: 'https://github.com/josoavj/myportfolio',
         technologies: [
           'Flutter',
           'Dart',
           'Provider',
-          'MySQL',
-          'Exploration avancée',
-          'Windows/Linux'
+          'GitHub API',
+          'Responsive Design'
         ],
         features: [
-          'Création, modification et suppression de prospects',
-          'Exploration multi-critères en temps réel',
-          'Filtrage par catégorie et plage de dates',
-          'Tri personnalisé (récents, alphabétique, statut)',
-          'Gestion des interactions (appels, emails, réunions)',
-          'Génération de rapports Excel et PDF',
+          'Interface multiplateforme (iOS, Android, Web, Windows, Linux, macOS)',
+          'Intégration en temps réel avec l\'API GitHub',
+          'Affichage dynamique des projets et contributions',
+          'Statistiques GitHub en direct',
+          'Design responsive et moderne',
+          'Cache service pour optimisation',
         ],
         detailedDescription:
-            'Plateforme CRM multiplateforme développée pour la gestion complète des prospects et clients. Utilise Flutter pour le frontend multi-plateforme (Windows, Linux), Provider pour la gestion d\'état, et MySQL pour la persistance. Offre une exploration avancée avec filtrage multi-critères, suivi des interactions détaillé et génération de rapports professionnels.',
+            'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de vos réalisations. Accessible sur tous les appareils avec une interface cohérente et professionnelle.',
       ),
       Project(
-        name: 'forLinuxUser',
+        name: 'Algo_Jacobi',
         description:
-            'Dépôt de configurations, tutoriels et scripts pour utilisateurs Linux',
-        language: 'Shell',
-        stars: 12,
-        url: 'https://github.com/josoavj/forLinuxUser',
-        technologies: ['Bash', 'Shell Script', 'Linux', 'Markdown', 'Git'],
+            'Implémentation en Python de l\'algorithme de Jacobi pour résolution de systèmes linéaires',
+        language: 'Python',
+        stars: 9,
+        url: 'https://github.com/josoavj/Algo_Jacobi',
+        technologies: ['Python', 'NumPy', 'Matplotlib', 'Jupyter Notebook'],
         features: [
-          'Tutoriels complets sur Cybersécurité, Networking et Databases',
-          'Scripts et configurations pour Arch Linux et dérivés (Garuda)',
-          'Guides de résolution de problèmes courants',
-          'Configurations personnalisées d\'environnement',
-          'Documentation technique complète en Markdown',
-          'Partage de connaissances générales sur Linux',
+          'Implémentation efficace de l\'algorithme de Jacobi',
+          'Visualisation graphique des résultats',
+          'Gestion des matrices et vecteurs',
+          'Critères de convergence configurables',
+          'Exemples et test cases complets',
+          'Documentation mathématique détaillée',
         ],
         detailedDescription:
-            'Dépôt collaboratif contenant des configurations, tutoriels et scripts pour utilisateurs Linux avancés. Organisé par catégories : cybersécurité, networking, bases de données, outils système. Incluant des guides spécifiques pour Arch Linux et dérivés, résolution de problèmes courants et partage de connaissances. Ressource idéale pour administrateurs système et passionnés Linux.',
+            'Implémentation complète et documentée de l\'algorithme de Jacobi en Python pour la résolution de systèmes linéaires. Utilise NumPy pour les opérations matricielles et Matplotlib pour la visualisation des résultats. Inclut des exemples d\'utilisation et des critères de convergence configurables.',
       ),
     ];
   }
