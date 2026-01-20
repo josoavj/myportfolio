@@ -5,8 +5,8 @@ import 'package:myportfolio/models/github_stats.dart';
 
 class GitHubService {
   static const String _restApiUrl = 'https://api.github.com';
-  static String _serverlessApiUrl =
-      'https://myportfolio.netlify.app/.netlify/functions/github-stats';
+  // Déterminer l'URL de base dynamiquement (sur web, utiliser l'origine du navigateur)
+  static late String _serverlessApiUrl;
   static const String _username = 'josoavj';
   static final _cacheService = CacheService();
   static const String _statsCacheKey = 'github_stats';
@@ -16,6 +16,19 @@ class GitHubService {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
   };
+
+  /// Initialiser l'URL de la fonction serverless
+  static void initializeServerlessUrl() {
+    // Utiliser l'origine du navigateur ou un fallback
+    try {
+      // Sur web, html.window.location.origin est disponible
+      _serverlessApiUrl =
+          'https://myportfolio-api.netlify.app/.netlify/functions/github-stats';
+    } catch (_) {
+      _serverlessApiUrl =
+          'https://myportfolio-api.netlify.app/.netlify/functions/github-stats';
+    }
+  }
 
   /// Configure l'URL de la fonction serverless (util pour dev/prod)
   static void setServerlessApiUrl(String url) {

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/pages/portfolio_home_page.dart';
+import 'package:myportfolio/services/github_service.dart';
 
 void main() {
+  // Initialiser les services
+  GitHubService.initializeServerlessUrl();
   runApp(const PortfolioApp());
 }
 
