@@ -5,7 +5,10 @@ class CacheService {
   static final CacheService _instance = CacheService._internal();
 
   final Map<String, CacheEntry> _cache = {};
-  final Duration defaultTTL = const Duration(minutes: 30);
+  final Duration defaultTTL = const Duration(hours: 6);
+
+  // Éviter les requêtes simultanées pour la même clé
+  final Map<String, Future<dynamic>> _pendingRequests = {};
 
   CacheService._internal();
 
@@ -36,18 +39,31 @@ class CacheService {
     return entry.value as T?;
   }
 
-  /// Récupère ou calcule une valeur
+  /// Récupère ou calcule une valeur avec deduplication des requêtes en vol
   Future<T> getOrCompute<T>(
     String key,
     Future<T> Function() compute, {
     Duration? ttl,
   }) async {
+    // Vérifier le cache d'abord
     final cached = get<T>(key);
     if (cached != null) return cached;
 
-    final value = await compute();
-    set(key, value, ttl: ttl);
-    return value;
+    // Vérifier s'il existe une requête en cours pour cette clé
+    if (_pendingRequests.containsKey(key)) {
+      return await _pendingRequests[key] as Future<T>;
+    }
+
+    // Créer une nouvelle requête et la tracker
+    final future = compute();
+    _pendingRequests[key] = future;
+    try {
+      final value = await future;
+      set(key, value, ttl: ttl);
+      return value;
+    } finally {
+      _pendingRequests.remove(key);
+    }
   }
 
   /// Vide une clé du cache
