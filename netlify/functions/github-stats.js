@@ -60,7 +60,7 @@ async function fetchGitHubStats() {
 
     return {
       totalContributions,
-      thisYearContributions,
+      thisYearContributions: thisYearContributions,
       longestStreak,
       averageContributionsPerDay,
       followers: userData.followers || 0,
