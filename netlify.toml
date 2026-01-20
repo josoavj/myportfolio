@@ -1,5 +1,6 @@
 [build]
-  # Publier depuis le dossier releases/current (lien symlink vers la dernière version)
+  # Pas de build command - on publie depuis releases/current (pré-compilé)
+  command = ""
   publish = "releases/current"
 
 [context.production]
