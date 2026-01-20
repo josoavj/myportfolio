@@ -5,7 +5,7 @@ import 'package:myportfolio/services/github_service.dart';
 
 void main() {
   // Initialiser les services
-  GitHubService._initializeServerlessUrl();
+  GitHubService.initializeServerlessUrl();
   runApp(const PortfolioApp());
 }
 

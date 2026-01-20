@@ -18,7 +18,7 @@ class GitHubService {
   };
 
   /// Initialiser l'URL de la fonction serverless
-  static void _initializeServerlessUrl() {
+  static void initializeServerlessUrl() {
     // Utiliser l'origine du navigateur ou un fallback
     try {
       // Sur web, html.window.location.origin est disponible
