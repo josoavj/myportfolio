@@ -28,10 +28,11 @@ class _AboutSectionState extends State<AboutSection> {
             const SectionTitle(title: 'À propos de moi'),
             SizedBox(height: isSmall ? 25 : 40),
             Text(
-              'Développeur passionné par Linux, le networking et la cybersécurité. '
-              'Je travaille sur des projets variés allant du développement mobile avec Flutter '
-              'aux configurations de serveurs et bases de données. Membre de l\'équipe APEXNova Labs, '
-              'je contribue à des projets open source et explore continuellement de nouvelles technologies.',
+              'Je suis un développeur passionné par le développement d\'applications mobiles et le développement logiciel. '
+              'Intéressé par la cybersécurité et les technologies avancées. Spécialisé dans Flutter, Python, JavaScript et architectures backend. '
+              'Membre actif d\'APEXNova Labs, je contribue à des projets open source innovants et explore continuellement de nouvelles technologies. '
+              'Actuellement poursuivant un Master en Informatique et Télécommunications avec focus sur l\'architecture logicielle et la sécurité des systèmes. '
+              'Avec 43 repositories publiques et une passion pour l\'excellence technique, je crée des solutions robustes et scalables.',
               style:
                   isSmall ? AppTheme.bodyLargeMobile() : AppTheme.bodyLarge(),
               textAlign: TextAlign.center,
