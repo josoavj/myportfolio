@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Script de mise à jour du web build pour Netlify
-# Usage: ./update-web-release.sh v1.4.0
+# Usage: ./update-web-release.sh v1.3.1
 
 set -e
 
