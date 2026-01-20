@@ -1,0 +1,14 @@
+{
+  "name": "myportfolio-serverless",
+  "version": "1.0.0",
+  "description": "Netlify serverless functions for myportfolio",
+  "main": "netlify/functions/github-stats.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'Netlify will build this'",
+    "deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "node-fetch": "^2.6.11"
+  }
+}
