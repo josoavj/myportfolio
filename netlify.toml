@@ -1,15 +1,11 @@
 [build]
-  command = "flutter build web --release"
-  publish = "build/web"
-  functions = "netlify/functions"
+  # Publier depuis le dossier releases/current (lien symlink vers la dernière version)
+  publish = "releases/current"
+
+[context.production]
+  environment = { GITHUB_TOKEN = "@github-token" }
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
-
-[context.production]
-  environment = { GITHUB_TOKEN = "@github-token" }
-
-[context.deploy-preview]
-  environment = { GITHUB_TOKEN = "@github-token" }
