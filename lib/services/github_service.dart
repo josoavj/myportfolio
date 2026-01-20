@@ -2,21 +2,25 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'cache_service.dart';
 import 'package:myportfolio/models/github_stats.dart';
-import 'package:myportfolio/config/secrets.dart';
 
 class GitHubService {
   static const String _restApiUrl = 'https://api.github.com';
-  static const String _graphqlUrl = 'https://api.github.com/graphql';
+  static String _serverlessApiUrl =
+      'https://myportfolio.netlify.app/.netlify/functions/github-stats';
   static const String _username = 'josoavj';
   static final _cacheService = CacheService();
   static const String _statsCacheKey = 'github_stats';
   static const String _userDataCacheKey = 'github_user_data';
 
-  static final _headers = {
-    'Authorization': 'Bearer ${GitHubSecrets.githubToken}',
-    'Accept': 'application/vnd.github.v3+json',
+  static const Map<String, String> _publicHeaders = {
+    'Accept': 'application/json',
     'Content-Type': 'application/json',
   };
+
+  /// Configure l'URL de la fonction serverless (util pour dev/prod)
+  static void setServerlessApiUrl(String url) {
+    _serverlessApiUrl = url;
+  }
 
   /// Récupère les statistiques GitHub complètes avec les vraies données
   static Future<GitHubStats> getGitHubStats() async {
@@ -27,101 +31,63 @@ class GitHubService {
     );
   }
 
-  /// Récupère les stats depuis l'API GitHub avec authentification
+  /// Récupère les stats depuis la fonction serverless
   static Future<GitHubStats> _fetchGitHubStats() async {
     try {
-      // Récupère les données de l'utilisateur
-      final userDataResponse = await http
+      final response = await http
           .get(
-            Uri.parse('$_restApiUrl/users/$_username'),
-            headers: _headers,
+            Uri.parse(_serverlessApiUrl),
+            headers: _publicHeaders,
           )
           .timeout(const Duration(seconds: 10));
 
-      if (userDataResponse.statusCode != 200) {
+      if (response.statusCode != 200) {
         return _getDefaultStats();
       }
 
-      // Récupère les contributions avec GraphQL
-      final contributionData = await _fetchContributionData();
+      final data = jsonDecode(response.body);
+
+      // Parse les repos
+      final topRepos = <RepoData>[];
+      if (data['topRepositories'] is List) {
+        for (var repo in data['topRepositories']) {
+          topRepos.add(RepoData.fromJson(repo));
+        }
+      }
 
       return GitHubStats(
-        totalContributions:
-            contributionData['total'] ?? _calculateTotalFromAllYears(),
-        thisYearContributions: contributionData['thisYear'] ?? 3580,
-        longestStreak: contributionData['longestStreak'] ?? 127,
+        totalContributions: data['totalContributions'] ?? 0,
+        thisYearContributions: data['thisYearContributions'] ?? 3580,
+        longestStreak: data['longestStreak'] ?? 127,
         contributionsByYear:
-            contributionData['byYear'] ?? _getContributionsByYear(),
+            _parseContributionsByYear(data['contributionsByYear'] ?? {}),
+        averageContributionsPerDay:
+            (data['averageContributionsPerDay'] ?? 0.0).toDouble(),
+        followers: data['followers'] ?? 0,
+        following: data['following'] ?? 0,
+        publicRepos: data['publicRepos'] ?? 0,
+        totalStars: data['totalStars'] ?? 0,
+        topRepositories: topRepos,
+        lastUpdated: data['lastUpdated'] != null
+            ? DateTime.parse(data['lastUpdated'] as String)
+            : DateTime.now(),
       );
     } catch (e) {
       return _getDefaultStats();
     }
   }
 
-  /// Récupère les données de contribution avec GraphQL
-  static Future<Map<String, dynamic>> _fetchContributionData() async {
-    try {
-      final query = '''
-        query {
-          user(login: "$_username") {
-            contributionsCollection {
-              contributionCalendar {
-                totalContributions
-              }
-            }
-          }
-        }
-      ''';
-
-      final response = await http
-          .post(
-            Uri.parse(_graphqlUrl),
-            headers: _headers,
-            body: jsonEncode({'query': query}),
-          )
-          .timeout(const Duration(seconds: 15));
-
-      if (response.statusCode == 200) {
-        final data = jsonDecode(response.body);
-
-        if (data['errors'] != null) {
-          return _getDefaultContributionData();
-        }
-
-        final contributions = data['data']['user']['contributionsCollection'];
-        final yearContribution =
-            contributions['contributionCalendar']['totalContributions'] ?? 3580;
-
-        // Calcule le total réel depuis tous les anos
-        final totalContributions = _calculateTotalFromAllYears();
-
-        return {
-          'total': totalContributions,
-          'thisYear': yearContribution,
-          'longestStreak': _calculateLongestStreak(),
-          'byYear': _getContributionsByYear(),
-        };
+  /// Parse les contributions par année depuis la réponse API
+  static Map<int, int> _parseContributionsByYear(Map<String, dynamic> data) {
+    final result = <int, int>{};
+    data.forEach((key, value) {
+      try {
+        result[int.parse(key)] = value as int;
+      } catch (e) {
+        // Ignore les entrées invalides
       }
-
-      return _getDefaultContributionData();
-    } catch (e) {
-      return _getDefaultContributionData();
-    }
-  }
-
-  /// Retourne les données de contribution par défaut
-  static Map<String, dynamic> _getDefaultContributionData() {
-    return {
-      'total': _calculateTotalFromAllYears(),
-      'thisYear': 3580,
-      'longestStreak': 127,
-      'byYear': _getContributionsByYear(),
-    };
-  }
-
-  /// Calcule le plus long streak de contribution
-  static int _calculateLongestStreak() {
-    return 127; // jours
+    });
+    return result;
   }
 
   /// Calcule le total des contributions depuis tous les ans
@@ -148,6 +114,13 @@ class GitHubService {
       thisYearContributions: 3580,
       longestStreak: 127,
       contributionsByYear: _getContributionsByYear(),
+      averageContributionsPerDay: 9.8,
+      followers: 0,
+      following: 0,
+      publicRepos: 0,
+      totalStars: 0,
+      topRepositories: [],
+      lastUpdated: DateTime.now(),
     );
   }
 
@@ -160,13 +133,13 @@ class GitHubService {
     );
   }
 
-  /// Récupère les infos de l'utilisateur depuis l'API
+  /// Récupère les infos de l'utilisateur depuis GitHub (public, pas besoin de token)
   static Future<Map<String, dynamic>> _fetchUserInfo() async {
     try {
       final response = await http
           .get(
             Uri.parse('$_restApiUrl/users/$_username'),
-            headers: _headers,
+            headers: _publicHeaders,
           )
           .timeout(const Duration(seconds: 10));
 
@@ -179,7 +152,7 @@ class GitHubService {
     }
   }
 
-  /// Récupère les repos de l'utilisateur
+  /// Récupère les repos de l'utilisateur (API GitHub publique)
   static Future<List<Map<String, dynamic>>> getRepositories(
       {int perPage = 30, int page = 1}) async {
     try {
@@ -188,7 +161,7 @@ class GitHubService {
       final response = await http
           .get(
             Uri.parse(url),
-            headers: _headers,
+            headers: _publicHeaders,
           )
           .timeout(const Duration(seconds: 10));
 
