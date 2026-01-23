@@ -29,9 +29,6 @@
 ### 📊 Contenu des fichiers
 
 - `myportfolio-v1.4.0.apk` - Application Android compilée en mode release (50.7 MB)
-- `SHA256SUMS` - Checksum SHA256
-- `SHA1SUMS` - Checksum SHA1
-- `MD5SUMS` - Checksum MD5
 - `README.md` - Ce fichier
 
 ### 🔐 Vérification d'intégrité
