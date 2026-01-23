@@ -92,56 +92,75 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           CurvedAnimation(parent: _animationController, curve: Curves.easeOut)),
       child: FadeTransition(
         opacity: _animationController,
-        child: Container(
-          padding:
-              isMobile ? const EdgeInsets.all(12) : const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.blue.withValues(alpha: 0.12),
-                Colors.purple.withValues(alpha: 0.08),
-              ],
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Header
+            _buildHeader(stats, isMobile),
+            const SizedBox(height: 24),
+
+            // Section 1: Stats principales
+            _buildStatsCard(
+              child: _buildMainStats(stats, isMobile),
+              isMobile: isMobile,
             ),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(
-              color: Colors.blue.withValues(alpha: 0.4),
-              width: 1.5,
+            const SizedBox(height: 20),
+
+            // Section 2: Contributions par année
+            _buildStatsCard(
+              child: _buildContributionChart(stats, isMobile),
+              isMobile: isMobile,
             ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue.withValues(alpha: 0.1),
-                blurRadius: 20,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Header avec titre et dernière mise à jour
-              _buildHeader(stats, isMobile),
-              const SizedBox(height: 20),
+            const SizedBox(height: 20),
 
-              // Stats principales
-              _buildMainStats(stats, isMobile),
-              const SizedBox(height: 20),
+            // Section 3: Repos populaires
+            _buildStatsCard(
+              child: _buildTopRepositories(stats, isMobile),
+              isMobile: isMobile,
+            ),
+            const SizedBox(height: 20),
 
-              // Graphique contributions par année
-              _buildContributionChart(stats, isMobile),
-              const SizedBox(height: 20),
-
-              // Repos populaires
-              _buildTopRepositories(stats, isMobile),
-              const SizedBox(height: 20),
-
-              // Langages
-              _buildLanguages(stats, isMobile),
-            ],
-          ),
+            // Section 4: Langages
+            _buildStatsCard(
+              child: _buildLanguages(stats, isMobile),
+              isMobile: isMobile,
+            ),
+          ],
         ),
       ),
+    );
+  }
+
+  Widget _buildStatsCard({
+    required Widget child,
+    required bool isMobile,
+  }) {
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.all(isMobile ? 16 : 20),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Colors.blue.withValues(alpha: 0.12),
+            Colors.purple.withValues(alpha: 0.08),
+          ],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(
+          color: Colors.blue.withValues(alpha: 0.4),
+          width: 1.5,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.blue.withValues(alpha: 0.1),
+            blurRadius: 20,
+            offset: const Offset(0, 4),
+          ),
+        ],
+      ),
+      child: child,
     );
   }
 
@@ -259,108 +278,164 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           style: isMobile ? AppTheme.subtitleSmall() : AppTheme.subtitle(),
         ),
         const SizedBox(height: 16),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: SizedBox(
-            width: isMobile ? entries.length * 60.0 : double.infinity,
-            height: isMobile ? 200 : 250,
-            child: BarChart(
-              BarChartData(
-                barGroups: entries.map((entry) {
-                  final index = entries.indexOf(entry);
-                  return BarChartGroupData(
-                    x: index,
-                    barRods: [
-                      BarChartRodData(
-                        toY: entry.value.toDouble(),
-                        color: Colors.blue.shade400,
-                        width: isMobile ? 30 : 20,
-                        borderRadius: const BorderRadius.only(
-                          topLeft: Radius.circular(6),
-                          topRight: Radius.circular(6),
-                        ),
-                      ),
+        if (isMobile)
+          _buildMobileContributionChart(entries, maxValue)
+        else
+          _buildDesktopContributionChart(entries, maxValue),
+      ],
+    );
+  }
+
+  Widget _buildMobileContributionChart(
+      List<MapEntry<int, int>> entries, double maxValue) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        spacing: 12,
+        children: entries.map((entry) {
+          final percentage = (entry.value / maxValue) * 100;
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            spacing: 8,
+            children: [
+              // Valeur en haut
+              Text(
+                entry.value.toString(),
+                style: AppTheme.labelSmall(color: Colors.blue),
+              ),
+              // Barre
+              Container(
+                width: 40,
+                height: percentage * 1.5,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.bottomCenter,
+                    end: Alignment.topCenter,
+                    colors: [
+                      Colors.blue.shade400,
+                      Colors.blue.shade200,
                     ],
-                  );
-                }).toList(),
-                titlesData: FlTitlesData(
-                  show: true,
-                  bottomTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: true,
-                      reservedSize: isMobile ? 30 : 40,
-                      getTitlesWidget: (value, meta) {
-                        final index = value.toInt();
-                        if (index >= 0 && index < entries.length) {
-                          return Padding(
-                            padding: const EdgeInsets.only(top: 8.0),
-                            child: Text(
-                              entries[index].key.toString().substring(2),
-                              style: AppTheme.labelSmall(),
-                              textAlign: TextAlign.center,
-                            ),
-                          );
-                        }
-                        return const SizedBox();
-                      },
+                  ),
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(4),
+                    topRight: Radius.circular(4),
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.blue.withValues(alpha: 0.3),
+                      blurRadius: 4,
+                      offset: const Offset(0, 2),
                     ),
-                  ),
-                  leftTitles: AxisTitles(
-                    sideTitles: SideTitles(
-                      showTitles: !isMobile,
-                      reservedSize: 40,
-                      getTitlesWidget: (value, meta) {
-                        if (!isMobile) {
-                          return Text(
-                            value.toInt().toString(),
-                            style: AppTheme.labelSmall(),
-                          );
-                        }
-                        return const SizedBox();
-                      },
-                    ),
-                  ),
-                  topTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                  rightTitles:
-                      AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                ),
-                gridData: FlGridData(
-                  show: true,
-                  horizontalInterval: maxValue / (isMobile ? 3 : 4),
-                  drawHorizontalLine: true,
-                  getDrawingHorizontalLine: (value) {
-                    return FlLine(
-                      color: Colors.grey.withValues(alpha: 0.1),
-                      strokeWidth: 1,
-                    );
-                  },
-                  drawVerticalLine: false,
-                ),
-                borderData: FlBorderData(show: false),
-                maxY: maxValue,
-                minY: 0,
-                barTouchData: BarTouchData(
-                  enabled: true,
-                  touchTooltipData: BarTouchTooltipData(
-                    tooltipPadding: const EdgeInsets.all(8),
-                    getTooltipItem: (group, groupIndex, rod, rodIndex) {
-                      return BarTooltipItem(
-                        '${entries[groupIndex].key}\n${rod.toY.toInt()} contributions',
-                        const TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      );
-                    },
-                  ),
+                  ],
                 ),
               ),
+              // Année
+              Text(
+                entry.key.toString(),
+                style: AppTheme.labelSmall(),
+              ),
+            ],
+          );
+        }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildDesktopContributionChart(
+      List<MapEntry<int, int>> entries, double maxValue) {
+    return SizedBox(
+      width: double.infinity,
+      height: 250,
+      child: BarChart(
+        BarChartData(
+          barGroups: entries.map((entry) {
+            final index = entries.indexOf(entry);
+            return BarChartGroupData(
+              x: index,
+              barRods: [
+                BarChartRodData(
+                  toY: entry.value.toDouble(),
+                  color: Colors.blue.shade400,
+                  width: 20,
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(6),
+                    topRight: Radius.circular(6),
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
+          titlesData: FlTitlesData(
+            show: true,
+            bottomTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 40,
+                getTitlesWidget: (value, meta) {
+                  final index = value.toInt();
+                  if (index >= 0 && index < entries.length) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Text(
+                        entries[index].key.toString(),
+                        style: AppTheme.labelSmall(),
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                },
+              ),
+            ),
+            leftTitles: AxisTitles(
+              sideTitles: SideTitles(
+                showTitles: true,
+                reservedSize: 40,
+                getTitlesWidget: (value, meta) {
+                  return Text(
+                    value.toInt().toString(),
+                    style: AppTheme.labelSmall(),
+                  );
+                },
+              ),
+            ),
+            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          ),
+          gridData: FlGridData(
+            show: true,
+            horizontalInterval: maxValue / 4,
+            drawHorizontalLine: true,
+            getDrawingHorizontalLine: (value) {
+              return FlLine(
+                color: Colors.grey.withValues(alpha: 0.1),
+                strokeWidth: 1,
+              );
+            },
+            drawVerticalLine: false,
+          ),
+          borderData: FlBorderData(show: false),
+          maxY: maxValue,
+          minY: 0,
+          barTouchData: BarTouchData(
+            enabled: true,
+            touchTooltipData: BarTouchTooltipData(
+              tooltipPadding: const EdgeInsets.all(8),
+              getTooltipItem: (group, groupIndex, rod, rodIndex) {
+                return BarTooltipItem(
+                  '${entries[groupIndex].key}\n${rod.toY.toInt()} contributions',
+                  const TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
+                  ),
+                );
+              },
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 

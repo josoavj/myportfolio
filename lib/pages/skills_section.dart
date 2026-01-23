@@ -114,26 +114,19 @@ class _SkillsSectionState extends State<SkillsSection> {
               width: isMobile ? constraints.maxWidth : 200,
             ).withScaleIn(delay: const Duration(milliseconds: 300)),
             StatCard(
-              icon: Icons.star,
-              title: '439',
-              subtitle: 'Stars GitHub',
-              color: Colors.amber,
-              width: isMobile ? constraints.maxWidth : 200,
-            ).withScaleIn(delay: const Duration(milliseconds: 400)),
-            StatCard(
               icon: Icons.terminal,
               title: '3+',
               subtitle: 'Années d\'Expérience',
               color: Colors.green,
               width: isMobile ? constraints.maxWidth : 200,
-            ).withScaleIn(delay: const Duration(milliseconds: 500)),
+            ).withScaleIn(delay: const Duration(milliseconds: 400)),
             StatCard(
               icon: Icons.people,
               title: 'APEXNova Labs',
               subtitle: 'Membre Actif',
               color: Colors.purple,
               width: isMobile ? constraints.maxWidth : 200,
-            ).withScaleIn(delay: const Duration(milliseconds: 600)),
+            ).withScaleIn(delay: const Duration(milliseconds: 500)),
           ],
         );
       },
