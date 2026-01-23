@@ -14,32 +14,71 @@ class AboutSection extends StatefulWidget {
 class _AboutSectionState extends State<AboutSection> {
   @override
   Widget build(BuildContext context) {
-    final isSmall = MediaQuery.of(context).size.width < 600;
+    final size = MediaQuery.of(context).size;
+    final isSmall = size.width < 600;
+    final minHeight = isSmall ? size.height * 0.95 : size.height;
 
     return Container(
+      constraints: BoxConstraints(minHeight: minHeight),
       padding: EdgeInsets.symmetric(
         horizontal: isSmall ? 15 : 20,
-        vertical: isSmall ? 60 : 80,
+        vertical: isSmall ? 50 : 80,
       ),
       child: ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 1000),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SectionTitle(title: 'À propos de moi'),
             SizedBox(height: isSmall ? 25 : 40),
-            Text(
-              'Je suis un développeur passionné par le développement d\'applications mobiles et le développement logiciel. '
-              'Intéressé par la cybersécurité et les technologies avancées. Spécialisé dans Flutter, Python, JavaScript et architectures backend. '
-              'Membre actif d\'APEXNova Labs, je contribue à des projets open source innovants et explore continuellement de nouvelles technologies. '
-              'Actuellement poursuivant un Master en Informatique et Télécommunications avec focus sur l\'architecture logicielle et la sécurité des systèmes. '
-              'Avec 43 repositories publiques et une passion pour l\'excellence technique, je crée des solutions robustes et scalables.',
-              style:
-                  isSmall ? AppTheme.bodyLargeMobile() : AppTheme.bodyLarge(),
-              textAlign: TextAlign.center,
-            ).withFadeIn(delay: const Duration(milliseconds: 200)),
+            if (isSmall)
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Je suis un développeur passionné par le développement d\'applications mobiles et le développement logiciel.',
+                    style: AppTheme.bodyLargeMobile(),
+                    textAlign: TextAlign.justify,
+                  ).withFadeIn(delay: const Duration(milliseconds: 200)),
+                  SizedBox(height: isSmall ? 12 : 0),
+                  Text(
+                    'Intéressé par la cybersécurité et les technologies avancées. Spécialisé dans Flutter, Python, JavaScript et architectures backend.',
+                    style: AppTheme.bodyLargeMobile(),
+                    textAlign: TextAlign.justify,
+                  ).withFadeIn(delay: const Duration(milliseconds: 300)),
+                  SizedBox(height: isSmall ? 12 : 0),
+                  Text(
+                    'Membre actif d\'APEXNova Labs, je contribue à des projets open source innovants et explore continuellement de nouvelles technologies.',
+                    style: AppTheme.bodyLargeMobile(),
+                    textAlign: TextAlign.justify,
+                  ).withFadeIn(delay: const Duration(milliseconds: 400)),
+                  SizedBox(height: isSmall ? 12 : 0),
+                  Text(
+                    'Actuellement poursuivant un Master en Informatique et Télécommunications avec focus sur l\'architecture logicielle et la sécurité des systèmes.',
+                    style: AppTheme.bodyLargeMobile(),
+                    textAlign: TextAlign.justify,
+                  ).withFadeIn(delay: const Duration(milliseconds: 500)),
+                  SizedBox(height: isSmall ? 12 : 0),
+                  Text(
+                    'Avec 43 repositories publiques et une passion pour l\'excellence technique, je crée des solutions robustes et scalables.',
+                    style: AppTheme.bodyLargeMobile(),
+                    textAlign: TextAlign.justify,
+                  ).withFadeIn(delay: const Duration(milliseconds: 600)),
+                ],
+              )
+            else
+              Text(
+                'Je suis un développeur passionné par le développement d\'applications mobiles et le développement logiciel. '
+                'Intéressé par la cybersécurité et les technologies avancées. Spécialisé dans Flutter, Python, JavaScript et architectures backend. '
+                'Membre actif d\'APEXNova Labs, je contribue à des projets open source innovants et explore continuellement de nouvelles technologies. '
+                'Actuellement poursuivant un Master en Informatique et Télécommunications avec focus sur l\'architecture logicielle et la sécurité des systèmes. '
+                'Avec 43 repositories publiques et une passion pour l\'excellence technique, je crée des solutions robustes et scalables.',
+                style: AppTheme.bodyLarge(),
+                textAlign: TextAlign.center,
+              ).withFadeIn(delay: const Duration(milliseconds: 200)),
             SizedBox(height: isSmall ? 25 : 40),
             Container(
-              padding: EdgeInsets.all(isSmall ? 20 : 30),
+              padding: EdgeInsets.all(isSmall ? 16 : 30),
               decoration: BoxDecoration(
                 color: AppConstants.secondaryDark,
                 borderRadius: BorderRadius.circular(15),
@@ -50,12 +89,12 @@ class _AboutSectionState extends State<AboutSection> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Icon(Icons.emoji_events,
-                          color: Colors.amber, size: 28),
-                      const SizedBox(width: 10),
+                      Icon(Icons.emoji_events,
+                          color: Colors.amber, size: isSmall ? 24 : 28),
+                      SizedBox(width: isSmall ? 8 : 10),
                       Flexible(
                         child: Text(
-                          'Top 15 Développeur GitHub Madagascar',
+                          'Top 10 Développeur GitHub Madagascar',
                           style: AppTheme.titleMedium(color: Colors.amber),
                           textAlign: TextAlign.center,
                           overflow: TextOverflow.ellipsis,
@@ -67,10 +106,12 @@ class _AboutSectionState extends State<AboutSection> {
                     delay: const Duration(milliseconds: 300),
                     distance: 15.0,
                   ),
-                  const SizedBox(height: 15),
+                  SizedBox(height: isSmall ? 12 : 15),
                   Text(
                     'Classement basé sur les contributions publiques',
-                    style: AppTheme.subtitleSmall(),
+                    style: isSmall
+                        ? AppTheme.bodyLargeMobile()
+                        : AppTheme.subtitleSmall(),
                   ).withFadeIn(delay: const Duration(milliseconds: 400)),
                 ],
               ),

@@ -19,7 +19,7 @@ class _HeaderSectionState extends State<HeaderSection> {
     final isSmall = size.width < 600;
 
     return Container(
-      height: MediaQuery.of(context).size.height * 0.9,
+      height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -38,8 +38,8 @@ class _HeaderSectionState extends State<HeaderSection> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
-                width: isSmall ? 120 : 150,
-                height: isSmall ? 120 : 150,
+                width: isSmall ? 160 : 200,
+                height: isSmall ? 160 : 200,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   border: Border.all(color: Colors.blue, width: 3),
@@ -54,7 +54,7 @@ class _HeaderSectionState extends State<HeaderSection> {
                 child: CircleAvatar(
                   backgroundColor: AppConstants.secondaryDark,
                   backgroundImage: AssetImage(
-                    'assets/LogoPrincipalFinal.png',
+                    'assets/mypfp.jpg',
                   ),
                 ).withScaleIn(),
               ),
