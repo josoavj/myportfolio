@@ -15,6 +15,14 @@ class ExperienceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 600;
+    final padding = isMobile ? 20.0 : 30.0;
+    final iconSize = isMobile ? 24.0 : 30.0;
+    const iconPadding = 12.0;
+    const spacingSmall = 6.0;
+    const spacingMedium = 12.0;
+    const spacingLarge = 20.0;
+
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: Duration(
@@ -32,8 +40,8 @@ class ExperienceCard extends StatelessWidget {
         );
       },
       child: Container(
-        margin: const EdgeInsets.only(bottom: 30),
-        padding: const EdgeInsets.all(30),
+        margin: EdgeInsets.only(bottom: isMobile ? 20 : 30),
+        padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
           color: AppConstants.secondaryDark,
           borderRadius: BorderRadius.circular(15),
@@ -46,115 +54,262 @@ class ExperienceCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
+        child: isMobile
+            ? _buildMobileLayout(experience, iconSize, iconPadding,
+                spacingSmall, spacingMedium, spacingLarge)
+            : _buildDesktopLayout(experience, iconSize, iconPadding,
+                spacingSmall, spacingMedium, spacingLarge),
+      ),
+    );
+  }
+
+  Widget _buildDesktopLayout(
+    Experience experience,
+    double iconSize,
+    double iconPadding,
+    double spacingSmall,
+    double spacingMedium,
+    double spacingLarge,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  padding: const EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: experience.color.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(12),
+            Container(
+              padding: EdgeInsets.all(iconPadding),
+              decoration: BoxDecoration(
+                color: experience.color.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                experience.icon,
+                color: experience.color,
+                size: iconSize,
+              ),
+            ),
+            SizedBox(width: spacingLarge),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    experience.role,
+                    style: AppTheme.titleMedium(),
                   ),
-                  child: Icon(
-                    experience.icon,
-                    color: experience.color,
-                    size: 30,
-                  ),
-                ),
-                const SizedBox(width: 20),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  SizedBox(height: spacingSmall),
+                  Row(
                     children: [
-                      Text(
-                        experience.role,
-                        style: AppTheme.titleMedium(),
-                      ),
-                      const SizedBox(height: 8),
-                      Row(
-                        children: [
-                          Icon(Icons.business,
-                              size: 16, color: Colors.grey[500]),
-                          const SizedBox(width: 5),
-                          Flexible(
-                            child: Text(
-                              experience.company,
-                              style: AppTheme.subtitle(color: experience.color),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 5),
-                      Row(
-                        children: [
-                          Icon(Icons.calendar_today,
-                              size: 14, color: Colors.grey[500]),
-                          const SizedBox(width: 5),
-                          Flexible(
-                            child: Text(
-                              experience.period,
-                              style: AppTheme.labelSmall(),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          const SizedBox(width: 15),
-                          Icon(Icons.location_on,
-                              size: 14, color: Colors.grey[500]),
-                          const SizedBox(width: 5),
-                          Flexible(
-                            child: Text(
-                              experience.location,
-                              style: AppTheme.labelSmall(),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                        ],
+                      Icon(Icons.business, size: 16, color: Colors.grey[500]),
+                      SizedBox(width: spacingSmall),
+                      Flexible(
+                        child: Text(
+                          experience.company,
+                          style: AppTheme.subtitle(color: experience.color),
+                          overflow: TextOverflow.ellipsis,
+                        ),
                       ),
                     ],
+                  ),
+                  SizedBox(height: spacingSmall),
+                  Row(
+                    children: [
+                      Icon(Icons.calendar_today,
+                          size: 14, color: Colors.grey[500]),
+                      SizedBox(width: spacingSmall),
+                      Flexible(
+                        child: Text(
+                          experience.period,
+                          style: AppTheme.labelSmall(),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(width: spacingLarge),
+                      Icon(Icons.location_on,
+                          size: 14, color: Colors.grey[500]),
+                      SizedBox(width: spacingSmall),
+                      Flexible(
+                        child: Text(
+                          experience.location,
+                          style: AppTheme.labelSmall(),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+        SizedBox(height: spacingLarge),
+        Text(
+          experience.description,
+          style: AppTheme.bodyLarge(),
+        ),
+        SizedBox(height: spacingLarge),
+        Text(
+          'Réalisations clés :',
+          style: AppTheme.subtitle(),
+        ),
+        SizedBox(height: spacingMedium),
+        ...experience.achievements.map((achievement) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: spacingMedium),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(
+                  Icons.check_circle,
+                  size: 18,
+                  color: experience.color,
+                ),
+                SizedBox(width: spacingMedium),
+                Expanded(
+                  child: Text(
+                    achievement,
+                    style: AppTheme.bodySmall(),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            Text(
-              experience.description,
-              style: AppTheme.bodyLarge(),
+          );
+        }).toList(),
+      ],
+    );
+  }
+
+  Widget _buildMobileLayout(
+    Experience experience,
+    double iconSize,
+    double iconPadding,
+    double spacingSmall,
+    double spacingMedium,
+    double spacingLarge,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Container(
+              padding: EdgeInsets.all(iconPadding),
+              decoration: BoxDecoration(
+                color: experience.color.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                experience.icon,
+                color: experience.color,
+                size: iconSize,
+              ),
             ),
-            const SizedBox(height: 20),
-            Text(
-              'Réalisations clés :',
-              style: AppTheme.subtitle(),
-            ),
-            const SizedBox(height: 10),
-            ...experience.achievements.map((achievement) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Icon(
-                      Icons.check_circle,
-                      size: 18,
-                      color: experience.color,
-                    ),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        achievement,
-                        style: AppTheme.bodySmall(),
+            SizedBox(width: spacingMedium),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    experience.role,
+                    style: AppTheme.titleSmallMobile(),
+                  ),
+                  SizedBox(height: spacingSmall),
+                  Row(
+                    children: [
+                      Icon(Icons.business, size: 14, color: Colors.grey[500]),
+                      SizedBox(width: spacingSmall),
+                      Flexible(
+                        child: Text(
+                          experience.company,
+                          style:
+                              AppTheme.subtitleMobile(color: experience.color),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              );
-            }),
+                    ],
+                  ),
+                ],
+              ),
+            ),
           ],
         ),
-      ),
+        SizedBox(height: spacingMedium),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Icon(Icons.calendar_today, size: 12, color: Colors.grey[500]),
+                SizedBox(width: spacingSmall),
+                Flexible(
+                  child: Text(
+                    experience.period,
+                    style: AppTheme.bodyLargeMobile(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: spacingSmall),
+            Row(
+              children: [
+                Icon(Icons.location_on, size: 12, color: Colors.grey[500]),
+                SizedBox(width: spacingSmall),
+                Flexible(
+                  child: Text(
+                    experience.location,
+                    style: AppTheme.bodyLargeMobile(),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+        SizedBox(height: spacingMedium),
+        Text(
+          experience.description,
+          style: AppTheme.bodyLargeMobile(),
+          textAlign: TextAlign.justify,
+        ),
+        SizedBox(height: spacingMedium),
+        Text(
+          'Réalisations clés :',
+          style: AppTheme.subtitleMobile(),
+        ),
+        SizedBox(height: spacingMedium),
+        ...experience.achievements.map((achievement) {
+          return Padding(
+            padding: EdgeInsets.only(bottom: spacingSmall),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: spacingSmall / 2),
+                  child: Icon(
+                    Icons.check_circle,
+                    size: 16,
+                    color: experience.color,
+                  ),
+                ),
+                SizedBox(width: spacingMedium),
+                Expanded(
+                  child: Text(
+                    achievement,
+                    style: AppTheme.bodyLargeMobile(),
+                    textAlign: TextAlign.justify,
+                  ),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
+      ],
     );
   }
 }

@@ -43,36 +43,127 @@ async function fetchTotalStars() {
   return repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
 }
 
+async function fetchContributionStats() {
+  // GraphQL query pour récupérer les contributions
+  const query = `
+    query {
+      user(login: "${GITHUB_USERNAME}") {
+        contributionsCollection {
+          totalCommitContributions
+          totalIssueContributions
+          totalPullRequestContributions
+          totalPullRequestReviewContributions
+          contributionCalendar {
+            totalContributions
+            weeks {
+              contributionDays {
+                date
+                contributionCount
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch(GITHUB_GRAPHQL, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ query }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`GraphQL error: ${response.status}`);
+  }
+
+  const data = await response.json();
+  if (data.errors) {
+    throw new Error(`GraphQL error: ${data.errors[0].message}`);
+  }
+
+  return data.data.user.contributionsCollection;
+}
+
+async function calculateContributionsByYear(contributionData) {
+  // Parcourir le calendrier pour compter par année
+  const byYear = {};
+  const now = new Date();
+  const currentYear = now.getFullYear();
+
+  contributionData.contributionCalendar.weeks.forEach(week => {
+    week.contributionDays.forEach(day => {
+      const date = new Date(day.date);
+      const year = date.getFullYear();
+      byYear[year] = (byYear[year] || 0) + day.contributionCount;
+    });
+  });
+
+  // S'assurer que l'année actuelle est toujours incluse
+  if (!byYear[currentYear]) {
+    byYear[currentYear] = 0;
+  }
+
+  return byYear;
+}
+
+async function calculateThisYearContributions(contributionsByYear) {
+  const currentYear = new Date().getFullYear();
+  return contributionsByYear[currentYear] || 0;
+}
+
+async function calculateAverageContributionsPerDay(totalContributions) {
+  // Depuis le premier commit jusqu'à aujourd'hui
+  // Estimation basée sur une moyenne de jours actifs
+  const query = `
+    query {
+      user(login: "${GITHUB_USERNAME}") {
+        createdAt
+      }
+    }
+  `;
+
+  const response = await fetch(GITHUB_GRAPHQL, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({ query }),
+  });
+
+  const data = await response.json();
+  const createdAt = new Date(data.data.user.createdAt);
+  const now = new Date();
+  const daysActive = Math.floor((now - createdAt) / (1000 * 60 * 60 * 24));
+  
+  return daysActive > 0 ? parseFloat((totalContributions / daysActive).toFixed(2)) : 0;
+}
+
 async function fetchGitHubStats() {
   try {
     // Données utilisateur
     const userData = await fetchUserData();
     
+    // Stats de contributions via GraphQL
+    const contributionData = await fetchContributionStats();
+    const contributionsByYear = await calculateContributionsByYear(contributionData);
+    const thisYearContributions = await calculateThisYearContributions(contributionsByYear);
+    const totalContributions = contributionData.contributionCalendar.totalContributions;
+    const averageContributionsPerDay = await calculateAverageContributionsPerDay(totalContributions);
+    
     // Repos populaires
     const topRepos = await fetchTopRepositories(5);
     const totalStars = await fetchTotalStars();
 
-    // Stats contributory (données statiques pour maintenant)
-    const averageContributionsPerDay = 9.8;
-    const totalContributions = 5169;
-    const thisYearContributions = 3580;
-    const longestStreak = 127;
-
     return {
       totalContributions,
-      thisYearContributions: thisYearContributions,
-      longestStreak,
+      thisYearContributions,
+      longestStreak: 0, // TODO: GraphQL ne fournit pas cette info directement
       averageContributionsPerDay,
       followers: userData.followers || 0,
       following: userData.following || 0,
       publicRepos: userData.public_repos || 0,
       totalStars,
       topRepositories: topRepos,
-      contributionsByYear: {
-        '2025': thisYearContributions,
-        '2024': 1092,
-        '2023': 497,
-      },
+      contributionsByYear,
       lastUpdated: new Date().toISOString(),
     };
   } catch (error) {

@@ -18,42 +18,46 @@ class AllProjectsModal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSmall = MediaQuery.of(context).size.width < 600;
+    final isMobile = MediaQuery.of(context).size.width < 900;
 
-    return Dialog(
-      backgroundColor: const Color(0xFF0D1117),
+    return Dialog.fullscreen(
+      backgroundColor: const Color(0xFF0D1117).withValues(alpha: 0.98),
       child: Container(
-        constraints: BoxConstraints(
-          maxWidth: isSmall ? double.infinity : 900,
-          maxHeight: MediaQuery.of(context).size.height * 0.9,
+        padding: EdgeInsets.only(
+          left: isSmall ? 12 : 20,
+          right: isSmall ? 12 : 20,
+          top: isSmall ? 40 : 24,
+          bottom: isSmall ? 16 : 24,
         ),
-        padding: EdgeInsets.all(isSmall ? 15 : 25),
         child: Column(
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Tous les projets',
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ).withFadeIn(),
+                Expanded(
+                  child: Text(
+                    'Tous les projets (${projects.length})',
+                    style: TextStyle(
+                      fontSize: isSmall ? 20 : 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ).withFadeIn(),
+                ),
                 IconButton(
-                  icon: const Icon(Icons.close, color: Colors.white),
+                  icon: const Icon(Icons.close, color: Colors.white, size: 28),
                   onPressed: () => Navigator.pop(context),
                 ),
               ],
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 16),
             Expanded(
               child: GridView.builder(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: isSmall ? 1 : 2,
-                  crossAxisSpacing: 15,
-                  mainAxisSpacing: 15,
-                  childAspectRatio: 0.9,
+                  crossAxisCount: isSmall ? 1 : (isMobile ? 2 : 3),
+                  crossAxisSpacing: isSmall ? 12 : 16,
+                  mainAxisSpacing: isSmall ? 12 : 16,
+                  childAspectRatio: isSmall ? 1.7 : (isMobile ? 1.7 : 2.75),
                 ),
                 itemCount: projects.length,
                 itemBuilder: (context, index) {

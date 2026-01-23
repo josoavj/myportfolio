@@ -7,6 +7,7 @@ import 'package:myportfolio/pages/footer_section.dart';
 import 'package:myportfolio/pages/header_section.dart';
 import 'package:myportfolio/pages/projects_section.dart';
 import 'package:myportfolio/pages/skills_section.dart';
+import 'package:myportfolio/widgets/animated_scroll_section.dart';
 
 class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
@@ -19,10 +20,12 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
+  late ScrollController _scrollController;
 
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -36,6 +39,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
   @override
   void dispose() {
     _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
   }
 
@@ -43,18 +47,40 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Column(
-            children: const [
-              HeaderSection(),
-              AboutSection(),
-              ExperienceSection(),
-              EducationSection(),
-              SkillsSection(),
-              ProjectsSection(),
-              ContactSection(),
-              FooterSection(),
+            children: [
+              const HeaderSection(),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const AboutSection(),
+              ),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const ExperienceSection(),
+              ),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const EducationSection(),
+              ),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const SkillsSection(),
+              ),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const ProjectsSection(),
+              ),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const ContactSection(),
+              ),
+              AnimatedScrollSection(
+                scrollController: _scrollController,
+                child: const FooterSection(),
+              ),
             ],
           ),
         ),

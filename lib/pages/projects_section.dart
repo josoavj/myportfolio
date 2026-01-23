@@ -15,15 +15,17 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projects = AppData.getProjects();
+    final isMobile = MediaQuery.of(context).size.width < 600;
     final displayedProjects = projects.take(_displayCount).toList();
     final hasMoreProjects = projects.length > _displayCount;
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      padding: isMobile
+          ? const EdgeInsets.only(left: 16, right: 16, top: 80, bottom: 150)
+          : const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
       child: Column(
         children: [
           const SectionTitle(title: 'Projets'),
-          const SizedBox(height: 40),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
             child: Column(
@@ -37,9 +39,9 @@ class ProjectsSection extends StatelessWidget {
                         : MediaQuery.of(context).size.width > 600
                             ? 2
                             : 1,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 20,
-                    childAspectRatio: 0.9,
+                    crossAxisSpacing: isMobile ? 12 : 20,
+                    mainAxisSpacing: isMobile ? 16 : 20,
+                    childAspectRatio: isMobile ? 1.7 : 0.9,
                   ),
                   itemCount: displayedProjects.length,
                   itemBuilder: (context, index) {
@@ -71,28 +73,59 @@ class ProjectsSection extends StatelessWidget {
                   },
                 ),
                 if (hasMoreProjects) ...[
-                  const SizedBox(height: 50),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (_) => AllProjectsModal(
-                          projects: projects,
-                          initialDisplayCount: _displayCount,
+                  SizedBox(
+                    height: isMobile ? 20 : 30,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width < 600
+                        ? double.infinity
+                        : null,
+                    child: OutlinedButton.icon(
+                      onPressed: () {
+                        showGeneralDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          barrierLabel: MaterialLocalizations.of(context)
+                              .modalBarrierDismissLabel,
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return AllProjectsModal(
+                              projects: projects,
+                              initialDisplayCount: _displayCount,
+                            );
+                          },
+                          transitionBuilder:
+                              (context, animation, secondaryAnimation, child) {
+                            return ScaleTransition(
+                              scale:
+                                  Tween<double>(begin: 0.0, end: 1.0).animate(
+                                CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeOutCubic),
+                              ),
+                              child: FadeTransition(
+                                opacity: animation,
+                                child: child,
+                              ),
+                            );
+                          },
+                          transitionDuration: const Duration(milliseconds: 400),
+                        );
+                      },
+                      icon: const Icon(Icons.expand_more),
+                      label: const Text('Voir tous les projets'),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.blue,
+                        side: const BorderSide(color: Colors.blue),
+                        padding: EdgeInsets.symmetric(
+                          horizontal:
+                              MediaQuery.of(context).size.width < 600 ? 20 : 30,
+                          vertical:
+                              MediaQuery.of(context).size.width < 600 ? 14 : 18,
                         ),
-                      );
-                    },
-                    icon: const Icon(Icons.expand_more),
-                    label: const Text('Voir tous les projets'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: Colors.blue,
-                      side: const BorderSide(color: Colors.blue),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 30,
-                        vertical: 18,
-                      ),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
                       ),
                     ),
                   ).withScaleIn(
