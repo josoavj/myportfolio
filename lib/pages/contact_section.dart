@@ -30,7 +30,7 @@ class _ContactSectionState extends State<ContactSection> {
         'Nom: ${nameController.text}\nEmail: ${emailController.text}\n\nMessage:\n${messageController.text}';
 
     UrlLauncherService.launchEmail(
-      email: 'votre.email@example.com',
+      email: 'josoavonjiniaina13@gmail.com',
       subject: subject,
       body: body,
     );
