@@ -135,6 +135,7 @@ class AppData {
         language: 'Dart',
         stars: 19,
         url: 'https://github.com/josoavj/lvlmindapp',
+        releaseUrl: 'https://github.com/josoavj/lvlmindapp/releases',
         technologies: [
           'Flutter',
           'Dart',
@@ -161,6 +162,7 @@ class AppData {
         language: 'Dart',
         stars: 6,
         url: 'https://github.com/josoavj/segma',
+        releaseUrl: 'https://github.com/josoavj/segma/releases',
         technologies: [
           'Flutter',
           'Dart',
@@ -266,6 +268,7 @@ class AppData {
         language: 'Dart',
         stars: 7,
         url: 'https://github.com/josoavj/myportfolio',
+        releaseUrl: 'https://github.com/josoavj/myportfolio/releases',
         technologies: [
           'Flutter',
           'Dart',

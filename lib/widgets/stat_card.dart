@@ -20,6 +20,7 @@ class StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isSmall = MediaQuery.of(context).size.width < 600;
+    final cardHeight = isSmall ? null : 250.0;
 
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
@@ -33,6 +34,7 @@ class StatCard extends StatelessWidget {
       },
       child: Container(
         width: width,
+        height: cardHeight,
         padding: EdgeInsets.all(isSmall ? 15 : 25),
         decoration: BoxDecoration(
           color: const Color(0xFF0D1117),
@@ -47,6 +49,7 @@ class StatCard extends StatelessWidget {
           ],
         ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Icon(icon, size: isSmall ? 32 : 40, color: color),
             SizedBox(height: isSmall ? 10 : 15),
@@ -55,12 +58,17 @@ class StatCard extends StatelessWidget {
               style: isSmall
                   ? AppTheme.titleSmallMobile(color: color)
                   : AppTheme.titleMedium(color: color),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
             SizedBox(height: isSmall ? 6 : 8),
             Text(
               subtitle,
               style: AppTheme.labelSmall(),
               textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
