@@ -175,7 +175,7 @@ class ExperienceCard extends StatelessWidget {
               ],
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }
@@ -308,7 +308,7 @@ class ExperienceCard extends StatelessWidget {
               ],
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }
