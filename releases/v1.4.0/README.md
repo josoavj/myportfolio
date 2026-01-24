@@ -1,50 +1,59 @@
-# MyPortfolio v1.4.0
+# MyPortfolio v1.4.0 - Mise à jour Interface & Projets
 
 ## Release Notes
 
-### ✨ Nouveautés
+### ✨ Nouveautés Principales
 
-- **GitHub Stats Amélioré** : Données de contribution automatiques via GraphQL
-  - Total des contributions dynamique
-  - Contributions par année (toutes les années affichées)
-  - Moyennes par jour calculées automatiquement
-  - Support de 2026 et au-delà
+#### 1. **Page Détails Projets Améliorée** 🎯
+- **Layout grand écran** : Affichage optimisé pour desktop avec contenu centré sur la gauche
+- **Bouton Releases** : Nouveau bouton "Voir les releases" pour accéder directement aux releases GitHub
+- **Responsive buttons** : 
+  - Sur mobile : boutons en colonne
+  - Sur desktop : boutons côte à côte (GitHub & Releases)
+- **Projets avec releases** : lvlmindapp, segma, myportfolio
 
-- **Graphique de Contribution Mobile** : Affichage optimisé pour mobile
-  - Barres visuelles en gradient
-  - Affichage complet de toutes les années
-  - Scroll horizontal fluide sur mobile
+#### 2. **Section Contactez-moi Restructurée** 📧
+- **Design moderne** : Ombres et bordures élégantes
+- **Layout optimisé** :
+  - Desktop : Formulaire à gauche, infos de contact à droite
+  - Mobile : Disposition en colonne
+- **Boutons sociaux** :
+  - WhatsApp + GitHub côte à côte sur desktop
+  - LinkedIn en full-width
+  - Meilleur espacement et design
+- **Formulaire amélioré** : Padding responsive, typographie optimisée
+- **Meilleure hiérarchie visuelle** : Sections bien structurées
 
-- **Section Projets Améliorée** :
-  - Espacement optimisé pour mobile
-  - Modal fullscreen pour "Voir tous les projets"
-  - Cartes de projets plus compactes
-  - Animation d'ouverture en scale + fade
+#### 3. **Cartes de Statistiques Cohérentes** 📊
+- **APEXNova Labs** : Affichage harmonisé avec les autres cartes
+- **Hauteur adaptive** : 220px sur desktop, auto sur mobile
+- **Texte centré** : Meilleure présentation du contenu
+- **Ombres et bordures** : Design moderne et professionnel
 
-- **UI/UX Global** :
-  - Sections GitHub divisées (Stats, Contributions, Repos, Langages)
-  - Cartes de même largeur pour meilleure alignement
-  - Meilleure responsive design mobile
+#### 4. **Section Projets Améliorée** 🚀
+- **Espacement** : SizedBox responsive après le titre
+- **20px** sur mobile, **40px** sur desktop
+- **Meilleure aération** visuelle
 
-### 📊 Contenu des fichiers
+### 📊 GitHub Stats Dynamiques
+- Total des contributions automatique via GraphQL
+- Contributions par année (toutes les années)
+- Moyennes par jour calculées
+- Support 2026+
 
-- `myportfolio-v1.4.0.apk` - Application Android compilée en mode release (50.7 MB)
-- `README.md` - Ce fichier
+### 📱 Amélioration Responsive
+- Mobile/Desktop bien géré partout
+- Cohérence visuelle globale
+- Padding et espacement adaptatif
 
-### 🔐 Vérification d'intégrité
+### 📦 Fichiers de Release
 
-Vérifiez l'intégrité du fichier APK :
+- **myportfolio-v1.4.0.apk** - Android (50.7 MB)
+- **Web build complet** - Déployable sur Netlify/serveur web
 
-```bash
-# SHA256
-sha256sum -c SHA256SUMS
-
-# SHA1
-sha1sum -c SHA1SUMS
-
-# MD5
-md5sum -c MD5SUMS
-```
+### 🔧 Corrections
+- Suppression d'avertissements linter (unnecessary_to_list_in_spreads)
+- Amélioration de la stabilité globale
 
 ### 📱 Installation
 
