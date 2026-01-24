@@ -100,6 +100,7 @@ class _SkillsSectionState extends State<SkillsSection> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 700;
+        final isLargeScreen = constraints.maxWidth > 1000;
 
         return Wrap(
           spacing: 20,
@@ -111,21 +112,24 @@ class _SkillsSectionState extends State<SkillsSection> {
               title: '5+',
               subtitle: 'Projets Complétés',
               color: Colors.blue,
-              width: isMobile ? constraints.maxWidth : 200,
+              width:
+                  isMobile ? constraints.maxWidth : (isLargeScreen ? 220 : 200),
             ).withScaleIn(delay: const Duration(milliseconds: 300)),
             StatCard(
               icon: Icons.terminal,
               title: '3+',
               subtitle: 'Années d\'Expérience',
               color: Colors.green,
-              width: isMobile ? constraints.maxWidth : 200,
+              width:
+                  isMobile ? constraints.maxWidth : (isLargeScreen ? 220 : 200),
             ).withScaleIn(delay: const Duration(milliseconds: 400)),
             StatCard(
               icon: Icons.people,
-              title: 'APEXNova Labs',
+              title: 'APEXNova\nLabs',
               subtitle: 'Membre Actif',
               color: Colors.purple,
-              width: isMobile ? constraints.maxWidth : 200,
+              width:
+                  isMobile ? constraints.maxWidth : (isLargeScreen ? 220 : 200),
             ).withScaleIn(delay: const Duration(milliseconds: 500)),
           ],
         );
