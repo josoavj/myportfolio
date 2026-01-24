@@ -7,6 +7,7 @@ class Project {
   final List<String> technologies;
   final List<String> features;
   final String detailedDescription;
+  final String? releaseUrl;
 
   Project({
     required this.name,
@@ -17,5 +18,6 @@ class Project {
     this.technologies = const [],
     this.features = const [],
     this.detailedDescription = '',
+    this.releaseUrl,
   });
 }
