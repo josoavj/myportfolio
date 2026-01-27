@@ -1,6 +1,5 @@
 {
-  "buildCommand": "flutter build web --release --base-href=/",
-  "outputDirectory": "build/web",
+  "outputDirectory": "releases/current",
   "rewrites": [
     {
       "source": "/(.*)",
