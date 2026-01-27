@@ -1,0 +1,10 @@
+{
+  "buildCommand": "flutter build web --release --base-href=/",
+  "outputDirectory": "build/web",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
