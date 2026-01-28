@@ -1,0 +1,9 @@
+{
+  "outputDirectory": "releases/current",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
