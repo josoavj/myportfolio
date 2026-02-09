@@ -9,6 +9,7 @@ class GitHubStats {
   final int publicRepos;
   final int totalStars;
   final List<RepoData> topRepositories;
+  final List<LanguageData> topLanguages;
   final DateTime lastUpdated;
 
   GitHubStats({
@@ -22,6 +23,7 @@ class GitHubStats {
     this.publicRepos = 0,
     this.totalStars = 0,
     this.topRepositories = const [],
+    this.topLanguages = const [],
     DateTime? lastUpdated,
   }) : lastUpdated = lastUpdated ?? DateTime.now();
 }
@@ -48,6 +50,23 @@ class RepoData {
       stars: json['stargazers_count'] ?? 0,
       language: json['language'] ?? 'Unknown',
       url: json['html_url'] ?? '',
+    );
+  }
+}
+
+class LanguageData {
+  final String name;
+  final int count;
+
+  LanguageData({
+    required this.name,
+    required this.count,
+  });
+
+  factory LanguageData.fromJson(Map<String, dynamic> json) {
+    return LanguageData(
+      name: json['name'] ?? 'Unknown',
+      count: json['count'] ?? 0,
     );
   }
 }

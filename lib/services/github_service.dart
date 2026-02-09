@@ -68,6 +68,14 @@ class GitHubService {
         }
       }
 
+      // Parse les langages
+      final topLanguages = <LanguageData>[];
+      if (data['topLanguages'] is List) {
+        for (var lang in data['topLanguages']) {
+          topLanguages.add(LanguageData.fromJson(lang));
+        }
+      }
+
       return GitHubStats(
         totalContributions: data['totalContributions'] ?? 0,
         thisYearContributions: data['thisYearContributions'] ?? 3580,
@@ -81,6 +89,7 @@ class GitHubService {
         publicRepos: data['publicRepos'] ?? 0,
         totalStars: data['totalStars'] ?? 0,
         topRepositories: topRepos,
+        topLanguages: topLanguages,
         lastUpdated: data['lastUpdated'] != null
             ? DateTime.parse(data['lastUpdated'] as String)
             : DateTime.now(),
@@ -133,6 +142,7 @@ class GitHubService {
       publicRepos: 0,
       totalStars: 0,
       topRepositories: [],
+      topLanguages: [],
       lastUpdated: DateTime.now(),
     );
   }

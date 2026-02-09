@@ -26,7 +26,7 @@ class ProjectsSection extends StatelessWidget {
       child: Column(
         children: [
           const SectionTitle(title: 'Projets'),
-          SizedBox(height: isMobile ? 00 : 40),
+          SizedBox(height: isMobile ? 20 : 40),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
             child: Column(

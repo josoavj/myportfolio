@@ -9,6 +9,8 @@ class Education {
   final IconData icon;
   final Color color;
   final String status;
+  final List<Map<String, String>>? capstoneProjects;
+  final String? thesisTitle;
 
   Education({
     required this.degree,
@@ -19,5 +21,7 @@ class Education {
     required this.icon,
     required this.color,
     required this.status,
+    this.capstoneProjects,
+    this.thesisTitle,
   });
 }
