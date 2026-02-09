@@ -170,13 +170,15 @@ async function calculateContributionsByYear(contributionData) {
     });
   }
 
-  // Ajouter l'année actuelle si elle n'existe pas
-  const currentYear = new Date().getFullYear();
-  if (!byYear[currentYear]) {
-    byYear[currentYear] = 0;
-  }
+  // Filtrer pour exclure les années avec zéro contributions
+  const filteredByYear = {};
+  Object.entries(byYear).forEach(([year, count]) => {
+    if (count > 0) {
+      filteredByYear[year] = count;
+    }
+  });
 
-  return byYear;
+  return filteredByYear;
 }
 
 async function calculateThisYearContributions(contributionsByYear) {
