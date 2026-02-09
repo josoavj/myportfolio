@@ -19,18 +19,20 @@ async function fetchUserData() {
 
 async function fetchTopRepositories(limit = 5) {
   const response = await fetch(
-    `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?per_page=${limit}&sort=stars&order=desc`,
+    `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?per_page=100&sort=stars&order=desc`,
     { headers }
   );
   if (!response.ok) throw new Error(`Repos API error: ${response.status}`);
   const repos = await response.json();
-  return repos.map(repo => ({
-    name: repo.name,
-    description: repo.description || 'No description',
-    stargazers_count: repo.stargazers_count,
-    language: repo.language || 'Unknown',
-    html_url: repo.html_url,
-  }));
+  return repos
+    .slice(0, limit)
+    .map(repo => ({
+      name: repo.name,
+      description: repo.description || 'No description',
+      stargazers_count: repo.stargazers_count,
+      language: repo.language || 'Unknown',
+      html_url: repo.html_url,
+    }));
 }
 
 async function fetchTotalStars() {
@@ -43,9 +45,86 @@ async function fetchTotalStars() {
   return repos.reduce((sum, repo) => sum + (repo.stargazers_count || 0), 0);
 }
 
+async function fetchTopLanguages(limit = 5) {
+  const response = await fetch(
+    `${GITHUB_API}/users/${GITHUB_USERNAME}/repos?per_page=100`,
+    { headers }
+  );
+  if (!response.ok) throw new Error(`Repos API error: ${response.status}`);
+  const repos = await response.json();
+  
+  const languages = {};
+  for (const repo of repos) {
+    if (repo.language && repo.language !== null) {
+      languages[repo.language] = (languages[repo.language] || 0) + 1;
+    }
+  }
+  
+  return Object.entries(languages)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, limit)
+    .map(([lang, count]) => ({ name: lang, count }));
+}
+
 async function fetchContributionStats() {
-  // GraphQL query pour récupérer les contributions
-  const query = `
+  // Récupérer les contributions de toutes les années (depuis le début du compte)
+  const years = [];
+  const currentYear = new Date().getFullYear();
+  
+  // Ajouter les années depuis 2015 (moment où GitHub a commencé à tracker les contributions)
+  for (let year = 2015; year <= currentYear; year++) {
+    years.push(year);
+  }
+
+  let allContributions = [];
+  
+  // Récupérer les contributions année par année
+  for (const year of years) {
+    const from = `${year}-01-01T00:00:00Z`;
+    const to = `${year}-12-31T23:59:59Z`;
+    
+    const query = `
+      query {
+        user(login: "${GITHUB_USERNAME}") {
+          contributionsCollection(from: "${from}", to: "${to}") {
+            contributionCalendar {
+              weeks {
+                contributionDays {
+                  date
+                  contributionCount
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      const response = await fetch(GITHUB_GRAPHQL, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ query }),
+      });
+
+      if (!response.ok) continue;
+
+      const data = await response.json();
+      if (data.errors) continue;
+
+      const weeks = data.data.user.contributionsCollection.contributionCalendar.weeks;
+      weeks.forEach(week => {
+        week.contributionDays.forEach(day => {
+          allContributions.push(day);
+        });
+      });
+    } catch (e) {
+      console.error(`Error fetching contributions for ${year}:`, e);
+    }
+  }
+
+  // Récupérer aussi les totaux globaux
+  const globalQuery = `
     query {
       user(login: "${GITHUB_USERNAME}") {
         contributionsCollection {
@@ -53,15 +132,6 @@ async function fetchContributionStats() {
           totalIssueContributions
           totalPullRequestContributions
           totalPullRequestReviewContributions
-          contributionCalendar {
-            totalContributions
-            weeks {
-              contributionDays {
-                date
-                contributionCount
-              }
-            }
-          }
         }
       }
     }
@@ -70,7 +140,7 @@ async function fetchContributionStats() {
   const response = await fetch(GITHUB_GRAPHQL, {
     method: 'POST',
     headers,
-    body: JSON.stringify({ query }),
+    body: JSON.stringify({ query: globalQuery }),
   });
 
   if (!response.ok) {
@@ -82,24 +152,26 @@ async function fetchContributionStats() {
     throw new Error(`GraphQL error: ${data.errors[0].message}`);
   }
 
-  return data.data.user.contributionsCollection;
+  return {
+    ...data.data.user.contributionsCollection,
+    allContributionDays: allContributions,
+  };
 }
 
 async function calculateContributionsByYear(contributionData) {
-  // Parcourir le calendrier pour compter par année
+  // Parcourir tous les jours de contributions pour compter par année
   const byYear = {};
-  const now = new Date();
-  const currentYear = now.getFullYear();
 
-  contributionData.contributionCalendar.weeks.forEach(week => {
-    week.contributionDays.forEach(day => {
+  if (contributionData.allContributionDays && Array.isArray(contributionData.allContributionDays)) {
+    contributionData.allContributionDays.forEach(day => {
       const date = new Date(day.date);
       const year = date.getFullYear();
       byYear[year] = (byYear[year] || 0) + day.contributionCount;
     });
-  });
+  }
 
-  // S'assurer que l'année actuelle est toujours incluse
+  // Ajouter l'année actuelle si elle n'existe pas
+  const currentYear = new Date().getFullYear();
   if (!byYear[currentYear]) {
     byYear[currentYear] = 0;
   }
@@ -146,12 +218,15 @@ async function fetchGitHubStats() {
     const contributionData = await fetchContributionStats();
     const contributionsByYear = await calculateContributionsByYear(contributionData);
     const thisYearContributions = await calculateThisYearContributions(contributionsByYear);
-    const totalContributions = contributionData.contributionCalendar.totalContributions;
+    
+    // Calculer le total des contributions depuis le début
+    const totalContributions = Object.values(contributionsByYear).reduce((sum, val) => sum + val, 0);
     const averageContributionsPerDay = await calculateAverageContributionsPerDay(totalContributions);
     
     // Repos populaires
     const topRepos = await fetchTopRepositories(5);
     const totalStars = await fetchTotalStars();
+    const topLanguages = await fetchTopLanguages(5);
 
     return {
       totalContributions,
@@ -163,6 +238,7 @@ async function fetchGitHubStats() {
       publicRepos: userData.public_repos || 0,
       totalStars,
       topRepositories: topRepos,
+      topLanguages,
       contributionsByYear,
       lastUpdated: new Date().toISOString(),
     };
