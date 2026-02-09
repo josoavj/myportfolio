@@ -104,17 +104,36 @@ class AppData {
         period: '2020 - 2023',
         location: 'Antananarivo, Madagascar',
         description:
-            'Formation complète en développement logiciel, bases de données, networking et télécommunications. '
-            'Projet de fin d\'études : Application mobile lvlmindapp développée avec Flutter.',
+            'Formation en développement logiciel, bases de données, networking et télécommunications avec spécialisation en systèmes distribués et monitoring de données.',
         icon: Icons.school,
         color: Colors.green,
         status: 'Obtenu',
+        thesisTitle:
+            'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
+        capstoneProjects: [
+          {
+            'title': 'sfiDashMonitoring',
+            'description':
+                'Dashboard React avec Elasticsearch en temps réel pour monitoring Fortinet',
+            'url': 'https://github.com/josoavj/sfiDashMonitoring',
+            'stars': '6',
+            'technologies': 'ReactJS, ExpressJS, Elasticsearch',
+          },
+          {
+            'title': 'elasticsearch-config',
+            'description':
+                'Configuration et optimisation avancée d\'Elasticsearch pour la gestion de données',
+            'url': 'https://github.com/josoavj/elasticsearch-config',
+            'stars': '5',
+            'technologies': 'Elasticsearch, Kibana, Filebeat',
+          },
+        ],
       ),
       Education(
         degree: 'Formations Techniques Complémentaires',
         school: 'Auto-formation & Projets Pratiques',
         period: '2021 - Présent',
-        location: 'En ligne & Terrain',
+        location: 'En ligne & Présentiel',
         description:
             'Formations spécialisées en Elasticsearch, Kibana, Grafana, Docker, Linux Administration, '
             'sécurité réseau et développement d\'APIs avec Node.js/Express.',
