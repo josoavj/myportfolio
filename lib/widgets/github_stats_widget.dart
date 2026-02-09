@@ -453,7 +453,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
         ),
         const SizedBox(height: 12),
         ...stats.topRepositories
-            .take(3)
+            .take(5)
             .map((repo) => _buildRepoCard(repo, isMobile)),
       ],
     );
@@ -538,15 +538,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
   }
 
   Widget _buildLanguages(GitHubStats stats, bool isMobile) {
-    // Extraire les langages des repos
-    final languages = <String, int>{};
-    for (var repo in stats.topRepositories) {
-      if (repo.language.isNotEmpty && repo.language != 'Unknown') {
-        languages[repo.language] = (languages[repo.language] ?? 0) + 1;
-      }
-    }
-
-    if (languages.isEmpty) {
+    if (stats.topLanguages.isEmpty) {
       return const SizedBox.shrink();
     }
 
@@ -561,8 +553,8 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
         Wrap(
           spacing: 8,
           runSpacing: 8,
-          children: languages.entries
-              .map((entry) => Container(
+          children: stats.topLanguages
+              .map((lang) => Container(
                     padding: const EdgeInsets.symmetric(
                       horizontal: 12,
                       vertical: 8,
@@ -591,7 +583,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          entry.key,
+                          lang.name,
                           style: AppTheme.subtitleSmall(),
                         ),
                       ],
