@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/models/education.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -153,11 +154,154 @@ class EducationCard extends StatelessWidget {
                 education.description,
                 style: AppTheme.bodyMedium(),
               ),
+              if (education.thesisTitle != null &&
+                  education.thesisTitle!.isNotEmpty) ...[
+                SizedBox(height: spacingLarge),
+                Container(
+                  padding: EdgeInsets.all(spacingMedium),
+                  decoration: BoxDecoration(
+                    color: education.color.withValues(alpha: 0.1),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                        color: education.color.withValues(alpha: 0.3)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '📜 Titre de la mémoire',
+                        style: AppTheme.labelSmall(color: education.color),
+                      ),
+                      SizedBox(height: spacingSmall),
+                      Text(
+                        education.thesisTitle!,
+                        style: AppTheme.subtitleSmall(),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+              if (education.capstoneProjects != null &&
+                  education.capstoneProjects!.isNotEmpty) ...[
+                SizedBox(height: spacingLarge),
+                Text(
+                  '🎓 Projets de fin d\'étude',
+                  style: AppTheme.titleSmall(color: education.color),
+                ),
+                SizedBox(height: spacingMedium),
+                ...education.capstoneProjects!.map((project) {
+                  return Padding(
+                    padding: EdgeInsets.only(bottom: spacingMedium),
+                    child: Container(
+                      padding: EdgeInsets.all(spacingMedium),
+                      decoration: BoxDecoration(
+                        color: education.color.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                            color: education.color.withValues(alpha: 0.2)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Flexible(
+                                child: Text(
+                                  project['title']!,
+                                  style: AppTheme.subtitleSmall(
+                                      color: education.color),
+                                  overflow: TextOverflow.ellipsis,
+                                ),
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8,
+                                  vertical: 4,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.amber.withValues(alpha: 0.2),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.star,
+                                        size: 12, color: Colors.amber),
+                                    SizedBox(width: 4),
+                                    Text(
+                                      project['stars']!,
+                                      style: AppTheme.labelSmall(
+                                          color: Colors.amber),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: spacingSmall),
+                          Text(
+                            project['description']!,
+                            style: AppTheme.labelSmall(),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                          ),
+                          if (project['technologies'] != null &&
+                              project['technologies']!.isNotEmpty) ...[
+                            SizedBox(height: spacingSmall),
+                            Wrap(
+                              spacing: 6,
+                              runSpacing: 4,
+                              children: (project['technologies']!
+                                          .split(',')
+                                          .map((tech) => tech.trim())
+                                      as Iterable<String>)
+                                  .map((tech) {
+                                return Container(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal: 6,
+                                    vertical: 2,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color:
+                                        Colors.purple.withValues(alpha: 0.15),
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Text(
+                                    tech,
+                                    style: AppTheme.labelSmall(
+                                        color: Colors.purple),
+                                  ),
+                                );
+                              }).toList(),
+                            ),
+                          ],
+                          SizedBox(height: spacingSmall),
+                          GestureDetector(
+                            onTap: () => _launchURL(project['url']!),
+                            child: Text(
+                              'Voir sur GitHub →',
+                              style: AppTheme.labelSmall(color: Colors.blue),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ],
             ],
           ),
         ),
       ],
     );
+  }
+
+  void _launchURL(String url) async {
+    final Uri uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
   }
 
   Widget _buildMobileLayout(
@@ -267,6 +411,136 @@ class EducationCard extends StatelessWidget {
           style: AppTheme.bodyLargeMobile(),
           textAlign: TextAlign.justify,
         ),
+        if (education.thesisTitle != null &&
+            education.thesisTitle!.isNotEmpty) ...[
+          SizedBox(height: spacingLarge),
+          Container(
+            padding: EdgeInsets.all(spacingMedium),
+            decoration: BoxDecoration(
+              color: education.color.withValues(alpha: 0.1),
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: education.color.withValues(alpha: 0.3)),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '📜 Titre de la mémoire',
+                  style: AppTheme.labelSmall(color: education.color),
+                ),
+                SizedBox(height: spacingSmall),
+                Text(
+                  education.thesisTitle!,
+                  style: AppTheme.subtitleSmall(),
+                ),
+              ],
+            ),
+          ),
+        ],
+        if (education.capstoneProjects != null &&
+            education.capstoneProjects!.isNotEmpty) ...[
+          SizedBox(height: spacingLarge),
+          Text(
+            '🎓 Projets de fin d\'étude',
+            style: AppTheme.titleSmallMobile(color: education.color),
+          ),
+          SizedBox(height: spacingMedium),
+          ...education.capstoneProjects!.map((project) {
+            return Padding(
+              padding: EdgeInsets.only(bottom: spacingMedium),
+              child: Container(
+                padding: EdgeInsets.all(spacingMedium),
+                decoration: BoxDecoration(
+                  color: education.color.withValues(alpha: 0.08),
+                  borderRadius: BorderRadius.circular(10),
+                  border:
+                      Border.all(color: education.color.withValues(alpha: 0.2)),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            project['title']!,
+                            style:
+                                AppTheme.subtitleSmall(color: education.color),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 8,
+                            vertical: 4,
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.amber.withValues(alpha: 0.2),
+                            borderRadius: BorderRadius.circular(6),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.star, size: 12, color: Colors.amber),
+                              SizedBox(width: 4),
+                              Text(
+                                project['stars']!,
+                                style: AppTheme.labelSmall(color: Colors.amber),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: spacingSmall),
+                    Text(
+                      project['description']!,
+                      style: AppTheme.labelSmall(),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    if (project['technologies'] != null &&
+                        project['technologies']!.isNotEmpty) ...[
+                      SizedBox(height: spacingSmall),
+                      Wrap(
+                        spacing: 6,
+                        runSpacing: 4,
+                        children: (project['technologies']!
+                                .split(',')
+                                .map((tech) => tech.trim()) as Iterable<String>)
+                            .map((tech) {
+                          return Container(
+                            padding: EdgeInsets.symmetric(
+                              horizontal: 6,
+                              vertical: 2,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.purple.withValues(alpha: 0.15),
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            child: Text(
+                              tech,
+                              style: AppTheme.labelSmall(color: Colors.purple),
+                            ),
+                          );
+                        }).toList(),
+                      ),
+                    ],
+                    SizedBox(height: spacingSmall),
+                    GestureDetector(
+                      onTap: () => _launchURL(project['url']!),
+                      child: Text(
+                        'Voir sur GitHub →',
+                        style: AppTheme.labelSmall(color: Colors.blue),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
+        ],
       ],
     );
   }
