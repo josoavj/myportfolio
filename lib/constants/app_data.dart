@@ -364,10 +364,9 @@ class AppData {
     return {
       'Langages': [
         Skill(name: 'Dart', level: 0.9, color: Colors.blue),
-        Skill(name: 'JavaScript', level: 0.85, color: Colors.yellow),
+        Skill(name: 'JavaScript', level: 0.75, color: Colors.yellow),
         Skill(name: 'Python', level: 0.8, color: Colors.green),
-        Skill(name: 'Java', level: 0.75, color: Colors.red),
-        Skill(name: 'Shell', level: 0.85, color: Colors.grey),
+        Skill(name: 'Java', level: 0.55, color: Colors.red),
       ],
       'Frameworks': [
         Skill(name: 'Flutter', level: 0.9, color: Colors.blue),
@@ -387,10 +386,10 @@ class AppData {
         Skill(name: 'Bash', level: 0.85, color: Colors.grey),
       ],
       'Sécurité & Networking': [
-        Skill(name: 'Cybersécurité', level: 0.85, color: Colors.red),
-        Skill(name: 'Networking', level: 0.8, color: Colors.indigo),
+        Skill(name: 'Cybersécurité', level: 0.65, color: Colors.red),
+        Skill(name: 'Networking', level: 0.60, color: Colors.indigo),
         Skill(name: 'Kali Linux', level: 0.75, color: Colors.red),
-        Skill(name: 'Firewall Config', level: 0.8, color: Colors.purple),
+        Skill(name: 'Firewall Config', level: 0.45, color: Colors.purple),
       ],
     };
   }
@@ -402,13 +401,11 @@ class AppData {
       {'name': 'Python', 'icon': '🐍', 'color': Colors.yellow},
       {'name': 'JavaScript', 'icon': '⚡', 'color': Colors.yellow},
       {'name': 'Java', 'icon': '☕', 'color': Colors.red},
-      {'name': 'Shell', 'icon': '🔧', 'color': Colors.grey},
       // Frameworks & Librairies
       {'name': 'Flutter', 'icon': '📱', 'color': Colors.blue},
       {'name': 'React', 'icon': '⚛️', 'color': Colors.cyan},
       {'name': 'Node.js', 'icon': '🟢', 'color': Colors.green},
       {'name': 'Express.js', 'icon': '🚀', 'color': Colors.grey},
-      {'name': 'Provider', 'icon': '📦', 'color': Colors.blue},
       // Bases de Données
       {'name': 'MySQL', 'icon': '🗄️', 'color': Colors.blue},
       {'name': 'Elasticsearch', 'icon': '🔍', 'color': Colors.teal},
@@ -427,7 +424,6 @@ class AppData {
       {'name': 'Security', 'icon': '🔐', 'color': Colors.red},
       {'name': 'Networking', 'icon': '🔗', 'color': Colors.indigo},
       {'name': 'Kali Linux', 'icon': '🐉', 'color': Colors.red},
-      {'name': 'Machine Learning', 'icon': '🤖', 'color': Colors.deepPurple},
     ];
   }
 }

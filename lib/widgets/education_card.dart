@@ -254,8 +254,7 @@ class EducationCard extends StatelessWidget {
                               runSpacing: 4,
                               children: (project['technologies']!
                                           .split(',')
-                                          .map((tech) => tech.trim())
-                                      as Iterable<String>)
+                                          .map((tech) => tech.trim()))
                                   .map((tech) {
                                 return Container(
                                   padding: EdgeInsets.symmetric(
@@ -288,7 +287,7 @@ class EducationCard extends StatelessWidget {
                       ),
                     ),
                   );
-                }).toList(),
+                }),
               ],
             ],
           ),
@@ -508,7 +507,7 @@ class EducationCard extends StatelessWidget {
                         runSpacing: 4,
                         children: (project['technologies']!
                                 .split(',')
-                                .map((tech) => tech.trim()) as Iterable<String>)
+                                .map((tech) => tech.trim()))
                             .map((tech) {
                           return Container(
                             padding: EdgeInsets.symmetric(
@@ -539,7 +538,7 @@ class EducationCard extends StatelessWidget {
                 ),
               ),
             );
-          }).toList(),
+          }),
         ],
       ],
     );
