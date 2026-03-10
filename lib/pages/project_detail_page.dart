@@ -268,18 +268,18 @@ class ProjectDetailPage extends StatelessWidget {
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Colors.green.withValues(alpha: 0.15),
-                          Colors.green.withValues(alpha: 0.05),
+                          const Color(0xFF25D366).withValues(alpha: 0.15),
+                          const Color(0xFF25D366).withValues(alpha: 0.05),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(
-                        color: Colors.green.withValues(alpha: 0.3),
+                        color: const Color(0xFF25D366).withValues(alpha: 0.3),
                         width: 1.5,
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.green.withValues(alpha: 0.1),
+                          color: const Color(0xFF25D366).withValues(alpha: 0.1),
                           blurRadius: 15,
                           offset: const Offset(0, 4),
                         ),
@@ -354,18 +354,19 @@ class ProjectDetailPage extends StatelessWidget {
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                           colors: [
-                            Colors.green.withValues(alpha: 0.15),
-                            Colors.green.withValues(alpha: 0.05),
+                            const Color(0xFF25D366).withValues(alpha: 0.15),
+                            const Color(0xFF25D366).withValues(alpha: 0.05),
                           ],
                         ),
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(
-                          color: Colors.green.withValues(alpha: 0.3),
+                          color: const Color(0xFF25D366).withValues(alpha: 0.3),
                           width: 1.5,
                         ),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.green.withValues(alpha: 0.1),
+                            color:
+                                const Color(0xFF25D366).withValues(alpha: 0.1),
                             blurRadius: 15,
                             offset: const Offset(0, 4),
                           ),
