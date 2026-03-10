@@ -404,33 +404,33 @@ class AppData {
   static List<Map<String, dynamic>> getTechBadges() {
     return [
       // Langages
-      {'name': 'Dart', 'icon': '🎯', 'color': Colors.blue},
-      {'name': 'Python', 'icon': '🐍', 'color': Colors.yellow},
-      {'name': 'JavaScript', 'icon': '⚡', 'color': Colors.yellow},
-      {'name': 'Java', 'icon': '☕', 'color': Colors.red},
+      {'name': 'Dart', 'icon': '', 'color': Colors.blue},
+      {'name': 'Python', 'icon': '', 'color': Colors.yellow},
+      {'name': 'JavaScript', 'icon': '', 'color': Colors.yellow},
+      {'name': 'Java', 'icon': '', 'color': Colors.red},
       // Frameworks & Librairies
-      {'name': 'Flutter', 'icon': '📱', 'color': Colors.blue},
-      {'name': 'React', 'icon': '⚛️', 'color': Colors.cyan},
-      {'name': 'Node.js', 'icon': '🟢', 'color': Colors.green},
-      {'name': 'Express.js', 'icon': '🚀', 'color': Colors.grey},
+      {'name': 'Flutter', 'icon': '', 'color': Colors.blue},
+      {'name': 'React', 'icon': '', 'color': Colors.cyan},
+      {'name': 'Node.js', 'icon': '', 'color': Colors.green},
+      {'name': 'Express.js', 'icon': '', 'color': Colors.grey},
       // Bases de Données
-      {'name': 'MySQL', 'icon': '🗄️', 'color': Colors.blue},
-      {'name': 'Elasticsearch', 'icon': '🔍', 'color': Colors.teal},
-      {'name': 'Hive', 'icon': '🍯', 'color': Colors.green},
+      {'name': 'MySQL', 'icon': '', 'color': Colors.blue},
+      {'name': 'Elasticsearch', 'icon': '', 'color': Colors.teal},
+      {'name': 'Hive', 'icon': '', 'color': Colors.green},
       // DevOps & Outils
-      {'name': 'Linux', 'icon': '🐧', 'color': Colors.orange},
-      {'name': 'Git', 'icon': '📦', 'color': Colors.orange},
-      {'name': 'Nginx', 'icon': '🌐', 'color': Colors.green},
-      {'name': 'Bash', 'icon': '⚙️', 'color': Colors.grey},
+      {'name': 'Linux', 'icon': '', 'color': Colors.orange},
+      {'name': 'Git', 'icon': '', 'color': Colors.orange},
+      {'name': 'Nginx', 'icon': '', 'color': Colors.green},
+      {'name': 'Bash', 'icon': '', 'color': Colors.grey},
       // Outils de Développement
-      {'name': 'VS Code', 'icon': '💻', 'color': Colors.blue},
-      {'name': 'Android Studio', 'icon': '🤖', 'color': Colors.green},
-      {'name': 'PyCharm', 'icon': '🐍', 'color': Colors.blue},
-      {'name': 'WebStorm', 'icon': '🌐', 'color': Colors.blue},
+      {'name': 'VS Code', 'icon': '', 'color': Colors.blue},
+      {'name': 'Android Studio', 'icon': '', 'color': Colors.green},
+      {'name': 'PyCharm', 'icon': '', 'color': Colors.blue},
+      {'name': 'WebStorm', 'icon': '', 'color': Colors.blue},
       // Sécurité & Networking
-      {'name': 'Security', 'icon': '🔐', 'color': Colors.red},
-      {'name': 'Networking', 'icon': '🔗', 'color': Colors.indigo},
-      {'name': 'Kali Linux', 'icon': '🐉', 'color': Colors.red},
+      {'name': 'Security', 'icon': '', 'color': Colors.red},
+      {'name': 'Networking', 'icon': '', 'color': Colors.indigo},
+      {'name': 'Kali Linux', 'icon': '', 'color': Colors.red},
     ];
   }
 }
