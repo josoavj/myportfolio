@@ -44,14 +44,24 @@ class EducationCard extends StatelessWidget {
         margin: EdgeInsets.only(bottom: isMobile ? 20 : 30),
         padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
-          color: AppConstants.secondaryDark,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              education.color.withValues(alpha: 0.12),
+              education.color.withValues(alpha: 0.06),
+            ],
+          ),
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: education.color.withValues(alpha: 0.3)),
+          border: Border.all(
+            color: education.color.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: 15,
-              offset: const Offset(0, 5),
+              color: education.color.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -253,9 +263,8 @@ class EducationCard extends StatelessWidget {
                               spacing: 6,
                               runSpacing: 4,
                               children: (project['technologies']!
-                                          .split(',')
-                                          .map((tech) => tech.trim()))
-                                  .map((tech) {
+                                  .split(',')
+                                  .map((tech) => tech.trim())).map((tech) {
                                 return Container(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 6,
@@ -450,10 +459,25 @@ class EducationCard extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(spacingMedium),
                 decoration: BoxDecoration(
-                  color: education.color.withValues(alpha: 0.08),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      education.color.withValues(alpha: 0.12),
+                      education.color.withValues(alpha: 0.06),
+                    ],
+                  ),
                   borderRadius: BorderRadius.circular(10),
-                  border:
-                      Border.all(color: education.color.withValues(alpha: 0.2)),
+                  border: Border.all(
+                    color: education.color.withValues(alpha: 0.3),
+                    width: 1.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: education.color.withValues(alpha: 0.05),
+                      blurRadius: 8,
+                    ),
+                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -506,9 +530,8 @@ class EducationCard extends StatelessWidget {
                         spacing: 6,
                         runSpacing: 4,
                         children: (project['technologies']!
-                                .split(',')
-                                .map((tech) => tech.trim()))
-                            .map((tech) {
+                            .split(',')
+                            .map((tech) => tech.trim())).map((tech) {
                           return Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 6,
