@@ -171,7 +171,7 @@ class EducationCard extends StatelessWidget {
                   padding: EdgeInsets.all(spacingMedium),
                   decoration: BoxDecoration(
                     color: education.color.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                         color: education.color.withValues(alpha: 0.3)),
                   ),
@@ -179,7 +179,7 @@ class EducationCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '📜 Titre de la mémoire',
+                        'Titre de la mémoire',
                         style: AppTheme.labelSmall(color: education.color),
                       ),
                       SizedBox(height: spacingSmall),
@@ -206,7 +206,7 @@ class EducationCard extends StatelessWidget {
                       padding: EdgeInsets.all(spacingMedium),
                       decoration: BoxDecoration(
                         color: education.color.withValues(alpha: 0.08),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                             color: education.color.withValues(alpha: 0.2)),
                       ),
@@ -425,14 +425,14 @@ class EducationCard extends StatelessWidget {
             padding: EdgeInsets.all(spacingMedium),
             decoration: BoxDecoration(
               color: education.color.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(color: education.color.withValues(alpha: 0.3)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '📜 Titre de la mémoire',
+                  'Titre de la mémoire',
                   style: AppTheme.labelSmall(color: education.color),
                 ),
                 SizedBox(height: spacingSmall),
@@ -466,7 +466,7 @@ class EducationCard extends StatelessWidget {
                       education.color.withValues(alpha: 0.06),
                     ],
                   ),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                   border: Border.all(
                     color: education.color.withValues(alpha: 0.3),
                     width: 1.5,
