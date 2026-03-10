@@ -187,9 +187,26 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.blue.withValues(alpha: 0.15),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue.withValues(alpha: 0.15),
+                  Colors.blue.withValues(alpha: 0.05),
+                ],
+              ),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.blue.withValues(alpha: 0.4)),
+              border: Border.all(
+                color: Colors.blue.withValues(alpha: 0.4),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue.withValues(alpha: 0.1),
+                  blurRadius: 12,
+                  offset: const Offset(0, 3),
+                ),
+              ],
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -467,9 +484,19 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.blue.withValues(alpha: 0.08),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue.withValues(alpha: 0.12),
+                Colors.blue.withValues(alpha: 0.06),
+              ],
+            ),
             borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
+            border: Border.all(
+              color: Colors.blue.withValues(alpha: 0.3),
+              width: 1,
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.blue.withValues(alpha: 0.05),
