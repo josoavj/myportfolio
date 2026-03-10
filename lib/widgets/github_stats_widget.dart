@@ -144,7 +144,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           end: Alignment.bottomRight,
           colors: [
             Colors.blue.withValues(alpha: 0.12),
-            Colors.purple.withValues(alpha: 0.08),
+            Colors.blue.withValues(alpha: 0.08),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -239,10 +239,8 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           _buildStatBadge(
               '👥 Followers', stats.followers.toString(), Colors.green),
           const SizedBox(width: 12),
-          _buildStatBadge(
-              '🎯 Avg/jour',
-              stats.averageContributionsPerDay.toStringAsFixed(1),
-              Colors.purple),
+          _buildStatBadge('🎯 Avg/jour',
+              stats.averageContributionsPerDay.toStringAsFixed(1), Colors.cyan),
         ],
       ),
     );
@@ -549,12 +547,12 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.purple.withValues(alpha: 0.15),
+                  color: Colors.cyan.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
                   repo.language,
-                  style: AppTheme.labelSmall(color: Colors.purple),
+                  style: AppTheme.labelSmall(color: Colors.cyan),
                 ),
               ),
             ],
@@ -591,13 +589,13 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Colors.purple.withValues(alpha: 0.2),
+                          Colors.cyan.withValues(alpha: 0.2),
                           Colors.blue.withValues(alpha: 0.1),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.purple.withValues(alpha: 0.3),
+                        color: Colors.cyan.withValues(alpha: 0.3),
                       ),
                     ),
                     child: Row(
@@ -606,7 +604,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
                         Icon(
                           Icons.code,
                           size: 14,
-                          color: Colors.purple.withValues(alpha: 0.7),
+                          color: Colors.cyan.withValues(alpha: 0.7),
                         ),
                         const SizedBox(width: 6),
                         Text(
