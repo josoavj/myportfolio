@@ -106,7 +106,7 @@ class _ContactSectionState extends State<ContactSection> {
           end: Alignment.bottomRight,
           colors: [
             Colors.blue.withValues(alpha: 0.12),
-            Colors.purple.withValues(alpha: 0.06),
+            Colors.blue.withValues(alpha: 0.06),
           ],
         ),
         borderRadius: BorderRadius.circular(15),
@@ -261,7 +261,7 @@ class _ContactSectionState extends State<ContactSection> {
               end: Alignment.bottomRight,
               colors: [
                 Colors.blue.withValues(alpha: 0.12),
-                Colors.purple.withValues(alpha: 0.06),
+                Colors.blue.withValues(alpha: 0.06),
               ],
             ),
             borderRadius: BorderRadius.circular(15),
