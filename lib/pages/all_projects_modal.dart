@@ -5,7 +5,7 @@ import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/utils/extensions.dart';
 import 'package:myportfolio/widgets/project_card.dart';
 
-class AllProjectsModal extends StatelessWidget {
+class AllProjectsModal extends StatefulWidget {
   final List<Project> projects;
   final int initialDisplayCount;
 
@@ -14,6 +14,67 @@ class AllProjectsModal extends StatelessWidget {
     required this.projects,
     this.initialDisplayCount = 4,
   });
+
+  @override
+  State<AllProjectsModal> createState() => _AllProjectsModalState();
+}
+
+class _AllProjectsModalState extends State<AllProjectsModal> {
+  late String selectedCategory;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory = 'Tous';
+  }
+
+  List<String> get categories {
+    final cats = {'Tous', ...widget.projects.map((p) => p.category)};
+    return cats.toList();
+  }
+
+  List<Project> get filteredProjects {
+    if (selectedCategory == 'Tous') {
+      return widget.projects;
+    }
+    return widget.projects
+        .where((p) => p.category == selectedCategory)
+        .toList();
+  }
+
+  Color getCategoryColor(String category) {
+    switch (category) {
+      case 'Mobile':
+        return Colors.blue;
+      case 'Desktop':
+        return Colors.purple;
+      case 'Web':
+        return Colors.cyan;
+      case 'Backend':
+        return Colors.orange;
+      case 'Tools':
+        return Colors.teal;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  String getCategoryIcon(String category) {
+    switch (category) {
+      case 'Mobile':
+        return '📱';
+      case 'Desktop':
+        return '🖥️';
+      case 'Web':
+        return '🌐';
+      case 'Backend':
+        return '⚙️';
+      case 'Tools':
+        return '🛠️';
+      default:
+        return '📦';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,12 +92,13 @@ class AllProjectsModal extends StatelessWidget {
         ),
         child: Column(
           children: [
+            // Header avec titre et bouton fermeture
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Text(
-                    'Tous les projets (${projects.length})',
+                    'Tous les projets (${filteredProjects.length})',
                     style: TextStyle(
                       fontSize: isSmall ? 20 : 28,
                       fontWeight: FontWeight.bold,
@@ -50,43 +112,236 @@ class AllProjectsModal extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: isSmall ? 1 : (isMobile ? 2 : 3),
-                  crossAxisSpacing: isSmall ? 12 : 16,
-                  mainAxisSpacing: isSmall ? 12 : 16,
-                  childAspectRatio: isSmall ? 1.7 : (isMobile ? 1.7 : 2.75),
-                ),
-                itemCount: projects.length,
-                itemBuilder: (context, index) {
-                  return GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context);
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) =>
-                              ProjectDetailPage(project: projects[index]),
+            const SizedBox(height: 20),
+
+            // Filtres par catégorie
+            if (isSmall)
+              SizedBox(
+                height: 65,
+                child: SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: categories.map((category) {
+                      final isSelected = selectedCategory == category;
+                      final color = getCategoryColor(category);
+
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              selectedCategory = category;
+                            });
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 16,
+                              vertical: 10,
+                            ),
+                            decoration: BoxDecoration(
+                              gradient: isSelected
+                                  ? LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        color.withValues(alpha: 0.15),
+                                        color.withValues(alpha: 0.05),
+                                      ],
+                                    )
+                                  : LinearGradient(
+                                      begin: Alignment.topLeft,
+                                      end: Alignment.bottomRight,
+                                      colors: [
+                                        Colors.grey.withValues(alpha: 0.05),
+                                        Colors.grey.withValues(alpha: 0.02),
+                                      ],
+                                    ),
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all(
+                                color: isSelected
+                                    ? color.withValues(alpha: 0.4)
+                                    : Colors.grey.withValues(alpha: 0.2),
+                                width: isSelected ? 1.5 : 1,
+                              ),
+                              boxShadow: isSelected
+                                  ? [
+                                      BoxShadow(
+                                        color: color.withValues(alpha: 0.1),
+                                        blurRadius: 12,
+                                        offset: const Offset(0, 3),
+                                      ),
+                                    ]
+                                  : [],
+                            ),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  getCategoryIcon(category),
+                                  style: const TextStyle(fontSize: 16),
+                                ),
+                                const SizedBox(width: 6),
+                                Text(
+                                  category,
+                                  style: TextStyle(
+                                    color: isSelected ? color : Colors.white,
+                                    fontWeight: isSelected
+                                        ? FontWeight.bold
+                                        : FontWeight.normal,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       );
+                    }).toList(),
+                  ),
+                ),
+              )
+            else
+              Wrap(
+                spacing: 12,
+                runSpacing: 12,
+                alignment: WrapAlignment.center,
+                children: categories.map((category) {
+                  final isSelected = selectedCategory == category;
+                  final color = getCategoryColor(category);
+
+                  return GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedCategory = category;
+                      });
                     },
-                    child: ProjectCard(
-                      project: {
-                        'name': projects[index].name,
-                        'description': projects[index].description,
-                        'language': projects[index].language,
-                        'stars': projects[index].stars,
-                        'url': projects[index].url,
-                      },
-                      languageColor:
-                          projects[index].language.getLanguageColor(),
-                      index: index,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 10,
+                      ),
+                      decoration: BoxDecoration(
+                        gradient: isSelected
+                            ? LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  color.withValues(alpha: 0.15),
+                                  color.withValues(alpha: 0.05),
+                                ],
+                              )
+                            : LinearGradient(
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                colors: [
+                                  Colors.grey.withValues(alpha: 0.05),
+                                  Colors.grey.withValues(alpha: 0.02),
+                                ],
+                              ),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: isSelected
+                              ? color.withValues(alpha: 0.4)
+                              : Colors.grey.withValues(alpha: 0.2),
+                          width: isSelected ? 1.5 : 1,
+                        ),
+                        boxShadow: isSelected
+                            ? [
+                                BoxShadow(
+                                  color: color.withValues(alpha: 0.1),
+                                  blurRadius: 12,
+                                  offset: const Offset(0, 3),
+                                ),
+                              ]
+                            : [],
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            getCategoryIcon(category),
+                            style: const TextStyle(fontSize: 16),
+                          ),
+                          const SizedBox(width: 6),
+                          Text(
+                            category,
+                            style: TextStyle(
+                              color: isSelected ? color : Colors.white,
+                              fontWeight: isSelected
+                                  ? FontWeight.bold
+                                  : FontWeight.normal,
+                              fontSize: 14,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   );
-                },
+                }).toList(),
               ),
+            const SizedBox(height: 20),
+
+            // Grid des projets filtrés
+            Expanded(
+              child: filteredProjects.isEmpty
+                  ? Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.folder_off,
+                            size: 64,
+                            color: Colors.grey.withValues(alpha: 0.5),
+                          ),
+                          const SizedBox(height: 16),
+                          Text(
+                            'Aucun projet trouvé',
+                            style: TextStyle(
+                              color: Colors.grey.withValues(alpha: 0.7),
+                              fontSize: 18,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  : GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: isSmall ? 1 : (isMobile ? 2 : 3),
+                        crossAxisSpacing: isSmall ? 12 : 16,
+                        mainAxisSpacing: isSmall ? 12 : 16,
+                        childAspectRatio:
+                            isSmall ? 1.7 : (isMobile ? 1.7 : 2.75),
+                      ),
+                      itemCount: filteredProjects.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ProjectDetailPage(
+                                    project: filteredProjects[index]),
+                              ),
+                            );
+                          },
+                          child: ProjectCard(
+                            project: {
+                              'name': filteredProjects[index].name,
+                              'description':
+                                  filteredProjects[index].description,
+                              'language': filteredProjects[index].language,
+                              'stars': filteredProjects[index].stars,
+                              'url': filteredProjects[index].url,
+                              'category': filteredProjects[index].category,
+                            },
+                            languageColor: filteredProjects[index]
+                                .language
+                                .getLanguageColor(),
+                            index: index,
+                          ),
+                        );
+                      },
+                    ),
             ),
           ],
         ),
