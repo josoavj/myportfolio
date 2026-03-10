@@ -109,7 +109,7 @@ class _ContactSectionState extends State<ContactSection> {
             Colors.blue.withValues(alpha: 0.06),
           ],
         ),
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(20),
         border: Border.all(
           color: Colors.blue.withValues(alpha: 0.4),
           width: 1.5,
@@ -167,7 +167,7 @@ class _ContactSectionState extends State<ContactSection> {
                   Colors.blue.withValues(alpha: 0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: Colors.blue.withValues(alpha: 0.3),
                 width: 1.5,
@@ -186,7 +186,7 @@ class _ContactSectionState extends State<ContactSection> {
                 backgroundColor: Colors.transparent,
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 elevation: 0,
               ),
@@ -234,15 +234,15 @@ class _ContactSectionState extends State<ContactSection> {
         filled: true,
         fillColor: AppConstants.secondaryDark,
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(color: Colors.grey[700]!),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           borderSide: BorderSide(color: Colors.grey[700]!),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(20),
           borderSide: const BorderSide(color: Colors.blue, width: 2),
         ),
       ),
@@ -264,7 +264,7 @@ class _ContactSectionState extends State<ContactSection> {
                 Colors.blue.withValues(alpha: 0.06),
               ],
             ),
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: Colors.blue.withValues(alpha: 0.4),
               width: 1.5,
@@ -330,7 +330,7 @@ class _ContactSectionState extends State<ContactSection> {
                   const Color(0xFF25D366).withValues(alpha: 0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: const Color(0xFF25D366).withValues(alpha: 0.3),
                 width: 1.5,
@@ -356,7 +356,7 @@ class _ContactSectionState extends State<ContactSection> {
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 elevation: 0,
               ),
@@ -376,7 +376,7 @@ class _ContactSectionState extends State<ContactSection> {
                   Colors.blue.withValues(alpha: 0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: Colors.blue.withValues(alpha: 0.3),
                 width: 1.5,
@@ -399,7 +399,7 @@ class _ContactSectionState extends State<ContactSection> {
                 side: BorderSide.none,
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
@@ -418,7 +418,7 @@ class _ContactSectionState extends State<ContactSection> {
                   Colors.blue.withValues(alpha: 0.05),
                 ],
               ),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: Colors.blue.withValues(alpha: 0.3),
                 width: 1.5,
@@ -441,7 +441,7 @@ class _ContactSectionState extends State<ContactSection> {
                 side: BorderSide.none,
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
               ),
             ),
@@ -466,7 +466,7 @@ class _ContactSectionState extends State<ContactSection> {
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
               color: Colors.blue.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Icon(icon, color: Colors.blue, size: 24),
           ),
