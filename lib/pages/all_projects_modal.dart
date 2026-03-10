@@ -47,7 +47,7 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
       case 'Mobile':
         return Colors.blue;
       case 'Desktop':
-        return Colors.purple;
+        return Colors.blue;
       case 'Web':
         return Colors.cyan;
       case 'Backend':
