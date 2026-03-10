@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -35,17 +36,34 @@ class ProjectCard extends StatelessWidget {
   String getCategoryIcon(String category) {
     switch (category) {
       case 'Mobile':
-        return '📱';
+        return '';
       case 'Desktop':
-        return '🖥️';
+        return '';
       case 'Web':
-        return '🌐';
+        return '';
       case 'Backend':
-        return '⚙️';
+        return '';
       case 'Tools':
-        return '🛠️';
+        return '';
       default:
-        return '📦';
+        return '';
+    }
+  }
+
+  IconData getCategoryIconData(String category) {
+    switch (category) {
+      case 'Mobile':
+        return FontAwesomeIcons.mobileScreenButton;
+      case 'Desktop':
+        return FontAwesomeIcons.desktop;
+      case 'Web':
+        return FontAwesomeIcons.globe;
+      case 'Backend':
+        return FontAwesomeIcons.server;
+      case 'Tools':
+        return FontAwesomeIcons.screwdriverWrench;
+      default:
+        return FontAwesomeIcons.cube;
     }
   }
 
@@ -126,20 +144,31 @@ class ProjectCard extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                   decoration: BoxDecoration(
                     color: getCategoryColor(project['category'])
-                        .withValues(alpha: 0.2),
-                    borderRadius: BorderRadius.circular(6),
+                        .withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                       color: getCategoryColor(project['category'])
-                          .withValues(alpha: 0.5),
+                          .withValues(alpha: 0.4),
                     ),
                   ),
-                  child: Text(
-                    '${getCategoryIcon(project['category'])} ${project['category']}',
-                    style: TextStyle(
-                      color: getCategoryColor(project['category']),
-                      fontSize: 12,
-                      fontWeight: FontWeight.w600,
-                    ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FaIcon(
+                        getCategoryIconData(project['category']),
+                        size: 12,
+                        color: getCategoryColor(project['category']),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        project['category'],
+                        style: TextStyle(
+                          color: getCategoryColor(project['category']),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               const SizedBox(height: 12),
