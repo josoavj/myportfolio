@@ -92,7 +92,7 @@ class ProjectsSection extends StatelessWidget {
                             Colors.blue.withValues(alpha: 0.05),
                           ],
                         ),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                           color: Colors.blue.withValues(alpha: 0.3),
                           width: 1.5,
@@ -152,7 +152,7 @@ class ProjectsSection extends StatelessWidget {
                                 : 18,
                           ),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
+                            borderRadius: BorderRadius.circular(25),
                           ),
                         ),
                       ),
