@@ -21,7 +21,7 @@ class ExperienceSection extends StatelessWidget {
       color: AppConstants.secondaryDark,
       child: Column(
         children: [
-          const SectionTitle(title: 'Expérience Professionnelle', emoji: '💼'),
+          const SectionTitle(title: 'Expérience Professionnelle', emoji: null),
           SizedBox(height: spacingBetweenTitle),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1000),
