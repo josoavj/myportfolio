@@ -292,6 +292,7 @@ class ProjectDetailPage extends StatelessWidget {
                       label: const Text('Voir les releases'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.transparent,
+                        foregroundColor: const Color(0xFF25D366),
                         padding: const EdgeInsets.symmetric(vertical: 18),
                         elevation: 0,
                       ),
@@ -379,6 +380,7 @@ class ProjectDetailPage extends StatelessWidget {
                         label: const Text('Voir les releases'),
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.transparent,
+                          foregroundColor: const Color(0xFF25D366),
                           padding: const EdgeInsets.symmetric(vertical: 18),
                           elevation: 0,
                         ),
