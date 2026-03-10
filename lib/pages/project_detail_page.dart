@@ -97,14 +97,6 @@ class ProjectDetailPage extends StatelessWidget {
                 ],
               ),
             ),
-            ElevatedButton.icon(
-              onPressed: () => UrlLauncherService.launchURL(project.url),
-              icon: const Icon(Icons.code),
-              label: const Text('GitHub'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-              ),
-            ).withScaleIn(delay: const Duration(milliseconds: 300)),
           ],
         ),
         const SizedBox(height: 40),
@@ -232,27 +224,77 @@ class ProjectDetailPage extends StatelessWidget {
             children: [
               SizedBox(
                 width: double.infinity,
-                child: ElevatedButton.icon(
-                  onPressed: () => UrlLauncherService.launchURL(project.url),
-                  icon: const Icon(Icons.open_in_new),
-                  label: const Text('Voir sur GitHub'),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.blue,
-                    padding: const EdgeInsets.symmetric(vertical: 18),
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                      colors: [
+                        Colors.blue.withValues(alpha: 0.15),
+                        Colors.blue.withValues(alpha: 0.05),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(
+                      color: Colors.blue.withValues(alpha: 0.3),
+                      width: 1.5,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withValues(alpha: 0.1),
+                        blurRadius: 15,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ElevatedButton.icon(
+                    onPressed: () => UrlLauncherService.launchURL(project.url),
+                    icon: const Icon(Icons.open_in_new),
+                    label: const Text('Voir sur GitHub'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                      elevation: 0,
+                    ),
                   ),
                 ),
               ),
               if (project.releaseUrl != null && project.releaseUrl!.isNotEmpty)
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton.icon(
-                    onPressed: () =>
-                        UrlLauncherService.launchURL(project.releaseUrl!),
-                    icon: const Icon(Icons.download),
-                    label: const Text('Voir les releases'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.green.withValues(alpha: 0.15),
+                          Colors.green.withValues(alpha: 0.05),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Colors.green.withValues(alpha: 0.3),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.green.withValues(alpha: 0.1),
+                          blurRadius: 15,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton.icon(
+                      onPressed: () =>
+                          UrlLauncherService.launchURL(project.releaseUrl!),
+                      icon: const Icon(Icons.download),
+                      label: const Text('Voir les releases'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        elevation: 0,
+                      ),
                     ),
                   ),
                 ),
@@ -266,13 +308,39 @@ class ProjectDetailPage extends StatelessWidget {
               children: [
                 SizedBox(
                   width: 250,
-                  child: ElevatedButton.icon(
-                    onPressed: () => UrlLauncherService.launchURL(project.url),
-                    icon: const Icon(Icons.open_in_new),
-                    label: const Text('Voir sur GitHub'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue,
-                      padding: const EdgeInsets.symmetric(vertical: 18),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Colors.blue.withValues(alpha: 0.15),
+                          Colors.blue.withValues(alpha: 0.05),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: Colors.blue.withValues(alpha: 0.3),
+                        width: 1.5,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.blue.withValues(alpha: 0.1),
+                          blurRadius: 15,
+                          offset: const Offset(0, 4),
+                        ),
+                      ],
+                    ),
+                    child: ElevatedButton.icon(
+                      onPressed: () =>
+                          UrlLauncherService.launchURL(project.url),
+                      icon: const Icon(Icons.open_in_new),
+                      label: const Text('Voir sur GitHub'),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.transparent,
+                        padding: const EdgeInsets.symmetric(vertical: 18),
+                        elevation: 0,
+                      ),
                     ),
                   ),
                 ),
@@ -280,14 +348,39 @@ class ProjectDetailPage extends StatelessWidget {
                     project.releaseUrl!.isNotEmpty)
                   SizedBox(
                     width: 250,
-                    child: ElevatedButton.icon(
-                      onPressed: () =>
-                          UrlLauncherService.launchURL(project.releaseUrl!),
-                      icon: const Icon(Icons.download),
-                      label: const Text('Voir les releases'),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.green,
-                        padding: const EdgeInsets.symmetric(vertical: 18),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.green.withValues(alpha: 0.15),
+                            Colors.green.withValues(alpha: 0.05),
+                          ],
+                        ),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(
+                          color: Colors.green.withValues(alpha: 0.3),
+                          width: 1.5,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.green.withValues(alpha: 0.1),
+                            blurRadius: 15,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: ElevatedButton.icon(
+                        onPressed: () =>
+                            UrlLauncherService.launchURL(project.releaseUrl!),
+                        icon: const Icon(Icons.download),
+                        label: const Text('Voir les releases'),
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.transparent,
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          elevation: 0,
+                        ),
                       ),
                     ),
                   ),
