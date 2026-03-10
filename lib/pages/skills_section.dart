@@ -175,7 +175,7 @@ class _SkillsSectionState extends State<SkillsSection> {
     return Column(
       children: [
         const Text(
-          '📊 Statistiques GitHub',
+          'Statistiques GitHub',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
