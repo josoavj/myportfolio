@@ -37,14 +37,24 @@ class StatCard extends StatelessWidget {
         height: cardHeight,
         padding: EdgeInsets.all(isSmall ? 15 : 25),
         decoration: BoxDecoration(
-          color: const Color(0xFF0D1117),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              color.withValues(alpha: 0.12),
+              color.withValues(alpha: 0.06),
+            ],
+          ),
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: color.withValues(alpha: 0.3)),
+          border: Border.all(
+            color: color.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: color.withValues(alpha: 0.2),
-              blurRadius: 15,
-              spreadRadius: 2,
+              color: color.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
