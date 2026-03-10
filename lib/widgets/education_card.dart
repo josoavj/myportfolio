@@ -271,14 +271,13 @@ class EducationCard extends StatelessWidget {
                                     vertical: 2,
                                   ),
                                   decoration: BoxDecoration(
-                                    color:
-                                        Colors.purple.withValues(alpha: 0.15),
+                                    color: Colors.blue.withValues(alpha: 0.15),
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: Text(
                                     tech,
-                                    style: AppTheme.labelSmall(
-                                        color: Colors.purple),
+                                    style:
+                                        AppTheme.labelSmall(color: Colors.blue),
                                   ),
                                 );
                               }).toList(),
@@ -538,12 +537,12 @@ class EducationCard extends StatelessWidget {
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.purple.withValues(alpha: 0.15),
+                              color: Colors.blue.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
                               tech,
-                              style: AppTheme.labelSmall(color: Colors.purple),
+                              style: AppTheme.labelSmall(color: Colors.blue),
                             ),
                           );
                         }).toList(),
