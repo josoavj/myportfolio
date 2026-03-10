@@ -149,6 +149,7 @@ class AppData {
       // Projets principaux (affichés en premier)
       Project(
         name: 'Levelmind',
+        category: 'Mobile',
         description:
             'Application mobile Flutter pour la gestion de l\'apprentissage et du développement personnel',
         language: 'Dart',
@@ -176,6 +177,7 @@ class AppData {
       ),
       Project(
         name: 'segma',
+        category: 'Desktop',
         description:
             'Logiciel de segmentation d\'images utilisant le modèle SAM (Segment Anything Model)',
         language: 'Dart',
@@ -202,6 +204,7 @@ class AppData {
       ),
       Project(
         name: 'Planificator',
+        category: 'Desktop',
         description:
             'Application desktop multiplateforme pour planification et gestion de projets avec Flutter',
         language: 'Dart',
@@ -228,6 +231,7 @@ class AppData {
       ),
       Project(
         name: 'sfiDashMonitoring',
+        category: 'Web',
         description:
             'Plateforme de monitoring en temps réel avec React et Elasticsearch',
         language: 'JavaScript',
@@ -256,6 +260,7 @@ class AppData {
       // Projets secondaires
       Project(
         name: 'elasticsearch-nodejs-server',
+        category: 'Backend',
         description:
             'Serveur NodeJS pour filtrer et traiter les données Fortinet avec Elasticsearch',
         language: 'JavaScript',
@@ -282,6 +287,7 @@ class AppData {
       ),
       Project(
         name: 'myportfolio',
+        category: 'Mobile',
         description: 'Portfolio multiplateforme développée en Flutter',
         language: 'Dart',
         stars: 7,
@@ -307,6 +313,7 @@ class AppData {
       ),
       Project(
         name: 'Prospectius',
+        category: 'Desktop',
         description:
             'Plateforme CRM complète pour la gestion de prospects et clients',
         language: 'Dart',
@@ -330,6 +337,7 @@ class AppData {
       ),
       Project(
         name: 'elasticsearchconfig',
+        category: 'Tools',
         description:
             'Configuration et optimisation avancée d\'Elasticsearch pour la recherche et l\'analyse de données',
         language: 'Bash',
