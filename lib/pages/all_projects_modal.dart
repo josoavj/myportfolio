@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/pages/project_detail_page.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
@@ -62,17 +63,36 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
   String getCategoryIcon(String category) {
     switch (category) {
       case 'Mobile':
-        return '📱';
+        return '';
       case 'Desktop':
-        return '🖥️';
+        return '';
       case 'Web':
-        return '🌐';
+        return '';
       case 'Backend':
-        return '⚙️';
+        return '';
       case 'Tools':
-        return '🛠️';
+        return '';
       default:
-        return '📦';
+        return '';
+    }
+  }
+
+  IconData getCategoryIconData(String category) {
+    switch (category) {
+      case 'Mobile':
+        return FontAwesomeIcons.mobileScreenButton;
+      case 'Desktop':
+        return FontAwesomeIcons.desktop;
+      case 'Web':
+        return FontAwesomeIcons.globe;
+      case 'Backend':
+        return FontAwesomeIcons.server;
+      case 'Tools':
+        return FontAwesomeIcons.screwdriverWrench;
+      case 'Tous':
+        return FontAwesomeIcons.tableCells;
+      default:
+        return FontAwesomeIcons.cube;
     }
   }
 
@@ -156,7 +176,7 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                                         Colors.grey.withValues(alpha: 0.02),
                                       ],
                                     ),
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(25),
                               border: Border.all(
                                 color: isSelected
                                     ? color.withValues(alpha: 0.4)
@@ -176,9 +196,10 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(
-                                  getCategoryIcon(category),
-                                  style: const TextStyle(fontSize: 16),
+                                FaIcon(
+                                  getCategoryIconData(category),
+                                  size: 14,
+                                  color: isSelected ? color : Colors.white70,
                                 ),
                                 const SizedBox(width: 6),
                                 Text(
@@ -238,7 +259,7 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                                   Colors.grey.withValues(alpha: 0.02),
                                 ],
                               ),
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(25),
                         border: Border.all(
                           color: isSelected
                               ? color.withValues(alpha: 0.4)
@@ -258,9 +279,10 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Text(
-                            getCategoryIcon(category),
-                            style: const TextStyle(fontSize: 16),
+                          FaIcon(
+                            getCategoryIconData(category),
+                            size: 14,
+                            color: isSelected ? color : Colors.white70,
                           ),
                           const SizedBox(width: 6),
                           Text(
