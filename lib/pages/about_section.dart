@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
@@ -80,9 +79,26 @@ class _AboutSectionState extends State<AboutSection> {
             Container(
               padding: EdgeInsets.all(isSmall ? 16 : 30),
               decoration: BoxDecoration(
-                color: AppConstants.secondaryDark,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Colors.amber.withValues(alpha: 0.12),
+                    Colors.orange.withValues(alpha: 0.06),
+                  ],
+                ),
                 borderRadius: BorderRadius.circular(15),
-                border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
+                border: Border.all(
+                  color: Colors.amber.withValues(alpha: 0.4),
+                  width: 1.5,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.amber.withValues(alpha: 0.08),
+                    blurRadius: 20,
+                    offset: const Offset(0, 4),
+                  ),
+                ],
               ),
               child: Column(
                 children: [
