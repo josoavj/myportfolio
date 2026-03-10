@@ -16,8 +16,8 @@ class AppData {
             'Développement d\'applications web et mobile multiplateforme. Contribution active à des projets open source. '
             'Travail sur des solutions avancées de sécurité, networking et data analytics.',
         achievements: [
-          'ProspectiusFinal - Plateforme CRM complète de gestion de prospects et clients (7 stars)',
-          'PlanificatorFinal - Application desktop Flutter pour planification (4 stars)',
+          'Prospectius - Plateforme CRM complète de gestion de prospects et clients (7 stars)',
+          'Planificator - Application desktop Flutter pour planification (4 stars)',
           'Segma - Logiciel de segmentation d\'images utilisant SAM Model (6 stars)',
           'Contributions actives aux projets open source de l\'équipe',
           'Configuration et optimisation avancée de serveurs Linux',
@@ -57,10 +57,10 @@ class AppData {
             'applications desktop, APIs et bases de données. '
             'Conception et implémentation architectures robustes avec technologies modernes.',
         achievements: [
-          'lvlmindapp - Application e-learning mobile Flutter avec 19 stars sur GitHub',
+          'lvlmind - Application e-learning mobile Flutter avec 19 stars sur GitHub',
           'myportfolio - Portfolio multiplateforme Flutter intégré à l\'API GitHub (7 stars)',
-          'ProspectiusFinal - Plateforme CRM complète pour la gestion de prospects et clients (7 stars)',
-          'PlanificatorFinal - Application desktop Flutter pour planification (4 stars)',
+          'Prospectius - Plateforme CRM complète pour la gestion de prospects et clients (7 stars)',
+          'Planificator - Application desktop Flutter pour planification (4 stars)',
           'elasticsearchconfig - Configuration et optimisation Elasticsearch (5 stars)',
           'elasticsearch-nodejs-server - Solution de monitoring Fortinet (15 stars)',
           'Contribution à 43 projets open source sur GitHub',
@@ -148,7 +148,7 @@ class AppData {
     return [
       // Projets principaux (affichés en premier)
       Project(
-        name: 'lvlmindapp',
+        name: 'Levelmind',
         description:
             'Application mobile Flutter pour la gestion de l\'apprentissage et du développement personnel',
         language: 'Dart',
@@ -172,7 +172,7 @@ class AppData {
           'Architecture MVVM avec Provider',
         ],
         detailedDescription:
-            'lvlmindapp est une application mobile complète développée en Flutter pour révolutionner l\'expérience d\'apprentissage. Elle offre une plateforme d\'e-learning innovante pour les étudiants et enseignants avec authentification sécurisée, gestion de profil, emplois du temps et partage de ressources pédagogiques. Conçue avec une architecture MVVM robuste et une base de données Hive optimisée.',
+            'lvlmind est une application mobile complète développée en Flutter pour révolutionner l\'expérience d\'apprentissage. Elle offre une plateforme d\'e-learning innovante pour les étudiants et enseignants avec authentification sécurisée, gestion de profil, emplois du temps et partage de ressources pédagogiques. Conçue avec une architecture MVVM robuste et une base de données Hive optimisée.',
       ),
       Project(
         name: 'segma',
@@ -201,7 +201,7 @@ class AppData {
             'Segma est un logiciel innovant de segmentation d\'images utilisant le puissant modèle SAM (Segment Anything Model). Développé en Flutter pour le frontend et Python pour le backend, il offre une solution multi-plateforme pour le traitement d\'images et la computer vision. Interface intuitive avec API REST pour une intégration facile dans d\'autres applications.',
       ),
       Project(
-        name: 'PlanificatorFinal',
+        name: 'Planificator',
         description:
             'Application desktop multiplateforme pour planification et gestion de projets avec Flutter',
         language: 'Dart',
@@ -282,8 +282,7 @@ class AppData {
       ),
       Project(
         name: 'myportfolio',
-        description:
-            'Application portfolio mobile multiplateforme développée en Flutter',
+        description: 'Portfolio multiplateforme développée en Flutter',
         language: 'Dart',
         stars: 7,
         url: 'https://github.com/josoavj/myportfolio',
@@ -307,7 +306,7 @@ class AppData {
             'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de vos réalisations. Accessible sur tous les appareils avec une interface cohérente et professionnelle.',
       ),
       Project(
-        name: 'ProspectiusFinal',
+        name: 'Prospectius',
         description:
             'Plateforme CRM complète pour la gestion de prospects et clients',
         language: 'Dart',
@@ -327,7 +326,7 @@ class AppData {
           'Recherche et filtrage avancés',
         ],
         detailedDescription:
-            'ProspectiusFinal est une plateforme CRM professionnelle développée en Flutter pour la gestion complète des prospects et clients. Utilise Firebase et Firestore pour le stockage des données en temps réel. Offre des outils de suivi, d\'analyse et de gestion des pipelines de vente avec une interface intuitive et multiplateforme.',
+            'Prospectius est une plateforme CRM professionnelle développée en Flutter pour la gestion complète des prospects et clients. Utilise Firebase et Firestore pour le stockage des données en temps réel. Offre des outils de suivi, d\'analyse et de gestion des pipelines de vente avec une interface intuitive et multiplateforme.',
       ),
       Project(
         name: 'elasticsearchconfig',
