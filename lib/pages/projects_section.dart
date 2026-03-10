@@ -64,6 +64,7 @@ class ProjectsSection extends StatelessWidget {
                           'language': displayedProjects[index].language,
                           'stars': displayedProjects[index].stars,
                           'url': displayedProjects[index].url,
+                          'category': displayedProjects[index].category,
                         },
                         languageColor: displayedProjects[index]
                             .language
@@ -81,51 +82,78 @@ class ProjectsSection extends StatelessWidget {
                     width: MediaQuery.of(context).size.width < 600
                         ? double.infinity
                         : null,
-                    child: OutlinedButton.icon(
-                      onPressed: () {
-                        showGeneralDialog(
-                          context: context,
-                          barrierDismissible: true,
-                          barrierLabel: MaterialLocalizations.of(context)
-                              .modalBarrierDismissLabel,
-                          pageBuilder:
-                              (context, animation, secondaryAnimation) {
-                            return AllProjectsModal(
-                              projects: projects,
-                              initialDisplayCount: _displayCount,
-                            );
-                          },
-                          transitionBuilder:
-                              (context, animation, secondaryAnimation, child) {
-                            return ScaleTransition(
-                              scale:
-                                  Tween<double>(begin: 0.0, end: 1.0).animate(
-                                CurvedAnimation(
-                                    parent: animation,
-                                    curve: Curves.easeOutCubic),
-                              ),
-                              child: FadeTransition(
-                                opacity: animation,
-                                child: child,
-                              ),
-                            );
-                          },
-                          transitionDuration: const Duration(milliseconds: 400),
-                        );
-                      },
-                      icon: const Icon(Icons.expand_more),
-                      label: const Text('Voir tous les projets'),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.blue,
-                        side: const BorderSide(color: Colors.blue),
-                        padding: EdgeInsets.symmetric(
-                          horizontal:
-                              MediaQuery.of(context).size.width < 600 ? 20 : 30,
-                          vertical:
-                              MediaQuery.of(context).size.width < 600 ? 14 : 18,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Colors.blue.withValues(alpha: 0.15),
+                            Colors.blue.withValues(alpha: 0.05),
+                          ],
                         ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.blue.withValues(alpha: 0.3),
+                          width: 1.5,
+                        ),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.blue.withValues(alpha: 0.1),
+                            blurRadius: 15,
+                            offset: const Offset(0, 4),
+                          ),
+                        ],
+                      ),
+                      child: OutlinedButton.icon(
+                        onPressed: () {
+                          showGeneralDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            barrierLabel: MaterialLocalizations.of(context)
+                                .modalBarrierDismissLabel,
+                            pageBuilder:
+                                (context, animation, secondaryAnimation) {
+                              return AllProjectsModal(
+                                projects: projects,
+                                initialDisplayCount: _displayCount,
+                              );
+                            },
+                            transitionBuilder: (context, animation,
+                                secondaryAnimation, child) {
+                              return ScaleTransition(
+                                scale:
+                                    Tween<double>(begin: 0.0, end: 1.0).animate(
+                                  CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.easeOutCubic),
+                                ),
+                                child: FadeTransition(
+                                  opacity: animation,
+                                  child: child,
+                                ),
+                              );
+                            },
+                            transitionDuration:
+                                const Duration(milliseconds: 400),
+                          );
+                        },
+                        icon: const Icon(Icons.expand_more),
+                        label: const Text('Voir tous les projets'),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: Colors.blue,
+                          side: BorderSide.none,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: MediaQuery.of(context).size.width < 600
+                                ? 20
+                                : 30,
+                            vertical: MediaQuery.of(context).size.width < 600
+                                ? 14
+                                : 18,
+                          ),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(25),
+                          ),
                         ),
                       ),
                     ),

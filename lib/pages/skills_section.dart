@@ -34,7 +34,7 @@ class _SkillsSectionState extends State<SkillsSection> {
       child: Column(
         children: [
           const SectionTitle(
-              title: 'Stack Technique & Compétences', emoji: '🛠️'),
+              title: 'Stack Technique & Compétences', emoji: null),
           const SizedBox(height: 60),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
@@ -141,7 +141,7 @@ class _SkillsSectionState extends State<SkillsSection> {
     return Column(
       children: [
         const Text(
-          '🎯 Technologies & Outils',
+          'Technologies & Outils',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
@@ -175,7 +175,7 @@ class _SkillsSectionState extends State<SkillsSection> {
     return Column(
       children: [
         const Text(
-          '📊 Statistiques GitHub',
+          'Statistiques GitHub',
           style: TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,

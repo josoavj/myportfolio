@@ -144,7 +144,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           end: Alignment.bottomRight,
           colors: [
             Colors.blue.withValues(alpha: 0.12),
-            Colors.purple.withValues(alpha: 0.08),
+            Colors.blue.withValues(alpha: 0.08),
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -172,7 +172,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              '📊 Statistiques GitHub',
+              'Statistiques GitHub',
               style: isMobile ? AppTheme.subtitle() : AppTheme.titleSmall(),
             ),
             const SizedBox(height: 4),
@@ -187,9 +187,26 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             decoration: BoxDecoration(
-              color: Colors.blue.withValues(alpha: 0.15),
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  Colors.blue.withValues(alpha: 0.15),
+                  Colors.blue.withValues(alpha: 0.05),
+                ],
+              ),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: Colors.blue.withValues(alpha: 0.4)),
+              border: Border.all(
+                color: Colors.blue.withValues(alpha: 0.4),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.blue.withValues(alpha: 0.1),
+                  blurRadius: 12,
+                  offset: const Offset(0, 3),
+                ),
+              ],
             ),
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -211,21 +228,18 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          _buildStatBadge(
-              '📈 Total', '${stats.totalContributions}', Colors.blue),
-          const SizedBox(width: 12),
-          _buildStatBadge('🔥 Cette Année', '${stats.thisYearContributions}',
-              Colors.orange),
-          const SizedBox(width: 12),
-          _buildStatBadge('⭐ Stars', '${stats.totalStars}', Colors.amber),
+          _buildStatBadge('Total', '${stats.totalContributions}', Colors.blue),
           const SizedBox(width: 12),
           _buildStatBadge(
-              '👥 Followers', stats.followers.toString(), Colors.green),
+              'Cette Année', '${stats.thisYearContributions}', Colors.orange),
+          const SizedBox(width: 12),
+          _buildStatBadge('Stars', '${stats.totalStars}', Colors.amber),
           const SizedBox(width: 12),
           _buildStatBadge(
-              '🎯 Avg/jour',
-              stats.averageContributionsPerDay.toStringAsFixed(1),
-              Colors.purple),
+              'Followers', stats.followers.toString(), Colors.green),
+          const SizedBox(width: 12),
+          _buildStatBadge('Avg/jour',
+              stats.averageContributionsPerDay.toStringAsFixed(1), Colors.cyan),
         ],
       ),
     );
@@ -448,7 +462,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '⭐ Repos Populaires',
+          'Repos Populaires',
           style: isMobile ? AppTheme.subtitleSmall() : AppTheme.subtitle(),
         ),
         const SizedBox(height: 12),
@@ -467,9 +481,19 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
         child: Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.blue.withValues(alpha: 0.08),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue.withValues(alpha: 0.12),
+                Colors.blue.withValues(alpha: 0.06),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
+              color: Colors.blue.withValues(alpha: 0.3),
+              width: 1,
+            ),
             boxShadow: [
               BoxShadow(
                 color: Colors.blue.withValues(alpha: 0.05),
@@ -522,12 +546,12 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                 decoration: BoxDecoration(
-                  color: Colors.purple.withValues(alpha: 0.15),
+                  color: Colors.cyan.withValues(alpha: 0.15),
                   borderRadius: BorderRadius.circular(6),
                 ),
                 child: Text(
                   repo.language,
-                  style: AppTheme.labelSmall(color: Colors.purple),
+                  style: AppTheme.labelSmall(color: Colors.cyan),
                 ),
               ),
             ],
@@ -564,13 +588,13 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                         colors: [
-                          Colors.purple.withValues(alpha: 0.2),
+                          Colors.cyan.withValues(alpha: 0.2),
                           Colors.blue.withValues(alpha: 0.1),
                         ],
                       ),
                       borderRadius: BorderRadius.circular(20),
                       border: Border.all(
-                        color: Colors.purple.withValues(alpha: 0.3),
+                        color: Colors.cyan.withValues(alpha: 0.3),
                       ),
                     ),
                     child: Row(
@@ -579,7 +603,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
                         Icon(
                           Icons.code,
                           size: 14,
-                          color: Colors.purple.withValues(alpha: 0.7),
+                          color: Colors.cyan.withValues(alpha: 0.7),
                         ),
                         const SizedBox(width: 6),
                         Text(

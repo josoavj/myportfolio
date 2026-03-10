@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
 class TechBadge extends StatelessWidget {
@@ -14,6 +15,63 @@ class TechBadge extends StatelessWidget {
     required this.color,
     required this.index,
   });
+
+  IconData _getIconForTech(String techName) {
+    switch (techName.toLowerCase()) {
+      // Langages
+      case 'dart':
+        return FontAwesomeIcons.dartLang;
+      case 'python':
+        return FontAwesomeIcons.python;
+      case 'javascript':
+        return FontAwesomeIcons.js;
+      case 'java':
+        return FontAwesomeIcons.java;
+      // Frameworks
+      case 'flutter':
+        return FontAwesomeIcons.flutter;
+      case 'react':
+        return FontAwesomeIcons.react;
+      case 'node.js':
+        return FontAwesomeIcons.node;
+      case 'express.js':
+        return FontAwesomeIcons.node;
+      // Bases de données
+      case 'mysql':
+        return FontAwesomeIcons.database;
+      case 'elasticsearch':
+        return FontAwesomeIcons.database;
+      case 'hive':
+        return FontAwesomeIcons.database;
+      // DevOps & Outils
+      case 'linux':
+        return FontAwesomeIcons.linux;
+      case 'git':
+        return FontAwesomeIcons.git;
+      case 'nginx':
+        return FontAwesomeIcons.server;
+      case 'bash':
+        return FontAwesomeIcons.terminal;
+      // Outils de Développement
+      case 'vs code':
+        return FontAwesomeIcons.dev;
+      case 'android studio':
+        return FontAwesomeIcons.android;
+      case 'pycharm':
+        return FontAwesomeIcons.python;
+      case 'webstorm':
+        return FontAwesomeIcons.dev;
+      // Sécurité & Networking
+      case 'security':
+        return FontAwesomeIcons.lock;
+      case 'networking':
+        return FontAwesomeIcons.networkWired;
+      case 'kali linux':
+        return FontAwesomeIcons.linux;
+      default:
+        return FontAwesomeIcons.cube;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,10 +102,7 @@ class TechBadge extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
-              icon,
-              style: const TextStyle(fontSize: 20),
-            ),
+            FaIcon(_getIconForTech(name), color: color, size: 16),
             const SizedBox(width: 8),
             Text(
               name,

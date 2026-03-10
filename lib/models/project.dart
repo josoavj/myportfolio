@@ -8,6 +8,7 @@ class Project {
   final List<String> features;
   final String detailedDescription;
   final String? releaseUrl;
+  final String category; // Web, Mobile, Desktop, Backend, Tools
 
   Project({
     required this.name,
@@ -15,6 +16,7 @@ class Project {
     required this.language,
     required this.stars,
     required this.url,
+    required this.category,
     this.technologies = const [],
     this.features = const [],
     this.detailedDescription = '',

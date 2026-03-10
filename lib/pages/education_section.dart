@@ -19,7 +19,7 @@ class EducationSection extends StatelessWidget {
           horizontal: horizontalPadding, vertical: verticalPadding),
       child: Column(
         children: [
-          const SectionTitle(title: 'Formation Académique', emoji: '🎓'),
+          const SectionTitle(title: 'Formation Académique', emoji: null),
           SizedBox(height: spacingBetweenTitle),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1000),

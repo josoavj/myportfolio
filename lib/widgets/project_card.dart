@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
 class ProjectCard extends StatelessWidget {
@@ -14,6 +15,57 @@ class ProjectCard extends StatelessWidget {
     this.index = 0,
     this.onTap,
   });
+
+  Color getCategoryColor(String category) {
+    switch (category) {
+      case 'Mobile':
+        return Colors.blue;
+      case 'Desktop':
+        return Colors.blue;
+      case 'Web':
+        return Colors.cyan;
+      case 'Backend':
+        return Colors.orange;
+      case 'Tools':
+        return Colors.teal;
+      default:
+        return Colors.grey;
+    }
+  }
+
+  String getCategoryIcon(String category) {
+    switch (category) {
+      case 'Mobile':
+        return '';
+      case 'Desktop':
+        return '';
+      case 'Web':
+        return '';
+      case 'Backend':
+        return '';
+      case 'Tools':
+        return '';
+      default:
+        return '';
+    }
+  }
+
+  IconData getCategoryIconData(String category) {
+    switch (category) {
+      case 'Mobile':
+        return FontAwesomeIcons.mobileScreenButton;
+      case 'Desktop':
+        return FontAwesomeIcons.desktop;
+      case 'Web':
+        return FontAwesomeIcons.globe;
+      case 'Backend':
+        return FontAwesomeIcons.server;
+      case 'Tools':
+        return FontAwesomeIcons.screwdriverWrench;
+      default:
+        return FontAwesomeIcons.cube;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,14 +87,24 @@ class ProjectCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: const Color(0xFF161B22),
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.blue.withValues(alpha: 0.12),
+                Colors.blue.withValues(alpha: 0.06),
+              ],
+            ),
             borderRadius: BorderRadius.circular(15),
-            border: Border.all(color: Colors.blue.withValues(alpha: 0.2)),
+            border: Border.all(
+              color: Colors.blue.withValues(alpha: 0.4),
+              width: 1.5,
+            ),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.3),
-                blurRadius: 10,
-                offset: const Offset(0, 5),
+                color: Colors.blue.withValues(alpha: 0.08),
+                blurRadius: 20,
+                offset: const Offset(0, 4),
               ),
             ],
           ),
@@ -75,6 +137,41 @@ class ProjectCard extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 15),
+              // Badge de catégorie
+              if (project['category'] != null)
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                  decoration: BoxDecoration(
+                    color: getCategoryColor(project['category'])
+                        .withValues(alpha: 0.15),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: getCategoryColor(project['category'])
+                          .withValues(alpha: 0.4),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      FaIcon(
+                        getCategoryIconData(project['category']),
+                        size: 12,
+                        color: getCategoryColor(project['category']),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        project['category'],
+                        style: TextStyle(
+                          color: getCategoryColor(project['category']),
+                          fontSize: 12,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              const SizedBox(height: 12),
               Text(
                 project['name'],
                 style: AppTheme.titleMedium(),

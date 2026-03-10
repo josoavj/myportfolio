@@ -43,14 +43,24 @@ class ExperienceCard extends StatelessWidget {
         margin: EdgeInsets.only(bottom: isMobile ? 20 : 30),
         padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
-          color: AppConstants.secondaryDark,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              experience.color.withValues(alpha: 0.12),
+              experience.color.withValues(alpha: 0.06),
+            ],
+          ),
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: experience.color.withValues(alpha: 0.3)),
+          border: Border.all(
+            color: experience.color.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: 15,
-              offset: const Offset(0, 5),
+              color: experience.color.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
             ),
           ],
         ),

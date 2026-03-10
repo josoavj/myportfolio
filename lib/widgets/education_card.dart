@@ -44,14 +44,24 @@ class EducationCard extends StatelessWidget {
         margin: EdgeInsets.only(bottom: isMobile ? 20 : 30),
         padding: EdgeInsets.all(padding),
         decoration: BoxDecoration(
-          color: AppConstants.secondaryDark,
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              education.color.withValues(alpha: 0.12),
+              education.color.withValues(alpha: 0.06),
+            ],
+          ),
           borderRadius: BorderRadius.circular(15),
-          border: Border.all(color: education.color.withValues(alpha: 0.3)),
+          border: Border.all(
+            color: education.color.withValues(alpha: 0.4),
+            width: 1.5,
+          ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withValues(alpha: 0.3),
-              blurRadius: 15,
-              offset: const Offset(0, 5),
+              color: education.color.withValues(alpha: 0.08),
+              blurRadius: 20,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -161,7 +171,7 @@ class EducationCard extends StatelessWidget {
                   padding: EdgeInsets.all(spacingMedium),
                   decoration: BoxDecoration(
                     color: education.color.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.circular(20),
                     border: Border.all(
                         color: education.color.withValues(alpha: 0.3)),
                   ),
@@ -169,7 +179,7 @@ class EducationCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        '📜 Titre de la mémoire',
+                        'Titre de la mémoire',
                         style: AppTheme.labelSmall(color: education.color),
                       ),
                       SizedBox(height: spacingSmall),
@@ -196,7 +206,7 @@ class EducationCard extends StatelessWidget {
                       padding: EdgeInsets.all(spacingMedium),
                       decoration: BoxDecoration(
                         color: education.color.withValues(alpha: 0.08),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(20),
                         border: Border.all(
                             color: education.color.withValues(alpha: 0.2)),
                       ),
@@ -253,23 +263,21 @@ class EducationCard extends StatelessWidget {
                               spacing: 6,
                               runSpacing: 4,
                               children: (project['technologies']!
-                                          .split(',')
-                                          .map((tech) => tech.trim()))
-                                  .map((tech) {
+                                  .split(',')
+                                  .map((tech) => tech.trim())).map((tech) {
                                 return Container(
                                   padding: EdgeInsets.symmetric(
                                     horizontal: 6,
                                     vertical: 2,
                                   ),
                                   decoration: BoxDecoration(
-                                    color:
-                                        Colors.purple.withValues(alpha: 0.15),
+                                    color: Colors.blue.withValues(alpha: 0.15),
                                     borderRadius: BorderRadius.circular(4),
                                   ),
                                   child: Text(
                                     tech,
-                                    style: AppTheme.labelSmall(
-                                        color: Colors.purple),
+                                    style:
+                                        AppTheme.labelSmall(color: Colors.blue),
                                   ),
                                 );
                               }).toList(),
@@ -417,14 +425,14 @@ class EducationCard extends StatelessWidget {
             padding: EdgeInsets.all(spacingMedium),
             decoration: BoxDecoration(
               color: education.color.withValues(alpha: 0.1),
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(20),
               border: Border.all(color: education.color.withValues(alpha: 0.3)),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  '📜 Titre de la mémoire',
+                  'Titre de la mémoire',
                   style: AppTheme.labelSmall(color: education.color),
                 ),
                 SizedBox(height: spacingSmall),
@@ -450,10 +458,25 @@ class EducationCard extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.all(spacingMedium),
                 decoration: BoxDecoration(
-                  color: education.color.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(10),
-                  border:
-                      Border.all(color: education.color.withValues(alpha: 0.2)),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      education.color.withValues(alpha: 0.12),
+                      education.color.withValues(alpha: 0.06),
+                    ],
+                  ),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: education.color.withValues(alpha: 0.3),
+                    width: 1.5,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: education.color.withValues(alpha: 0.05),
+                      blurRadius: 8,
+                    ),
+                  ],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -506,21 +529,20 @@ class EducationCard extends StatelessWidget {
                         spacing: 6,
                         runSpacing: 4,
                         children: (project['technologies']!
-                                .split(',')
-                                .map((tech) => tech.trim()))
-                            .map((tech) {
+                            .split(',')
+                            .map((tech) => tech.trim())).map((tech) {
                           return Container(
                             padding: EdgeInsets.symmetric(
                               horizontal: 6,
                               vertical: 2,
                             ),
                             decoration: BoxDecoration(
-                              color: Colors.purple.withValues(alpha: 0.15),
+                              color: Colors.blue.withValues(alpha: 0.15),
                               borderRadius: BorderRadius.circular(4),
                             ),
                             child: Text(
                               tech,
-                              style: AppTheme.labelSmall(color: Colors.purple),
+                              style: AppTheme.labelSmall(color: Colors.blue),
                             ),
                           );
                         }).toList(),

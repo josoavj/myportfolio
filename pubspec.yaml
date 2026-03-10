@@ -16,6 +16,7 @@ dependencies:
   url_launcher: ^6.3.2
   http: ^1.1.0
   fl_chart: ^1.1.1
+  font_awesome_flutter: ^10.7.0
 
 
 dev_dependencies:

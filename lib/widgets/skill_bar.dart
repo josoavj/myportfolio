@@ -43,10 +43,10 @@ class SkillBar extends StatelessWidget {
                 height: 10,
                 decoration: BoxDecoration(
                   color: const Color(0xFF0D1117),
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(20),
                   child: LinearProgressIndicator(
                     value: value,
                     backgroundColor: Colors.transparent,
