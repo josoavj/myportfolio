@@ -45,7 +45,7 @@ class AppData {
           'Optimisation des performances de la collecte de données',
         ],
         icon: Icons.code,
-        color: Colors.orange,
+        color: Colors.blue,
       ),
       Experience(
         role: 'Développeur Full Stack',
@@ -67,7 +67,7 @@ class AppData {
           'Participation à des TP avancés d\'algorithmique et machine learning',
         ],
         icon: Icons.storage,
-        color: Colors.green,
+        color: const Color(0xFF25D366),
       ),
     ];
   }
@@ -106,7 +106,7 @@ class AppData {
         description:
             'Formation en développement logiciel, bases de données, networking et télécommunications avec spécialisation en systèmes distribués et monitoring de données.',
         icon: Icons.school,
-        color: Colors.green,
+        color: const Color(0xFF25D366),
         status: 'Obtenu',
         thesisTitle:
             'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
@@ -138,7 +138,7 @@ class AppData {
             'Formations spécialisées en Elasticsearch, Kibana, Grafana, Docker, Linux Administration, '
             'sécurité réseau et développement d\'APIs avec Node.js/Express.',
         icon: Icons.card_membership,
-        color: Colors.orange,
+        color: Colors.blue,
         status: 'Continue',
       ),
     ];
