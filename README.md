@@ -4,7 +4,7 @@ Un portfolio  moderne présentant mes compétences et mon parcours en tant que d
 
 ## 📋 À propos
 
-Ceci est un projet multiplateforme développé avec **Flutter** et **Dart**, offrant une interface intuitive et responsive pour explorer un portfolio professionnel. L'application est disponible sur plusieurs plateformes : Android, Web, Windows, et Linux.
+Ceci est un projet multiplateforme développé avec **Flutter** et **Dart**, offrant une interface intuitive et responsive pour explorer un portfolio professionnel. L'application est disponible sur plusieurs plateformes : Android, Web, Windows et Linux.
 
 ## 🛠️ Stack Technique
 
