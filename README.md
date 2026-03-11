@@ -1,18 +1,10 @@
 # 📱 Portfolio App
 
-Un portfolio mobile moderne présentant mes compétences et mon parcours en tant que développeur mobile, développeur backend et les différents postes occupés.
+Un portfolio  moderne présentant mes compétences et mon parcours en tant que développeur fullstack mobile, développeur backend et les différents postes occupés.
 
 ## 📋 À propos
 
-Cette application est un projet mobile développé avec **Flutter** et **Dart**, offrant une interface intuitive et responsive pour explorer un portfolio professionnel. L'application est disponible sur plusieurs plateformes : Android, iOS, Web, Windows, macOS et Linux.
-
-## ✨ Fonctionnalités
-
-- 📱 Interface responsive et moderne
-- 🎨 Design cohérent sur toutes les plateformes
-- 🌐 Support multi-plateforme (Android, iOS, Web, Desktop)
-- ⚡ Performance optimisée
-- 🔄 Gestion d'état efficace
+Ceci est un projet multiplateforme développé avec **Flutter** et **Dart**, offrant une interface intuitive et responsive pour explorer un portfolio professionnel. L'application est disponible sur plusieurs plateformes : Android, Web, Windows et Linux.
 
 ## 🛠️ Stack Technique
 
@@ -95,19 +87,9 @@ macos/               # Configuration macOS
 linux/               # Configuration Linux
 ```
 
-## 📝 Scripts utiles
-
-Des commandes rapides sont disponibles dans `quick-commands.sh` :
-
-```bash
-./quick-commands.sh
-```
-
 ## 📦 Releases
 
-Les versions du projet sont documentées dans [RELEASE_GUIDE.md](RELEASE_GUIDE.md).
-
-Version actuelle : **1.2.1** (Décembre 2025)
+Version actuelle : **1.6.0** (Mars 2026)
 
 Pour accéder aux [versions précédentes](https://github.com/josoavj/myportfolio/releases), consultez la page des releases.
 
@@ -115,16 +97,6 @@ Pour accéder aux [versions précédentes](https://github.com/josoavj/myportfoli
 
 Configurez l'analyse du code Dart selon vos préférences dans `analysis_options.yaml`.
 
-## 📄 Licence
-
-Ce projet est fourni tel quel. Pour plus de détails, consultez les conditions du repository.
-
-## 🤝 Contribution
-
-Les contributions sont bienvenues ! N'hésitez pas à :
-- Signaler des bugs via les [Issues](https://github.com/josoavj/myportfolio/issues)
-- Proposer des améliorations
-- Soumettre des pull requests
 
 ## 📧 Contact
 
