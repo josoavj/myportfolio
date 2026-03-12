@@ -21,7 +21,6 @@ class AppData {
           'Segma - Logiciel de segmentation d\'images utilisant SAM Model (6 stars)',
           'Contributions actives aux projets open source de l\'équipe',
           'Configuration et optimisation avancée de serveurs Linux',
-          'Implémentation d\'algorithmes complexes (Jacobi, Machine Learning)',
         ],
         icon: Icons.business,
         color: Colors.blue,
