@@ -332,7 +332,7 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                         crossAxisSpacing: isSmall ? 12 : 16,
                         mainAxisSpacing: isSmall ? 12 : 16,
                         childAspectRatio:
-                            isSmall ? 1.7 : (isMobile ? 1.7 : 2.75),
+                            isSmall ? 1.2 : (isMobile ? 1.6 : 2.75),
                       ),
                       itemCount: filteredProjects.length,
                       itemBuilder: (context, index) {
