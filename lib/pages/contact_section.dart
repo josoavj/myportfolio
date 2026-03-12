@@ -281,7 +281,7 @@ class _ContactSectionState extends State<ContactSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Contact Direct',
+                'Autres informations',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -290,26 +290,17 @@ class _ContactSectionState extends State<ContactSection> {
               ).withFadeIn(delay: const Duration(milliseconds: 300)),
               const SizedBox(height: 25),
               _buildContactInfoItem(
-                icon: Icons.chat,
-                title: 'WhatsApp',
-                subtitle: '+261 33 60 223 60',
-                onTap: () =>
-                    UrlLauncherService.launchURL(AppConstants.whatsappUrl),
-                delay: 350,
-              ),
-              const SizedBox(height: 20),
-              _buildContactInfoItem(
                 icon: Icons.location_on,
                 title: 'Localisation',
                 subtitle: AppConstants.location,
-                delay: 400,
+                delay: 350,
               ),
               const SizedBox(height: 20),
               _buildContactInfoItem(
                 icon: Icons.work_outline,
                 title: 'Organisation',
                 subtitle: 'APEXNova Labs',
-                delay: 450,
+                delay: 400,
               ),
             ],
           ),

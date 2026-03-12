@@ -165,6 +165,25 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
   }
 
   Widget _buildHeader(GitHubStats stats, bool isMobile) {
+    if (isMobile) {
+      // Layout mobile : affichage vertical sans bouton
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Tableau de bord GitHub',
+            style: AppTheme.titleSmall(),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Mis à jour ${_formatDate(stats.lastUpdated)}',
+            style: AppTheme.labelSmall(color: Colors.grey),
+          ),
+        ],
+      );
+    }
+
+    // Layout desktop : affichage horizontal
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -172,10 +191,10 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Statistiques GitHub',
-              style: isMobile ? AppTheme.subtitle() : AppTheme.titleSmall(),
+              'Tableau de bord GitHub',
+              style: AppTheme.titleSmall(),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: 8),
             Text(
               'Mis à jour ${_formatDate(stats.lastUpdated)}',
               style: AppTheme.labelSmall(color: Colors.grey),

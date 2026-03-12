@@ -140,14 +140,19 @@ class _SkillsSectionState extends State<SkillsSection> {
   Widget _buildTechBadges(List<Map<String, dynamic>> badges) {
     return Column(
       children: [
-        const Text(
+        Text(
           'Technologies & Outils',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: AppTheme.titleMedium(),
         ).withFadeIn(delay: const Duration(milliseconds: 200)),
+        const SizedBox(height: 12),
+        Container(
+          width: 60,
+          height: 4,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ).withScaleIn(delay: const Duration(milliseconds: 250)),
         const SizedBox(height: 30),
         Wrap(
           spacing: 12,
@@ -174,14 +179,19 @@ class _SkillsSectionState extends State<SkillsSection> {
   Widget _buildContributionGraph() {
     return Column(
       children: [
-        const Text(
+        Text(
           'Statistiques GitHub',
-          style: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
+          style: AppTheme.titleMedium(),
         ),
+        const SizedBox(height: 12),
+        Container(
+          width: 60,
+          height: 4,
+          decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(2),
+          ),
+        ).withScaleIn(delay: const Duration(milliseconds: 250)),
         const SizedBox(height: 10),
         Text(
           'Mon activité et contributions sur GitHub',
