@@ -3,6 +3,7 @@ import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/pages/all_projects_modal.dart';
 import 'package:myportfolio/pages/project_detail_page.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/utils/extensions.dart';
 import 'package:myportfolio/widgets/project_card.dart';
 import 'package:myportfolio/widgets/section_title.dart';
@@ -109,7 +110,7 @@ class ProjectsSection extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: OutlinedButton.icon(
+                      child: OutlinedButton(
                         onPressed: () {
                           showGeneralDialog(
                             context: context,
@@ -142,8 +143,6 @@ class ProjectsSection extends StatelessWidget {
                                 const Duration(milliseconds: 400),
                           );
                         },
-                        icon: const Icon(Icons.expand_more),
-                        label: const Text('Voir tous les projets'),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: Colors.blue,
                           side: BorderSide.none,
@@ -158,6 +157,10 @@ class ProjectsSection extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(25),
                           ),
+                        ),
+                        child: Text(
+                          'Voir tous les projets',
+                          style: AppTheme.labelSmall(),
                         ),
                       ),
                     ),
