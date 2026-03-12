@@ -42,7 +42,11 @@ class ProjectsSection extends StatelessWidget {
                             : 1,
                     crossAxisSpacing: isMobile ? 12 : 20,
                     mainAxisSpacing: isMobile ? 16 : 20,
-                    childAspectRatio: isMobile ? 1.7 : 0.9,
+                    childAspectRatio: MediaQuery.of(context).size.width > 900
+                        ? 0.9
+                        : MediaQuery.of(context).size.width > 600
+                            ? 1.0
+                            : 1.4,
                   ),
                   itemCount: displayedProjects.length,
                   itemBuilder: (context, index) {
