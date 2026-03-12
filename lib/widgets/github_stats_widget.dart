@@ -175,15 +175,6 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
             style: AppTheme.titleSmall(),
           ),
           const SizedBox(height: 8),
-          Container(
-            width: 60,
-            height: 4,
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              borderRadius: BorderRadius.circular(2),
-            ),
-          ),
-          const SizedBox(height: 8),
           Text(
             'Mis à jour ${_formatDate(stats.lastUpdated)}',
             style: AppTheme.labelSmall(color: Colors.grey),
