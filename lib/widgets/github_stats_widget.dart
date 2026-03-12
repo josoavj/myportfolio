@@ -165,6 +165,34 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
   }
 
   Widget _buildHeader(GitHubStats stats, bool isMobile) {
+    if (isMobile) {
+      // Layout mobile : affichage vertical sans bouton
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Tableau de bord GitHub',
+            style: AppTheme.titleSmall(),
+          ),
+          const SizedBox(height: 8),
+          Container(
+            width: 60,
+            height: 4,
+            decoration: BoxDecoration(
+              color: Colors.blue,
+              borderRadius: BorderRadius.circular(2),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Mis à jour ${_formatDate(stats.lastUpdated)}',
+            style: AppTheme.labelSmall(color: Colors.grey),
+          ),
+        ],
+      );
+    }
+
+    // Layout desktop : affichage horizontal
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
