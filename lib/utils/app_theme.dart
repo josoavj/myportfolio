@@ -3,6 +3,37 @@ import 'package:google_fonts/google_fonts.dart';
 
 /// Configuration centralisée du thème et des polices
 class AppTheme {
+  // Décoration Glassmorphism standard
+  static BoxDecoration glassDecoration({
+    required Color color,
+    double opacity = 0.12,
+    double borderRadius = 20,
+    double borderWidth = 1.5,
+  }) {
+    return BoxDecoration(
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          color.withValues(alpha: opacity),
+          color.withValues(alpha: opacity * 0.5),
+        ],
+      ),
+      borderRadius: BorderRadius.circular(borderRadius),
+      border: Border.all(
+        color: color.withValues(alpha: opacity * 3),
+        width: borderWidth,
+      ),
+      boxShadow: [
+        BoxShadow(
+          color: color.withValues(alpha: 0.08),
+          blurRadius: 20,
+          offset: const Offset(0, 4),
+        ),
+      ],
+    );
+  }
+
   // Police unique - Lexend pour tout
   static TextStyle lexendRegular(
     double fontSize, {
@@ -17,17 +48,17 @@ class AppTheme {
   }
 
   // Titres - Lexend Bold
-  static TextStyle titleLarge({Color? color}) {
+  static TextStyle titleLarge({Color? color, double size = 40}) {
     return GoogleFonts.lexend(
-      fontSize: 40,
+      fontSize: size,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
     );
   }
 
-  static TextStyle titleMedium({Color? color}) {
+  static TextStyle titleMedium({Color? color, double size = 28}) {
     return GoogleFonts.lexend(
-      fontSize: 28,
+      fontSize: size,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
     );

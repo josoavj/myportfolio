@@ -51,7 +51,7 @@ class _HeaderSectionState extends State<HeaderSection> {
                     ),
                   ],
                 ),
-                child: CircleAvatar(
+                child: const CircleAvatar(
                   backgroundColor: AppConstants.secondaryDark,
                   backgroundImage: AssetImage(
                     'assets/mypfp.jpg',
@@ -96,22 +96,22 @@ class _HeaderSectionState extends State<HeaderSection> {
               AnimationUtils.staggeredFadeSlide(
                 children: [
                   const CVDownloadButton(),
-                  SocialButton(
+                  const SocialButton(
                     icon: Icons.code,
                     label: 'GitHub',
                     url: AppConstants.githubUrl,
                   ),
-                  SocialButton(
+                  const SocialButton(
                     icon: Icons.work,
                     label: 'LinkedIn',
                     url: AppConstants.linkedinUrl,
                   ),
-                  SocialButton(
+                  const SocialButton(
                     icon: Icons.facebook,
                     label: 'Facebook',
                     url: AppConstants.facebookUrl,
                   ),
-                  SocialButton(
+                  const SocialButton(
                     icon: Icons.alternate_email,
                     label: 'Twitter',
                     url: AppConstants.twitterUrl,

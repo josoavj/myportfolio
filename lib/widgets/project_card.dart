@@ -1,8 +1,9 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   final Map<String, dynamic> project;
   final Color languageColor;
   final int index;
@@ -16,10 +17,16 @@ class ProjectCard extends StatelessWidget {
     this.onTap,
   });
 
+  @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  bool isHovered = false;
+
   Color getCategoryColor(String category) {
     switch (category) {
       case 'Mobile':
-        return Colors.blue;
       case 'Desktop':
         return Colors.blue;
       case 'Web':
@@ -33,24 +40,7 @@ class ProjectCard extends StatelessWidget {
     }
   }
 
-  String getCategoryIcon(String category) {
-    switch (category) {
-      case 'Mobile':
-        return '';
-      case 'Desktop':
-        return '';
-      case 'Web':
-        return '';
-      case 'Backend':
-        return '';
-      case 'Tools':
-        return '';
-      default:
-        return '';
-    }
-  }
-
-  IconData getCategoryIconData(String category) {
+  FaIconData getCategoryIconData(String category) {
     switch (category) {
       case 'Mobile':
         return FontAwesomeIcons.mobileScreenButton;
@@ -69,150 +59,154 @@ class ProjectCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0.0, end: 1.0),
-      duration: Duration(milliseconds: 600 + (index * 100)),
-      curve: Curves.easeOut,
-      builder: (context, value, child) {
-        return Transform.translate(
-          offset: Offset(0, 30 * (1 - value)),
-          child: Opacity(
-            opacity: value,
-            child: child,
-          ),
-        );
-      },
-      child: InkWell(
-        onTap: onTap,
-        child: Container(
-          padding: const EdgeInsets.all(20),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Colors.blue.withValues(alpha: 0.12),
-                Colors.blue.withValues(alpha: 0.06),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(15),
-            border: Border.all(
-              color: Colors.blue.withValues(alpha: 0.4),
-              width: 1.5,
-            ),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue.withValues(alpha: 0.08),
-                blurRadius: 20,
-                offset: const Offset(0, 4),
-              ),
-            ],
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  const Icon(Icons.folder, color: Colors.blue, size: 28),
-                  const Spacer(),
-                  Container(
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                    decoration: BoxDecoration(
-                      color: Colors.amber.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(6),
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        transform: isHovered
+            ? (Matrix4.identity()
+              ..translateByDouble(0.0, -10.0, 0.0, 0.0)
+              ..scaleByDouble(1.02, 1.02, 1.02, 1.0))
+            : Matrix4.identity(),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: InkWell(
+              onTap: widget.onTap,
+              borderRadius: BorderRadius.circular(20),
+              child: Container(
+                padding: const EdgeInsets.all(20),
+                decoration: AppTheme.glassDecoration(
+                  color: isHovered ? Colors.blue : Colors.blueGrey,
+                  opacity: isHovered ? 0.2 : 0.1,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
                       children: [
-                        const Icon(Icons.star, color: Colors.amber, size: 16),
-                        const SizedBox(width: 4),
-                        Text(
-                          '${project['stars']}',
-                          style: AppTheme.labelSmall(),
+                        Icon(
+                          Icons.folder_outlined,
+                          color: isHovered ? Colors.blue : Colors.blue.shade200,
+                          size: 28,
                         ),
+                        const Spacer(),
+                        _buildStarsBadge(),
                       ],
                     ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 15),
-              // Badge de catégorie
-              if (project['category'] != null)
-                Container(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: getCategoryColor(project['category'])
-                        .withValues(alpha: 0.15),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                      color: getCategoryColor(project['category'])
-                          .withValues(alpha: 0.4),
-                    ),
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      FaIcon(
-                        getCategoryIconData(project['category']),
-                        size: 12,
-                        color: getCategoryColor(project['category']),
+                    const SizedBox(height: 15),
+                    if (widget.project['category'] != null) _buildCategoryBadge(),
+                    const SizedBox(height: 12),
+                    Text(
+                      widget.project['name'],
+                      style: AppTheme.titleSmall(
+                        color: isHovered ? Colors.blue.shade300 : Colors.white,
                       ),
-                      const SizedBox(width: 4),
-                      Text(
-                        project['category'],
-                        style: TextStyle(
-                          color: getCategoryColor(project['category']),
-                          fontSize: 12,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              const SizedBox(height: 12),
-              Text(
-                project['name'],
-                style: AppTheme.titleMedium(),
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-              ),
-              const SizedBox(height: 8),
-              Expanded(
-                child: Text(
-                  project['description'],
-                  style: AppTheme.bodyMedium(),
-                  maxLines: 3,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-              const SizedBox(height: 15),
-              Row(
-                children: [
-                  Container(
-                    width: 10,
-                    height: 10,
-                    decoration: BoxDecoration(
-                      color: languageColor,
-                      shape: BoxShape.circle,
-                    ),
-                  ),
-                  const SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      project['language'],
-                      style: AppTheme.labelSmall(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-                  ),
-                ],
+                    const SizedBox(height: 8),
+                    Expanded(
+                      child: Text(
+                        widget.project['description'],
+                        style: AppTheme.bodySmall(
+                          color: Colors.grey.shade300,
+                        ),
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    const SizedBox(height: 15),
+                    _buildLanguageInfo(),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildStarsBadge() {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      decoration: BoxDecoration(
+        color: Colors.amber.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(6),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const Icon(Icons.star, color: Colors.amber, size: 14),
+          const SizedBox(width: 4),
+          Text(
+            '${widget.project['stars']}',
+            style: AppTheme.labelSmall(color: Colors.amber),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCategoryBadge() {
+    final category = widget.project['category'];
+    final color = getCategoryColor(category);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.4)),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FaIcon(getCategoryIconData(category), size: 10, color: color),
+          const SizedBox(width: 6),
+          Text(
+            category,
+            style: TextStyle(
+              color: color,
+              fontSize: 10,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildLanguageInfo() {
+    return Row(
+      children: [
+        Container(
+          width: 8,
+          height: 8,
+          decoration: BoxDecoration(
+            color: widget.languageColor,
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: widget.languageColor.withValues(alpha: 0.5),
+                blurRadius: 4,
+                spreadRadius: 1,
               ),
             ],
           ),
         ),
-      ),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            widget.project['language'],
+            style: AppTheme.labelSmall(color: Colors.grey.shade400),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
     );
   }
 }

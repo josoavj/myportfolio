@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/services/url_launcher_service.dart';
+import 'package:myportfolio/utils/app_theme.dart';
 
-class SocialButton extends StatelessWidget {
+class SocialButton extends StatefulWidget {
   final IconData icon;
   final String label;
   final String url;
@@ -14,42 +15,46 @@ class SocialButton extends StatelessWidget {
   });
 
   @override
+  State<SocialButton> createState() => _SocialButtonState();
+}
+
+class _SocialButtonState extends State<SocialButton> {
+  bool isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Colors.blue.withValues(alpha: 0.15),
-            Colors.blue.withValues(alpha: 0.05),
-          ],
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        decoration: AppTheme.glassDecoration(
+          color: isHovered ? Colors.blue : Colors.blueGrey,
+          opacity: isHovered ? 0.2 : 0.1,
+          borderRadius: 30,
         ),
-        borderRadius: BorderRadius.circular(30),
-        border: Border.all(
-          color: Colors.blue.withValues(alpha: 0.3),
-          width: 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.blue.withValues(alpha: 0.1),
-            blurRadius: 15,
-            offset: const Offset(0, 4),
+        child: ElevatedButton.icon(
+          onPressed: () => UrlLauncherService.launchURL(widget.url),
+          icon: Icon(
+            widget.icon,
+            size: 20,
+            color: isHovered ? Colors.blue.shade300 : Colors.white,
           ),
-        ],
-      ),
-      child: ElevatedButton.icon(
-        onPressed: () => UrlLauncherService.launchURL(url),
-        icon: Icon(icon, size: 20),
-        label: Text(label),
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          foregroundColor: Colors.white,
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+          label: Text(
+            widget.label,
+            style: AppTheme.labelSmall(
+              color: isHovered ? Colors.blue.shade300 : Colors.white,
+            ),
           ),
-          elevation: 0,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            foregroundColor: Colors.white,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            elevation: 0,
+          ),
         ),
       ),
     );

@@ -1,3 +1,4 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
@@ -9,98 +10,106 @@ import 'package:myportfolio/widgets/skill_bar.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
 import 'package:myportfolio/widgets/github_stats_widget.dart';
 import 'package:myportfolio/widgets/tech_badge.dart';
+import 'package:myportfolio/widgets/responsive_layout.dart';
 
-class SkillsSection extends StatefulWidget {
+class SkillsSection extends StatelessWidget {
   const SkillsSection({super.key});
-
-  @override
-  State<SkillsSection> createState() => _SkillsSectionState();
-}
-
-class _SkillsSectionState extends State<SkillsSection> {
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     final skillsByCategory = AppData.getSkillsByCategory();
     final badges = AppData.getTechBadges();
+    final isMobile = ResponsiveLayout.isMobile(context);
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16 : 40,
+        vertical: 100,
+      ),
       color: AppConstants.secondaryDark,
-      child: Column(
-        children: [
-          const SectionTitle(
-              title: 'Stack Technique & Compétences', emoji: null),
-          const SizedBox(height: 60),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: Column(
-              children: [
-                ..._buildSkillCategories(skillsByCategory),
-                const SizedBox(height: 60),
-                _buildStatsCards(context),
-                const SizedBox(height: 60),
-                _buildTechBadges(badges),
-                const SizedBox(height: 60),
-                _buildContributionGraph(),
-              ],
-            ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
+            children: [
+              const SectionTitle(title: 'Expertise Technique'),
+              const SizedBox(height: 80),
+              _buildSkillGrid(context, skillsByCategory, isMobile),
+              const SizedBox(height: 100),
+              _buildStatsSection(context),
+              const SizedBox(height: 100),
+              _buildTechBadges(badges),
+              const SizedBox(height: 100),
+              _buildGitHubSection(),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
 
-  List<Widget> _buildSkillCategories(
-      Map<String, List<Skill>> skillsByCategory) {
-    List<Widget> widgets = [];
-    int categoryIndex = 0;
-    skillsByCategory.forEach((category, skills) {
-      widgets.add(
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 8, bottom: 20),
-              child: Text(
+  Widget _buildSkillGrid(BuildContext context, Map<String, List<Skill>> skillsByCategory, bool isMobile) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final cardWidth = isMobile 
+            ? constraints.maxWidth 
+            : (constraints.maxWidth - 50) / 2;
+        
+        return Wrap(
+          spacing: 50,
+          runSpacing: 40,
+          alignment: WrapAlignment.center,
+          children: skillsByCategory.entries.map((entry) {
+            final index = skillsByCategory.keys.toList().indexOf(entry.key);
+            return SizedBox(
+              width: cardWidth,
+              child: _buildSkillCategoryCard(entry.key, entry.value, index),
+            );
+          }).toList(),
+        );
+      },
+    );
+  }
+
+  Widget _buildSkillCategoryCard(String category, List<Skill> skills, int index) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Container(
+          padding: const EdgeInsets.all(30),
+          decoration: AppTheme.glassDecoration(
+            color: Colors.blueGrey,
+            opacity: 0.08,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
                 category,
-                style: AppTheme.titleMedium(),
-              ).withSlideUp(
-                delay: Duration(milliseconds: 100 + (categoryIndex * 50)),
-                distance: 15.0,
-              ),
-            ),
-            ...skills.asMap().entries.map((entry) {
-              final skillIndex = entry.key;
-              final skill = entry.value;
-              return SkillBar(
+                style: AppTheme.titleSmall(color: Colors.blue.shade300),
+              ).withSlideUp(delay: Duration(milliseconds: 100 * index)),
+              const SizedBox(height: 30),
+              ...skills.map((skill) => SkillBar(
                 name: skill.name,
                 level: skill.level,
                 color: skill.color,
-              ).withFadeIn(
-                delay: Duration(
-                  milliseconds: 200 + (categoryIndex * 50) + (skillIndex * 30),
-                ),
-              );
-            }),
-          ],
+              )),
+            ],
+          ),
         ),
-      );
-      widgets.add(const SizedBox(height: 50));
-      categoryIndex++;
-    });
-    return widgets;
+      ),
+    ).withFadeIn(delay: Duration(milliseconds: 200 * index));
   }
 
-  Widget _buildStatsCards(BuildContext context) {
+  Widget _buildStatsSection(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 700;
-        final isLargeScreen = constraints.maxWidth > 1000;
+        final cardWidth = isMobile 
+            ? constraints.maxWidth 
+            : (constraints.maxWidth - 40) / 3;
 
         return Wrap(
           spacing: 20,
@@ -108,28 +117,25 @@ class _SkillsSectionState extends State<SkillsSection> {
           alignment: WrapAlignment.center,
           children: [
             StatCard(
-              icon: Icons.code,
+              icon: Icons.rocket_launch_outlined,
               title: '5+',
-              subtitle: 'Projets Complétés',
+              subtitle: 'Projets Majeurs',
               color: Colors.blue,
-              width:
-                  isMobile ? constraints.maxWidth : (isLargeScreen ? 220 : 200),
+              width: cardWidth,
             ).withScaleIn(delay: const Duration(milliseconds: 300)),
             StatCard(
-              icon: Icons.terminal,
+              icon: Icons.code_off_outlined,
               title: '3+',
-              subtitle: 'Années d\'Expérience',
+              subtitle: 'Années de Code',
               color: Colors.green,
-              width:
-                  isMobile ? constraints.maxWidth : (isLargeScreen ? 220 : 200),
+              width: cardWidth,
             ).withScaleIn(delay: const Duration(milliseconds: 400)),
             StatCard(
-              icon: Icons.people,
-              title: 'APEXNova\nLabs',
-              subtitle: 'Membre Actif',
+              icon: Icons.hub_outlined,
+              title: 'APEXNova',
+              subtitle: 'Membre Core',
               color: Colors.purple,
-              width:
-                  isMobile ? constraints.maxWidth : (isLargeScreen ? 220 : 200),
+              width: cardWidth,
             ).withScaleIn(delay: const Duration(milliseconds: 500)),
           ],
         );
@@ -141,22 +147,13 @@ class _SkillsSectionState extends State<SkillsSection> {
     return Column(
       children: [
         Text(
-          'Technologies & Outils',
+          'Technologies & Écosystème',
           style: AppTheme.titleMedium(),
-        ).withFadeIn(delay: const Duration(milliseconds: 200)),
-        const SizedBox(height: 12),
-        Container(
-          width: 60,
-          height: 4,
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(2),
-          ),
-        ).withScaleIn(delay: const Duration(milliseconds: 250)),
-        const SizedBox(height: 30),
+        ).withFadeIn(),
+        const SizedBox(height: 40),
         Wrap(
-          spacing: 12,
-          runSpacing: 12,
+          spacing: 15,
+          runSpacing: 15,
           alignment: WrapAlignment.center,
           children: badges.asMap().entries.map((entry) {
             final index = entry.key;
@@ -166,9 +163,8 @@ class _SkillsSectionState extends State<SkillsSection> {
               icon: badge['icon'] as String,
               color: badge['color'] as Color,
               index: index,
-            ).withSlideUp(
-              delay: Duration(milliseconds: 300 + (index * 40)),
-              distance: 10.0,
+            ).withScaleIn(
+              delay: Duration(milliseconds: 100 + (index * 30)),
             );
           }).toList(),
         ),
@@ -176,28 +172,19 @@ class _SkillsSectionState extends State<SkillsSection> {
     );
   }
 
-  Widget _buildContributionGraph() {
+  Widget _buildGitHubSection() {
     return Column(
       children: [
         Text(
-          'Statistiques GitHub',
+          'Activité Open Source',
           style: AppTheme.titleMedium(),
         ),
-        const SizedBox(height: 12),
-        Container(
-          width: 60,
-          height: 4,
-          decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(2),
-          ),
-        ).withScaleIn(delay: const Duration(milliseconds: 250)),
-        const SizedBox(height: 10),
+        const SizedBox(height: 15),
         Text(
-          'Mon activité et contributions sur GitHub',
+          'Suivi en temps réel de mes contributions GitHub',
           style: AppTheme.subtitleSmall(),
         ),
-        const SizedBox(height: 30),
+        const SizedBox(height: 50),
         const GitHubStatsWidget(),
       ],
     );

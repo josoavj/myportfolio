@@ -16,7 +16,7 @@ class TechBadge extends StatelessWidget {
     required this.index,
   });
 
-  IconData _getIconForTech(String techName) {
+  FaIconData _getIconForTech(String techName) {
     switch (techName.toLowerCase()) {
       // Langages
       case 'dart':
