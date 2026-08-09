@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:myportfolio/services/github_service.dart';
+import 'package:myportfolio/services/github_provider.dart';
 import 'package:myportfolio/models/github_stats.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class GitHubStatsWidget extends StatefulWidget {
+class GitHubStatsWidget extends ConsumerStatefulWidget {
   const GitHubStatsWidget({super.key});
 
   @override
-  State<GitHubStatsWidget> createState() => _GitHubStatsWidgetState();
+  ConsumerState<GitHubStatsWidget> createState() => _GitHubStatsWidgetState();
 }
 
-class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
+class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
     with SingleTickerProviderStateMixin {
-  late Future<GitHubStats> _statsFuture;
   late AnimationController _animationController;
 
   @override
   void initState() {
     super.initState();
-    _statsFuture = GitHubService.getGitHubStats();
     _animationController = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -36,25 +35,12 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
   @override
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.of(context).size.width < 600;
+    final githubStatsAsync = ref.watch(githubStatsProvider);
 
-    return FutureBuilder<GitHubStats>(
-      future: _statsFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return _buildLoadingState(isMobile);
-        }
-
-        if (snapshot.hasError) {
-          return _buildErrorState(isMobile, snapshot.error.toString());
-        }
-
-        if (!snapshot.hasData) {
-          return const SizedBox.shrink();
-        }
-
-        final stats = snapshot.data!;
-        return _buildStatsContent(stats, isMobile);
-      },
+    return githubStatsAsync.when(
+      data: (stats) => _buildStatsContent(stats, isMobile),
+      loading: () => _buildLoadingState(isMobile),
+      error: (error, stack) => _buildErrorState(isMobile, error.toString()),
     );
   }
 
@@ -64,7 +50,7 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
       child: Column(
         children: [
           CircularProgressIndicator(
-            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue.shade400),
+            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           const SizedBox(height: 12),
           Text('Chargement des stats GitHub...', style: AppTheme.subtitle()),
@@ -227,12 +213,12 @@ class _GitHubStatsWidgetState extends State<GitHubStatsWidget>
                 ),
               ],
             ),
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(Icons.open_in_new, size: 14, color: Colors.blue),
-                const SizedBox(width: 4),
-                Text('Profil', style: AppTheme.labelSmall(color: Colors.blue)),
+                SizedBox(width: 4),
+                Text('Profil', style: TextStyle(color: Colors.blue, fontSize: 11, fontWeight: FontWeight.w600)),
               ],
             ),
           ),
