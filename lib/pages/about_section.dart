@@ -1,142 +1,151 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:myportfolio/services/github_provider.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
+import 'package:myportfolio/widgets/responsive_layout.dart';
 
-class AboutSection extends StatefulWidget {
+class AboutSection extends ConsumerWidget {
   const AboutSection({super.key});
 
   @override
-  State<AboutSection> createState() => _AboutSectionState();
-}
-
-class _AboutSectionState extends State<AboutSection> {
-  @override
-  Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final isSmall = size.width < 600;
-    final minHeight = isSmall ? size.height * 0.95 : size.height;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isMobile = ResponsiveLayout.isMobile(context);
+    final githubStatsAsync = ref.watch(githubStatsProvider);
 
     return Container(
-      constraints: BoxConstraints(minHeight: minHeight),
       padding: EdgeInsets.symmetric(
-        horizontal: isSmall ? 15 : 20,
-        vertical: isSmall ? 50 : 80,
+        horizontal: isMobile ? 20 : 40,
+        vertical: 100,
       ),
       child: ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 1000),
+        constraints: const BoxConstraints(maxWidth: 1200),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SectionTitle(title: 'À propos de moi'),
-            SizedBox(height: isSmall ? 25 : 40),
-            if (isSmall)
-              Column(
+            const SectionTitle(title: 'Qui suis-je ?'),
+            const SizedBox(height: 60),
+            ResponsiveLayout(
+              mobile: Column(
+                children: [
+                  _buildProfileText(isMobile),
+                  const SizedBox(height: 40),
+                  _buildAchievementCard(isMobile, githubStatsAsync),
+                ],
+              ),
+              desktop: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Je suis un développeur passionné par le développement d\'applications mobiles et le développement logiciel.',
-                    style: AppTheme.bodyLargeMobile(),
-                    textAlign: TextAlign.justify,
-                  ).withFadeIn(delay: const Duration(milliseconds: 200)),
-                  SizedBox(height: isSmall ? 12 : 0),
-                  Text(
-                    'Intéressé par la cybersécurité et les technologies avancées. Spécialisé dans Flutter, Python, JavaScript et architectures backend.',
-                    style: AppTheme.bodyLargeMobile(),
-                    textAlign: TextAlign.justify,
-                  ).withFadeIn(delay: const Duration(milliseconds: 300)),
-                  SizedBox(height: isSmall ? 12 : 0),
-                  Text(
-                    'Membre actif d\'APEXNova Labs, je contribue à des projets open source innovants et explore continuellement de nouvelles technologies.',
-                    style: AppTheme.bodyLargeMobile(),
-                    textAlign: TextAlign.justify,
-                  ).withFadeIn(delay: const Duration(milliseconds: 400)),
-                  SizedBox(height: isSmall ? 12 : 0),
-                  Text(
-                    'Actuellement poursuivant un Master en Informatique et Télécommunications avec focus sur l\'architecture logicielle et la sécurité des systèmes.',
-                    style: AppTheme.bodyLargeMobile(),
-                    textAlign: TextAlign.justify,
-                  ).withFadeIn(delay: const Duration(milliseconds: 500)),
-                  SizedBox(height: isSmall ? 12 : 0),
-                  Text(
-                    'Avec 43 repositories publiques et une passion pour l\'excellence technique, je crée des solutions robustes et scalables.',
-                    style: AppTheme.bodyLargeMobile(),
-                    textAlign: TextAlign.justify,
-                  ).withFadeIn(delay: const Duration(milliseconds: 600)),
-                ],
-              )
-            else
-              Text(
-                'Je suis un développeur passionné par le développement d\'applications mobiles et le développement logiciel. '
-                'Intéressé par la cybersécurité et les technologies avancées. Spécialisé dans Flutter, Python, JavaScript et architectures backend. '
-                'Membre actif d\'APEXNova Labs, je contribue à des projets open source innovants et explore continuellement de nouvelles technologies. '
-                'Actuellement poursuivant un Master en Informatique et Télécommunications avec focus sur l\'architecture logicielle et la sécurité des systèmes. '
-                'Avec 43 repositories publiques et une passion pour l\'excellence technique, je crée des solutions robustes et scalables.',
-                style: AppTheme.bodyLarge(),
-                textAlign: TextAlign.center,
-              ).withFadeIn(delay: const Duration(milliseconds: 200)),
-            SizedBox(height: isSmall ? 25 : 40),
-            Container(
-              padding: EdgeInsets.all(isSmall ? 16 : 30),
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Colors.amber.withValues(alpha: 0.12),
-                    Colors.orange.withValues(alpha: 0.06),
-                  ],
-                ),
-                borderRadius: BorderRadius.circular(15),
-                border: Border.all(
-                  color: Colors.amber.withValues(alpha: 0.4),
-                  width: 1.5,
-                ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.amber.withValues(alpha: 0.08),
-                    blurRadius: 20,
-                    offset: const Offset(0, 4),
+                  Expanded(flex: 3, child: _buildProfileText(isMobile)),
+                  const SizedBox(width: 60),
+                  Expanded(
+                    flex: 2,
+                    child: _buildAchievementCard(isMobile, githubStatsAsync),
                   ),
                 ],
               ),
-              child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.emoji_events,
-                          color: Colors.amber, size: isSmall ? 24 : 28),
-                      SizedBox(width: isSmall ? 8 : 10),
-                      Flexible(
-                        child: Text(
-                          'Top 10 Développeur GitHub Madagascar',
-                          style: AppTheme.titleMedium(color: Colors.amber),
-                          textAlign: TextAlign.center,
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                        ),
-                      ),
-                    ],
-                  ).withSlideUp(
-                    delay: const Duration(milliseconds: 300),
-                    distance: 15.0,
-                  ),
-                  SizedBox(height: isSmall ? 12 : 15),
-                  Text(
-                    'Classement basé sur les contributions publiques',
-                    style: isSmall
-                        ? AppTheme.bodyLargeMobile()
-                        : AppTheme.subtitleSmall(),
-                  ).withFadeIn(delay: const Duration(milliseconds: 400)),
-                ],
-              ),
-            ).withSlideUp(
-              delay: const Duration(milliseconds: 250),
-              distance: 20.0,
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildProfileText(bool isMobile) {
+    return Column(
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Développeur Full Stack & Passionné de Sécurité',
+          style: AppTheme.titleSmall(color: Colors.blue.shade300),
+          textAlign: isMobile ? TextAlign.center : TextAlign.left,
+        ).withFadeIn(delay: const Duration(milliseconds: 200)),
+        const SizedBox(height: 25),
+        Text(
+          'Je suis Josoa Vonjiniaina, un développeur basé à Madagascar avec une soif insatiable d\'apprendre et de créer. '
+          'Spécialisé dans l\'écosystème Flutter et les architectures backend robustes, je m\'efforce de construire des applications '
+          'qui allient design élégant et performances techniques.',
+          style: AppTheme.bodyLarge(),
+          textAlign: isMobile ? TextAlign.center : TextAlign.left,
+        ).withFadeIn(delay: const Duration(milliseconds: 400)),
+        const SizedBox(height: 20),
+        Text(
+          'Actuellement en Master Informatique, je concentre mes recherches sur la cybersécurité et l\'optimisation logicielle. '
+          'Mon engagement au sein d\'APEXNova Labs me permet de repousser les limites du développement collaboratif et open source.',
+          style: AppTheme.bodyLarge(),
+          textAlign: isMobile ? TextAlign.center : TextAlign.left,
+        ).withFadeIn(delay: const Duration(milliseconds: 600)),
+      ],
+    );
+  }
+
+  Widget _buildAchievementCard(bool isMobile, AsyncValue githubStatsAsync) {
+    return githubStatsAsync.when(
+      data: (stats) {
+        // Le rang est extrait du site committers.top (Rang 9 pour Josoa Vonjiniaina)
+        const int rank = 9;
+        final totalCommits = stats.totalContributions;
+        final publicRepos = stats.publicRepos;
+
+        return ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+            child: Container(
+              padding: const EdgeInsets.all(30),
+              decoration: AppTheme.glassDecoration(
+                color: Colors.amber,
+                opacity: 0.1,
+              ),
+              child: Column(
+                children: [
+                  const Icon(Icons.workspace_premium,
+                      color: Colors.amber, size: 50),
+                  const SizedBox(height: 20),
+                  Text(
+                    'Top $rank GitHub Madagascar',
+                    style: AppTheme.titleSmall(color: Colors.amber),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    'Classé au 9ème rang des développeurs les plus actifs de Madagascar (Total contributions).',
+                    style: AppTheme.bodySmall(color: Colors.amber.shade100),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 25),
+                  _buildMetric('$publicRepos', 'Repositories Publics'),
+                  const Divider(color: Colors.amber, thickness: 0.2),
+                  _buildMetric('$totalCommits', 'Total Contributions'),
+                ],
+              ),
+            ),
+          ),
+        ).withScaleIn(delay: const Duration(milliseconds: 800));
+      },
+      loading: () => const Center(child: CircularProgressIndicator()),
+      error: (err, stack) => _buildErrorCard(isMobile),
+    );
+  }
+
+  Widget _buildErrorCard(bool isMobile) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: AppTheme.glassDecoration(color: Colors.red, opacity: 0.1),
+      child: const Text('Erreur lors du chargement des stats GitHub'),
+    );
+  }
+
+  Widget _buildMetric(String value, String label) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(label, style: AppTheme.labelSmall()),
+          Text(value, style: AppTheme.label(color: Colors.amber)),
+        ],
       ),
     );
   }
