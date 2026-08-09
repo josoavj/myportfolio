@@ -17,6 +17,8 @@ dependencies:
   http: ^1.1.0
   fl_chart: ^1.1.1
   font_awesome_flutter: ^11.0.0
+  flutter_riverpod: ^2.5.1
+  responsive_framework: ^1.5.1
 
 
 dev_dependencies:
