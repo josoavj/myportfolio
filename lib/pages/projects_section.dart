@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/pages/all_projects_modal.dart';
 import 'package:myportfolio/pages/project_detail_page.dart';
@@ -7,6 +8,7 @@ import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/utils/extensions.dart';
 import 'package:myportfolio/widgets/project_card.dart';
 import 'package:myportfolio/widgets/section_title.dart';
+import 'package:myportfolio/widgets/responsive_layout.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
@@ -16,159 +18,77 @@ class ProjectsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final projects = AppData.getProjects();
-    final isMobile = MediaQuery.of(context).size.width < 600;
     final displayedProjects = projects.take(_displayCount).toList();
     final hasMoreProjects = projects.length > _displayCount;
+    final isMobile = ResponsiveLayout.isMobile(context);
 
     return Container(
-      padding: isMobile
-          ? const EdgeInsets.only(left: 16, right: 16, top: 80, bottom: 150)
-          : const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 16 : 40,
+        vertical: 80,
+      ),
       child: Column(
         children: [
-          const SectionTitle(title: 'Projets'),
-          SizedBox(height: isMobile ? 20 : 40),
+          const SectionTitle(title: 'Mes Projets'),
+          const SizedBox(height: 40),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
             child: Column(
               children: [
-                GridView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: MediaQuery.of(context).size.width > 900
-                        ? 3
-                        : MediaQuery.of(context).size.width > 600
-                            ? 2
-                            : 1,
-                    crossAxisSpacing: isMobile ? 12 : 20,
-                    mainAxisSpacing: isMobile ? 16 : 20,
-                    childAspectRatio: MediaQuery.of(context).size.width > 900
-                        ? 0.9
-                        : MediaQuery.of(context).size.width > 600
-                            ? 1.0
-                            : 1.4,
-                  ),
-                  itemCount: displayedProjects.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => ProjectDetailPage(
-                              project: displayedProjects[index],
-                            ),
-                          ),
+                LayoutBuilder(
+                  builder: (context, constraints) {
+                    int crossAxisCount = 3;
+                    if (constraints.maxWidth < 600) {
+                      crossAxisCount = 1;
+                    } else if (constraints.maxWidth < 950) {
+                      crossAxisCount = 2;
+                    }
+
+                    return GridView.builder(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: crossAxisCount,
+                        crossAxisSpacing: 25,
+                        mainAxisSpacing: 25,
+                        childAspectRatio: crossAxisCount == 1 ? 1.5 : 0.85,
+                      ),
+                      itemCount: displayedProjects.length,
+                      itemBuilder: (context, index) {
+                        return ProjectCard(
+                          project: {
+                            'name': displayedProjects[index].name,
+                            'description': displayedProjects[index].description,
+                            'language': displayedProjects[index].language,
+                            'stars': displayedProjects[index].stars,
+                            'url': displayedProjects[index].url,
+                            'category': displayedProjects[index].category,
+                          },
+                          languageColor: displayedProjects[index]
+                              .language
+                              .getLanguageColor(),
+                          index: index,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => ProjectDetailPage(
+                                  project: displayedProjects[index],
+                                ),
+                              ),
+                            );
+                          },
+                        ).withSlideUp(
+                          delay: Duration(milliseconds: 200 + (index * 100)),
+                          distance: 20,
                         );
                       },
-                      child: ProjectCard(
-                        project: {
-                          'name': displayedProjects[index].name,
-                          'description': displayedProjects[index].description,
-                          'language': displayedProjects[index].language,
-                          'stars': displayedProjects[index].stars,
-                          'url': displayedProjects[index].url,
-                          'category': displayedProjects[index].category,
-                        },
-                        languageColor: displayedProjects[index]
-                            .language
-                            .getLanguageColor(),
-                        index: index,
-                      ),
                     );
                   },
                 ),
                 if (hasMoreProjects) ...[
-                  SizedBox(
-                    height: isMobile ? 20 : 30,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width < 600
-                        ? double.infinity
-                        : null,
-                    child: Container(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Colors.blue.withValues(alpha: 0.15),
-                            Colors.blue.withValues(alpha: 0.05),
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: Colors.blue.withValues(alpha: 0.3),
-                          width: 1.5,
-                        ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.blue.withValues(alpha: 0.1),
-                            blurRadius: 15,
-                            offset: const Offset(0, 4),
-                          ),
-                        ],
-                      ),
-                      child: OutlinedButton(
-                        onPressed: () {
-                          showGeneralDialog(
-                            context: context,
-                            barrierDismissible: true,
-                            barrierLabel: MaterialLocalizations.of(context)
-                                .modalBarrierDismissLabel,
-                            pageBuilder:
-                                (context, animation, secondaryAnimation) {
-                              return AllProjectsModal(
-                                projects: projects,
-                                initialDisplayCount: _displayCount,
-                              );
-                            },
-                            transitionBuilder: (context, animation,
-                                secondaryAnimation, child) {
-                              return ScaleTransition(
-                                scale:
-                                    Tween<double>(begin: 0.0, end: 1.0).animate(
-                                  CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.easeOutCubic),
-                                ),
-                                child: FadeTransition(
-                                  opacity: animation,
-                                  child: child,
-                                ),
-                              );
-                            },
-                            transitionDuration:
-                                const Duration(milliseconds: 400),
-                          );
-                        },
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.blue,
-                          side: BorderSide.none,
-                          padding: EdgeInsets.symmetric(
-                            horizontal: MediaQuery.of(context).size.width < 600
-                                ? 20
-                                : 30,
-                            vertical: MediaQuery.of(context).size.width < 600
-                                ? 14
-                                : 18,
-                          ),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                        ),
-                        child: Text(
-                          'Voir tous les projets',
-                          style: AppTheme.labelSmall(),
-                        ),
-                      ),
-                    ),
-                  ).withScaleIn(
-                    delay: const Duration(
-                      milliseconds: 600 + (_displayCount * 100),
-                    ),
-                  ),
+                  const SizedBox(height: 50),
+                  _buildViewAllButton(context, List<Project>.from(projects)),
                 ],
               ],
             ),
@@ -176,5 +96,55 @@ class ProjectsSection extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Widget _buildViewAllButton(BuildContext context, List<Project> projects) {
+    return Container(
+      decoration: AppTheme.glassDecoration(
+        color: Colors.blue,
+        opacity: 0.1,
+        borderRadius: 30,
+      ),
+      child: OutlinedButton(
+        onPressed: () {
+          showGeneralDialog(
+            context: context,
+            barrierDismissible: true,
+            barrierLabel:
+                MaterialLocalizations.of(context).modalBarrierDismissLabel,
+            pageBuilder: (context, animation, secondaryAnimation) {
+              return AllProjectsModal(
+                projects: projects,
+                initialDisplayCount: _displayCount,
+              );
+            },
+            transitionBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity: animation,
+                child: ScaleTransition(
+                  scale: Tween<double>(begin: 0.9, end: 1.0).animate(
+                    CurvedAnimation(parent: animation, curve: Curves.easeOut),
+                  ),
+                  child: child,
+                ),
+              );
+            },
+          );
+        },
+        style: OutlinedButton.styleFrom(
+          foregroundColor: Colors.blue,
+          side: BorderSide.none,
+          padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
+          ),
+        ),
+        child: Text(
+          'Voir tous les projets',
+          style: AppTheme.label(color: Colors.blue.shade300),
+        ),
+      ),
+    ).withScaleIn(delay: const Duration(milliseconds: 800));
   }
 }
