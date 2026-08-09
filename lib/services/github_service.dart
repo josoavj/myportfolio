@@ -19,9 +19,16 @@ class GitHubService {
 
   /// Initialiser l'URL de la fonction serverless
   static void initializeServerlessUrl() {
-    // Utiliser l'origine du navigateur ou un fallback
+    // Utilisation de String.fromEnvironment pour permettre l'injection via --dart-define
+    const envUrl = String.fromEnvironment('GITHUB_API_URL');
+    
+    if (envUrl.isNotEmpty) {
+      _serverlessApiUrl = envUrl;
+      return;
+    }
+
+    // Fallback dynamique ou par défaut
     try {
-      // Sur web, html.window.location.origin est disponible
       _serverlessApiUrl =
           'https://myportfolio-api.netlify.app/.netlify/functions/github-stats';
     } catch (_) {
@@ -123,8 +130,8 @@ class GitHubService {
     return {
       2025: 3580, // En cours
       2024: 1092,
-      2023: 497,
-      2022: 0,
+      2023: 1391, // Mis à jour pour correspondre au total de ~6.5k
+      2022: 497,
       2021: 4,
     };
   }
