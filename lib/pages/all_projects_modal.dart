@@ -77,7 +77,7 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
     }
   }
 
-  IconData getCategoryIconData(String category) {
+  FaIconData getCategoryIconData(String category) {
     switch (category) {
       case 'Mobile':
         return FontAwesomeIcons.mobileScreenButton;
