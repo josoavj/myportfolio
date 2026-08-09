@@ -1,7 +1,8 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
-class StatCard extends StatelessWidget {
+class StatCard extends StatefulWidget {
   final IconData icon;
   final String title;
   final String subtitle;
@@ -18,69 +19,67 @@ class StatCard extends StatelessWidget {
   });
 
   @override
+  State<StatCard> createState() => _StatCardState();
+}
+
+class _StatCardState extends State<StatCard> {
+  bool isHovered = false;
+
+  @override
   Widget build(BuildContext context) {
     final isSmall = MediaQuery.of(context).size.width < 600;
-    final cardHeight = isSmall ? null : 250.0;
+    final cardHeight = isSmall ? null : 220.0;
 
-    return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0.0, end: 1.0),
-      duration: const Duration(milliseconds: 800),
-      curve: Curves.easeOut,
-      builder: (context, value, child) {
-        return Transform.scale(
-          scale: value,
-          child: child,
-        );
-      },
-      child: Container(
-        width: width,
+    return MouseRegion(
+      onEnter: (_) => setState(() => isHovered = true),
+      onExit: (_) => setState(() => isHovered = false),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 300),
+        transform: isHovered
+            ? (Matrix4.identity()..translateByDouble(0.0, -5.0, 0.0, 0.0))
+            : Matrix4.identity(),
+        width: widget.width,
         height: cardHeight,
-        padding: EdgeInsets.all(isSmall ? 15 : 25),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [
-              color.withValues(alpha: 0.12),
-              color.withValues(alpha: 0.06),
-            ],
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(20),
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
+            child: Container(
+              padding: EdgeInsets.all(isSmall ? 15 : 25),
+              decoration: AppTheme.glassDecoration(
+                color: isHovered ? widget.color : widget.color.withValues(alpha: 0.5),
+                opacity: isHovered ? 0.2 : 0.12,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    widget.icon,
+                    size: isSmall ? 32 : 44,
+                    color: isHovered ? widget.color : widget.color.withValues(alpha: 0.8),
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    widget.title,
+                    style: isSmall
+                        ? AppTheme.titleSmall(color: widget.color)
+                        : AppTheme.titleMedium(color: widget.color),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                  const SizedBox(height: 8),
+                  Text(
+                    widget.subtitle,
+                    style: AppTheme.labelSmall(color: Colors.grey.shade400),
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ],
+              ),
+            ),
           ),
-          borderRadius: BorderRadius.circular(15),
-          border: Border.all(
-            color: color.withValues(alpha: 0.4),
-            width: 1.5,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: color.withValues(alpha: 0.08),
-              blurRadius: 20,
-              offset: const Offset(0, 4),
-            ),
-          ],
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(icon, size: isSmall ? 32 : 40, color: color),
-            SizedBox(height: isSmall ? 10 : 15),
-            Text(
-              title,
-              style: isSmall
-                  ? AppTheme.titleSmallMobile(color: color)
-                  : AppTheme.titleMedium(color: color),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            SizedBox(height: isSmall ? 6 : 8),
-            Text(
-              subtitle,
-              style: AppTheme.labelSmall(),
-              textAlign: TextAlign.center,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-          ],
         ),
       ),
     );
