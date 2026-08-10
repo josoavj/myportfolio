@@ -49,8 +49,8 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
-          CircularProgressIndicator(
-            valueColor: const AlwaysStoppedAnimation<Color>(Colors.blue),
+          const CircularProgressIndicator(
+            valueColor:  AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           const SizedBox(height: 12),
           Text('Chargement des stats GitHub...', style: AppTheme.subtitle()),
@@ -213,12 +213,12 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
                 ),
               ],
             ),
-            child: const Row(
+            child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Icon(Icons.open_in_new, size: 14, color: Colors.blue),
-                SizedBox(width: 4),
-                Text('Profil', style: TextStyle(color: Colors.blue, fontSize: 11, fontWeight: FontWeight.w600)),
+                const Icon(Icons.open_in_new, size: 14, color: Colors.blue),
+                const SizedBox(width: 4),
+                Text('Profil', style: AppTheme.lexendRegular(11, color: Colors.blue, fontWeight: FontWeight.w600)),
               ],
             ),
           ),
@@ -419,8 +419,8 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
                 },
               ),
             ),
-            topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
           gridData: FlGridData(
             show: true,
@@ -444,9 +444,9 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
               getTooltipItem: (group, groupIndex, rod, rodIndex) {
                 return BarTooltipItem(
                   '${entries[groupIndex].key}\n${rod.toY.toInt()} contributions',
-                  const TextStyle(
+                  AppTheme.lexendRegular(
+                    12,
                     color: Colors.white,
-                    fontSize: 12,
                     fontWeight: FontWeight.bold,
                   ),
                 );
