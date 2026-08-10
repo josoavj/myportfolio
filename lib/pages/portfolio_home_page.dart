@@ -11,6 +11,9 @@ import 'package:myportfolio/pages/skills_section.dart';
 import 'package:myportfolio/widgets/animated_scroll_section.dart';
 import 'package:myportfolio/widgets/nav_bar.dart';
 
+import 'package:myportfolio/widgets/mobile_nav_bar.dart';
+import 'package:myportfolio/widgets/responsive_layout.dart';
+
 class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
 
@@ -57,25 +60,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 800;
-
     return Scaffold(
-      drawer: isMobile ? _buildDrawer() : null,
-      appBar: isMobile
-          ? AppBar(
-              backgroundColor: AppConstants.primaryDark.withValues(alpha: 0.8),
-              elevation: 0,
-              title: Text(
-                'JV',
-                style: TextStyle(
-                  color: Colors.blue.shade300,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                ),
-              ),
-              centerTitle: true,
-            )
-          : null,
       body: Stack(
         children: [
           Scrollbar(
@@ -118,11 +103,15 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
                       color: AppConstants.secondaryDark,
                     ),
                     const FooterSection(),
+                    // Spacer for mobile navbar
+                    if (ResponsiveLayout.isMobile(context))
+                      const SizedBox(height: 100),
                   ],
                 ),
               ),
             ),
           ),
+          // Navbar Desktop
           Positioned(
             top: 0,
             left: 0,
@@ -132,6 +121,17 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
               scrollController: _scrollController,
             ),
           ),
+          // Navbar Mobile
+          if (ResponsiveLayout.isMobile(context))
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: MobileNavBar(
+                sections: _sectionKeys,
+                scrollController: _scrollController,
+              ),
+            ),
         ],
       ),
     );
@@ -149,45 +149,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
       child: AnimatedScrollSection(
         scrollController: _scrollController,
         child: child,
-      ),
-    );
-  }
-
-  Widget _buildDrawer() {
-    return Drawer(
-      backgroundColor: AppConstants.primaryDark,
-      child: Column(
-        children: [
-          DrawerHeader(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [AppConstants.primaryDark, AppConstants.secondaryDark],
-              ),
-            ),
-            child: const Center(
-              child: CircleAvatar(
-                radius: 40,
-                backgroundImage: AssetImage('assets/mypfp.jpg'),
-              ),
-            ),
-          ),
-          ..._sectionKeys.entries.map((entry) {
-            return ListTile(
-              title: Text(
-                entry.key,
-                style: const TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.pop(context);
-                Scrollable.ensureVisible(
-                  entry.value.currentContext!,
-                  duration: const Duration(milliseconds: 800),
-                  curve: Curves.easeInOutCubic,
-                );
-              },
-            );
-          }),
-        ],
       ),
     );
   }
