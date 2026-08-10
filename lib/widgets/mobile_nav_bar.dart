@@ -35,7 +35,7 @@ class _MobileNavBarState extends State<MobileNavBar> {
     'Formation': Icons.school_rounded,
     'Compétences': Icons.offline_bolt_rounded,
     'Projets': Icons.rocket_launch_rounded,
-    'Contact': Icons.alternate_email_rounded,
+    'Contact': Icons.quick_contacts_mail_rounded,
   };
 
   @override
