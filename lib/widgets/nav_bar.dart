@@ -1,7 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:myportfolio/utils/app_theme.dart';
-import 'package:myportfolio/widgets/responsive_layout.dart';
 
 class NavBar extends StatefulWidget {
   final Map<String, GlobalKey> sections;
@@ -68,35 +67,37 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    if (ResponsiveLayout.isMobile(context)) return const SizedBox.shrink();
-
     return Padding(
-      padding: const EdgeInsets.only(top: 20),
+      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
       child: Center(
         child: ClipRRect(
           borderRadius: BorderRadius.circular(30),
           child: BackdropFilter(
             filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
             child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
               decoration: AppTheme.glassDecoration(
                 color: Colors.blueGrey,
                 opacity: 0.1,
                 borderRadius: 30,
               ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: widget.sections.entries.map((entry) {
-                  final name = entry.key;
-                  final key = entry.value;
-                  final isActive = activeSection == name;
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: widget.sections.entries.map((entry) {
+                    final name = entry.key;
+                    final key = entry.value;
+                    final isActive = activeSection == name;
 
-                  return _NavBarItem(
-                    label: name,
-                    isActive: isActive,
-                    onTap: () => _scrollToSection(key),
-                  );
-                }).toList(),
+                    return _NavBarItem(
+                      label: name,
+                      isActive: isActive,
+                      onTap: () => _scrollToSection(key),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ),
