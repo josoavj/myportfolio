@@ -139,12 +139,12 @@ class _NavBarItemState extends State<_NavBarItem> {
             children: [
               Text(
                 widget.label,
-                style: TextStyle(
+                style: AppTheme.lexendRegular(
+                  14,
                   color: widget.isActive || isHovered
                       ? Colors.blue.shade300
                       : Colors.white70,
                   fontWeight: widget.isActive ? FontWeight.bold : FontWeight.normal,
-                  fontSize: 14,
                 ),
               ),
               const SizedBox(height: 4),
