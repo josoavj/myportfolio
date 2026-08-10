@@ -131,6 +131,7 @@ class _ContactSectionState extends State<ContactSection> {
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
+              fontFamily: 'Lexend',
             ),
           ).withFadeIn(delay: const Duration(milliseconds: 300)),
           const SizedBox(height: 25),
@@ -190,14 +191,17 @@ class _ContactSectionState extends State<ContactSection> {
                 ),
                 elevation: 0,
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.send),
-                  SizedBox(width: 10),
+                  const Icon(Icons.send),
+                  const SizedBox(width: 10),
                   Text(
                     'Envoyer le message',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: AppTheme.lexendRegular(
+                      16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -226,10 +230,10 @@ class _ContactSectionState extends State<ContactSection> {
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
-      style: const TextStyle(color: Colors.white),
+      style: AppTheme.lexendRegular(16, color: Colors.white),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.grey[400]),
+        labelStyle: AppTheme.lexendRegular(14, color: Colors.grey[400]),
         prefixIcon: Icon(icon, color: Colors.blue),
         filled: true,
         fillColor: AppConstants.secondaryDark,
@@ -286,6 +290,7 @@ class _ContactSectionState extends State<ContactSection> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  fontFamily: 'Lexend',
                 ),
               ).withFadeIn(delay: const Duration(milliseconds: 300)),
               const SizedBox(height: 25),
