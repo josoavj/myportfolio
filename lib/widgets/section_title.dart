@@ -20,18 +20,27 @@ class SectionTitle extends StatelessWidget {
       children: [
         Text(
           emoji != null ? '$emoji $title' : title,
-          style: isSmall ? AppTheme.titleMediumMobile() : AppTheme.titleLarge(),
+          style: isSmall ? AppTheme.titleMediumMobile() : AppTheme.titleLarge(size: 36),
         ).withSlideUp(
           delay: Duration.zero,
           distance: 20.0,
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 12),
         Container(
-          width: 60,
-          height: 4,
+          width: 80,
+          height: 5,
           decoration: BoxDecoration(
-            color: Colors.blue,
-            borderRadius: BorderRadius.circular(2),
+            gradient: const LinearGradient(
+              colors: [Colors.blue, Colors.cyan],
+            ),
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blue.withValues(alpha: 0.5),
+                blurRadius: 10,
+                offset: const Offset(0, 2),
+              ),
+            ],
           ),
         ).withScaleIn(
           delay: const Duration(milliseconds: 200),
