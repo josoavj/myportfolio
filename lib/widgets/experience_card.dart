@@ -81,111 +81,98 @@ class ExperienceCard extends StatelessWidget {
     double spacingMedium,
     double spacingLarge,
   ) {
-    return Column(
+    return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              padding: EdgeInsets.all(iconPadding),
-              decoration: BoxDecoration(
-                color: experience.color.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Icon(
-                experience.icon,
-                color: experience.color,
-                size: iconSize,
-              ),
-            ),
-            SizedBox(width: spacingLarge),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    experience.role,
-                    style: AppTheme.titleMedium(),
-                  ),
-                  SizedBox(height: spacingSmall),
-                  Row(
-                    children: [
-                      Icon(Icons.business, size: 16, color: Colors.grey[500]),
-                      SizedBox(width: spacingSmall),
-                      Flexible(
-                        child: Text(
-                          experience.company,
-                          style: AppTheme.subtitle(color: experience.color),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: spacingSmall),
-                  Row(
-                    children: [
-                      Icon(Icons.calendar_today,
-                          size: 14, color: Colors.grey[500]),
-                      SizedBox(width: spacingSmall),
-                      Flexible(
-                        child: Text(
-                          experience.period,
-                          style: AppTheme.labelSmall(),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      SizedBox(width: spacingLarge),
-                      Icon(Icons.location_on,
-                          size: 14, color: Colors.grey[500]),
-                      SizedBox(width: spacingSmall),
-                      Flexible(
-                        child: Text(
-                          experience.location,
-                          style: AppTheme.labelSmall(),
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: spacingLarge),
-        Text(
-          experience.description,
-          style: AppTheme.bodyLarge(),
-        ),
-        SizedBox(height: spacingLarge),
-        Text(
-          'Réalisations clés :',
-          style: AppTheme.subtitle(),
-        ),
-        SizedBox(height: spacingMedium),
-        ...experience.achievements.map((achievement) {
-          return Padding(
-            padding: EdgeInsets.only(bottom: spacingMedium),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Icon(
-                  Icons.check_circle,
-                  size: 18,
+        // Colonne de gauche : Infos entreprise
+        Expanded(
+          flex: 2,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                padding: EdgeInsets.all(iconPadding),
+                decoration: BoxDecoration(
+                  color: experience.color.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  experience.icon,
                   color: experience.color,
+                  size: iconSize,
                 ),
-                SizedBox(width: spacingMedium),
-                Expanded(
-                  child: Text(
-                    achievement,
-                    style: AppTheme.bodySmall(),
+              ),
+              const SizedBox(height: 20),
+              Text(
+                experience.role,
+                style: AppTheme.titleSmall(),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                experience.company,
+                style: AppTheme.subtitle(color: experience.color),
+              ),
+              const SizedBox(height: 15),
+              _buildInfoRow(Icons.calendar_today, experience.period),
+              const SizedBox(height: 8),
+              _buildInfoRow(Icons.location_on, experience.location),
+            ],
+          ),
+        ),
+        const SizedBox(width: 40),
+        // Colonne de droite : Description et réalisations
+        Expanded(
+          flex: 3,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                experience.description,
+                style: AppTheme.bodyLarge().copyWith(height: 1.6),
+              ),
+              const SizedBox(height: 25),
+              Text(
+                'Réalisations clés :',
+                style: AppTheme.label(color: experience.color),
+              ),
+              const SizedBox(height: 15),
+              ...experience.achievements.map((achievement) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Icon(Icons.bolt, size: 18, color: experience.color),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Text(
+                          achievement,
+                          style: AppTheme.bodyMedium(color: Colors.grey.shade300),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          );
-        }),
+                );
+              }),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, size: 14, color: Colors.grey[500]),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            text,
+            style: AppTheme.labelSmall(color: Colors.grey[400]),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
       ],
     );
   }
