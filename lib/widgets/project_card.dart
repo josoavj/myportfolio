@@ -168,9 +168,9 @@ class _ProjectCardState extends State<ProjectCard> {
           const SizedBox(width: 6),
           Text(
             category,
-            style: TextStyle(
+            style: AppTheme.lexendRegular(
+              10,
               color: color,
-              fontSize: 10,
               fontWeight: FontWeight.w600,
             ),
           ),
