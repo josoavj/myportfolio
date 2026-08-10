@@ -12,7 +12,6 @@ import 'package:myportfolio/widgets/animated_scroll_section.dart';
 import 'package:myportfolio/widgets/nav_bar.dart';
 
 import 'package:myportfolio/widgets/mobile_nav_bar.dart';
-import 'package:myportfolio/widgets/responsive_layout.dart';
 
 class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
@@ -60,6 +59,9 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final bool isCompact = width < 1000;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -104,7 +106,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
                     ),
                     const FooterSection(),
                     // Spacer for mobile navbar
-                    if (ResponsiveLayout.isMobile(context))
+                    if (isCompact)
                       const SizedBox(height: 100),
                   ],
                 ),
@@ -112,17 +114,18 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
             ),
           ),
           // Navbar Desktop
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: NavBar(
-              sections: _sectionKeys,
-              scrollController: _scrollController,
+          if (!isCompact)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: NavBar(
+                sections: _sectionKeys,
+                scrollController: _scrollController,
+              ),
             ),
-          ),
-          // Navbar Mobile
-          if (ResponsiveLayout.isMobile(context))
+          // Navbar Mobile/Tablet
+          if (isCompact)
             Positioned(
               bottom: 0,
               left: 0,
