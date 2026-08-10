@@ -51,9 +51,8 @@ class SkillsSection extends StatelessWidget {
   Widget _buildSkillGrid(BuildContext context, Map<String, List<Skill>> skillsByCategory, bool isMobile) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final cardWidth = isMobile 
-            ? constraints.maxWidth 
-            : (constraints.maxWidth - 50) / 2;
+        int columns = isMobile ? 1 : (constraints.maxWidth > 1000 ? 3 : 2);
+        final cardWidth = (constraints.maxWidth - (50 * (columns - 1))) / columns;
         
         return Wrap(
           spacing: 50,
@@ -132,7 +131,7 @@ class SkillsSection extends StatelessWidget {
             ).withScaleIn(delay: const Duration(milliseconds: 400)),
             StatCard(
               icon: Icons.hub_outlined,
-              title: 'APEXNova',
+              title: 'APEXNova Labs',
               subtitle: 'Membre Core',
               color: Colors.purple,
               width: cardWidth,

@@ -9,6 +9,7 @@ class AppTheme {
     double opacity = 0.12,
     double borderRadius = 20,
     double borderWidth = 1.5,
+    bool showShadow = true,
   }) {
     return BoxDecoration(
       gradient: LinearGradient(
@@ -24,13 +25,15 @@ class AppTheme {
         color: color.withValues(alpha: opacity * 3),
         width: borderWidth,
       ),
-      boxShadow: [
-        BoxShadow(
-          color: color.withValues(alpha: 0.08),
-          blurRadius: 20,
-          offset: const Offset(0, 4),
-        ),
-      ],
+      boxShadow: showShadow
+          ? [
+              BoxShadow(
+                color: color.withValues(alpha: 0.08),
+                blurRadius: 20,
+                offset: const Offset(0, 4),
+              ),
+            ]
+          : [],
     );
   }
 
@@ -39,11 +42,15 @@ class AppTheme {
     double fontSize, {
     Color? color,
     FontWeight fontWeight = FontWeight.normal,
+    double? letterSpacing,
+    double? height,
   }) {
     return GoogleFonts.lexend(
       fontSize: fontSize,
       color: color,
       fontWeight: fontWeight,
+      letterSpacing: letterSpacing,
+      height: height,
     );
   }
 

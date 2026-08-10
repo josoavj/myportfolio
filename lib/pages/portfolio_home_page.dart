@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/pages/about_section.dart';
 import 'package:myportfolio/pages/contact_section.dart';
 import 'package:myportfolio/pages/education_section.dart';
@@ -8,6 +9,9 @@ import 'package:myportfolio/pages/header_section.dart';
 import 'package:myportfolio/pages/projects_section.dart';
 import 'package:myportfolio/pages/skills_section.dart';
 import 'package:myportfolio/widgets/animated_scroll_section.dart';
+import 'package:myportfolio/widgets/nav_bar.dart';
+
+import 'package:myportfolio/widgets/mobile_nav_bar.dart';
 
 class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
@@ -21,6 +25,16 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late ScrollController _scrollController;
+
+  final Map<String, GlobalKey> _sectionKeys = {
+    'Accueil': GlobalKey(),
+    'À propos': GlobalKey(),
+    'Expérience': GlobalKey(),
+    'Formation': GlobalKey(),
+    'Compétences': GlobalKey(),
+    'Projets': GlobalKey(),
+    'Contact': GlobalKey(),
+  };
 
   @override
   void initState() {
@@ -45,45 +59,99 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final bool isCompact = width < 1000;
+
     return Scaffold(
-      body: SingleChildScrollView(
-        controller: _scrollController,
-        child: FadeTransition(
-          opacity: _fadeAnimation,
-          child: Column(
-            children: [
-              const HeaderSection(),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const AboutSection(),
+      body: Stack(
+        children: [
+          Scrollbar(
+            controller: _scrollController,
+            thickness: 8,
+            radius: const Radius.circular(10),
+            interactive: true,
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              child: FadeTransition(
+                opacity: _fadeAnimation,
+                child: Column(
+                  children: [
+                    HeaderSection(key: _sectionKeys['Accueil']),
+                    _buildSection(
+                      key: _sectionKeys['À propos']!,
+                      child: const AboutSection(),
+                    ),
+                    _buildSection(
+                      key: _sectionKeys['Expérience']!,
+                      child: const ExperienceSection(),
+                      color: AppConstants.secondaryDark,
+                    ),
+                    _buildSection(
+                      key: _sectionKeys['Formation']!,
+                      child: const EducationSection(),
+                    ),
+                    _buildSection(
+                      key: _sectionKeys['Compétences']!,
+                      child: const SkillsSection(),
+                      color: AppConstants.secondaryDark,
+                    ),
+                    _buildSection(
+                      key: _sectionKeys['Projets']!,
+                      child: const ProjectsSection(),
+                    ),
+                    _buildSection(
+                      key: _sectionKeys['Contact']!,
+                      child: const ContactSection(),
+                      color: AppConstants.secondaryDark,
+                    ),
+                    const FooterSection(),
+                    // Spacer for mobile navbar
+                    if (isCompact)
+                      const SizedBox(height: 100),
+                  ],
+                ),
               ),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const ExperienceSection(),
-              ),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const EducationSection(),
-              ),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const SkillsSection(),
-              ),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const ProjectsSection(),
-              ),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const ContactSection(),
-              ),
-              AnimatedScrollSection(
-                scrollController: _scrollController,
-                child: const FooterSection(),
-              ),
-            ],
+            ),
           ),
-        ),
+          // Navbar Desktop
+          if (!isCompact)
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              child: NavBar(
+                sections: _sectionKeys,
+                scrollController: _scrollController,
+              ),
+            ),
+          // Navbar Mobile/Tablet
+          if (isCompact)
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: MobileNavBar(
+                sections: _sectionKeys,
+                scrollController: _scrollController,
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSection({
+    required GlobalKey key,
+    required Widget child,
+    Color? color,
+  }) {
+    return Container(
+      key: key,
+      width: double.infinity,
+      color: color,
+      child: AnimatedScrollSection(
+        scrollController: _scrollController,
+        child: child,
       ),
     );
   }

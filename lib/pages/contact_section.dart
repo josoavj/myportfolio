@@ -131,6 +131,7 @@ class _ContactSectionState extends State<ContactSection> {
               fontSize: 24,
               fontWeight: FontWeight.bold,
               color: Colors.white,
+              fontFamily: 'Lexend',
             ),
           ).withFadeIn(delay: const Duration(milliseconds: 300)),
           const SizedBox(height: 25),
@@ -190,14 +191,17 @@ class _ContactSectionState extends State<ContactSection> {
                 ),
                 elevation: 0,
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.send),
-                  SizedBox(width: 10),
+                  const Icon(Icons.send),
+                  const SizedBox(width: 10),
                   Text(
                     'Envoyer le message',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    style: AppTheme.lexendRegular(
+                      16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ],
               ),
@@ -226,10 +230,10 @@ class _ContactSectionState extends State<ContactSection> {
       controller: controller,
       maxLines: maxLines,
       keyboardType: keyboardType,
-      style: const TextStyle(color: Colors.white),
+      style: AppTheme.lexendRegular(16, color: Colors.white),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.grey[400]),
+        labelStyle: AppTheme.lexendRegular(14, color: Colors.grey[400]),
         prefixIcon: Icon(icon, color: Colors.blue),
         filled: true,
         fillColor: AppConstants.secondaryDark,
@@ -286,6 +290,7 @@ class _ContactSectionState extends State<ContactSection> {
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
+                  fontFamily: 'Lexend',
                 ),
               ).withFadeIn(delay: const Duration(milliseconds: 300)),
               const SizedBox(height: 25),
@@ -309,137 +314,88 @@ class _ContactSectionState extends State<ContactSection> {
           distance: 20.0,
         ),
         const SizedBox(height: 20),
-        SizedBox(
-          width: double.infinity,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  const Color(0xFF25D366).withValues(alpha: 0.15),
-                  const Color(0xFF25D366).withValues(alpha: 0.05),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: const Color(0xFF25D366).withValues(alpha: 0.3),
-                width: 1.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFF25D366).withValues(alpha: 0.1),
-                  blurRadius: 15,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: ElevatedButton.icon(
-              onPressed: () =>
-                  UrlLauncherService.launchURL(AppConstants.whatsappUrl),
-              icon: const Icon(Icons.phone, size: 24),
-              label: const Text(
-                'WhatsApp',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.transparent,
-                foregroundColor: const Color(0xFF25D366),
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 0,
-              ),
-            ),
-          ),
-        ).withScaleIn(delay: const Duration(milliseconds: 500)),
+        _buildSocialContactButton(
+          icon: Icons.phone,
+          label: 'WhatsApp',
+          url: AppConstants.whatsappUrl,
+          color: const Color(0xFF25D366),
+          delay: 500,
+        ),
         const SizedBox(height: 15),
-        SizedBox(
-          width: double.infinity,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.blue.withValues(alpha: 0.15),
-                  Colors.blue.withValues(alpha: 0.05),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Colors.blue.withValues(alpha: 0.3),
-                width: 1.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.blue.withValues(alpha: 0.1),
-                  blurRadius: 15,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: OutlinedButton.icon(
-              onPressed: () =>
-                  UrlLauncherService.launchURL(AppConstants.githubUrl),
-              icon: const Icon(Icons.code),
-              label: const Text('GitHub'),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: Colors.white,
-                side: BorderSide.none,
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-          ),
-        ).withScaleIn(delay: const Duration(milliseconds: 550)),
+        _buildSocialContactButton(
+          icon: Icons.code,
+          label: 'GitHub',
+          url: AppConstants.githubUrl,
+          color: Colors.blue,
+          delay: 550,
+        ),
         const SizedBox(height: 15),
-        SizedBox(
-          width: double.infinity,
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.blue.withValues(alpha: 0.15),
-                  Colors.blue.withValues(alpha: 0.05),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: Colors.blue.withValues(alpha: 0.3),
-                width: 1.5,
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.blue.withValues(alpha: 0.1),
-                  blurRadius: 15,
-                  offset: const Offset(0, 4),
-                ),
-              ],
-            ),
-            child: OutlinedButton.icon(
-              onPressed: () =>
-                  UrlLauncherService.launchURL(AppConstants.linkedinUrl),
-              icon: const Icon(Icons.work),
-              label: const Text('LinkedIn'),
-              style: OutlinedButton.styleFrom(
-                foregroundColor: Colors.white,
-                side: BorderSide.none,
-                padding: const EdgeInsets.symmetric(vertical: 18),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-              ),
-            ),
-          ),
-        ).withScaleIn(delay: const Duration(milliseconds: 600)),
+        _buildSocialContactButton(
+          icon: Icons.work,
+          label: 'LinkedIn',
+          url: AppConstants.linkedinUrl,
+          color: Colors.blue,
+          delay: 600,
+        ),
       ],
     );
+  }
+
+  Widget _buildSocialContactButton({
+    required IconData icon,
+    required String label,
+    required String url,
+    required Color color,
+    required int delay,
+  }) {
+    return SizedBox(
+      width: double.infinity,
+      height: 60, // Hauteur standardisée
+      child: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              color.withValues(alpha: 0.15),
+              color.withValues(alpha: 0.05),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: color.withValues(alpha: 0.3),
+            width: 1.5,
+          ),
+          boxShadow: [
+            BoxShadow(
+              color: color.withValues(alpha: 0.1),
+              blurRadius: 15,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: ElevatedButton.icon(
+          onPressed: () => UrlLauncherService.launchURL(url),
+          icon: Icon(icon, size: 22),
+          label: Text(
+            label,
+            style: AppTheme.lexendRegular(
+              16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            foregroundColor: color,
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+          ),
+        ),
+      ),
+    ).withScaleIn(delay: Duration(milliseconds: delay));
   }
 
   Widget _buildContactInfoItem({
