@@ -6,6 +6,8 @@ import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/utils/extensions.dart';
 import 'package:myportfolio/widgets/project_card.dart';
 
+import '../utils/app_theme.dart';
+
 class AllProjectsModal extends StatefulWidget {
   final List<Project> projects;
   final int initialDisplayCount;
@@ -119,18 +121,17 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                 Expanded(
                   child: Text(
                     'Tous les projets (${filteredProjects.length})',
-                    style: TextStyle(
-                      fontSize: isSmall ? 20 : 28,
+                    style: AppTheme.lexendRegular(
+                      isSmall ? 20 : 28,
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
-                    ),
-                  ).withFadeIn(),
+                    )).withFadeIn(),
                 ),
                 IconButton(
                   icon: const Icon(Icons.close, color: Colors.white, size: 28),
                   onPressed: () => Navigator.pop(context),
                 ),
-              ],
+                ],
             ),
             const SizedBox(height: 20),
 
@@ -204,12 +205,12 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                                 const SizedBox(width: 6),
                                 Text(
                                   category,
-                                  style: TextStyle(
+                                  style: AppTheme.lexendRegular(
+                                    13,
                                     color: isSelected ? color : Colors.white,
                                     fontWeight: isSelected
                                         ? FontWeight.bold
                                         : FontWeight.normal,
-                                    fontSize: 13,
                                   ),
                                 ),
                               ],
@@ -287,12 +288,12 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                           const SizedBox(width: 6),
                           Text(
                             category,
-                            style: TextStyle(
+                            style: AppTheme.lexendRegular(
+                              14,
                               color: isSelected ? color : Colors.white,
                               fontWeight: isSelected
                                   ? FontWeight.bold
                                   : FontWeight.normal,
-                              fontSize: 14,
                             ),
                           ),
                         ],
@@ -318,9 +319,9 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                           const SizedBox(height: 16),
                           Text(
                             'Aucun projet trouvé',
-                            style: TextStyle(
+                            style: AppTheme.lexendRegular(
+                              18,
                               color: Colors.grey.withValues(alpha: 0.7),
-                              fontSize: 18,
                             ),
                           ),
                         ],
