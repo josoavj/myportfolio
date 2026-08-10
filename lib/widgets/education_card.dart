@@ -423,7 +423,7 @@ class EducationCard extends StatelessWidget {
                           ),
                         ),
                         Container(
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             horizontal: 8,
                             vertical: 4,
                           ),
@@ -434,8 +434,8 @@ class EducationCard extends StatelessWidget {
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
-                              Icon(Icons.star, size: 12, color: Colors.amber),
-                              SizedBox(width: 4),
+                              const Icon(Icons.star, size: 12, color: Colors.amber),
+                              const SizedBox(width: 4),
                               Text(
                                 project['stars']!,
                                 style: AppTheme.labelSmall(color: Colors.amber),
@@ -462,7 +462,7 @@ class EducationCard extends StatelessWidget {
                             .split(',')
                             .map((tech) => tech.trim())).map((tech) {
                           return Container(
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                               horizontal: 6,
                               vertical: 2,
                             ),
