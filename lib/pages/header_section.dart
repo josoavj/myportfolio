@@ -144,9 +144,9 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
       children: [
         Text(
           'Hello, je suis',
-          style: TextStyle(
+          style: AppTheme.lexendRegular(
+            isMobile ? 18 : 24,
             color: Colors.blue.shade300,
-            fontSize: isMobile ? 18 : 24,
             fontWeight: FontWeight.w500,
             letterSpacing: 1.2,
           ),
