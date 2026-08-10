@@ -85,222 +85,152 @@ class EducationCard extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
-          padding: EdgeInsets.all(iconPadding),
-          decoration: BoxDecoration(
-            color: education.color.withValues(alpha: 0.1),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Icon(
-            education.icon,
-            color: education.color,
-            size: iconSize,
-          ),
-        ),
-        SizedBox(width: spacingLarge),
+        // Colonne de gauche : Infos établissement
         Expanded(
+          flex: 2,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      education.degree,
-                      style: AppTheme.titleMedium(),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: spacingMedium, vertical: spacingSmall),
-                    decoration: BoxDecoration(
-                      color: education.color.withValues(alpha: 0.2),
-                      borderRadius: BorderRadius.circular(20),
-                      border: Border.all(
-                        color: education.color,
-                        width: 1,
-                      ),
-                    ),
-                    child: Text(
-                      education.status,
-                      style: AppTheme.labelSmall(color: education.color),
-                    ),
-                  ),
-                ],
+              Container(
+                padding: EdgeInsets.all(iconPadding),
+                decoration: BoxDecoration(
+                  color: education.color.withValues(alpha: 0.1),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Icon(
+                  education.icon,
+                  color: education.color,
+                  size: iconSize,
+                ),
               ),
-              SizedBox(height: spacingSmall),
+              const SizedBox(height: 20),
+              Text(
+                education.degree,
+                style: AppTheme.titleSmall(),
+              ),
+              const SizedBox(height: 10),
               Text(
                 education.school,
                 style: AppTheme.subtitle(color: education.color),
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
               ),
-              SizedBox(height: spacingSmall),
-              Row(
-                children: [
-                  Icon(Icons.calendar_today, size: 14, color: Colors.grey[500]),
-                  SizedBox(width: spacingSmall),
-                  Flexible(
-                    child: Text(
-                      education.period,
-                      style: AppTheme.labelSmall(),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                  SizedBox(width: spacingLarge),
-                  Icon(Icons.location_on, size: 14, color: Colors.grey[500]),
-                  SizedBox(width: spacingSmall),
-                  Flexible(
-                    child: Text(
-                      education.location,
-                      style: AppTheme.labelSmall(),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: spacingLarge),
+              const SizedBox(height: 15),
+              _buildInfoRow(Icons.calendar_today, education.period),
+              const SizedBox(height: 8),
+              _buildInfoRow(Icons.location_on, education.location),
+              const SizedBox(height: 20),
+              _buildStatusBadge(education.status, education.color),
+            ],
+          ),
+        ),
+        const SizedBox(width: 40),
+        // Colonne de droite : Description et projets
+        Expanded(
+          flex: 3,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Text(
                 education.description,
-                style: AppTheme.bodyMedium(),
+                style: AppTheme.bodyLarge().copyWith(height: 1.6),
               ),
-              if (education.thesisTitle != null &&
-                  education.thesisTitle!.isNotEmpty) ...[
-                SizedBox(height: spacingLarge),
-                Container(
-                  padding: EdgeInsets.all(spacingMedium),
-                  decoration: BoxDecoration(
-                    color: education.color.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(
-                        color: education.color.withValues(alpha: 0.3)),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Titre de la mémoire',
-                        style: AppTheme.labelSmall(color: education.color),
-                      ),
-                      SizedBox(height: spacingSmall),
-                      Text(
-                        education.thesisTitle!,
-                        style: AppTheme.subtitleSmall(),
-                      ),
-                    ],
-                  ),
-                ),
+              if (education.thesisTitle != null && education.thesisTitle!.isNotEmpty) ...[
+                const SizedBox(height: 25),
+                _buildThesisCard(education.thesisTitle!, education.color),
               ],
-              if (education.capstoneProjects != null &&
-                  education.capstoneProjects!.isNotEmpty) ...[
-                SizedBox(height: spacingLarge),
+              if (education.capstoneProjects != null && education.capstoneProjects!.isNotEmpty) ...[
+                const SizedBox(height: 30),
                 Text(
-                  '🎓 Projets de fin d\'étude',
-                  style: AppTheme.titleSmall(color: education.color),
+                  '🎓 Projets Académiques :',
+                  style: AppTheme.label(color: education.color),
                 ),
-                SizedBox(height: spacingMedium),
-                ...education.capstoneProjects!.map((project) {
-                  return Padding(
-                    padding: EdgeInsets.only(bottom: spacingMedium),
-                    child: Container(
-                      padding: EdgeInsets.all(spacingMedium),
-                      decoration: BoxDecoration(
-                        color: education.color.withValues(alpha: 0.08),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                            color: education.color.withValues(alpha: 0.2)),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Flexible(
-                                child: Text(
-                                  project['title']!,
-                                  style: AppTheme.subtitleSmall(
-                                      color: education.color),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                              Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 8,
-                                  vertical: 4,
-                                ),
-                                decoration: BoxDecoration(
-                                  color: Colors.amber.withValues(alpha: 0.2),
-                                  borderRadius: BorderRadius.circular(6),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.star,
-                                        size: 12, color: Colors.amber),
-                                    SizedBox(width: 4),
-                                    Text(
-                                      project['stars']!,
-                                      style: AppTheme.labelSmall(
-                                          color: Colors.amber),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                          SizedBox(height: spacingSmall),
-                          Text(
-                            project['description']!,
-                            style: AppTheme.labelSmall(),
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 2,
-                          ),
-                          if (project['technologies'] != null &&
-                              project['technologies']!.isNotEmpty) ...[
-                            SizedBox(height: spacingSmall),
-                            Wrap(
-                              spacing: 6,
-                              runSpacing: 4,
-                              children: (project['technologies']!
-                                  .split(',')
-                                  .map((tech) => tech.trim())).map((tech) {
-                                return Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 6,
-                                    vertical: 2,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.blue.withValues(alpha: 0.15),
-                                    borderRadius: BorderRadius.circular(4),
-                                  ),
-                                  child: Text(
-                                    tech,
-                                    style:
-                                        AppTheme.labelSmall(color: Colors.blue),
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ],
-                          SizedBox(height: spacingSmall),
-                          GestureDetector(
-                            onTap: () => _launchURL(project['url']!),
-                            child: Text(
-                              'Voir sur GitHub →',
-                              style: AppTheme.labelSmall(color: Colors.blue),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
+                const SizedBox(height: 15),
+                ...education.capstoneProjects!.map((project) => _buildProjectMiniCard(project, education.color)),
               ],
             ],
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildInfoRow(IconData icon, String text) {
+    return Row(
+      children: [
+        Icon(icon, size: 14, color: Colors.grey[500]),
+        const SizedBox(width: 8),
+        Expanded(
+          child: Text(
+            text,
+            style: AppTheme.labelSmall(color: Colors.grey[400]),
+            overflow: TextOverflow.ellipsis,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildStatusBadge(String status, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      decoration: BoxDecoration(
+        color: color.withValues(alpha: 0.15),
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: color.withValues(alpha: 0.4)),
+      ),
+      child: Text(
+        status,
+        style: AppTheme.labelSmall(color: color),
+      ),
+    );
+  }
+
+  Widget _buildThesisCard(String title, Color color) {
+    return Container(
+      padding: const EdgeInsets.all(20),
+      decoration: AppTheme.glassDecoration(color: color, opacity: 0.08),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Mémoire de recherche', style: AppTheme.labelSmall(color: color)),
+          const SizedBox(height: 8),
+          Text(title, style: AppTheme.bodyMedium(color: Colors.white)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildProjectMiniCard(Map<String, String> project, Color color) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: AppTheme.glassDecoration(color: color, opacity: 0.05),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    project['title']!,
+                    style: AppTheme.subtitleSmall(color: color),
+                  ),
+                ),
+                const Icon(Icons.star, size: 14, color: Colors.amber),
+                const SizedBox(width: 4),
+                Text(project['stars']!, style: AppTheme.labelSmall()),
+              ],
+            ),
+            const SizedBox(height: 8),
+            Text(project['description']!, style: AppTheme.bodySmall()),
+            const SizedBox(height: 12),
+            GestureDetector(
+              onTap: () => _launchURL(project['url']!),
+              child: Text('Dépôt GitHub →', style: AppTheme.labelSmall(color: Colors.blue.shade300)),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
