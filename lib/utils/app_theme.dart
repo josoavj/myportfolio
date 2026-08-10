@@ -42,11 +42,15 @@ class AppTheme {
     double fontSize, {
     Color? color,
     FontWeight fontWeight = FontWeight.normal,
+    double? letterSpacing,
+    double? height,
   }) {
     return GoogleFonts.lexend(
       fontSize: fontSize,
       color: color,
       fontWeight: fontWeight,
+      letterSpacing: letterSpacing,
+      height: height,
     );
   }
 
