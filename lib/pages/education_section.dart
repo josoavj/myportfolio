@@ -17,22 +17,24 @@ class EducationSection extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(
           horizontal: horizontalPadding, vertical: verticalPadding),
-      child: Column(
-        children: [
-          const SectionTitle(title: 'Formation Académique', emoji: null),
-          SizedBox(height: spacingBetweenTitle),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1000),
-            child: Column(
-              children: education.asMap().entries.map((entry) {
-                return EducationCard(
-                  education: entry.value,
-                  index: entry.key,
-                );
-              }).toList(),
-            ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
+            children: [
+              const SectionTitle(title: 'Formation Académique', emoji: null),
+              SizedBox(height: spacingBetweenTitle),
+              Column(
+                children: education.asMap().entries.map((entry) {
+                  return EducationCard(
+                    education: entry.value,
+                    index: entry.key,
+                  );
+                }).toList(),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
