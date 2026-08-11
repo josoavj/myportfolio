@@ -27,73 +27,71 @@ class ProjectsSection extends StatelessWidget {
         horizontal: isMobile ? 16 : 40,
         vertical: 80,
       ),
-      child: Column(
-        children: [
-          const SectionTitle(title: 'Mes Projets'),
-          const SizedBox(height: 40),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: Column(
-              children: [
-                LayoutBuilder(
-                  builder: (context, constraints) {
-                    int crossAxisCount = 3;
-                    if (constraints.maxWidth < 600) {
-                      crossAxisCount = 1;
-                    } else if (constraints.maxWidth < 950) {
-                      crossAxisCount = 2;
-                    }
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
+            children: [
+              const SectionTitle(title: 'Mes Projets'),
+              const SizedBox(height: 40),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  int crossAxisCount = 3;
+                  if (constraints.maxWidth < 600) {
+                    crossAxisCount = 1;
+                  } else if (constraints.maxWidth < 950) {
+                    crossAxisCount = 2;
+                  }
 
-                    return GridView.builder(
-                      shrinkWrap: true,
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: crossAxisCount,
-                        crossAxisSpacing: 25,
-                        mainAxisSpacing: 25,
-                        childAspectRatio: crossAxisCount == 1 ? 1.5 : 0.85,
-                      ),
-                      itemCount: displayedProjects.length,
-                      itemBuilder: (context, index) {
-                        return ProjectCard(
-                          project: {
-                            'name': displayedProjects[index].name,
-                            'description': displayedProjects[index].description,
-                            'language': displayedProjects[index].language,
-                            'stars': displayedProjects[index].stars,
-                            'url': displayedProjects[index].url,
-                            'category': displayedProjects[index].category,
-                          },
-                          languageColor: displayedProjects[index]
-                              .language
-                              .getLanguageColor(),
-                          index: index,
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => ProjectDetailPage(
-                                  project: displayedProjects[index],
-                                ),
+                  return GridView.builder(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: crossAxisCount,
+                      crossAxisSpacing: 25,
+                      mainAxisSpacing: 25,
+                      childAspectRatio: crossAxisCount == 1 ? 1.5 : 0.85,
+                    ),
+                    itemCount: displayedProjects.length,
+                    itemBuilder: (context, index) {
+                      return ProjectCard(
+                        project: {
+                          'name': displayedProjects[index].name,
+                          'description': displayedProjects[index].description,
+                          'language': displayedProjects[index].language,
+                          'stars': displayedProjects[index].stars,
+                          'url': displayedProjects[index].url,
+                          'category': displayedProjects[index].category,
+                        },
+                        languageColor: displayedProjects[index]
+                            .language
+                            .getLanguageColor(),
+                        index: index,
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => ProjectDetailPage(
+                                project: displayedProjects[index],
                               ),
-                            );
-                          },
-                        ).withSlideUp(
-                          delay: Duration(milliseconds: 200 + (index * 100)),
-                          distance: 20,
-                        );
-                      },
-                    );
-                  },
-                ),
-                if (hasMoreProjects) ...[
-                  const SizedBox(height: 50),
-                  _buildViewAllButton(context, List<Project>.from(projects)),
-                ],
+                            ),
+                          );
+                        },
+                      ).withSlideUp(
+                        delay: Duration(milliseconds: 200 + (index * 100)),
+                        distance: 20,
+                      );
+                    },
+                  );
+                },
+              ),
+              if (hasMoreProjects) ...[
+                const SizedBox(height: 50),
+                _buildViewAllButton(context, List<Project>.from(projects)),
               ],
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
