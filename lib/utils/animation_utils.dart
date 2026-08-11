@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/// Widget pour ajouter un délai à une animation
+/// Widget pour ajouter un délai à une animation sans casser le layout
 class DelayedAnimation extends StatefulWidget {
   final Duration delay;
   final Widget child;
@@ -16,58 +16,50 @@ class DelayedAnimation extends StatefulWidget {
 }
 
 class _DelayedAnimationState extends State<DelayedAnimation> {
-  late Future<void> _delayFuture;
+  bool _show = false;
 
   @override
   void initState() {
     super.initState();
-    _delayFuture = Future.delayed(widget.delay);
+    Future.delayed(widget.delay, () {
+      if (mounted) {
+        setState(() {
+          _show = true;
+        });
+      }
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<void>(
-      future: _delayFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          return widget.child;
-        }
-        return const SizedBox.shrink();
-      },
+    // On garde l'espace occupé (Opacity 0) au lieu de SizedBox.shrink
+    // pour éviter les trous dans les GridView
+    return AnimatedOpacity(
+      duration: const Duration(milliseconds: 400),
+      opacity: _show ? 1.0 : 0.0,
+      child: widget.child,
     );
   }
 }
 
 /// Classe utilitaire pour les animations réutilisables
 class AnimationUtils {
-  /// Animation fade-in simple avec support du delay
   static Widget fadeIn({
     required Widget child,
-    Duration duration = const Duration(milliseconds: 1200),
+    Duration duration = const Duration(milliseconds: 1000),
     Duration delay = Duration.zero,
   }) {
     return DelayedAnimation(
       delay: delay,
-      child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0.0, end: 1.0),
-        duration: duration,
-        builder: (context, value, child) {
-          return Opacity(
-            opacity: value,
-            child: child,
-          );
-        },
-        child: child,
-      ),
+      child: child,
     );
   }
 
-  /// Animation slide-up depuis le bas avec support du delay
   static Widget slideUp({
     required Widget child,
-    Duration duration = const Duration(milliseconds: 1200),
+    Duration duration = const Duration(milliseconds: 800),
     Duration delay = Duration.zero,
-    double distance = 30.0,
+    double distance = 20.0,
   }) {
     return DelayedAnimation(
       delay: delay,
@@ -77,6 +69,7 @@ class AnimationUtils {
           end: Offset.zero,
         ),
         duration: duration,
+        curve: Curves.easeOutCubic,
         builder: (context, offset, child) {
           return Transform.translate(
             offset: offset,
@@ -88,18 +81,17 @@ class AnimationUtils {
     );
   }
 
-  /// Animation scale avec bounce et support du delay
   static Widget scaleIn({
     required Widget child,
-    Duration duration = const Duration(milliseconds: 1000),
+    Duration duration = const Duration(milliseconds: 800),
     Duration delay = Duration.zero,
   }) {
     return DelayedAnimation(
       delay: delay,
       child: TweenAnimationBuilder<double>(
-        tween: Tween(begin: 0.0, end: 1.0),
+        tween: Tween(begin: 0.8, end: 1.0),
         duration: duration,
-        curve: Curves.elasticOut,
+        curve: Curves.easeOutBack,
         builder: (context, value, child) {
           return Transform.scale(
             scale: value,
@@ -111,12 +103,11 @@ class AnimationUtils {
     );
   }
 
-  /// Animation pour une liste d'enfants avec stagger
   static Widget staggeredFadeSlide({
     required List<Widget> children,
     Duration baseDelay = Duration.zero,
     Duration staggerDelay = const Duration(milliseconds: 100),
-    Duration duration = const Duration(milliseconds: 900),
+    Duration duration = const Duration(milliseconds: 800),
     required Widget Function(Widget, Animation<double>) builder,
   }) {
     return Wrap(
@@ -127,79 +118,45 @@ class AnimationUtils {
         children.length,
         (index) {
           final delay = baseDelay + (staggerDelay * index);
-          return DelayedAnimation(
+          return slideUp(
+            child: builder(children[index], const AlwaysStoppedAnimation(1.0)),
             delay: delay,
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(begin: 0.0, end: 1.0),
-              duration: duration,
-              curve: Curves.easeOut,
-              builder: (context, value, child) {
-                return Transform.translate(
-                  offset: Offset(0, (1 - value) * 20),
-                  child: Opacity(
-                    opacity: value,
-                    child:
-                        builder(children[index], AlwaysStoppedAnimation(value)),
-                  ),
-                );
-              },
-              child: children[index],
-            ),
+            duration: duration,
           );
         },
       ),
     );
   }
 
-  /// Animation pulse pour attirer l'attention
   static Widget pulse({
     required Widget child,
     bool enabled = true,
   }) {
     if (!enabled) return child;
-
     return TweenAnimationBuilder<double>(
-      tween: Tween(begin: 1.0, end: 1.05),
+      tween: Tween(begin: 1.0, end: 1.02),
       duration: const Duration(seconds: 2),
       curve: Curves.easeInOut,
-      onEnd: () {},
       builder: (context, value, child) {
-        return Transform.scale(
-          scale: value,
-          child: child,
-        );
+        return Transform.scale(scale: value, child: child);
       },
-      child: child,
-    );
-  }
-
-  /// Animation de couleur pour hover effects
-  static Widget hoverColor({
-    required Widget child,
-    required Color normalColor,
-    required Color hoverColor,
-  }) {
-    return MouseRegion(
-      onEnter: (_) {},
-      onExit: (_) {},
       child: child,
     );
   }
 }
 
-/// Extension pour ajouter facilement des animations aux widgets
 extension AnimationExtension on Widget {
   Widget withFadeIn({
-    Duration duration = const Duration(milliseconds: 1200),
+    Duration duration = const Duration(milliseconds: 1000),
     Duration delay = Duration.zero,
   }) {
     return AnimationUtils.fadeIn(child: this, duration: duration, delay: delay);
   }
 
   Widget withSlideUp({
-    Duration duration = const Duration(milliseconds: 1200),
+    Duration duration = const Duration(milliseconds: 800),
     Duration delay = Duration.zero,
-    double distance = 30.0,
+    double distance = 20.0,
   }) {
     return AnimationUtils.slideUp(
       child: this,
@@ -210,11 +167,10 @@ extension AnimationExtension on Widget {
   }
 
   Widget withScaleIn({
-    Duration duration = const Duration(milliseconds: 1000),
+    Duration duration = const Duration(milliseconds: 800),
     Duration delay = Duration.zero,
   }) {
-    return AnimationUtils.scaleIn(
-        child: this, duration: duration, delay: delay);
+    return AnimationUtils.scaleIn(child: this, duration: duration, delay: delay);
   }
 
   Widget withPulse({bool enabled = true}) {
