@@ -148,6 +148,7 @@ class SkillsSection extends StatelessWidget {
         Text(
           'Technologies & Écosystème',
           style: AppTheme.titleMedium(),
+          textAlign: TextAlign.center,
         ).withFadeIn(),
         const SizedBox(height: 40),
         Wrap(
@@ -177,11 +178,13 @@ class SkillsSection extends StatelessWidget {
         Text(
           'Activité Open Source',
           style: AppTheme.titleMedium(),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 15),
         Text(
           'Suivi en temps réel de mes contributions GitHub',
           style: AppTheme.subtitleSmall(),
+          textAlign: TextAlign.center,
         ),
         const SizedBox(height: 50),
         const GitHubStatsWidget(),
