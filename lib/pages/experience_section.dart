@@ -19,22 +19,24 @@ class ExperienceSection extends StatelessWidget {
       padding: EdgeInsets.symmetric(
           horizontal: horizontalPadding, vertical: verticalPadding),
       color: AppConstants.secondaryDark,
-      child: Column(
-        children: [
-          const SectionTitle(title: 'Expérience Professionnelle', emoji: null),
-          SizedBox(height: spacingBetweenTitle),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1000),
-            child: Column(
-              children: experiences.asMap().entries.map((entry) {
-                return ExperienceCard(
-                  experience: entry.value,
-                  index: entry.key,
-                );
-              }).toList(),
-            ),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
+            children: [
+              const SectionTitle(title: 'Expérience Professionnelle', emoji: null),
+              SizedBox(height: spacingBetweenTitle),
+              Column(
+                children: experiences.asMap().entries.map((entry) {
+                  return ExperienceCard(
+                    experience: entry.value,
+                    index: entry.key,
+                  );
+                }).toList(),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
