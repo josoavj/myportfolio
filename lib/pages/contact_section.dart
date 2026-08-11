@@ -49,50 +49,52 @@ class _ContactSectionState extends State<ContactSection> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
       color: AppConstants.secondaryDark,
-      child: Column(
-        children: [
-          const SectionTitle(title: 'Contactez-moi'),
-          const SizedBox(height: 40),
-          Text(
-            'Je suis ouvert aux collaborations et discussions!',
-            style: AppTheme.bodyLarge(),
-            textAlign: TextAlign.center,
-          ).withFadeIn(delay: const Duration(milliseconds: 200)),
-          const SizedBox(height: 40),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 1200),
-            child: LayoutBuilder(
-              builder: (context, constraints) {
-                final isDesktop = constraints.maxWidth > 900;
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1200),
+          child: Column(
+            children: [
+              const SectionTitle(title: 'Contactez-moi'),
+              const SizedBox(height: 40),
+              Text(
+                'Je suis ouvert aux collaborations et discussions!',
+                style: AppTheme.bodyLarge(),
+                textAlign: TextAlign.center,
+              ).withFadeIn(delay: const Duration(milliseconds: 200)),
+              const SizedBox(height: 40),
+              LayoutBuilder(
+                builder: (context, constraints) {
+                  final isDesktop = constraints.maxWidth > 900;
 
-                if (isDesktop) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: _buildContactForm(),
-                      ),
-                      const SizedBox(width: 40),
-                      Expanded(
-                        flex: 2,
-                        child: _buildContactInfo(),
-                      ),
-                    ],
-                  );
-                } else {
-                  return Column(
-                    children: [
-                      _buildContactForm(),
-                      const SizedBox(height: 30),
-                      _buildContactInfo(),
-                    ],
-                  );
-                }
-              },
-            ),
+                  if (isDesktop) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: _buildContactForm(),
+                        ),
+                        const SizedBox(width: 40),
+                        Expanded(
+                          flex: 2,
+                          child: _buildContactInfo(),
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        _buildContactForm(),
+                        const SizedBox(height: 30),
+                        _buildContactInfo(),
+                      ],
+                    );
+                  }
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

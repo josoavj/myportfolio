@@ -2,7 +2,7 @@ name: myportfolio
 description: Portfolio de Josoa Vonjiniaina - Full Stack Developer, spécialisé en Flutter, Linux et sécurité.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 
-version: 1.5.0+1
+version: 2.0.0+1
 
 environment:
   sdk: '>=3.1.0 <4.0.0'
