@@ -20,7 +20,8 @@ releases/
 ├── web-v1.4.0/      # Web build v1.4.0
 ├── web-v1.5.0/      # Web build v1.5.0
 ├── web-v1.6.0/      # Web build v1.6.0 (actuelle - servie par Netlify)
-├── current/         # Symlink → web-v1.6.0 (servie par Netlify)
+├── web-v2.0.0/      # Web build v2.0.0
+├── current/         # Symlink → web-v2.0.0 (servie par Netlify)
 └── .gitkeep         # Garde le dossier dans Git
 ```
 
