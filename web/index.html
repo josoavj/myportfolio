@@ -62,31 +62,20 @@
 <body>
   <div id="loading-container">
     <div class="loader"></div>
-    <div class="loading-text">Chargement...</div>
+    <div class="loading-text">Initialisation...</div>
   </div>
 
-  <script src="flutter.js" defer></script>
+  <!-- Le script flutter_bootstrap.js est généré au build et contient toute la config nécessaire -->
+  <script src="flutter_bootstrap.js" async></script>
+
   <script>
-    window.addEventListener('load', function(ev) {
-      _flutter.loader.load({
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({
-            // 'auto' choisit HTML pour la rapidité ou CanvasKit pour la précision selon le device
-            renderer: "auto",
-            useColorEmoji: true,
-          }).then(function(appRunner) {
-            appRunner.runApp();
-            // Retrait progressif du loader pour éviter le "flash" blanc
-            setTimeout(function() {
-              var loader = document.querySelector('#loading-container');
-              if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(function() { loader.remove(); }, 400);
-              }
-            }, 200);
-          });
-        }
-      });
+    // Hook pour masquer le loader une fois que Flutter a démarré
+    window.addEventListener('flutter-first-frame', function() {
+      var loader = document.querySelector('#loading-container');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() { loader.remove(); }, 400);
+      }
     });
   </script>
 </body>
