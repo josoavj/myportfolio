@@ -131,7 +131,7 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
           ),
           child: const CircleAvatar(
             backgroundColor: AppConstants.secondaryDark,
-            backgroundImage: AssetImage('assets/mypfp.jpg'),
+            backgroundImage: AssetImage('assets/mypfp.webp'),
           ).withScaleIn(),
         );
       },
