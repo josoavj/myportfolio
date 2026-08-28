@@ -62,17 +62,28 @@
   </div>
 
   <script>
-    // Suppression du loader dès le premier rendu de Flutter
-    window.addEventListener('flutter-first-frame', function() {
+    // Configuration Flutter 3.47+ optimisée
+    window.flutterConfiguration = {
+      renderer: "auto",
+      useColorEmoji: true
+    };
+
+    // Fail-safe : Masquer le loader après 8s quoi qu'il arrive
+    var timeout = setTimeout(removeLoader, 8000);
+
+    function removeLoader() {
+      clearTimeout(timeout);
       var loader = document.querySelector('#loading-container');
       if (loader) {
         loader.style.opacity = '0';
         setTimeout(function() { loader.remove(); }, 400);
       }
-    });
+    }
+
+    window.addEventListener('flutter-first-frame', removeLoader);
   </script>
 
-  <!-- Le moteur de bootstrap moderne de Flutter 3.47+ -->
+  <!-- Bootstrap Flutter -->
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
