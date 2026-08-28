@@ -1,59 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
-
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
-
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
-
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
-
+  <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Portfolio de Josoa Vonjiniaina - Développeur Full Stack, expert Flutter, Backend et Cybersécurité.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="MyPortfolio">
+  <meta name="apple-mobile-web-app-title" content="Josoa Portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
-
-  <!-- Android Logo -->
-  <link rel="icon" type="image/png" href="icons/android-logo.png" sizes="192x192"/>
-
-  <title>MyPortfolio</title>
+  <title>Josoa Vonjiniaina | Portfolio</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = null;
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
+  <style>
+    body {
+      background-color: #0D1117;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .loader {
+      width: 48px;
+      height: 48px;
+      border: 5px solid #FFF;
+      border-bottom-color: #2196F3;
+      border-radius: 50%;
+      display: inline-block;
+      box-sizing: border-box;
+      animation: rotation 1s linear infinite;
+    }
+    @keyframes rotation {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      color: #FFF;
+      font-family: 'Lexend', sans-serif;
+      margin-top: 20px;
+      letter-spacing: 1px;
+      opacity: 0.8;
+    }
+    #loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: opacity 0.4s ease-out;
+    }
+  </style>
 </head>
 <body>
+  <div id="loading-container">
+    <div class="loader"></div>
+    <div class="loading-text">Chargement...</div>
+  </div>
+
+  <script src="flutter.js" defer></script>
   <script>
     window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
+      _flutter.loader.load({
         onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+          engineInitializer.initializeEngine({
+            // 'auto' choisit HTML pour la rapidité ou CanvasKit pour la précision selon le device
+            renderer: "auto",
+            useColorEmoji: true,
+          }).then(function(appRunner) {
             appRunner.runApp();
+            // Retrait progressif du loader pour éviter le "flash" blanc
+            setTimeout(function() {
+              var loader = document.querySelector('#loading-container');
+              if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(function() { loader.remove(); }, 400);
+              }
+            }, 200);
           });
         }
       });
