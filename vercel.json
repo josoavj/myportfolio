@@ -2,7 +2,7 @@
   "outputDirectory": "releases/current",
   "rewrites": [
     {
-      "source": "/:path((?!.*\\.).*)",
+      "source": "/((?!.*\\.).*)",
       "destination": "/index.html"
     }
   ],
