@@ -11,7 +11,9 @@ class AppTheme {
     double borderWidth = 1.5,
     bool showShadow = true,
   }) {
+    // Note: Sur Web, si les perfs sont mauvaises, augmenter l'opacité et retirer le flou
     return BoxDecoration(
+      color: color.withValues(alpha: opacity),
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
