@@ -3,15 +3,11 @@
 <head>
   <base href="$FLUTTER_BASE_HREF">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Portfolio de Josoa Vonjiniaina - Développeur Full Stack, expert Flutter, Backend et Cybersécurité.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Meta tags pour la Web App -->
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Josoa Portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
@@ -46,7 +42,7 @@
     }
     .loading-text {
       color: #FFF;
-      font-family: 'Lexend', sans-serif;
+      font-family: sans-serif;
       margin-top: 20px;
       letter-spacing: 1px;
       opacity: 0.8;
@@ -65,29 +61,29 @@
     <div class="loading-text">Chargement...</div>
   </div>
 
-  <script src="flutter.js" defer></script>
   <script>
-    window.addEventListener('load', function(ev) {
-      _flutter.loader.load({
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine({
-            // 'auto' choisit HTML pour la rapidité ou CanvasKit pour la précision selon le device
-            renderer: "auto",
-            useColorEmoji: true,
-          }).then(function(appRunner) {
-            appRunner.runApp();
-            // Retrait progressif du loader pour éviter le "flash" blanc
-            setTimeout(function() {
-              var loader = document.querySelector('#loading-container');
-              if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(function() { loader.remove(); }, 400);
-              }
-            }, 200);
-          });
-        }
-      });
-    });
+    // Configuration Flutter 3.47+ optimisée
+    window.flutterConfiguration = {
+      renderer: "auto",
+      useColorEmoji: true
+    };
+
+    // Fail-safe : Masquer le loader après 8s quoi qu'il arrive
+    var timeout = setTimeout(removeLoader, 8000);
+
+    function removeLoader() {
+      clearTimeout(timeout);
+      var loader = document.querySelector('#loading-container');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() { loader.remove(); }, 400);
+      }
+    }
+
+    window.addEventListener('flutter-first-frame', removeLoader);
   </script>
+
+  <!-- Bootstrap Flutter -->
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>

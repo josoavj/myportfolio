@@ -141,7 +141,11 @@ class CompiledApp {
       EF: x0 => x0.pointerType,
       EG: (d, digits) => d.toFixed(digits),
       EH: (x0,x1) => x0.querySelector(x1),
-      EI: () => new AbortController(),
+      EI: () => {
+        return typeof process != "undefined" &&
+               Object.prototype.toString.call(process) == "[object process]" &&
+               process.platform == "win32"
+      },
       EJ: (x0,x1) => { x0.crossOrigin = x1 },
       F: () => new Error().stack,
       FB: x0 => new Float32Array(x0),
@@ -151,7 +155,13 @@ class CompiledApp {
       FF: x0 => x0.pointerId,
       FG: x0 => x0.maxHeight,
       FH: (x0,x1) => { x0.title = x1 },
-      FI: (x0,x1,x2,x3,x4,x5) => ({method: x0,headers: x1,body: x2,credentials: x3,redirect: x4,signal: x5}),
+      FI: () => {
+        // On browsers return `globalThis.location.href`
+        if (globalThis.location != null) {
+          return globalThis.location.href;
+        }
+        return null;
+      },
       FJ: (x0,x1) => x0.createObjectURL(x1),
       G: s => JSON.stringify(s),
       GB: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
@@ -166,7 +176,7 @@ class CompiledApp {
       GF: x0 => x0.getCoalescedEvents(),
       GG: x0 => x0.maxWidth,
       GH: (x0,x1) => x0.vibrate(x1),
-      GI: (x0,x1) => globalThis.fetch(x0,x1),
+      GI: (o, p) => p in o,
       GJ: x0 => x0.URL,
       H: Function.prototype.call.bind(Number.prototype.toString),
       HB: x0 => new Float64Array(x0),
@@ -176,7 +186,7 @@ class CompiledApp {
       HF: (x0,x1) => x0.getModifierState(x1),
       HG: x0 => x0.minHeight,
       HH: x0 => x0.arrayBuffer(),
-      HI: (x0,x1) => x0.get(x1),
+      HI: x0 => x0.groups,
       HJ: x0 => new Blob(x0),
       I: Function.prototype.call.bind(String.prototype.indexOf),
       IB: (jsArray, jsArrayOffset, wasmArray, wasmArrayOffset, length) => {
@@ -199,7 +209,7 @@ class CompiledApp {
         }
         return 3;
       },
-      II: (wasmFunction,f) => finalizeWrapper(f, function(x0,x1,x2) { return wasmFunction(f,arguments.length,x0,x1,x2) }),
+      II: x0 => x0.abort(),
       IJ: (x0,x1,x2,x3,x4) => ({type: x0,data: x1,premultiplyAlpha: x2,colorSpaceConversion: x3,preferAnimation: x4}),
       J: (s, p, i) => s.lastIndexOf(p, i),
       JB: x0 => new ArrayBuffer(x0),
@@ -209,7 +219,7 @@ class CompiledApp {
       JF: (x0,x1) => x0[x1],
       JG: (x0,x1) => x0.removeProperty(x1),
       JH: x0 => x0.status,
-      JI: (x0,x1) => x0.forEach(x1),
+      JI: () => new AbortController(),
       JJ: x0 => new window.ImageDecoder(x0),
       K: (exn) => {
         if (exn instanceof Error) {
@@ -225,7 +235,7 @@ class CompiledApp {
       KF: x0 => x0.index,
       KG: (x0,x1) => x0.add(x1),
       KH: (x0,x1) => x0.fetch(x1),
-      KI: x0 => x0.name,
+      KI: (x0,x1,x2,x3,x4,x5) => ({method: x0,headers: x1,body: x2,credentials: x3,redirect: x4,signal: x5}),
       KJ: x0 => x0.name,
       L: o => o === undefined,
       LB: (x0,x1,x2) => new DataView(x0,x1,x2),
@@ -236,7 +246,7 @@ class CompiledApp {
       LF: s => s.toUpperCase(),
       LG: x0 => x0.data,
       LH: x0 => x0.content,
-      LI: x0 => x0.statusText,
+      LI: (x0,x1) => globalThis.fetch(x0,x1),
       LJ: x0 => x0.repetitionCount,
       M: o => String(o),
       MB: (o, p) => o[p],
@@ -246,7 +256,7 @@ class CompiledApp {
       MF: x0 => x0.pop(),
       MG: (x0,x1) => { x0.scrollTop = x1 },
       MH: x0 => x0.document,
-      MI: x0 => x0.url,
+      MI: (x0,x1) => x0.get(x1),
       MJ: x0 => x0.frameCount,
       N: (c) =>
       queueMicrotask(() => dartInstance.exports.$invokeCallback(c)),
@@ -257,7 +267,7 @@ class CompiledApp {
       NF: x0 => x0.flags,
       NG: (x0,x1,x2) => x0.setSelectionRange(x1,x2),
       NH: () => typeof dartUseDateNowForTicks !== "undefined",
-      NI: x0 => x0.status,
+      NI: (wasmFunction,f) => finalizeWrapper(f, function(x0,x1,x2) { return wasmFunction(f,arguments.length,x0,x1,x2) }),
       NJ: x0 => x0.selectedTrack,
       O: (x0,x1) => x0.didCreateEngineInitializer(x1),
       OB: Function.prototype.call.bind(Object.getOwnPropertyDescriptor(DataView.prototype, 'byteLength').get),
@@ -271,7 +281,7 @@ class CompiledApp {
       OF: (a, s) => a.join(s),
       OG: (x0,x1) => { x0.value = x1 },
       OH: () => Date.now(),
-      OI: x0 => x0.cancel(),
+      OI: (x0,x1) => x0.forEach(x1),
       OJ: x0 => x0.completed,
       P: (wasmFunction,f) => finalizeWrapper(f, function(x0) { return wasmFunction(f,arguments.length,x0) }),
       PB: o => o.byteOffset,
@@ -281,7 +291,7 @@ class CompiledApp {
       PF: (x0,x1) => x0.error(x1),
       PG: (x0,x1,x2) => x0.setSelectionRange(x1,x2),
       PH: () => 1000 * performance.now(),
-      PI: x0 => x0.getReader(),
+      PI: x0 => x0.name,
       PJ: x0 => x0.ready,
       Q: (wasmFunction,f) => finalizeWrapper(f, function() { return wasmFunction(f,arguments.length) }),
       QB: o => o.buffer,
@@ -291,7 +301,7 @@ class CompiledApp {
       QF: () => globalThis.console,
       QG: (x0,x1) => { x0.value = x1 },
       QH: x0 => new Uint8Array(x0),
-      QI: x0 => x0.read(),
+      QI: x0 => x0.statusText,
       QJ: x0 => x0.tracks,
       R: (x0,x1) => ({initializeEngine: x0,autoStart: x1}),
       RB: Function.prototype.call.bind(DataView.prototype.getUint8),
@@ -306,7 +316,7 @@ class CompiledApp {
         return s;
       },
       RH: (x0,x1,x2) => x0.slice(x1,x2),
-      RI: x0 => x0.value,
+      RI: x0 => x0.url,
       RJ: x0 => x0.close(),
       S: (wasmFunction,f) => finalizeWrapper(f, function(x0,x1) { return wasmFunction(f,arguments.length,x0,x1) }),
       SB: (b, o) => new DataView(b, o),
@@ -343,7 +353,7 @@ class CompiledApp {
       SF: x0 => x0.blur(),
       SG: x0 => x0.value,
       SH: (x0,x1) => x0.decode(x1),
-      SI: x0 => x0.done,
+      SI: x0 => x0.status,
       SJ: (x0,x1) => ({frameIndex: x0,completeFramesOnly: x1}),
       T: x0 => new Promise(x0),
       TB: (b, o, l) => new DataView(b, o, l),
@@ -353,7 +363,7 @@ class CompiledApp {
       TF: x0 => x0.button,
       TG: x0 => x0.selectionDirection,
       TH: (x0,x1) => x0.adoptText(x1),
-      TI: x0 => x0.body,
+      TI: x0 => x0.cancel(),
       TJ: (x0,x1) => x0.decode(x1),
       U: (x0,x1,x2) => x0.call(x1,x2),
       UB: Function.prototype.call.bind(DataView.prototype.getFloat64),
@@ -363,7 +373,7 @@ class CompiledApp {
       UF: x0 => x0.innerHeight,
       UG: x0 => x0.selectionStart,
       UH: x0 => x0.first(),
-      UI: x0 => x0.headers,
+      UI: x0 => x0.getReader(),
       UJ: x0 => x0.displayHeight,
       V: (constructor, args) => {
         const factoryFunction = constructor.bind.apply(
@@ -381,7 +391,7 @@ class CompiledApp {
       VF: x0 => x0.innerWidth,
       VG: x0 => x0.selectionEnd,
       VH: x0 => x0.next(),
-      VI: x0 => x0.signal,
+      VI: x0 => x0.read(),
       VJ: x0 => x0.displayWidth,
       W: x0 => new Array(x0),
       WB: Function.prototype.call.bind(DataView.prototype.setFloat64),
@@ -397,11 +407,7 @@ class CompiledApp {
       WF: x0 => x0.height,
       WG: x0 => x0.value,
       WH: x0 => x0.current(),
-      WI: () => {
-        return typeof process != "undefined" &&
-               Object.prototype.toString.call(process) == "[object process]" &&
-               process.platform == "win32"
-      },
+      WI: x0 => x0.value,
       WJ: x0 => x0.duration,
       X: o => [o],
       XB: (t, s) => t.set(s),
@@ -411,13 +417,7 @@ class CompiledApp {
       XF: x0 => x0.width,
       XG: x0 => x0.selectionDirection,
       XH: (x0,x1) => new Intl.v8BreakIterator(x0,x1),
-      XI: () => {
-        // On browsers return `globalThis.location.href`
-        if (globalThis.location != null) {
-          return globalThis.location.href;
-        }
-        return null;
-      },
+      XI: x0 => x0.done,
       XJ: x0 => x0.image,
       Y: (o0, o1) => [o0, o1],
       YB: Function.prototype.call.bind(DataView.prototype.setFloat32),
@@ -427,7 +427,7 @@ class CompiledApp {
       YF: x0 => x0.clientHeight,
       YG: x0 => x0.selectionStart,
       YH: x0 => x0.v8BreakIterator,
-      YI: (o, p) => p in o,
+      YI: x0 => x0.body,
       YJ: () => globalThis.window.ImageDecoder,
       Z: (o0, o1, o2) => [o0, o1, o2],
       ZB: Function.prototype.call.bind(DataView.prototype.getFloat32),
@@ -437,7 +437,7 @@ class CompiledApp {
       ZF: x0 => x0.clientWidth,
       ZG: x0 => x0.selectionEnd,
       ZH: () => globalThis.Intl,
-      ZI: x0 => x0.groups,
+      ZI: x0 => x0.headers,
       ZJ: x0 => x0.hostElement,
       a: (o0, o1, o2, o3) => [o0, o1, o2, o3],
       aB: o => {
@@ -451,7 +451,7 @@ class CompiledApp {
       aF: (x0,x1) => { x0.content = x1 },
       aG: x0 => x0.keyCode,
       aH: (x0,x1) => x0.segment(x1),
-      aI: x0 => x0.abort(),
+      aI: x0 => x0.signal,
       aJ: x0 => x0.location,
       b: (x0,x1,x2) => { x0[x1] = x2 },
       bB: Function.prototype.call.bind(DataView.prototype.getUint32),

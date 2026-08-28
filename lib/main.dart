@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/pages/portfolio_home_page.dart';
 import 'package:myportfolio/services/github_service.dart';
 
 void main() {
+  // Désactiver la récupération des polices sur le réseau pour la rapidité
+  GoogleFonts.config.allowRuntimeFetching = false;
+  
   // Initialiser les services
   GitHubService.initializeServerlessUrl();
   runApp(
