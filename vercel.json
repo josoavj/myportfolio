@@ -2,13 +2,13 @@
   "outputDirectory": "releases/current",
   "rewrites": [
     {
-      "source": "/((?!assets/|canvaskit/|.*\\.(?:js|css|wasm|png|jpg|jpeg|svg|json|map)$|favicon\\.png|manifest\\.json).* )",
+      "source": "/:path((?!.*\\.).*)",
       "destination": "/index.html"
     }
   ],
   "headers": [
     {
-      "source": "/(.*).wasm",
+      "source": "/(.*)\\.wasm",
       "headers": [
         {
           "key": "Content-Type",
@@ -38,7 +38,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(?:js|json|css|wasm|webp|png|jpg|jpeg|svg|woff2|ttf)",
+      "source": "/(.*)\\.(js|json|css|webp|png|jpg|jpeg|svg|woff2|ttf)",
       "headers": [
         {
           "key": "Cache-Control",
