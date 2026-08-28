@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-/// Configuration centralisée du thème et des polices
+/// Configuration centralisée du thème et des polices (Optimisée pour le Web)
 class AppTheme {
+  // Police par défaut (déclarée dans pubspec.yaml)
+  static const String _fontFamily = 'Lexend';
+
   // Décoration Glassmorphism standard
   static BoxDecoration glassDecoration({
     required Color color,
@@ -11,7 +13,6 @@ class AppTheme {
     double borderWidth = 1.5,
     bool showShadow = true,
   }) {
-    // Note: Sur Web, si les perfs sont mauvaises, augmenter l'opacité et retirer le flou
     return BoxDecoration(
       color: color.withValues(alpha: opacity),
       gradient: LinearGradient(
@@ -39,6 +40,24 @@ class AppTheme {
     );
   }
 
+  // Helper interne pour TextStyle
+  static TextStyle _baseStyle({
+    required double fontSize,
+    Color? color,
+    FontWeight fontWeight = FontWeight.normal,
+    double? letterSpacing,
+    double? height,
+  }) {
+    return TextStyle(
+      fontFamily: _fontFamily,
+      fontSize: fontSize,
+      color: color,
+      fontWeight: fontWeight,
+      letterSpacing: letterSpacing,
+      height: height,
+    );
+  }
+
   // Police unique - Lexend pour tout
   static TextStyle lexendRegular(
     double fontSize, {
@@ -47,7 +66,7 @@ class AppTheme {
     double? letterSpacing,
     double? height,
   }) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: fontSize,
       color: color,
       fontWeight: fontWeight,
@@ -58,7 +77,7 @@ class AppTheme {
 
   // Titres - Lexend Bold
   static TextStyle titleLarge({Color? color, double size = 40}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: size,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
@@ -66,7 +85,7 @@ class AppTheme {
   }
 
   static TextStyle titleMedium({Color? color, double size = 28}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: size,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
@@ -74,16 +93,16 @@ class AppTheme {
   }
 
   static TextStyle titleSmall({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 22,
       fontWeight: FontWeight.bold,
       color: color ?? Colors.white,
     );
   }
 
-  // Sous-titres - Lexend Light
+  // Sous-titres
   static TextStyle subtitle({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 17,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w300,
@@ -91,16 +110,16 @@ class AppTheme {
   }
 
   static TextStyle subtitleSmall({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 14,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
     );
   }
 
-  // Corps du texte - Lexend Regular
+  // Corps du texte
   static TextStyle bodyLarge({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 16,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
@@ -108,7 +127,7 @@ class AppTheme {
   }
 
   static TextStyle bodyMedium({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 15,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w400,
@@ -116,16 +135,16 @@ class AppTheme {
   }
 
   static TextStyle bodySmall({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 13,
       color: color ?? Colors.grey[400],
       fontWeight: FontWeight.w400,
     );
   }
 
-  // Labels et tags - Lexend SemiBold
+  // Labels et tags
   static TextStyle label({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 13,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w600,
@@ -133,16 +152,16 @@ class AppTheme {
   }
 
   static TextStyle labelSmall({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 11,
       color: color ?? Colors.white,
       fontWeight: FontWeight.w600,
     );
   }
 
-  // Caption - Lexend Regular
+  // Caption
   static TextStyle caption({Color? color}) {
-    return GoogleFonts.lexend(
+    return _baseStyle(
       fontSize: 11,
       color: color ?? Colors.grey[500],
       fontWeight: FontWeight.w400,
@@ -150,53 +169,22 @@ class AppTheme {
   }
 
   // ========== VARIANTES MOBILES ==========
-  // Pour une meilleure lisibilité et adaptation sur petits écrans
 
-  static TextStyle titleLargeMobile({Color? color}) {
-    return GoogleFonts.lexend(
-      fontSize: 32,
-      fontWeight: FontWeight.bold,
-      color: color ?? Colors.white,
-    );
-  }
+  static TextStyle titleLargeMobile({Color? color}) => 
+    titleLarge(color: color, size: 32);
 
-  static TextStyle titleMediumMobile({Color? color}) {
-    return GoogleFonts.lexend(
-      fontSize: 24,
-      fontWeight: FontWeight.bold,
-      color: color ?? Colors.white,
-    );
-  }
+  static TextStyle titleMediumMobile({Color? color}) => 
+    titleMedium(color: color, size: 24);
 
-  static TextStyle titleSmallMobile({Color? color}) {
-    return GoogleFonts.lexend(
-      fontSize: 20,
-      fontWeight: FontWeight.bold,
-      color: color ?? Colors.white,
-    );
-  }
+  static TextStyle titleSmallMobile({Color? color}) => 
+    titleSmall(color: color).copyWith(fontSize: 20);
 
-  static TextStyle subtitleMobile({Color? color}) {
-    return GoogleFonts.lexend(
-      fontSize: 15,
-      color: color ?? Colors.grey[400],
-      fontWeight: FontWeight.w300,
-    );
-  }
+  static TextStyle subtitleMobile({Color? color}) => 
+    subtitle(color: color).copyWith(fontSize: 15);
 
-  static TextStyle subtitleSmallMobile({Color? color}) {
-    return GoogleFonts.lexend(
-      fontSize: 13,
-      color: color ?? Colors.grey[400],
-      fontWeight: FontWeight.w400,
-    );
-  }
+  static TextStyle subtitleSmallMobile({Color? color}) => 
+    subtitleSmall(color: color).copyWith(fontSize: 13);
 
-  static TextStyle bodyLargeMobile({Color? color}) {
-    return GoogleFonts.lexend(
-      fontSize: 14,
-      color: color ?? Colors.white,
-      fontWeight: FontWeight.w400,
-    );
-  }
+  static TextStyle bodyLargeMobile({Color? color}) => 
+    bodyLarge(color: color).copyWith(fontSize: 14);
 }
