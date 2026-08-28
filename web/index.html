@@ -7,8 +7,8 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Portfolio de Josoa Vonjiniaina - Développeur Full Stack, expert Flutter, Backend et Cybersécurité.">
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Meta tags pour la Web App -->
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Josoa Portfolio">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
@@ -63,12 +63,6 @@
   </div>
 
   <script>
-    // Configuration personnalisée pour booster le rendu
-    window.flutterConfiguration = {
-      renderer: "auto", // Utilise HTML par défaut pour la vitesse, bascule sur CanvasKit si nécessaire
-      useColorEmoji: true
-    };
-
     // Suppression du loader dès le premier rendu de Flutter
     window.addEventListener('flutter-first-frame', function() {
       var loader = document.querySelector('#loading-container');
