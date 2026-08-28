@@ -1,6 +1,6 @@
 name: myportfolio
 description: Portfolio de Josoa Vonjiniaina - Full Stack Developer, spécialisé en Flutter, Linux et sécurité.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: 'none'
 
 version: 2.0.0+1
 
@@ -55,35 +55,14 @@ flutter:
 #      fonts:
 #        - assets/asset: fonts/PatrickHandSC-Regular.ttf
 
-  # To add assets to your application, add an assets section, like this:
   assets:
-     - assets/
-     - fonts/
+    - assets/
 
-  
   fonts:
-    - family: PatrickHand 
+    - family: Lexend
       fonts:
-      - asset: fonts/PatrickHandSC-Regular.ttf
+        - asset: assets/fonts/Lexend-Regular.ttf
 
-    - family: Josefin
-      fonts:
-      - asset: fonts/JosefinSans-VariableFont_wght.ttf
-    
-    - family: TiltNeon 
-      fonts:
-      - asset: fonts/TiltNeon-Regular.ttf
-
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.dev/assets-and-images/#resolution-aware
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.dev/assets-and-images/#from-packages
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with 
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/custom-fonts/#from-packages
 
 flutter_launcher_icons:
   android: true
