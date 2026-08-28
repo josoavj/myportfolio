@@ -7,9 +7,6 @@
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="Portfolio de Josoa Vonjiniaina - Développeur Full Stack, expert Flutter, Backend et Cybersécurité.">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <!-- iOS meta tags & icons -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -46,7 +43,7 @@
     }
     .loading-text {
       color: #FFF;
-      font-family: 'Lexend', sans-serif;
+      font-family: sans-serif;
       margin-top: 20px;
       letter-spacing: 1px;
       opacity: 0.8;
@@ -62,14 +59,17 @@
 <body>
   <div id="loading-container">
     <div class="loader"></div>
-    <div class="loading-text">Initialisation...</div>
+    <div class="loading-text">Chargement...</div>
   </div>
 
-  <!-- Le script flutter_bootstrap.js est généré au build et contient toute la config nécessaire -->
-  <script src="flutter_bootstrap.js" async></script>
-
   <script>
-    // Hook pour masquer le loader une fois que Flutter a démarré
+    // Configuration personnalisée pour booster le rendu
+    window.flutterConfiguration = {
+      renderer: "auto", // Utilise HTML par défaut pour la vitesse, bascule sur CanvasKit si nécessaire
+      useColorEmoji: true
+    };
+
+    // Suppression du loader dès le premier rendu de Flutter
     window.addEventListener('flutter-first-frame', function() {
       var loader = document.querySelector('#loading-container');
       if (loader) {
@@ -78,5 +78,8 @@
       }
     });
   </script>
+
+  <!-- Le moteur de bootstrap moderne de Flutter 3.47+ -->
+  <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
