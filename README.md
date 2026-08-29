@@ -1,19 +1,19 @@
-# 📱 Portfolio App
+# Portfolio App
 
 Un portfolio  moderne présentant mes compétences et mon parcours en tant que développeur fullstack mobile, développeur backend et les différents postes occupés.
 
-## 📋 À propos
+## À propos
 
 Ceci est un projet multiplateforme développé avec **Flutter** et **Dart**, offrant une interface intuitive et responsive pour explorer un portfolio professionnel. L'application est disponible sur plusieurs plateformes : Android, Web, Windows et Linux.
 
-## 🛠️ Stack Technique
+## Stack Technique
 
 - **Framework** : Flutter
 - **Langage** : Dart
 - **Plateforme de déploiement** : Multi-plateforme (Mobile, Web, Desktop)
 - **Langages supplémentaires** : C++, CMake, Shell, Swift, HTML
 
-## 📦 Prérequis
+## Prérequis
 
 Avant de commencer, assurez-vous d'avoir installé :
 
@@ -27,7 +27,7 @@ Pour les plateformes spécifiques :
 - **Web** : Chrome, Firefox, Safari ou Edge
 - **Desktop** : Configuration appropriée pour Windows, macOS ou Linux
 
-## 🚀 Installation
+## Installation
 
 1. Clonez le repository :
 ```bash
@@ -46,7 +46,7 @@ cp .env.example .env
 # Éditez le fichier .env avec vos paramètres
 ```
 
-## 🏃 Lancer l'application
+## Lancer l'application
 
 ### Android
 ```bash
@@ -71,7 +71,7 @@ flutter run -d macos
 flutter run -d linux
 ```
 
-## 🏗️ Structure du projet
+## Structure du projet
 
 Pour une documentation détaillée sur l'architecture du projet, consultez [STRUCTURE.md](STRUCTURE.md).
 
@@ -87,18 +87,18 @@ macos/               # Configuration macOS
 linux/               # Configuration Linux
 ```
 
-## 📦 Releases
+## Releases
 
-Version actuelle : **1.6.0** (Mars 2026)
+Version actuelle : **2.0.0** (Juillet 2026)
 
 Pour accéder aux [versions précédentes](https://github.com/josoavj/myportfolio/releases), consultez la page des releases.
 
-## 🔍 Configuration supplémentaire
+## Configuration supplémentaire
 
 Configurez l'analyse du code Dart selon vos préférences dans `analysis_options.yaml`.
 
 
-## 📧 Contact
+## Contact
 
 Pour toute question ou suggestion, vous pouvez me contacter via le repository.
 
