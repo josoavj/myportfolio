@@ -24,7 +24,7 @@ class _AnimatedScrollSectionState extends State<AnimatedScrollSection>
   void initState() {
     super.initState();
     _animationController = AnimationController(
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(milliseconds: 500), // Plus rapide
       vsync: this,
     );
 
@@ -50,8 +50,8 @@ class _AnimatedScrollSectionState extends State<AnimatedScrollSection>
       final position = renderBox.localToGlobal(Offset.zero);
       final screenHeight = MediaQuery.of(context).size.height;
 
-      // Déclenche l'animation quand la section est visible à 30% de l'écran
-      if (position.dy < screenHeight * 0.7 &&
+      // Déclenche l'animation quand la section est visible à 15% de l'écran (plus réactif)
+      if (position.dy < screenHeight * 0.85 &&
           position.dy > -renderBox.size.height) {
         if (_animationController.status == AnimationStatus.dismissed) {
           _animationController.forward();
