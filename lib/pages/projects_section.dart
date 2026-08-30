@@ -70,16 +70,28 @@ class ProjectsSection extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(
-                              builder: (_) => ProjectDetailPage(
-                                project: displayedProjects[index],
-                              ),
+                            PageRouteBuilder(
+                              pageBuilder: (context, animation, secondaryAnimation) => 
+                                  ProjectDetailPage(project: displayedProjects[index]),
+                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                return FadeTransition(
+                                  opacity: animation,
+                                  child: SlideTransition(
+                                    position: Tween<Offset>(
+                                      begin: const Offset(0, 0.05),
+                                      end: Offset.zero,
+                                    ).animate(CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.easeOutCubic,
+                                    )),
+                                    child: child,
+                                  ),
+                                );
+                              },
+                              transitionDuration: const Duration(milliseconds: 400),
                             ),
                           );
                         },
-                      ).withSlideUp(
-                        delay: Duration(milliseconds: 200 + (index * 100)),
-                        distance: 20,
                       );
                     },
                   );
