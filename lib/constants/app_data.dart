@@ -23,7 +23,7 @@ class AppData {
           'Configuration et optimisation avancée de serveurs Linux',
         ],
         icon: Icons.business,
-        color: Colors.blue,
+        color: const Color(0xFF25D366),
       ),
       Experience(
         role: 'Développeur Back-End (Stage)',
@@ -66,7 +66,7 @@ class AppData {
           'Participation à des TP avancés d\'algorithmique et machine learning',
         ],
         icon: Icons.storage,
-        color: const Color(0xFF25D366),
+        color: Colors.blue,
       ),
     ];
   }
@@ -94,7 +94,7 @@ class AppData {
         description:
             'Approfondissement des connaissances en développement logiciel, réseaux, bases de données avancées et cybersécurité.',
         icon: Icons.school,
-        color: Colors.purple,
+        color: const Color(0xFF25D366),
         status: 'Terminé',
       ),
       Education(
@@ -105,7 +105,7 @@ class AppData {
         description:
             'Formation en développement logiciel, bases de données, networking et télécommunications avec spécialisation en systèmes distribués et monitoring de données.',
         icon: Icons.school,
-        color: const Color(0xFF25D366),
+        color: Colors.blue,
         status: 'Obtenu',
         thesisTitle:
             'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
@@ -137,7 +137,7 @@ class AppData {
             'Formations spécialisées en Elasticsearch, Kibana, Grafana, Docker, Linux Administration, '
             'sécurité réseau et développement d\'APIs avec Node.js/Express.',
         icon: Icons.card_membership,
-        color: Colors.blue,
+        color: const Color(0xFF25D366),
         status: 'Continue',
       ),
     ];
@@ -376,63 +376,57 @@ class AppData {
     return {
       'Langages': [
         Skill(name: 'Dart', level: 0.9, color: Colors.blue),
-        Skill(name: 'JavaScript', level: 0.75, color: Colors.yellow),
-        Skill(name: 'Python', level: 0.8, color: Colors.green),
-        Skill(name: 'Java', level: 0.55, color: Colors.red),
+        Skill(name: 'JavaScript', level: 0.75, color: Colors.blue),
+        Skill(name: 'Python', level: 0.8, color: Colors.blue),
       ],
       'Frameworks': [
         Skill(name: 'Flutter', level: 0.9, color: Colors.blue),
-        Skill(name: 'Node.js', level: 0.85, color: Colors.green),
-        Skill(name: 'Express.js', level: 0.8, color: Colors.grey),
-        Skill(name: 'React', level: 0.5, color: Colors.cyan),
+        Skill(name: 'Node.js', level: 0.75, color: Colors.blue),
+        Skill(name: 'Express.js', level: 0.7, color: Colors.blue),
+        Skill(name: 'React', level: 0.5, color: Colors.blue),
       ],
       'Bases de Données': [
         Skill(name: 'MySQL', level: 0.85, color: Colors.blue),
-        Skill(name: 'Elasticsearch', level: 0.8, color: Colors.teal),
-        Skill(name: 'Hive', level: 0.5, color: Colors.green),
+        Skill(name: 'Elasticsearch', level: 0.8, color: Colors.blue),
+        Skill(name: 'Hive', level: 0.5, color: Colors.blue),
       ],
       'DevOps & Outils': [
-        Skill(name: 'Linux', level: 0.9, color: Colors.orange),
-        Skill(name: 'Git', level: 0.9, color: Colors.orange),
-        Skill(name: 'Nginx', level: 0.6, color: Colors.green),
-        Skill(name: 'Bash', level: 0.85, color: Colors.grey),
+        Skill(name: 'Linux', level: 0.85, color: Colors.blue),
+        Skill(name: 'Git', level: 0.9, color: Colors.blue),
+        Skill(name: 'Nginx', level: 0.6, color: Colors.blue),
+        Skill(name: 'Bash', level: 0.75, color: Colors.blue),
       ],
       'Sécurité & Networking': [
-        Skill(name: 'Cybersécurité', level: 0.65, color: Colors.red),
-        Skill(name: 'Networking', level: 0.60, color: Colors.indigo),
-        Skill(name: 'Kali Linux', level: 0.75, color: Colors.red),
-        Skill(name: 'Firewall Config', level: 0.45, color: Colors.purple),
+        Skill(name: 'Cybersécurité', level: 0.45, color: Colors.blue),
+        Skill(name: 'Networking', level: 0.50, color: Colors.blue),
+        Skill(name: 'Kali Linux', level: 0.55, color: Colors.blue),
+        Skill(name: 'Firewall Config', level: 0.45, color: Colors.blue),
       ],
     };
   }
 
   static List<Map<String, dynamic>> getTechBadges() {
     return [
-      // Langages
+      // Retour à la palette variée plus expressive
       {'name': 'Dart', 'icon': '', 'color': Colors.blue},
       {'name': 'Python', 'icon': '', 'color': Colors.yellow},
       {'name': 'JavaScript', 'icon': '', 'color': Colors.yellow},
-      {'name': 'Java', 'icon': '', 'color': Colors.red},
-      // Frameworks & Librairies
+      //{'name': 'Java', 'icon': '', 'color': Colors.red},
       {'name': 'Flutter', 'icon': '', 'color': Colors.blue},
       {'name': 'React', 'icon': '', 'color': Colors.cyan},
       {'name': 'Node.js', 'icon': '', 'color': Colors.green},
       {'name': 'Express.js', 'icon': '', 'color': Colors.grey},
-      // Bases de Données
       {'name': 'MySQL', 'icon': '', 'color': Colors.blue},
       {'name': 'Elasticsearch', 'icon': '', 'color': Colors.teal},
       {'name': 'Hive', 'icon': '', 'color': Colors.green},
-      // DevOps & Outils
       {'name': 'Linux', 'icon': '', 'color': Colors.orange},
       {'name': 'Git', 'icon': '', 'color': Colors.orange},
       {'name': 'Nginx', 'icon': '', 'color': Colors.green},
       {'name': 'Bash', 'icon': '', 'color': Colors.grey},
-      // Outils de Développement
       {'name': 'VS Code', 'icon': '', 'color': Colors.blue},
       {'name': 'Android Studio', 'icon': '', 'color': Colors.green},
       {'name': 'PyCharm', 'icon': '', 'color': Colors.blue},
       {'name': 'WebStorm', 'icon': '', 'color': Colors.blue},
-      // Sécurité & Networking
       {'name': 'Security', 'icon': '', 'color': Colors.red},
       {'name': 'Networking', 'icon': '', 'color': Colors.indigo},
       {'name': 'Kali Linux', 'icon': '', 'color': Colors.red},
