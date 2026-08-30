@@ -1,9 +1,9 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myportfolio/services/github_provider.dart';
 import 'package:myportfolio/utils/app_theme.dart';
-import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/responsive_layout.dart';
 
@@ -49,17 +49,17 @@ class AboutSection extends ConsumerWidget {
             'Développeur Full Stack & Passionné de Sécurité',
             style: AppTheme.titleSmall(color: Colors.blue.shade300),
             textAlign: TextAlign.center,
-          ).withFadeIn(delay: const Duration(milliseconds: 200)),
+          ),
           const SizedBox(height: 30),
           Text(
             'Je suis Josoa Vonjiniaina, un développeur basé à Madagascar avec une soif insatiable d\'apprendre et de créer. '
             'Spécialisé dans l\'écosystème Flutter et les architectures backend robustes, je m\'efforce de construire des applications '
-            'qui allient design élégant et performances techniques. Actuellement en Master Informatique, je concentre mes recherches '
+            'qui allient design élégant et performances techniques. Actuellement en Master II en Informatique et Télécommunication, je concentre mes recherches '
             'sur la cybersécurité et l\'optimisation logicielle. Mon engagement au sein d\'APEXNova Labs me permet de repousser '
             'les limites du développement collaboratif et open source.',
             style: AppTheme.bodyLarge().copyWith(height: 1.8, fontSize: 18),
             textAlign: TextAlign.center,
-          ).withFadeIn(delay: const Duration(milliseconds: 400)),
+          ),
         ],
       ),
     );
@@ -90,7 +90,6 @@ class AboutSection extends ConsumerWidget {
                   description: 'Parmi les plus actifs (Total contributions)',
                   color: Colors.amber,
                   width: cardWidth,
-                  delay: 600,
                 ),
                 _buildMetricCard(
                   icon: Icons.folder_special_rounded,
@@ -99,7 +98,6 @@ class AboutSection extends ConsumerWidget {
                   description: 'Repositories sur GitHub',
                   color: Colors.blue,
                   width: cardWidth,
-                  delay: 750,
                 ),
                 _buildMetricCard(
                   icon: Icons.stacked_line_chart_rounded,
@@ -108,7 +106,6 @@ class AboutSection extends ConsumerWidget {
                   description: 'Commits, PRs & Issues',
                   color: const Color(0xFF25D366),
                   width: cardWidth,
-                  delay: 900,
                 ),
               ],
             );
@@ -127,7 +124,6 @@ class AboutSection extends ConsumerWidget {
     required String description,
     required Color color,
     required double width,
-    required int delay,
   }) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(24),
@@ -165,6 +161,6 @@ class AboutSection extends ConsumerWidget {
           ),
         ),
       ),
-    ).withScaleIn(delay: Duration(milliseconds: delay));
+    );
   }
 }

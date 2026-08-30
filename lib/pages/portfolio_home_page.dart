@@ -23,7 +23,6 @@ class PortfolioHomePage extends StatefulWidget {
 class _PortfolioHomePageState extends State<PortfolioHomePage>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  late Animation<double> _fadeAnimation;
   late ScrollController _scrollController;
 
   final Map<String, GlobalKey> _sectionKeys = {
@@ -43,9 +42,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
-    );
-    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeIn),
     );
     _controller.forward();
   }
@@ -72,44 +68,40 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
             interactive: true,
             child: SingleChildScrollView(
               controller: _scrollController,
-              child: FadeTransition(
-                opacity: _fadeAnimation,
-                child: Column(
-                  children: [
-                    HeaderSection(key: _sectionKeys['Accueil']),
-                    _buildSection(
-                      key: _sectionKeys['À propos']!,
-                      child: const AboutSection(),
-                    ),
-                    _buildSection(
-                      key: _sectionKeys['Expérience']!,
-                      child: const ExperienceSection(),
-                      color: AppConstants.secondaryDark,
-                    ),
-                    _buildSection(
-                      key: _sectionKeys['Formation']!,
-                      child: const EducationSection(),
-                    ),
-                    _buildSection(
-                      key: _sectionKeys['Compétences']!,
-                      child: const SkillsSection(),
-                      color: AppConstants.secondaryDark,
-                    ),
-                    _buildSection(
-                      key: _sectionKeys['Projets']!,
-                      child: const ProjectsSection(),
-                    ),
-                    _buildSection(
-                      key: _sectionKeys['Contact']!,
-                      child: const ContactSection(),
-                      color: AppConstants.secondaryDark,
-                    ),
-                    const FooterSection(),
-                    // Spacer for mobile navbar
-                    if (isCompact)
-                      const SizedBox(height: 100),
-                  ],
-                ),
+              child: Column(
+                children: [
+                  HeaderSection(key: _sectionKeys['Accueil']),
+                  _buildSection(
+                    key: _sectionKeys['À propos']!,
+                    child: const AboutSection(),
+                  ),
+                  _buildSection(
+                    key: _sectionKeys['Expérience']!,
+                    child: const ExperienceSection(),
+                    color: AppConstants.secondaryDark,
+                  ),
+                  _buildSection(
+                    key: _sectionKeys['Formation']!,
+                    child: const EducationSection(),
+                  ),
+                  _buildSection(
+                    key: _sectionKeys['Compétences']!,
+                    child: const SkillsSection(),
+                    color: AppConstants.secondaryDark,
+                  ),
+                  _buildSection(
+                    key: _sectionKeys['Projets']!,
+                    child: const ProjectsSection(),
+                  ),
+                  _buildSection(
+                    key: _sectionKeys['Contact']!,
+                    child: const ContactSection(),
+                    color: AppConstants.secondaryDark,
+                  ),
+                  const FooterSection(),
+                  if (isCompact)
+                    const SizedBox(height: 100),
+                ],
               ),
             ),
           ),

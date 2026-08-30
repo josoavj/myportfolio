@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
-import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/social_button.dart';
 import 'package:myportfolio/widgets/cv_download_button.dart';
 import 'package:myportfolio/widgets/responsive_layout.dart';
@@ -132,7 +131,7 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
           child: const CircleAvatar(
             backgroundColor: AppConstants.secondaryDark,
             backgroundImage: AssetImage('assets/mypfp.webp'),
-          ).withScaleIn(),
+          ),
         );
       },
     );
@@ -150,13 +149,13 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
             fontWeight: FontWeight.w500,
             letterSpacing: 1.2,
           ),
-        ).withFadeIn(delay: const Duration(milliseconds: 100)),
+        ),
         const SizedBox(height: 10),
         Text(
           AppConstants.heroName,
           style: isMobile ? AppTheme.titleLargeMobile() : AppTheme.titleLarge(size: 60),
           textAlign: isMobile ? TextAlign.center : TextAlign.left,
-        ).withFadeIn(delay: const Duration(milliseconds: 200)),
+        ),
         const SizedBox(height: 15),
         Text(
           AppConstants.heroTitle,
@@ -164,7 +163,7 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
               ? AppTheme.subtitleMobile()
               : AppTheme.subtitle(color: Colors.grey.shade300).copyWith(fontSize: 22),
           textAlign: isMobile ? TextAlign.center : TextAlign.left,
-        ).withSlideUp(distance: 20.0, delay: const Duration(milliseconds: 300)),
+        ),
         const SizedBox(height: 20),
         Row(
           mainAxisAlignment: isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
@@ -178,23 +177,24 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
                   : AppTheme.subtitleSmall().copyWith(fontSize: 16),
             ),
           ],
-        ).withFadeIn(delay: const Duration(milliseconds: 400)),
+        ),
       ],
     );
   }
 
   Widget _buildActionButtons() {
-    return AnimationUtils.staggeredFadeSlide(
-      children: [
-        const CVDownloadButton(),
-        const SocialButton(icon: Icons.code, label: 'GitHub', url: AppConstants.githubUrl),
-        const SocialButton(icon: Icons.work, label: 'LinkedIn', url: AppConstants.linkedinUrl),
-        const SocialButton(icon: Icons.facebook, label: 'Facebook', url: AppConstants.facebookUrl),
-        const SocialButton(icon: Icons.alternate_email, label: 'Twitter', url: AppConstants.twitterUrl),
+    final isMobile = ResponsiveLayout.isMobile(context);
+    return Wrap(
+      spacing: 15,
+      runSpacing: 15,
+      alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
+      children: const [
+        CVDownloadButton(),
+        SocialButton(icon: Icons.code, label: 'GitHub', url: AppConstants.githubUrl),
+        SocialButton(icon: Icons.work, label: 'LinkedIn', url: AppConstants.linkedinUrl),
+        SocialButton(icon: Icons.facebook, label: 'Facebook', url: AppConstants.facebookUrl),
+        SocialButton(icon: Icons.alternate_email, label: 'Twitter', url: AppConstants.twitterUrl),
       ],
-      baseDelay: const Duration(milliseconds: 500),
-      staggerDelay: const Duration(milliseconds: 100),
-      builder: (child, animation) => child,
     );
   }
 }

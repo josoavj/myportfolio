@@ -183,29 +183,25 @@ class _ContactSectionState extends State<ContactSection> {
                 ),
               ],
             ),
-            child: ElevatedButton(
+            child: ElevatedButton.icon(
               onPressed: _sendEmail,
+              icon: const Icon(Icons.send),
+              label: Text(
+                'Envoyer le message',
+                style: AppTheme.lexendRegular(
+                  16,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                ),
+              ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.transparent,
+                foregroundColor: Colors.blue,
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
                 ),
                 elevation: 0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Icon(Icons.send),
-                  const SizedBox(width: 10),
-                  Text(
-                    'Envoyer le message',
-                    style: AppTheme.lexendRegular(
-                      16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
               ),
             ),
           ).withSlideUp(

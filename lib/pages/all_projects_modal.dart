@@ -341,9 +341,25 @@ class _AllProjectsModalState extends State<AllProjectsModal> {
                           onTap: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                builder: (_) => ProjectDetailPage(
-                                    project: filteredProjects[index]),
+                              PageRouteBuilder(
+                                pageBuilder: (context, animation, secondaryAnimation) => 
+                                    ProjectDetailPage(project: filteredProjects[index]),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  return FadeTransition(
+                                    opacity: animation,
+                                    child: SlideTransition(
+                                      position: Tween<Offset>(
+                                        begin: const Offset(0, 0.05),
+                                        end: Offset.zero,
+                                      ).animate(CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.easeOutCubic,
+                                      )),
+                                      child: child,
+                                    ),
+                                  );
+                                },
+                                transitionDuration: const Duration(milliseconds: 400),
                               ),
                             );
                           },

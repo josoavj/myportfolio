@@ -140,7 +140,7 @@ class EducationCard extends StatelessWidget {
               if (education.capstoneProjects != null && education.capstoneProjects!.isNotEmpty) ...[
                 const SizedBox(height: 30),
                 Text(
-                  '🎓 Projets Académiques :',
+                  'Projets Académiques :',
                   style: AppTheme.label(color: education.color),
                 ),
                 const SizedBox(height: 15),

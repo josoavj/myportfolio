@@ -7,7 +7,8 @@ import 'package:myportfolio/pages/portfolio_home_page.dart';
 import 'package:myportfolio/services/github_service.dart';
 
 void main() {
-  // Désactiver la récupération des polices sur le réseau pour la rapidité
+  // Bloquer absolument tout appel réseau pour les polices
+  WidgetsFlutterBinding.ensureInitialized();
   GoogleFonts.config.allowRuntimeFetching = false;
   
   // Initialiser les services

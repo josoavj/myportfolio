@@ -1,14 +1,14 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/utils/app_theme.dart';
-import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/skill_bar.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
-import 'package:myportfolio/widgets/github_stats_widget.dart';
+import 'package:myportfolio/widgets/github_stats_widget.dart' deferred as github_stats;
 import 'package:myportfolio/widgets/tech_badge.dart';
 import 'package:myportfolio/widgets/responsive_layout.dart';
 
@@ -88,7 +88,7 @@ class SkillsSection extends StatelessWidget {
               Text(
                 category,
                 style: AppTheme.titleSmall(color: Colors.blue.shade300),
-              ).withSlideUp(delay: Duration(milliseconds: 100 * index)),
+              ),
               const SizedBox(height: 30),
               ...skills.map((skill) => SkillBar(
                 name: skill.name,
@@ -99,7 +99,7 @@ class SkillsSection extends StatelessWidget {
           ),
         ),
       ),
-    ).withFadeIn(delay: Duration(milliseconds: 200 * index));
+    );
   }
 
   Widget _buildStatsSection(BuildContext context) {
@@ -121,21 +121,21 @@ class SkillsSection extends StatelessWidget {
               subtitle: 'Projets Majeurs',
               color: Colors.blue,
               width: cardWidth,
-            ).withScaleIn(delay: const Duration(milliseconds: 300)),
+            ),
             StatCard(
               icon: Icons.code_off_outlined,
               title: '3+',
               subtitle: 'Années de Code',
               color: Colors.green,
               width: cardWidth,
-            ).withScaleIn(delay: const Duration(milliseconds: 400)),
+            ),
             StatCard(
               icon: Icons.hub_outlined,
               title: 'APEXNova Labs',
               subtitle: 'Membre Core',
               color: Colors.purple,
               width: cardWidth,
-            ).withScaleIn(delay: const Duration(milliseconds: 500)),
+            ),
           ],
         );
       },
@@ -149,7 +149,7 @@ class SkillsSection extends StatelessWidget {
           'Technologies & Écosystème',
           style: AppTheme.titleMedium(),
           textAlign: TextAlign.center,
-        ).withFadeIn(),
+        ),
         const SizedBox(height: 40),
         Wrap(
           spacing: 15,
@@ -163,8 +163,6 @@ class SkillsSection extends StatelessWidget {
               icon: badge['icon'] as String,
               color: badge['color'] as Color,
               index: index,
-            ).withScaleIn(
-              delay: Duration(milliseconds: 100 + (index * 30)),
             );
           }).toList(),
         ),
@@ -187,7 +185,17 @@ class SkillsSection extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 50),
-        const GitHubStatsWidget(),
+        FutureBuilder(
+          future: github_stats.loadLibrary(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              return github_stats.GitHubStatsWidget();
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ),
       ],
     );
   }

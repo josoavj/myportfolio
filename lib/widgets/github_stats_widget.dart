@@ -218,7 +218,7 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
               children: [
                 const Icon(Icons.open_in_new, size: 14, color: Colors.blue),
                 const SizedBox(width: 4),
-                Text('Profil', style: AppTheme.lexendRegular(11, color: Colors.blue, fontWeight: FontWeight.w600)),
+                Text('Consulter', style: AppTheme.lexendRegular(11, color: Colors.blue, fontWeight: FontWeight.w600)),
               ],
             ),
           ),
@@ -293,7 +293,7 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '📅 Contributions par Année',
+          'Contributions par Année',
           style: isMobile ? AppTheme.subtitleSmall() : AppTheme.subtitle(),
         ),
         const SizedBox(height: 16),
@@ -575,7 +575,7 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '💻 Langages Principaux',
+          'Langages Principaux',
           style: isMobile ? AppTheme.subtitleSmall() : AppTheme.subtitle(),
         ),
         const SizedBox(height: 12),
