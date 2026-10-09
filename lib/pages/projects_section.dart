@@ -1,23 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/pages/all_projects_modal.dart';
-import 'package:myportfolio/pages/project_detail_page.dart';
+import 'package:myportfolio/services/github_provider.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/utils/app_theme.dart';
-import 'package:myportfolio/utils/extensions.dart';
+import 'package:myportfolio/utils/project_navigation.dart';
 import 'package:myportfolio/widgets/project_card.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/responsive_layout.dart';
 
-class ProjectsSection extends StatelessWidget {
+class ProjectsSection extends ConsumerWidget {
   const ProjectsSection({super.key});
 
   static const int _displayCount = 4;
 
   @override
-  Widget build(BuildContext context) {
-    final projects = AppData.getProjects();
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Étoiles réelles depuis l'API GitHub ; valeurs de app_data en repli.
+    final liveStars = ref.watch(repoStarsProvider).asData?.value ?? const <String, int>{};
+    final projects = AppData.getProjects().map((p) {
+      final stars = liveStars[p.repoName];
+      return stars == null ? p : p.withStars(stars);
+    }).toList();
+
     final displayedProjects = projects.take(_displayCount).toList();
     final hasMoreProjects = projects.length > _displayCount;
     final isMobile = ResponsiveLayout.isMobile(context);
@@ -50,48 +57,14 @@ class ProjectsSection extends StatelessWidget {
                       crossAxisCount: crossAxisCount,
                       crossAxisSpacing: 25,
                       mainAxisSpacing: 25,
-                      childAspectRatio: crossAxisCount == 1 ? 1.5 : 0.85,
+                      mainAxisExtent: ProjectCard.cardExtent,
                     ),
                     itemCount: displayedProjects.length,
                     itemBuilder: (context, index) {
+                      final project = displayedProjects[index];
                       return ProjectCard(
-                        project: {
-                          'name': displayedProjects[index].name,
-                          'description': displayedProjects[index].description,
-                          'language': displayedProjects[index].language,
-                          'stars': displayedProjects[index].stars,
-                          'url': displayedProjects[index].url,
-                          'category': displayedProjects[index].category,
-                        },
-                        languageColor: displayedProjects[index]
-                            .language
-                            .getLanguageColor(),
-                        index: index,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              pageBuilder: (context, animation, secondaryAnimation) => 
-                                  ProjectDetailPage(project: displayedProjects[index]),
-                              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                return FadeTransition(
-                                  opacity: animation,
-                                  child: SlideTransition(
-                                    position: Tween<Offset>(
-                                      begin: const Offset(0, 0.05),
-                                      end: Offset.zero,
-                                    ).animate(CurvedAnimation(
-                                      parent: animation,
-                                      curve: Curves.easeOutCubic,
-                                    )),
-                                    child: child,
-                                  ),
-                                );
-                              },
-                              transitionDuration: const Duration(milliseconds: 400),
-                            ),
-                          );
-                        },
+                        project: project,
+                        onTap: () => openProject(context, project),
                       );
                     },
                   );
@@ -99,7 +72,7 @@ class ProjectsSection extends StatelessWidget {
               ),
               if (hasMoreProjects) ...[
                 const SizedBox(height: 50),
-                _buildViewAllButton(context, List<Project>.from(projects)),
+                _buildViewAllButton(context, projects),
               ],
             ],
           ),

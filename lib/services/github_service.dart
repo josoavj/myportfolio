@@ -11,6 +11,7 @@ class GitHubService {
   static final _cacheService = CacheService();
   static const String _statsCacheKey = 'github_stats';
   static const String _userDataCacheKey = 'github_user_data';
+  static const String _repoStarsCacheKey = 'github_repo_stars';
 
   static const Map<String, String> _publicHeaders = {
     'Accept': 'application/json',
@@ -203,6 +204,23 @@ class GitHubService {
     } catch (e) {
       return [];
     }
+  }
+
+  /// Étoiles par dépôt (clé = nom du repo en minuscules), en cache 6 h.
+  static Future<Map<String, int>> getRepoStars() {
+    return _cacheService.getOrCompute<Map<String, int>>(
+      _repoStarsCacheKey,
+      () async {
+        final repos = await getRepositories(perPage: 100);
+        return {
+          for (final repo in repos)
+            if (repo['name'] is String && repo['stargazers_count'] is int)
+              (repo['name'] as String).toLowerCase():
+                  repo['stargazers_count'] as int,
+        };
+      },
+      ttl: const Duration(hours: 6),
+    );
   }
 
   /// Récupère le total des stars de tous les repos

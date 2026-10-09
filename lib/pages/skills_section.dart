@@ -1,24 +1,35 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
-import 'package:myportfolio/widgets/skill_bar.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
 import 'package:myportfolio/widgets/github_stats_widget.dart' deferred as github_stats;
 import 'package:myportfolio/widgets/tech_badge.dart';
 import 'package:myportfolio/widgets/responsive_layout.dart';
 
-class SkillsSection extends StatelessWidget {
+class SkillsSection extends StatefulWidget {
   const SkillsSection({super.key});
 
   @override
+  State<SkillsSection> createState() => _SkillsSectionState();
+}
+
+class _SkillsSectionState extends State<SkillsSection> {
+  late final Map<String, List<Skill>> _skillsByCategory;
+  // Créé une seule fois : évite de relancer loadLibrary() à chaque rebuild.
+  late final Future<void> _githubStatsLoader;
+
+  @override
+  void initState() {
+    super.initState();
+    _skillsByCategory = AppData.getSkillsByCategory();
+    _githubStatsLoader = github_stats.loadLibrary();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final skillsByCategory = AppData.getSkillsByCategory();
-    final badges = AppData.getTechBadges();
     final isMobile = ResponsiveLayout.isMobile(context);
 
     return Container(
@@ -34,11 +45,9 @@ class SkillsSection extends StatelessWidget {
             children: [
               const SectionTitle(title: 'Expertise Technique'),
               const SizedBox(height: 80),
-              _buildSkillGrid(context, skillsByCategory, isMobile),
+              _buildSkillGrid(isMobile),
               const SizedBox(height: 100),
-              _buildStatsSection(context),
-              const SizedBox(height: 100),
-              _buildTechBadges(badges),
+              _buildStatsSection(),
               const SizedBox(height: 100),
               _buildGitHubSection(),
             ],
@@ -48,21 +57,20 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSkillGrid(BuildContext context, Map<String, List<Skill>> skillsByCategory, bool isMobile) {
+  Widget _buildSkillGrid(bool isMobile) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        int columns = isMobile ? 1 : (constraints.maxWidth > 1000 ? 3 : 2);
+        final columns = isMobile ? 1 : (constraints.maxWidth > 1000 ? 3 : 2);
         final cardWidth = (constraints.maxWidth - (50 * (columns - 1))) / columns;
-        
+
         return Wrap(
           spacing: 50,
           runSpacing: 40,
           alignment: WrapAlignment.center,
-          children: skillsByCategory.entries.map((entry) {
-            final index = skillsByCategory.keys.toList().indexOf(entry.key);
+          children: _skillsByCategory.entries.map((entry) {
             return SizedBox(
               width: cardWidth,
-              child: _buildSkillCategoryCard(entry.key, entry.value, index),
+              child: _buildSkillCategoryCard(entry.key, entry.value),
             );
           }).toList(),
         );
@@ -70,45 +78,44 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildSkillCategoryCard(String category, List<Skill> skills, int index) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(20),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Container(
-          padding: const EdgeInsets.all(30),
-          decoration: AppTheme.glassDecoration(
-            color: Colors.blueGrey,
-            opacity: 0.08,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                category,
-                style: AppTheme.titleSmall(color: Colors.blue.shade300),
-              ),
-              const SizedBox(height: 30),
-              ...skills.map((skill) => SkillBar(
-                name: skill.name,
-                level: skill.level,
-                color: skill.color,
-              )),
-            ],
-          ),
+  Widget _buildSkillCategoryCard(String category, List<Skill> skills) {
+    // Pas de BackdropFilter : coûteux sur le Web, et le fond est uni de toute façon.
+    return RepaintBoundary(
+      child: Container(
+        padding: const EdgeInsets.all(30),
+        decoration: AppTheme.glassDecoration(
+          color: Colors.blueGrey,
+          opacity: 0.08,
+          showShadow: false,
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              category,
+              style: AppTheme.titleSmall(color: Colors.blue.shade300),
+            ),
+            const SizedBox(height: 24),
+            Wrap(
+              spacing: 12,
+              runSpacing: 12,
+              children: skills
+                  .map((skill) => TechBadge(name: skill.name, color: skill.color))
+                  .toList(),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  Widget _buildStatsSection(BuildContext context) {
+  Widget _buildStatsSection() {
     return LayoutBuilder(
       builder: (context, constraints) {
         final isMobile = constraints.maxWidth < 700;
-        final cardWidth = isMobile 
-            ? constraints.maxWidth 
-            : (constraints.maxWidth - 40) / 3;
+        final cardWidth =
+            isMobile ? constraints.maxWidth : (constraints.maxWidth - 40) / 3;
 
         return Wrap(
           spacing: 20,
@@ -123,7 +130,7 @@ class SkillsSection extends StatelessWidget {
               width: cardWidth,
             ),
             StatCard(
-              icon: Icons.code_off_outlined,
+              icon: Icons.code,
               title: '3+',
               subtitle: 'Années de Code',
               color: Colors.green,
@@ -142,34 +149,6 @@ class SkillsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildTechBadges(List<Map<String, dynamic>> badges) {
-    return Column(
-      children: [
-        Text(
-          'Technologies & Écosystème',
-          style: AppTheme.titleMedium(),
-          textAlign: TextAlign.center,
-        ),
-        const SizedBox(height: 40),
-        Wrap(
-          spacing: 15,
-          runSpacing: 15,
-          alignment: WrapAlignment.center,
-          children: badges.asMap().entries.map((entry) {
-            final index = entry.key;
-            final badge = entry.value;
-            return TechBadge(
-              name: badge['name'] as String,
-              icon: badge['icon'] as String,
-              color: badge['color'] as Color,
-              index: index,
-            );
-          }).toList(),
-        ),
-      ],
-    );
-  }
-
   Widget _buildGitHubSection() {
     return Column(
       children: [
@@ -185,8 +164,8 @@ class SkillsSection extends StatelessWidget {
           textAlign: TextAlign.center,
         ),
         const SizedBox(height: 50),
-        FutureBuilder(
-          future: github_stats.loadLibrary(),
+        FutureBuilder<void>(
+          future: _githubStatsLoader,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               return github_stats.GitHubStatsWidget();

@@ -52,11 +52,12 @@ class AboutSection extends ConsumerWidget {
           ),
           const SizedBox(height: 30),
           Text(
-            'Je suis Josoa Vonjiniaina, un développeur basé à Madagascar avec une soif insatiable d\'apprendre et de créer. '
-            'Spécialisé dans l\'écosystème Flutter et les architectures backend robustes, je m\'efforce de construire des applications '
-            'qui allient design élégant et performances techniques. Actuellement en Master II en Informatique et Télécommunication, je concentre mes recherches '
-            'sur la cybersécurité et l\'optimisation logicielle. Mon engagement au sein d\'APEXNova Labs me permet de repousser '
-            'les limites du développement collaboratif et open source.',
+            'Je suis Josoa Vonjiniaina, développeur basé à Madagascar. J\'avance avec la volonté constante d\'apprendre et d\'innover. '
+            'Spécialisé dans l\'écosystème Flutter (apps mobiles & logiciels desktop) et les architectures backend, je crée et façonne des solutions logicielles complètes. '
+            '\n \n Ma priorité quand je développe ? Concevoir des interfaces soignées et intuitives, fluide et réactive avec une sécurité pensée dès la première ligne de code. '
+            'Mon objectif n\'est pas juste de livrer un produit qui marche aujourd\'hui, mais de bâtir une architecture propre et évolutive, capable d\'absorber la croissance de demain sans perdre en qualité. '
+            '\n \n Sur le point d\'achever mon Master II en Informatique & Télécommunications, je mets ce savoir-faire au service de projets ambitieux qu\'il s\'agisse de concevoir de nouvelles solutions de zéro ou d\'optimiser l\'existant pour offrir la meilleure expérience possible aux utilisateurs. '
+            'Mon engagement chez APEXNova Labs incarne cette vision à travers le développement collaboratif et l\'open source.',
             style: AppTheme.bodyLarge().copyWith(height: 1.8, fontSize: 18),
             textAlign: TextAlign.center,
           ),

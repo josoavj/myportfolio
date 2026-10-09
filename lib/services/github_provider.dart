@@ -11,3 +11,8 @@ final githubStatsProvider = FutureProvider<GitHubStats>((ref) async {
 final githubUserProvider = FutureProvider<Map<String, dynamic>>((ref) async {
   return GitHubService.getUserInfo();
 });
+
+/// Provider pour les étoiles de chaque dépôt (nom en minuscules -> étoiles)
+final repoStarsProvider = FutureProvider<Map<String, int>>((ref) async {
+  return GitHubService.getRepoStars();
+});
