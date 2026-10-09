@@ -375,61 +375,37 @@ class AppData {
   static Map<String, List<Skill>> getSkillsByCategory() {
     return {
       'Langages': [
-        Skill(name: 'Dart', level: 0.9, color: Colors.blue),
-        Skill(name: 'JavaScript', level: 0.75, color: Colors.blue),
-        Skill(name: 'Python', level: 0.8, color: Colors.blue),
+        Skill(name: 'Dart', color: Colors.blue),
+        Skill(name: 'JavaScript', color: Colors.yellow),
+        Skill(name: 'Python', color: Colors.yellow),
       ],
       'Frameworks': [
-        Skill(name: 'Flutter', level: 0.9, color: Colors.blue),
-        Skill(name: 'Node.js', level: 0.75, color: Colors.blue),
-        Skill(name: 'Express.js', level: 0.7, color: Colors.blue),
-        Skill(name: 'React', level: 0.5, color: Colors.blue),
+        Skill(name: 'Flutter', color: Colors.blue),
+        Skill(name: 'Node.js', color: Colors.green),
+        Skill(name: 'Express.js', color: Colors.grey),
+        Skill(name: 'React', color: Colors.cyan),
       ],
       'Bases de Données': [
-        Skill(name: 'MySQL', level: 0.85, color: Colors.blue),
-        Skill(name: 'Elasticsearch', level: 0.8, color: Colors.blue),
-        Skill(name: 'Hive', level: 0.5, color: Colors.blue),
+        Skill(name: 'MySQL', color: Colors.blue),
+        Skill(name: 'Elasticsearch', color: Colors.teal),
+        Skill(name: 'Hive', color: Colors.green),
       ],
       'DevOps & Outils': [
-        Skill(name: 'Linux', level: 0.85, color: Colors.blue),
-        Skill(name: 'Git', level: 0.9, color: Colors.blue),
-        Skill(name: 'Nginx', level: 0.6, color: Colors.blue),
-        Skill(name: 'Bash', level: 0.75, color: Colors.blue),
+        Skill(name: 'Linux', color: Colors.orange),
+        Skill(name: 'Git', color: Colors.orange),
+        Skill(name: 'Nginx', color: Colors.green),
+        Skill(name: 'Bash', color: Colors.grey),
+        Skill(name: 'VS Code', color: Colors.blue),
+        Skill(name: 'Android Studio', color: Colors.green),
+        Skill(name: 'PyCharm', color: Colors.blue),
+        Skill(name: 'WebStorm', color: Colors.blue),
       ],
       'Sécurité & Networking': [
-        Skill(name: 'Cybersécurité', level: 0.45, color: Colors.blue),
-        Skill(name: 'Networking', level: 0.50, color: Colors.blue),
-        Skill(name: 'Kali Linux', level: 0.55, color: Colors.blue),
-        Skill(name: 'Firewall Config', level: 0.45, color: Colors.blue),
+        Skill(name: 'Cybersécurité', color: Colors.red),
+        Skill(name: 'Networking', color: Colors.indigo),
+        Skill(name: 'Kali Linux', color: Colors.red),
+        Skill(name: 'Firewall Config', color: Colors.red),
       ],
     };
-  }
-
-  static List<Map<String, dynamic>> getTechBadges() {
-    return [
-      // Retour à la palette variée plus expressive
-      {'name': 'Dart', 'icon': '', 'color': Colors.blue},
-      {'name': 'Python', 'icon': '', 'color': Colors.yellow},
-      {'name': 'JavaScript', 'icon': '', 'color': Colors.yellow},
-      //{'name': 'Java', 'icon': '', 'color': Colors.red},
-      {'name': 'Flutter', 'icon': '', 'color': Colors.blue},
-      {'name': 'React', 'icon': '', 'color': Colors.cyan},
-      {'name': 'Node.js', 'icon': '', 'color': Colors.green},
-      {'name': 'Express.js', 'icon': '', 'color': Colors.grey},
-      {'name': 'MySQL', 'icon': '', 'color': Colors.blue},
-      {'name': 'Elasticsearch', 'icon': '', 'color': Colors.teal},
-      {'name': 'Hive', 'icon': '', 'color': Colors.green},
-      {'name': 'Linux', 'icon': '', 'color': Colors.orange},
-      {'name': 'Git', 'icon': '', 'color': Colors.orange},
-      {'name': 'Nginx', 'icon': '', 'color': Colors.green},
-      {'name': 'Bash', 'icon': '', 'color': Colors.grey},
-      {'name': 'VS Code', 'icon': '', 'color': Colors.blue},
-      {'name': 'Android Studio', 'icon': '', 'color': Colors.green},
-      {'name': 'PyCharm', 'icon': '', 'color': Colors.blue},
-      {'name': 'WebStorm', 'icon': '', 'color': Colors.blue},
-      {'name': 'Security', 'icon': '', 'color': Colors.red},
-      {'name': 'Networking', 'icon': '', 'color': Colors.indigo},
-      {'name': 'Kali Linux', 'icon': '', 'color': Colors.red},
-    ];
   }
 }
