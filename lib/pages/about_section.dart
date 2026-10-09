@@ -54,7 +54,7 @@ class AboutSection extends ConsumerWidget {
           Text(
             'Je suis Josoa Vonjiniaina, un développeur basé à Madagascar avec une soif insatiable d\'apprendre et de créer. '
             'Spécialisé dans l\'écosystème Flutter et les architectures backend robustes, je m\'efforce de construire des applications '
-            'qui allient design élégant et performances techniques. Actuellement en Master II en Informatique et Télécommunication, je concentre mes recherches '
+            'qui allient design élégant et performances techniques. Sur le point d\'achever mon Master II en Informatique et Télécommunication, je concentre mes recherches '
             'sur la cybersécurité et l\'optimisation logicielle. Mon engagement au sein d\'APEXNova Labs me permet de repousser '
             'les limites du développement collaboratif et open source.',
             style: AppTheme.bodyLarge().copyWith(height: 1.8, fontSize: 18),
