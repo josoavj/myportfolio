@@ -439,23 +439,23 @@ class AppData {
 
   static Map<String, List<Skill>> getSkillsByCategory() {
     return {
-      'Langages': [
+      'Langages': const [
         Skill(name: 'Dart', color: Colors.blue),
         Skill(name: 'JavaScript', color: Colors.yellow),
         Skill(name: 'Python', color: Colors.yellow),
       ],
-      'Frameworks': [
+      'Frameworks': const [
         Skill(name: 'Flutter', color: Colors.blue),
         Skill(name: 'Node.js', color: Colors.green),
         Skill(name: 'Express.js', color: Colors.grey),
         Skill(name: 'React', color: Colors.cyan),
       ],
-      'Bases de Données': [
+      'Bases de Données': const [
         Skill(name: 'MySQL', color: Colors.blue),
         Skill(name: 'Elasticsearch', color: Colors.teal),
         Skill(name: 'Hive', color: Colors.green),
       ],
-      'DevOps & Outils': [
+      'DevOps & Outils': const [
         Skill(name: 'Linux', color: Colors.orange),
         Skill(name: 'Git', color: Colors.orange),
         Skill(name: 'Nginx', color: Colors.green),
@@ -465,7 +465,7 @@ class AppData {
         Skill(name: 'PyCharm', color: Colors.blue),
         Skill(name: 'WebStorm', color: Colors.blue),
       ],
-      'Sécurité & Networking': [
+      'Sécurité & Networking': const [
         Skill(name: 'Cybersécurité', color: Colors.red),
         Skill(name: 'Networking', color: Colors.indigo),
         Skill(name: 'Kali Linux', color: Colors.red),
