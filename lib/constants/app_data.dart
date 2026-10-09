@@ -80,7 +80,7 @@ class AppData {
         location: 'Antananarivo, Madagascar',
         description:
             'Formation avancée en systèmes d\'information, réseaux et télécommunications. '
-            'Spécialisation en architecture logicielle, sécurité des systèmes et technologies cloud. '
+            'Spécialisation en architecture logicielle, sécurité des systèmes, Machine Learning et Ontologie. '
             'Parcours ESIIA (Électronique, Systèmes Informatiques, Informatique et Intelligence Artificielle).',
         icon: Icons.school,
         color: Colors.blue,
@@ -92,7 +92,8 @@ class AppData {
         period: '2023 - 2024',
         location: 'Antananarivo, Madagascar',
         description:
-            'Approfondissement des connaissances en développement logiciel, réseaux, bases de données avancées et cybersécurité.',
+            'Approfondissement en développement logiciel, réseaux et cybersécurité. '
+            'Gestion des bases de données relationnelles, introduction au Machine Learning et optimisation des systèmes.',
         icon: Icons.school,
         color: const Color(0xFF25D366),
         status: 'Terminé',
@@ -206,7 +207,7 @@ class AppData {
         name: 'Planificator',
         category: 'Desktop',
         description:
-            'Application desktop multiplateforme pour planification et gestion de projets avec Flutter',
+            'Application desktop pour planification et gestion de projets avec Flutter',
         language: 'Dart',
         stars: 4,
         url: 'https://github.com/josoavj/PlanificatorFinal',
@@ -227,7 +228,7 @@ class AppData {
           'Design Material moderne et responsive',
         ],
         detailedDescription:
-            'Application desktop multiplateforme de planification développée en Flutter. Utilise SQLite pour la persistance des données avec Provider pour la gestion d\'état. Offre une solution complète et moderne pour la gestion des projets, tâches et plannings avec interface intuitive et Material Design.',
+            'Application desktop de planification développée en Flutter. Utilise SQLite pour la persistance des données avec Provider pour la gestion d\'état. Offre une solution complète et moderne pour la gestion des projets, tâches et plannings avec interface intuitive et Material Design.',
       ),
       Project(
         name: 'sfiDashMonitoring',
@@ -259,6 +260,70 @@ class AppData {
         ],
         detailedDescription:
             'sfiDashMonitoring est une solution complète de monitoring "full-stack" conçue pour transformer les journaux bruts d\'Elasticsearch en visualisations exploitables. Développée avec un focus majeur sur la sécurité (protection XSS/CSRF, rotation de tokens) et l\'observabilité, la plateforme permet un suivi en temps réel des flux réseau Fortigate. Elle intègre des tests unitaires et de sécurité rigoureux via Vitest.',
+      ),
+
+      Project(
+        name: 'MagicMirror',
+        category: 'Mobile',
+        description:
+            'Miroir intelligent modulaire : caméra temps réel, météo, agenda et suggestions de tenues par IA selon la morphologie et le contexte du jour',
+        language: 'Dart',
+        stars: 0,
+        url: 'https://github.com/josoavj/magicmirror',
+        releaseUrl: 'https://github.com/josoavj/magicmirror/releases',
+        technologies: [
+          'Flutter',
+          'Dart',
+          'Riverpod',
+          'Supabase',
+          'Google ML Kit',
+          'OpenWeatherMap',
+          'LightGBM',
+          'Flutter TTS',
+        ],
+        features: [
+          'Miroir caméra temps réel avec contrôles de zoom et d\'exposition',
+          'Agenda cloud Supabase avec gestion complète (CRUD)',
+          'Météo en temps réel et géolocalisation (OpenWeatherMap)',
+          'Détection de la morphologie par IA (Google ML Kit)',
+          'Suggestions de tenues : ranking hybride Heuristique + ML + LLM',
+          'Garde-robe, profil synchronisé dans le cloud et synthèse vocale',
+          'Architecture feature-first (Domain / Data / Presentation) avec Riverpod',
+          'Sécurité : RLS Supabase strict et stockage local chiffré',
+        ],
+        detailedDescription:
+            'Magic Mirror est un miroir intelligent modulaire développé en Flutter. Il combine un rendu caméra plein écran, la météo et l\'agenda de la journée pour proposer des tenues adaptées à la morphologie de l\'utilisateur et à sa garde-robe. L\'application suit une architecture feature-first stricte avec Riverpod, synchronise profil et agenda via Supabase, et traite la détection de pose localement avec Google ML Kit. Elle fonctionne sur Android, iOS et macOS (support partiel sur Linux et Windows) et dispose d\'une suite de plus de 20 tests unitaires et de widgets. Le projet est actuellement en phase de maintenance.',
+      ),
+      Project(
+        name: 'mlOutfitSuggestion',
+        category: 'Backend',
+        description:
+            'API de recommandation de tenues pour MagicMirror : moteur hybride (ontologie OWL, RAG ChromaDB, Random Forest) selon profil, météo et agenda',
+        language: 'Python',
+        stars: 0,
+        url: 'https://github.com/josoavj/mlOutfitSuggestion',
+        technologies: [
+          'Python',
+          'FastAPI',
+          'scikit-learn',
+          'ChromaDB',
+          'Owlready2 (OWL)',
+          'SQLite',
+          'Docker',
+          'GitHub Actions',
+        ],
+        features: [
+          'Pipeline en 4 étapes : filtres, validation sémantique RAG, scoring ML, diversité MMR',
+          'Ontologie OWL pour l\'harmonie des couleurs et la formalité',
+          'Identification faciale pour charger le profil utilisateur',
+          'Contexte réel : météo OpenWeather et agenda du jour',
+          'Collecte de feedback et réentraînement sur données réelles',
+          'API sécurisée : clé X-API-Key, protection Path Traversal, limite d\'upload',
+          'Stockage JSON ou SQLite (WAL) et CI avec tests Pytest',
+          'Interface web de test et dashboard de métriques',
+        ],
+        detailedDescription:
+            'mlOutfitSuggestion est le moteur de recommandation de tenues de MagicMirror, exposé via une API FastAPI. Un pipeline en quatre étapes transforme la garde-robe de l\'utilisateur en tenues cohérentes : filtres durs (chaleur, formalité, genre), validation sémantique par RAG ChromaDB et ontologie OWL, scoring par un modèle Random Forest, puis diversité MMR pour éviter les répétitions. Le système tient compte du sexe, de l\'âge, de la taille, de la morphologie, des préférences vestimentaires, de la météo et du planning du jour, et peut identifier l\'utilisateur par caméra. Il inclut une collecte de feedback pour réentraîner le modèle sur des données réelles, une API protégée et une CI automatisée.',
       ),
 
       // Projets secondaires
@@ -295,15 +360,15 @@ class AppData {
       Project(
         name: 'myportfolio',
         category: 'Mobile',
-        description: 'Portfolio multiplateforme développée en Flutter',
+        description: 'Portfolio multiplateforme développé en Flutter',
         language: 'Dart',
-        stars: 7,
+        stars: 9,
         url: 'https://github.com/josoavj/myportfolio',
         releaseUrl: 'https://github.com/josoavj/myportfolio/releases',
         technologies: [
           'Flutter',
           'Dart',
-          'Provider',
+          'Riverpod',
           'GitHub API',
           'Responsive Design'
         ],
@@ -316,7 +381,7 @@ class AppData {
           'Cache service pour optimisation',
         ],
         detailedDescription:
-            'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de vos réalisations. Accessible sur tous les appareils avec une interface cohérente et professionnelle.',
+            'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de mes réalisations. Accessible sur tous les appareils avec une interface cohérente et professionnelle.',
       ),
       Project(
         name: 'Prospectius',
