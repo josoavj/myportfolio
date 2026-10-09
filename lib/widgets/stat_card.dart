@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
@@ -51,9 +50,7 @@ class _StatCardState extends State<StatCard> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(24),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                  child: Container(
+                child: Container(
                     padding: EdgeInsets.all(isSmall ? 16 : 25),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -85,7 +82,6 @@ class _StatCardState extends State<StatCard> {
                       ],
                     ),
                   ),
-                ),
               ),
             ),
           ),
