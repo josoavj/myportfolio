@@ -1,15 +1,12 @@
-import 'package:url_launcher/url_launcher.dart';
+import 'package:myportfolio/services/url_launcher_service.dart';
 
 class CVDownloadService {
   /// Télécharge ou ouvre le CV de l'utilisateur
   /// [cvUrl] : URL où se trouve le fichier CV (Google Drive, GitHub, etc.)
   static Future<bool> downloadCV(String cvUrl) async {
     try {
-      if (await canLaunchUrl(Uri.parse(cvUrl))) {
-        await launchUrl(
-          Uri.parse(cvUrl),
-          mode: LaunchMode.externalApplication,
-        );
+      if (cvUrl.isNotEmpty) {
+        await UrlLauncherService.launchURL(cvUrl);
         return true;
       }
       return false;
