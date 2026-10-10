@@ -8,7 +8,7 @@
   ],
   "headers": [
     {
-      "source": "/(.*)\\.wasm",
+      "source": "/:path*.wasm",
       "headers": [
         {
           "key": "Content-Type",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "source": "/(index\\.html|flutter_bootstrap\\.js|flutter_service_worker\\.js|version\\.json|manifest\\.json|main\\.dart\\.(js|mjs|wasm))",
+      "source": "/:file(index.html|flutter_bootstrap.js|flutter_service_worker.js|version.json|manifest.json|main.dart.js|main.dart.mjs|main.dart.wasm)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -34,7 +34,7 @@
       ]
     },
     {
-      "source": "/(.*)\\.(webp|png|jpg|jpeg|svg|ico|woff2|ttf|otf)",
+      "source": "/:path*.(webp|png|jpg|jpeg|svg|ico|woff2|ttf|otf)",
       "headers": [
         {
           "key": "Cache-Control",
