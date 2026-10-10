@@ -35,74 +35,66 @@ class _ProjectCardState extends State<ProjectCard> {
       child: MouseRegion(
         onEnter: (_) => setState(() => isHovered = true),
         onExit: (_) => setState(() => isHovered = false),
-        child: AnimatedScale(
-          scale: isHovered ? 1.02 : 1.0,
+        child: AnimatedContainer(
           duration: const Duration(milliseconds: 250),
           curve: Curves.easeOutCubic,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 250),
-            curve: Curves.easeOutCubic,
-            transform: Matrix4.translationValues(0, isHovered ? -8 : 0, 0),
-            decoration: AppTheme.glassDecoration(
-              color: isHovered ? Colors.blue : Colors.blueGrey,
-              opacity: isHovered ? 0.2 : 0.1,
-              // Ombre floue uniquement au survol : moins coûteux sur le Web.
-              showShadow: isHovered,
-            ),
-            // Pas de BackdropFilter : très coûteux avec de nombreuses cartes.
-            child: ClipRRect(
+          decoration: AppTheme.glassDecoration(
+            color: isHovered ? Colors.blue : Colors.blueGrey,
+            opacity: isHovered ? 0.2 : 0.1,
+            showShadow: isHovered,
+          ),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(20),
+            child: InkWell(
+              onTap: widget.onTap,
               borderRadius: BorderRadius.circular(20),
-              child: InkWell(
-                onTap: widget.onTap,
-                borderRadius: BorderRadius.circular(20),
-                child: Container(
-                  padding: const EdgeInsets.all(24),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.folder_outlined,
-                            color: isHovered
-                                ? Colors.blue.shade300
-                                : Colors.blue.shade200,
-                            size: 28,
-                          ),
-                          const Spacer(),
-                          _buildStarsBadge(),
-                        ],
-                      ),
-                      const SizedBox(height: 15),
-                      _buildCategoryBadge(),
-                      const SizedBox(height: 12),
-                      Text(
-                        project.name,
-                        style: AppTheme.lexendRegular(
-                          18,
-                          color: isHovered ? Colors.blue.shade300 : Colors.white,
-                          fontWeight: FontWeight.bold,
+              child: Container(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.folder_outlined,
+                          color: isHovered
+                              ? Colors.blue.shade300
+                              : Colors.blue.shade200,
+                          size: 28,
                         ),
-                        maxLines: 1,
+                        const Spacer(),
+                        _buildStarsBadge(),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    _buildCategoryBadge(),
+                    const SizedBox(height: 12),
+                    Text(
+                      project.name,
+                      style: AppTheme.lexendRegular(
+                        18,
+                        color: isHovered ? Colors.blue.shade300 : Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: 8),
+                    Expanded(
+                      child: Text(
+                        project.description,
+                        style: AppTheme.lexendRegular(
+                          13,
+                          color: Colors.grey.shade300,
+                          height: 1.5,
+                        ),
+                        maxLines: widget.descriptionMaxLines,
                         overflow: TextOverflow.ellipsis,
                       ),
-                      const SizedBox(height: 8),
-                      Expanded(
-                        child: Text(
-                          project.description,
-                          style: AppTheme.lexendRegular(
-                            13,
-                            color: Colors.grey.shade300,
-                            height: 1.5,
-                          ),
-                          maxLines: widget.descriptionMaxLines,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      _buildLanguageInfo(),
-                    ],
-                  ),
+                    ),
+                    const SizedBox(height: 15),
+                    _buildLanguageInfo(),
+                  ],
                 ),
               ),
             ),
