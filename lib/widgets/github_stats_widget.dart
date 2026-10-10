@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:myportfolio/services/github_provider.dart';
+import 'package:myportfolio/services/url_launcher_service.dart';
 import 'package:myportfolio/models/github_stats.dart';
 import 'package:myportfolio/utils/app_theme.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class GitHubStatsWidget extends ConsumerStatefulWidget {
   const GitHubStatsWidget({super.key});
@@ -641,9 +641,7 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
     }
   }
 
-  void _launchURL(String url) async {
-    if (await canLaunchUrl(Uri.parse(url))) {
-      await launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
-    }
+  void _launchURL(String url) {
+    UrlLauncherService.launchURL(url);
   }
 }
