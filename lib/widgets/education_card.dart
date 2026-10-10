@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:myportfolio/services/url_launcher_service.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/models/education.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -234,11 +234,8 @@ class EducationCard extends StatelessWidget {
     );
   }
 
-  void _launchURL(String url) async {
-    final Uri uri = Uri.parse(url);
-    if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
-    }
+  void _launchURL(String url) {
+    UrlLauncherService.launchURL(url);
   }
 
   Widget _buildMobileLayout(
