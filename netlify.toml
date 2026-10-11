@@ -1,12 +1,9 @@
 [build]
-  # Pas de build command - on publie depuis releases/current (pré-compilé)
+  # Netlify sert uniquement d'API pour les Serverless Functions (github-stats)
+  # Le site web frontend est hébergé sur Vercel
   command = ""
-  publish = "releases/current"
+  publish = ""
+  functions = "netlify/functions"
 
 [context.production]
   environment = { GITHUB_TOKEN = "@github-token" }
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
