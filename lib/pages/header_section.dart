@@ -15,6 +15,7 @@ class HeaderSection extends StatefulWidget {
 class _HeaderSectionState extends State<HeaderSection> with SingleTickerProviderStateMixin {
   late AnimationController _glowController;
   late Animation<double> _glowAnimation;
+  late Animation<double> _haloOpacity;
 
   @override
   void initState() {
@@ -26,6 +27,7 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
     _glowAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _glowController, curve: Curves.easeInOut),
     );
+    _haloOpacity = Tween<double>(begin: 0.5, end: 1.0).animate(_glowAnimation);
   }
 
   @override
@@ -108,32 +110,50 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
 
   Widget _buildAvatar({required bool isMobile}) {
     final avatarSize = isMobile ? 180.0 : 350.0;
-    return AnimatedBuilder(
-      animation: _glowAnimation,
-      builder: (context, child) {
-        final glowSize = 10.0 + (_glowAnimation.value * 15.0);
-        final opacity = 0.2 + (_glowAnimation.value * 0.2);
-
-        return Container(
-          width: avatarSize,
-          height: avatarSize,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            border: Border.all(color: Colors.blue.withValues(alpha: 0.5), width: 4),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.blue.withValues(alpha: opacity),
-                blurRadius: glowSize * 2,
-                spreadRadius: glowSize,
+    return SizedBox(
+      width: avatarSize,
+      height: avatarSize,
+      child: Stack(
+        clipBehavior: Clip.none,
+        children: [
+          // Halo : flou fixe mis en cache (RepaintBoundary), seule l'opacité
+          // s'anime. Animer blurRadius forçait un nouveau flou à chaque frame.
+          Positioned.fill(
+            child: RepaintBoundary(
+              child: FadeTransition(
+                opacity: _haloOpacity,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.blue.withValues(alpha: 0.4),
+                        blurRadius: 40,
+                        spreadRadius: 18,
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            ],
+            ),
           ),
-          child: const CircleAvatar(
-            backgroundColor: AppConstants.secondaryDark,
-            backgroundImage: AssetImage('assets/mypfp.webp'),
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.blue.withValues(alpha: 0.5),
+                  width: 4,
+                ),
+              ),
+              child: const CircleAvatar(
+                backgroundColor: AppConstants.secondaryDark,
+                backgroundImage: AssetImage('assets/mypfp.webp'),
+              ),
+            ),
           ),
-        );
-      },
+        ],
+      ),
     );
   }
 

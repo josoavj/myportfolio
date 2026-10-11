@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# 📱 Commandes rapides pour les releases MyPortfolio
+# Commandes rapides pour les releases MyPortfolio
 
 # =================================================================
-# 🚀 RELEASE RAPIDE - EXÉCUTE TOUT AUTOMATIQUEMENT
+# RELEASE RAPIDE - EXÉCUTE TOUT AUTOMATIQUEMENT
 # =================================================================
 
 # Release avec version par défaut (1.0.0)
@@ -22,24 +22,24 @@ release-full() {
 }
 
 # =================================================================
-# 📊 INFORMATIONS - VER LES STATUS ET VERSIONS
+# INFORMATIONS - VERS LES STATUS ET VERSIONS
 # =================================================================
 
 # Voir toutes les versions/tags
 show-releases() {
-    echo "📦 Releases disponibles:"
+    echo "Releases disponibles:"
     git tag -l | sort -V
 }
 
 # Voir le dernier commit
 show-latest-commit() {
-    echo "📝 Dernier commit:"
+    echo "Dernier commit:"
     git log -1 --oneline
 }
 
 # Voir le status du repo
 repo-status() {
-    echo "📊 Status du repository:"
+    echo "Status du repository:"
     git status
 }
 
@@ -49,7 +49,7 @@ repo-status() {
 
 # Nettoyer les builds locaux
 clean-build() {
-    echo "🧹 Nettoyage des builds..."
+    echo "Nettoyage des builds..."
     flutter clean
     rm -rf build/
     echo "✓ Build nettoyé"
@@ -57,7 +57,7 @@ clean-build() {
 
 # Générer juste l'APK sans commit
 build-apk-only() {
-    echo "📦 Construction de l'APK..."
+    echo "Construction de l'APK..."
     flutter clean
     flutter pub get
     flutter build apk --release --obfuscate --split-debug-info=build/app/outputs/symbols
@@ -75,7 +75,7 @@ apk-size() {
 }
 
 # =================================================================
-# 🔄 GIT - COMMANDES GIT COURANTES
+# GIT - COMMANDES GIT COURANTES
 # =================================================================
 
 # Push rapide sur la branche actuelle
@@ -100,7 +100,7 @@ git-branches() {
 }
 
 # =================================================================
-# 📱 APK - GESTION DES APK
+# APK - GESTION DES APK
 # =================================================================
 
 # Copier l'APK vers le dossier releases avec version
@@ -113,10 +113,10 @@ copy-apk() {
 
 # Lister les APK disponibles
 list-apks() {
-    echo "📦 APK générés:"
+    echo "APK générés:"
     ls -lh releases/myportfolio-*.apk 2>/dev/null || echo "Aucun APK trouvé"
     echo ""
-    echo "📦 APK courant:"
+    echo "APK courant:"
     ls -lh build/app/outputs/flutter-apk/app-release.apk 2>/dev/null || echo "Aucun APK courant"
 }
 
@@ -132,13 +132,13 @@ install-apk() {
 }
 
 # =================================================================
-# 🎯 WORKFLOW COMPLET - TOUTES LES ÉTAPES
+# WORKFLOW COMPLET - TOUTES LES ÉTAPES
 # =================================================================
 
 # Workflow simple: build → test → release
 workflow() {
     VERSION=${1:-"1.0.0"}
-    echo "🔄 Workflow complet pour version $VERSION"
+    echo "Workflow complet pour version $VERSION"
     echo ""
     echo "1️⃣  Nettoyage..."
     flutter clean
@@ -157,45 +157,45 @@ workflow() {
 }
 
 # =================================================================
-# 📋 AIDE ET INFO
+# AIDE ET INFO
 # =================================================================
 
 show-help() {
     cat << 'EOF'
 
-🚀 COMMANDES DE RELEASE - MyPortfolio
+ COMMANDES DE RELEASE - MyPortfolio
 ────────────────────────────────────────────────────────────────
 
-📱 RELEASE RAPIDE
+ RELEASE RAPIDE
   release-quick              → Release avec version par défaut (1.0.0)
   release-version 1.0.1      → Release avec version spécifique
   release-full 1.0.1 "Msg"   → Release avec version et message
 
-📊 INFORMATIONS
+ INFORMATIONS
   show-releases              → Lister toutes les versions
   show-latest-commit         → Voir le dernier commit
   repo-status                → Voir le status du repo
 
-🔧 UTILITAIRES
+ UTILITAIRES
   clean-build                → Nettoyer les builds locaux
   build-apk-only             → Générer juste l'APK
   apk-size                   → Voir la taille de l'APK
 
-🔄 GIT
+ GIT
   git-push                   → Push rapide
   git-log                    → Voir l'historique
   git-undo-last              → Annuler le dernier commit
   git-branches               → Voir les branches
 
-📱 APK
+ APK
   copy-apk 1.0.1             → Copier APK vers releases/
   list-apks                  → Lister les APK disponibles
   install-apk                → Installer l'APK sur device
 
-🎯 WORKFLOW
+ WORKFLOW
   workflow 1.0.1             → Workflow complet: build → test → release
 
-📋 AIDE
+ AIDE
   show-help                  → Affiche cette aide
 
 ────────────────────────────────────────────────────────────────
