@@ -124,15 +124,15 @@ echo ""
 echo -e "${YELLOW}🔟 Push vers le repository...${NC}"
 git push origin HEAD
 git push origin "v${VERSION}"
-echo -e "${GREEN}   ✓ Push réussi${NC}"
+echo -e "${GREEN}    Push réussi${NC}"
 echo ""
 
 # Résumé final
 echo -e "${BLUE}╔════════════════════════════════════════════════════════════╗${NC}"
-echo -e "${GREEN}✅ Release v${VERSION} terminée avec succès!${NC}"
+echo -e "${GREEN} Release v${VERSION} terminée avec succès!${NC}"
 echo -e "${BLUE}╚════════════════════════════════════════════════════════════╝${NC}"
 echo ""
-echo -e "${BLUE}📊 Résumé:${NC}"
+echo -e "${BLUE}Résumé:${NC}"
 echo -e "   • Version: ${GREEN}$VERSION${NC}"
 echo -e "   • Fichier: ${GREEN}$APK_NAME${NC}"
 echo -e "   • Taille: ${GREEN}$APK_SIZE${NC}"
