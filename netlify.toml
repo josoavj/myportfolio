@@ -1,8 +1,8 @@
 [build]
-  # Netlify sert uniquement d'API pour les Serverless Functions (github-stats)
-  # Le site web frontend est hébergé sur Vercel
+  # Netlify sert uniquement d'API pour les Netlify Functions (github-stats)
+  # 'publish' pointe sur le dossier netlify/ existant dans Git
   command = ""
-  publish = ""
+  publish = "netlify"
   functions = "netlify/functions"
 
 [context.production]
