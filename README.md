@@ -10,11 +10,11 @@ Web, Android, Windows et Linux, à partir d'une seule base de code.
 
 ## Stack
 
-Flutter, Dart, Riverpod, API GitHub. Déploiement Web sur Vercel et Netlify.
+Flutter, Dart, Riverpod, API GitHub. Site Web sur Vercel, fonction serverless (statistiques GitHub) sur Netlify.
 
 ## Déploiement
 
-Vercel et Netlify publient le build pré-compilé du dossier `releases/current` (voir `vercel.json` et `netlify.toml`), sans étape de build côté hébergeur.
+Vercel publie le build pré-compilé du dossier `releases/current` (voir `vercel.json`), sans étape de build côté hébergeur. Netlify n'héberge que la fonction serverless `netlify/functions/github-stats.js` (voir `netlify.toml`) et ne publie pas le site Web.
 
 ## Structure de `lib/`
 

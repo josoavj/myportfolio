@@ -23,8 +23,13 @@ flutter clean
 flutter build web --release --wasm --base-href "/" --tree-shake-icons
 
 # Restaure les glyphes Font Awesome retirés par le tree-shaking
+# (prérequis : pip install fonttools ; PYTHON_BIN=... pour choisir l'interpréteur)
 echo "Restauration des glyphes Font Awesome..."
-/home/shadowcraft/.venv/bin/python "$SCRIPT_DIR/restore_fa_glyphs.py" "$PROJECT_ROOT/build/web"
+RESTORE_SCRIPT="$SCRIPT_DIR/restore_fa_glyphs.py"
+[ -s "$RESTORE_SCRIPT" ] || { echo "Erreur : $RESTORE_SCRIPT est vide ou absent"; exit 1; }
+PYTHON_BIN="${PYTHON_BIN:-$HOME/.venv/bin/python}"
+[ -x "$PYTHON_BIN" ] || PYTHON_BIN=python3
+"$PYTHON_BIN" "$RESTORE_SCRIPT" "$PROJECT_ROOT/build/web"
 
 # Créer le dossier version
 echo "Création du dossier release: $VERSION_DIR"
