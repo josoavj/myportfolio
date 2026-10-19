@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -37,7 +36,6 @@ class _SkillsSectionState extends State<SkillsSection> {
         horizontal: isMobile ? 16 : 40,
         vertical: 100,
       ),
-      color: AppConstants.secondaryDark,
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1200),
