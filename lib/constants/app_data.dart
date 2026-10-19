@@ -1,145 +1,176 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio/models/education.dart';
-import 'package:myportfolio/models/experience.dart';
 import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/models/skill.dart';
+import 'package:myportfolio/models/timeline_entry.dart';
 
 class AppData {
-  static List<Experience> getExperiences() {
+  /// Parcours professionnel : stage et side projects (arbre « Professionnel »).
+  static List<TimelineEntry> getProfessionalTimeline() {
     return [
-      Experience(
-        role: 'Développeur Full Stack',
-        company: 'APEXNova Labs',
-        period: '2023 - Présent',
+      const TimelineEntry(
+        title: 'Développeur Full Stack',
+        organization: 'APEXNova Labs',
         location: 'Antananarivo, Madagascar',
-        description:
-            'Développement d\'applications web et mobile multiplateforme. Contribution active à des projets open source. '
-            'Travail sur des solutions avancées de sécurité, networking et data analytics.',
-        achievements: [
-          'Prospectius - Plateforme CRM complète de gestion de prospects et clients (7 stars)',
-          'Planificator - Application desktop Flutter pour planification (4 stars)',
-          'Segma - Logiciel de segmentation d\'images utilisant SAM Model (6 stars)',
-          'Contributions actives aux projets open source de l\'équipe',
+        period: '2023 - Présent',
+        badge: 'Side project',
+        status: 'En cours',
+        isOngoing: true,
+        icon: Icons.rocket_launch_outlined,
+        summary:
+            'Side project mené en parallèle de mes études, en dehors de tout cadre salarié : développement de plateformes ERP et CRM, et d\'autres plateformes''Digitaliser et centraliser la gestion d\'entreprise (comme la facturation et planification de tâches)'
+            ' et optimiser le suivi de la relation client grâce à des interfaces intuitives et performantes. '
+            '\n J\'accorde également une place importante à la création d\'applications utilitaires et aux contributions Open Source.',
+        highlights: [
+          'Prospectius : plateforme CRM complète de gestion de prospects et clients',
+          'lanificator : Solution logicielle sur mesure pour l\'organisation des plannings d\'intervention et le suivi de facturation dans le secteur de l\'hygiène et de l\'assainissement.',
+          'Segma : logiciel de segmentation d\'images utilisant le modèle SAM de Meta',
+          'Contributions actives aux projets Open Source de l\'équipe',
           'Configuration et optimisation avancée de serveurs Linux',
         ],
-        icon: Icons.business,
-        color: const Color(0xFF25D366),
+        technologies: ['Flutter', 'Linux', 'SAM', 'Python'],
+        relatedProjects: ['Prospectius', 'Planificator', 'segma'],
       ),
-      Experience(
-        role: 'Développeur Back-End (Stage)',
-        company: 'SFI Ankorondrano',
-        period: '2024 (3 mois)',
+      const TimelineEntry(
+        title: 'Développeur Back-End',
+        organization: 'SFI Ankorondrano',
         location: 'Ankorondrano, Antananarivo',
-        description:
-            'Stage de développement d\'un système complet de monitoring et collecte de données. '
+        period: '2024',
+        duration: '3 mois',
+        badge: 'Stage',
+        status: 'Terminé',
+        icon: Icons.business_center_outlined,
+        summary:
+            'Stage de développement d\'un système complet de monitoring et collecte de données de journaux Fortinet. '
             'Mise en place de l\'infrastructure Elasticsearch, développement de serveurs NodeJS/Express, '
             'et configuration avancée pour le traitement des données Fortinet avec architecture asynchrone.',
-        achievements: [
-          'sfiDashMonitoring - Dashboard React avec Elasticsearch en temps réel (6 stars)',
-          'elasticsearch-nodejs-server - Serveur pour filtrer données Fortinet (15 stars)',
-          'Intégration Filebeat et Kibana pour monitoring complète',
-          'Configuration d\'Elasticsearch et Grafana',
+        highlights: [
+          'elasticsearch-config : configuration et optimisation d\'Elasticsearch',
+          'sfiDashMonitoring : dashboard React lié à avec Elasticsearch pour une visualisation des données du traffic réseau en temps réel',
+          'elasticsearch-nodejs-server : serveur pour accéder aux données des journaux Fortinet avec Elasticsearch',
+          'Intégration de Filebeat et Kibana pour un monitoring complet',
+          'Configuration d\'Elasticsearch et Grafana pour une visualisation des données reçus par Elasticsearch',
           'API REST robuste avec authentification JWT',
-          'Architecture socket.io pour communication temps réel',
+          'Architecture socket.io pour la communication temps réel',
           'Optimisation des performances de la collecte de données',
         ],
-        icon: Icons.code,
-        color: Colors.blue,
+        technologies: [
+          'Elasticsearch',
+          'Kibana',
+          'Filebeat',
+          'Grafana',
+          'Node.js',
+          'Express',
+          'React',
+          'JWT',
+          'Socket.IO',
+          'Fortinet',
+        ],
+        relatedProjects: ['sfiDashMonitoring', 'elasticsearch-nodejs-server', 'elasticsearch-config'],
       ),
-      Experience(
-        role: 'Développeur Full Stack',
-        company: 'Projets Universitaires & Freelance',
-        period: '2021 - 2024',
+      const TimelineEntry(
+        title: 'Développeur Full Stack',
+        organization: 'Projets Universitaires et Side Projects',
         location: 'Madagascar',
-        description:
+        period: '2021 - 2026',
+        badge: 'Projets',
+        status: 'Terminé',
+        icon: Icons.storage_outlined,
+        summary:
             'Développement de solutions complètes full stack incluant applications mobiles, '
             'applications desktop, APIs et bases de données. '
-            'Conception et implémentation architectures robustes avec technologies modernes.',
-        achievements: [
-          'lvlmind - Application e-learning mobile Flutter avec 19 stars sur GitHub',
-          'myportfolio - Portfolio multiplateforme Flutter intégré à l\'API GitHub (7 stars)',
-          'Prospectius - Plateforme CRM complète pour la gestion de prospects et clients (7 stars)',
-          'Planificator - Application desktop Flutter pour planification (4 stars)',
-          'elasticsearchconfig - Configuration et optimisation Elasticsearch (5 stars)',
-          'elasticsearch-nodejs-server - Solution de monitoring Fortinet (15 stars)',
+            'Conception et implémentation d\'architectures robustes avec des technologies modernes.',
+        highlights: [
+          'Levelmind : application e-learning mobile Flutter.',
+          'myportfolio : portfolio developpé avec Flutter, intégré à l\'API GitHub.',
+          'magicmirror : Miroir intelligent pour la suggestion de tenues basé sur le profil utilisateur, ainsi que la météo.'
+          'mloutfitSuggestion : Moteur de recommandation vestimentaire basé sur un modèle Random Forest et un pipeline RAG.',
+          'orientIA : Plateforme d\'assistant virtuel d\'orientation pédagogique.'
+          'mAIntenanceAssistance : Plateforme de maintenance et d\'assistance intelligente',
           'Contribution à 43 projets open source sur GitHub',
-          'Participation à des TP avancés d\'algorithmique et machine learning',
+          'Participation à des TP avancés d\'algorithmique et de machine learning',
         ],
-        icon: Icons.storage,
-        color: Colors.blue,
+        technologies: ['Flutter', 'Python', 'RAG', 'ML', 'Ontology'],
+        relatedProjects: ['Levelmind', 'myportfolio', 'MagicMirror', 'mloutfitsuggestion'],
       ),
     ];
   }
 
-  static List<Education> getEducation() {
+  /// Parcours académique (arbre « Académique »).
+  static List<TimelineEntry> getAcademicTimeline() {
     return [
-      Education(
-        degree: 'Master 2 en Informatique et Télécommunication',
-        school: 'ISPM (Institut Supérieur Polytechnique de Madagascar)',
+      const TimelineEntry(
+        title: 'Master 2 en Informatique et Télécommunication',
+        organization: 'ISPM',
+        location: 'Antananarivo, Madagascar',
         period: '2024 - En cours',
-        location: 'Antananarivo, Madagascar',
-        description:
-            'Formation avancée en systèmes d\'information, réseaux et télécommunications. '
-            'Spécialisation en architecture logicielle, sécurité des systèmes, Machine Learning et Ontologie. '
-            'Parcours ESIIA (Électronique, Systèmes Informatiques, Informatique et Intelligence Artificielle).',
-        icon: Icons.school,
-        color: Colors.blue,
+        badge: 'Master',
         status: 'En cours',
-      ),
-      Education(
-        degree: 'Master 1 en Informatique et Télécommunication',
-        school: 'ISPM (Institut Supérieur Polytechnique de Madagascar)',
-        period: '2023 - 2024',
-        location: 'Antananarivo, Madagascar',
-        description:
-            'Approfondissement en développement logiciel, réseaux et cybersécurité. '
-            'Gestion des bases de données relationnelles, introduction au Machine Learning et optimisation des systèmes.',
-        icon: Icons.school,
-        color: const Color(0xFF25D366),
-        status: 'Terminé',
-      ),
-      Education(
-        degree: 'Licence en Informatique et Télécommunication',
-        school: 'ISPM (Institut Supérieur Polytechnique de Madagascar)',
-        period: '2020 - 2023',
-        location: 'Antananarivo, Madagascar',
-        description:
-            'Formation en développement logiciel, bases de données, networking et télécommunications avec spécialisation en systèmes distribués et monitoring de données.',
-        icon: Icons.school,
-        color: Colors.blue,
-        status: 'Obtenu',
-        thesisTitle:
-            'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
-        capstoneProjects: [
-          {
-            'title': 'sfiDashMonitoring',
-            'description':
-                'Dashboard React avec Elasticsearch en temps réel pour monitoring Fortinet',
-            'url': 'https://github.com/josoavj/sfiDashMonitoring',
-            'stars': '6',
-            'technologies': 'ReactJS, ExpressJS, Elasticsearch',
-          },
-          {
-            'title': 'elasticsearch-config',
-            'description':
-                'Configuration et optimisation avancée d\'Elasticsearch pour la gestion de données',
-            'url': 'https://github.com/josoavj/elasticsearch-config',
-            'stars': '5',
-            'technologies': 'Elasticsearch, Kibana, Filebeat',
-          },
+        isOngoing: true,
+        icon: Icons.school_outlined,
+        summary:
+            'Diplôme en Informatique et Télécommunication en cours de préparation à l\'Institut Supérieur Polytechnique de Madagascar.',
+        highlights: [
+          'Diplôme de Master 2 en Informatique et Télécommunication (en cours)',
+          'Spécialisation en architecture logicielle, sécurité des systèmes, Machine Learning et Ontologie',
+          'Parcours ESIIA (Électronique, Systèmes Informatiques, Informatique et Intelligence Artificielle)',
         ],
       ),
-      Education(
-        degree: 'Formations Techniques Complémentaires',
-        school: 'Auto-formation & Projets Pratiques',
+      const TimelineEntry(
+        title: 'Master 1 en Informatique et Télécommunication',
+        organization: 'ISPM',
+        location: 'Antananarivo, Madagascar',
+        period: '2023 - 2024',
+        badge: 'Master',
+        status: 'Terminé',
+        icon: Icons.school_outlined,
+        summary:
+            'Approfondissement en développement logiciel, réseaux et cybersécurité. '
+            'Gestion des bases de données relationnelles, introduction au Machine Learning et optimisation des systèmes.',
+      ),
+      const TimelineEntry(
+        title: 'Licence en Informatique et Télécommunication',
+        organization: 'ISPM',
+        location: 'Antananarivo, Madagascar',
+        period: '2020 - 2023',
+        badge: 'Licence',
+        status: 'Obtenu',
+        icon: Icons.workspace_premium_outlined,
+        summary:
+            'Formation en développement Web, le POO, les algorithmes et bases de données relationnels comme MySQL.',
+        thesisTitle:
+            'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
+        relatedProjects: ['sfiDashMonitoring', 'elasticsearch-config'],
+      ),
+      const TimelineEntry(
+        title: 'Auto-formation technique',
+        organization: 'Autodidacte · projets pratiques',
+        location: 'En ligne',
         period: '2021 - Présent',
-        location: 'En ligne & Présentiel',
-        description:
-            'Formations spécialisées en Elasticsearch, Kibana, Grafana, Docker, Linux Administration, '
-            'sécurité réseau et développement d\'APIs avec Node.js/Express.',
-        icon: Icons.card_membership,
-        color: const Color(0xFF25D366),
-        status: 'Continue',
+        badge: 'Autodidacte',
+        status: 'En continu',
+        isOngoing: true,
+        icon: Icons.menu_book_outlined,
+        summary:
+        'Apprentissage autodidacte du développement d\'applications (Flutter), de Python, '
+            'd\'Elasticsearch, Kibana et Grafana, de l\'administration Linux et du développement '
+            'd\'APIs avec Node.js et Express.js, avec une petite base en cybersécurité.',
+        technologies: [
+          'Flutter',
+          'Python',
+          'Elasticsearch',
+          'Kibana',
+          'Grafana',
+          'Linux',
+          'Node.js',
+          'Express.js',
+          'Cybersécurité (bases)',
+        ],
+        relatedProjects: [
+          'Levelmind',
+          'elasticsearch-config',
+          'elasticsearch-nodejs-server',
+          'mlOutfitSuggestion',
+        ],
       ),
     ];
   }
@@ -155,6 +186,41 @@ class AppData {
         language: 'Dart',
         stars: 19,
         url: 'https://github.com/josoavj/lvlmindapp',
+        tagline: 'Application mobile d\'e-learning pour les écoles et universités',
+        status: 'Bêta (v1.0.0-beta.1)',
+        problem:
+            'Centraliser les ressources pédagogiques, les emplois du temps et la communication entre étudiants et enseignants dans une seule application mobile fluide, sécurisée et capable de grandir.',
+        solution:
+            'Une application Flutter avec authentification locale, gestion de profil, partage de cours organisé par matière, emploi du temps avec notifications et stockage Hive intégré.',
+        architecture:
+            'Trois couches : présentation (pages et widgets), métier (providers et services : UserNotifier, ThemeNotifier, EnhancedAuthService) et données (LocalDbService, base Hive, modèle UserProfile). Patterns utilisés : MVVM avec Provider, service locator (singleton), observer et repository.',
+        challenges: [
+          const ProjectChallenge(
+            challenge: 'Authentification et session sans serveur',
+            solution:
+                'Inscription et connexion avec mot de passe haché (SHA-256), session conservée dans une box Hive et récupérée automatiquement au lancement, données supprimées à la déconnexion.',
+          ),
+         const ProjectChallenge(
+            challenge: 'Garder le code évolutif',
+            solution:
+                'Séparation en trois couches, avec LocalDbService comme repository : l\'accès aux données reste isolé du reste de l\'application.',
+          ),
+        ],
+        results: [
+          const ProjectMetric(label: 'Version', value: 'v1.0.0-beta.1'),
+        ],
+        roadmap: [
+          'Annonces et actualités',
+          'Messagerie entre utilisateurs',
+          'Suivi de progression académique',
+          'Système d\'évaluation',
+          'Notifications push',
+        ],
+        stackByLayer: {
+          'Application': ['Flutter', 'Dart', 'Provider'],
+          'Données': ['Hive'],
+          'Sécurité': ['SHA-256'],
+        },
         releaseUrl: 'https://github.com/josoavj/lvlmindapp/releases',
         technologies: [
           'Flutter',
@@ -238,6 +304,42 @@ class AppData {
         language: 'JavaScript',
         stars: 6,
         url: 'https://github.com/josoavj/sfiDashMonitoring',
+        tagline: 'Plateforme de monitoring des données Fortigate depuis Elasticsearch',
+        status: 'Prêt pour la production',
+        origin: 'Stage SFI Ankorondrano · Mémoire de Licence',
+        problem:
+            'Suivre en temps réel la bande passante et les journaux d\'un pare-feu Fortigate à partir des données stockées dans Elasticsearch.',
+        solution:
+            'Un dashboard React alimenté par un backend Node.js/Express qui interroge Elasticsearch et pousse les mises à jour en temps réel via Socket.io, avec une authentification renforcée.',
+        architecture:
+            'Frontend React 19 (Vite, Material-UI), backend Node.js + Express 5, données dans Elasticsearch 8 et temps réel via Socket.io. Deux modes de lancement : LOCAL (développement, accessible en localhost) et DEPLOYED (serveur Ubuntu sans interface graphique, accessible depuis le réseau).',
+        challenges: [
+          const ProjectChallenge(
+            challenge: 'Sécuriser l\'authentification',
+            solution:
+                'Token d\'accès JWT de 15 minutes, refresh token en cookie HttpOnly avec rotation et hachage en base, CORS strict, en-têtes Helmet, limitation de débit (5 tentatives par 15 minutes sur l\'authentification) et protection CSRF.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Garder le service observable',
+            solution:
+                'Endpoint /metrics au format Prometheus : nombre de requêtes, latence par endpoint, requêtes en cours, mémoire heap et uptime.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Fiabiliser le code d\'authentification',
+            solution:
+                'Tests Vitest et React Testing Library sur le JWT, le hachage des mots de passe, l\'expiration et la rotation des tokens.',
+          ),
+        ],
+        results: [
+          const ProjectMetric(label: 'Vulnérabilités npm', value: '0'),
+        ],
+        stackByLayer: {
+          'Frontend': ['React 19', 'Vite', 'Material-UI'],
+          'Backend': ['Node.js', 'Express 5', 'Socket.io', 'JWT'],
+          'Données': ['Elasticsearch 8'],
+          'Qualité & exploitation': ['Vitest', 'React Testing Library', 'ESLint', 'Prometheus'],
+        },
+        relatedProjects: ['elasticsearch-nodejs-server', 'elasticsearch-config'],
         technologies: [
           'React 19',
           'Vite',
@@ -270,6 +372,42 @@ class AppData {
         language: 'Dart',
         stars: 0,
         url: 'https://github.com/josoavj/magicmirror',
+        tagline: 'Miroir intelligent qui suggère des tenues selon la météo, l\'agenda et la morphologie',
+        status: 'En maintenance (v1.1.0)',
+        problem:
+            'Aider à choisir sa tenue chaque matin en tenant compte de la météo, de l\'agenda de la journée, de la morphologie et de la garde-robe.',
+        solution:
+            'Un miroir connecté sous Flutter : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
+        architecture:
+            'Architecture feature-first en couches, inspirée de la Clean Architecture : chaque fonctionnalité est isolée en domain (entités, services métier), data (modèles, services techniques) et presentation (providers, widgets, écrans). État géré avec Riverpod (providers séparés des widgets, FutureProvider et AsyncNotifier) et design system commun « glassmorphism ».',
+        challenges: [
+          const ProjectChallenge(
+            challenge: 'Respecter la vie privée de l\'utilisateur',
+            solution:
+                'Détection de la morphologie traitée localement avec Google ML Kit, politiques RLS strictes côté Supabase et stockage local chiffré.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Produire des suggestions pertinentes',
+            solution:
+                'Ranking hybride combinant heuristique, modèle ML (LightGBM) et LLM, alimenté par la météo, l\'agenda et le profil.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Garder une base de code testable',
+            solution:
+                'Architecture feature-first avec providers Riverpod isolés, couverte par plus de 20 tests unitaires et de widgets.',
+          ),
+        ],
+        results: [
+          const ProjectMetric(label: 'Tests', value: '20+'),
+          const ProjectMetric(label: 'Plateformes', value: 'Android, iOS, macOS'),
+        ],
+        stackByLayer: {
+          'Application': ['Flutter', 'Dart', 'Riverpod'],
+          'Données & cloud': ['Supabase'],
+          'IA': ['Google ML Kit', 'LightGBM'],
+          'Services': ['OpenWeatherMap', 'Flutter TTS'],
+        },
+        relatedProjects: ['mlOutfitSuggestion'],
         releaseUrl: 'https://github.com/josoavj/magicmirror/releases',
         technologies: [
           'Flutter',
@@ -302,6 +440,43 @@ class AppData {
         language: 'Python',
         stars: 0,
         url: 'https://github.com/josoavj/mlOutfitSuggestion',
+        tagline: 'Moteur de recommandation de tenues de MagicMirror, exposé en API',
+        problem:
+            'Proposer des tenues cohérentes à partir de la garde-robe, du profil (sexe, âge, taille, morphologie, préférences), de la météo et du planning du jour.',
+        solution:
+            'Une API FastAPI qui enchaîne quatre étapes : filtres durs, validation sémantique (RAG ChromaDB et ontologie OWL), scoring par Random Forest, puis diversité MMR.',
+        architecture:
+            'Pipeline en quatre étapes derrière une API FastAPI : (1) filtres durs (chaleur, formalité, genre), (2) validation sémantique par RAG ChromaDB et ontologie OWL, (3) scoring par un modèle Random Forest, (4) diversité MMR pour éviter les répétitions. Stockage JSON ou SQLite, interface web de test et dashboard de métriques.',
+        challenges: [
+          const ProjectChallenge(
+            challenge: 'Garantir des tenues cohérentes',
+            solution:
+                'Ontologie OWL pour l\'harmonie des couleurs et la formalité, associée à une validation sémantique par RAG.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Éviter les suggestions répétitives',
+            solution: 'Diversité MMR appliquée aux tenues les mieux notées.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Améliorer le modèle dans le temps',
+            solution: 'Collecte de feedback et réentraînement sur des données réelles.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Protéger l\'API',
+            solution:
+                'Clé X-API-Key, protection contre le Path Traversal et limite de taille des uploads.',
+          ),
+        ],
+        results: [
+          const ProjectMetric(label: 'Étapes du pipeline', value: '4'),
+        ],
+        stackByLayer: {
+          'API': ['Python', 'FastAPI'],
+          'IA': ['scikit-learn (Random Forest)', 'ChromaDB', 'Owlready2 (OWL)'],
+          'Données': ['JSON', 'SQLite'],
+          'Qualité & exploitation': ['Pytest', 'Docker', 'GitHub Actions'],
+        },
+        relatedProjects: ['MagicMirror'],
         technologies: [
           'Python',
           'FastAPI',
