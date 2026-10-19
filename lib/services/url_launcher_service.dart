@@ -7,8 +7,6 @@ class UrlLauncherService {
       final Uri uri = Uri.parse(url);
       if (kIsWeb) {
         if (uri.scheme == 'mailto') {
-          // Pour les liens mailto sur le Web, _self ouvre directement la fenêtre d'envoi
-          // du client e-mail (Gmail, Outlook, Thunderbird) sans laisser d'onglet vide.
           await launchUrl(uri, webOnlyWindowName: '_self');
         } else {
           await launchUrl(uri, webOnlyWindowName: '_blank');
