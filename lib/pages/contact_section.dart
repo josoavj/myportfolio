@@ -68,11 +68,9 @@ class _ContactSectionState extends State<ContactSection> {
   Widget build(BuildContext context) {
     final isMobile = MediaQuery.sizeOf(context).width < 600;
 
-    return Container(
-      color: AppConstants.secondaryDark,
-      child: Stack(
-        clipBehavior: Clip.hardEdge,
-        children: [
+    return Stack(
+      clipBehavior: Clip.hardEdge,
+      children: [
           // Lueurs d'ambiance : dégradés radiaux statiques (aucun flou coûteux).
           const Positioned(top: -140, right: -120, child: _Glow(color: _accent, size: 460)),
           const Positioned(bottom: -160, left: -140, child: _Glow(color: _accentAlt, size: 420)),
@@ -116,8 +114,7 @@ class _ContactSectionState extends State<ContactSection> {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 
   Widget _buildIntro({required bool isMobile}) {
@@ -179,7 +176,7 @@ class _ContactSectionState extends State<ContactSection> {
         const Wrap(
           spacing: 10,
           runSpacing: 10,
-          children: const [
+          children: [
             _InfoPill(icon: Icons.location_on_outlined, label: AppConstants.location),
             _InfoPill(icon: Icons.rocket_launch_outlined, label: 'Side project · APEXNova Labs'),
           ],
