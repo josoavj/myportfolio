@@ -6,10 +6,13 @@ class UrlLauncherService {
     try {
       final Uri uri = Uri.parse(url);
       if (kIsWeb) {
-        // Sur le Web, ouvrir directement avec webOnlyWindowName: '_blank'
-        // sans canLaunchUrl intermédiaire pour ne pas perdre le geste utilisateur
-        // et éviter d'être bloqué par le bloqueur de popups des navigateurs.
-        await launchUrl(uri, webOnlyWindowName: '_blank');
+        if (uri.scheme == 'mailto') {
+          // Pour les liens mailto sur le Web, _self ouvre directement la fenêtre d'envoi
+          // du client e-mail (Gmail, Outlook, Thunderbird) sans laisser d'onglet vide.
+          await launchUrl(uri, webOnlyWindowName: '_self');
+        } else {
+          await launchUrl(uri, webOnlyWindowName: '_blank');
+        }
       } else {
         if (!await launchUrl(uri, mode: LaunchMode.externalApplication)) {
           debugPrint('Could not launch $url');
