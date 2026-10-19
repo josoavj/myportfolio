@@ -228,7 +228,6 @@ class AppData {
           'Provider (MVVM)',
           'Hive (NoSQL)',
           'SHA256 Security',
-          'Iconsax'
         ],
         features: [
           'Authentification sécurisée (SHA256 & Session Recovery)',
@@ -245,7 +244,7 @@ class AppData {
         name: 'segma',
         category: 'Desktop',
         description:
-            'Logiciel de segmentation d\'images haute performance utilisant Meta SAM 3 et architecture Flutter/FastAPI',
+            'Logiciel de segmentation d\'images utilisant Meta SAM 3 et une interface intuitive',
         language: 'Dart',
         stars: 6,
         url: 'https://github.com/josoavj/segma',
@@ -273,7 +272,7 @@ class AppData {
         name: 'Planificator',
         category: 'Desktop',
         description:
-            'Application desktop pour planification et gestion de projets avec Flutter',
+            'Application desktop pour l\'organisation et gestion des plannings d\'interventions, accompagné d\'un suivi sur la facturation.',
         language: 'Dart',
         stars: 4,
         url: 'https://github.com/josoavj/PlanificatorFinal',
@@ -281,26 +280,27 @@ class AppData {
           'Flutter',
           'Dart',
           'Provider',
-          'SQLite',
+          'SQL',
           'Material Design'
         ],
         features: [
-          'Interface multiplateforme Flutter (Android, iOS, Windows, Linux, macOS)',
+          'Interface multiplateforme Flutter (Windows, Linux, macOS)',
+          'Gestion complète des contrats et clients avec une cycle de vie complète',
           'Gestion complète des tâches et plannings',
-          'Base de données SQLite intégrée',
+          'Gestion et suivi des factures et paiements liés à chaque passage'
+          'Base de données SQL intégrée',
           'Opérations CRUD optimisées',
-          'Système de notifications et reminders',
-          'Architecture Provider pour gestion d\'état',
+          'Système de notifications pour les prochaines tâches',
           'Design Material moderne et responsive',
         ],
         detailedDescription:
-            'Application desktop de planification développée en Flutter. Utilise SQLite pour la persistance des données avec Provider pour la gestion d\'état. Offre une solution complète et moderne pour la gestion des projets, tâches et plannings avec interface intuitive et Material Design.',
+            'Planificator est une application desktop orienté ERP développée en Flutter. Principalement destiné aux entreprises dans le domaine de l\'hygiène et d\'assainissement, elle offre une solution complète et moderne avec une interface intuitive et Material Design.',
       ),
       Project(
         name: 'sfiDashMonitoring',
         category: 'Web',
         description:
-            'Plateforme de monitoring de production pour visualiser et suivre les données Fortigate depuis Elasticsearch',
+            'Plateforme de monitoring trafic réseau pour visualiser et suivre les données Fortigate depuis Elasticsearch',
         language: 'JavaScript',
         stars: 6,
         url: 'https://github.com/josoavj/sfiDashMonitoring',
@@ -337,7 +337,7 @@ class AppData {
           'Frontend': ['React 19', 'Vite', 'Material-UI'],
           'Backend': ['Node.js', 'Express 5', 'Socket.io', 'JWT'],
           'Données': ['Elasticsearch 8'],
-          'Qualité & exploitation': ['Vitest', 'React Testing Library', 'ESLint', 'Prometheus'],
+          'Qualité & exploitation': ['Vitest', 'React Testing Library', 'ESLint'],
         },
         relatedProjects: ['elasticsearch-nodejs-server', 'elasticsearch-config'],
         technologies: [
@@ -348,20 +348,17 @@ class AppData {
           'Elasticsearch 8.x',
           'Socket.io',
           'JWT (HttpOnly)',
-          'Docker',
-          'Prometheus'
         ],
         features: [
           'Dashboard temps réel via WebSockets',
           'Monitoring direct des données Fortigate',
           'Système d\'alertes haute bande passante',
           'Sécurité renforcée : Rotation de Refresh Token & HttpOnly Cookies',
-          'Observabilité avec métriques Prometheus',
-          'Documentation interactive Swagger/OpenAPI',
+          'Observabilité avec des métriques variés',
           'Support déploiement Docker & Nginx',
         ],
         detailedDescription:
-            'sfiDashMonitoring est une solution complète de monitoring "full-stack" conçue pour transformer les journaux bruts d\'Elasticsearch en visualisations exploitables. Développée avec un focus majeur sur la sécurité (protection XSS/CSRF, rotation de tokens) et l\'observabilité, la plateforme permet un suivi en temps réel des flux réseau Fortigate. Elle intègre des tests unitaires et de sécurité rigoureux via Vitest.',
+            'sfiDashMonitoring est une solution complète de monitoring réseau conçue pour transformer les journaux bruts d\'Elasticsearch en visualisations exploitables. Développée avec un focus majeur sur la sécurité (protection XSS/CSRF, rotation de tokens) et l\'observabilité, la plateforme permet un suivi en temps réel des flux réseau Fortigate. Elle intègre des tests unitaires et de sécurité rigoureux via Vitest.',
       ),
 
       Project(
@@ -377,7 +374,7 @@ class AppData {
         problem:
             'Aider à choisir sa tenue chaque matin en tenant compte de la météo, de l\'agenda de la journée, de la morphologie et de la garde-robe.',
         solution:
-            'Un miroir connecté sous Flutter : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
+            'Un miroir connecté et intelligente : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
         architecture:
             'Architecture feature-first en couches, inspirée de la Clean Architecture : chaque fonctionnalité est isolée en domain (entités, services métier), data (modèles, services techniques) et presentation (providers, widgets, écrans). État géré avec Riverpod (providers séparés des widgets, FutureProvider et AsyncNotifier) et design system commun « glassmorphism ».',
         challenges: [
@@ -399,7 +396,11 @@ class AppData {
         ],
         results: [
           const ProjectMetric(label: 'Tests', value: '20+'),
-          const ProjectMetric(label: 'Plateformes', value: 'Android, iOS, macOS'),
+          const ProjectMetric(label: 'Plateformes', value: 'Android, iOS'),
+        ],
+        roadmap: [
+          'Implémentation d\'une garde-robe pour une meilleure suggestion de tenues basé sur les données de l\'utilisateur',
+          'Implémentation du modèle mlOutfitSuggestion à l\'application'
         ],
         stackByLayer: {
           'Application': ['Flutter', 'Dart', 'Riverpod'],
@@ -423,10 +424,9 @@ class AppData {
           'Miroir caméra temps réel avec contrôles de zoom et d\'exposition',
           'Agenda cloud Supabase avec gestion complète (CRUD)',
           'Météo en temps réel et géolocalisation (OpenWeatherMap)',
+          'Profil utilisateur synchronisé dans le cloud',
           'Détection de la morphologie par IA (Google ML Kit)',
           'Suggestions de tenues : ranking hybride Heuristique + ML + LLM',
-          'Garde-robe, profil synchronisé dans le cloud et synthèse vocale',
-          'Architecture feature-first (Domain / Data / Presentation) avec Riverpod',
           'Sécurité : RLS Supabase strict et stockage local chiffré',
         ],
         detailedDescription:
@@ -566,21 +566,25 @@ class AppData {
         language: 'Dart',
         stars: 7,
         url: 'https://github.com/josoavj/ProspectiusFinal',
+        problem:
+        'Les prospections effectués par une entreprise sont tous gardés dans divers outils ou notes, et parfois répartis dans plusieurs dossiers. Le suivi de chaque prospect est aussi coûteux en matière de ressource et aussi de temps. On doit donc digitaliser la gestion des prospects avec une plateforme, en centralisant le suivi des prospects et leur cycle de vie.',
+        solution:
+        'Une plateforme utilisant une base de données locale, et complète pour la gestion et suivi des prospects',
         technologies: [
           'Flutter',
           'Dart',
+          'MySQL',
           'Provider',
         ],
         features: [
-          'Gestion complète des prospects et clients',
-          'Système de suivi et pipelines de vente',
+          'Gestion complète des prospects et des nouveaux clients',
+          'Système de suivi et pipelines pour le cycle de vie du prospect',
           'Analytics et rapports détaillés',
           'Notifications temps réel',
-          'Architecture MVVM avec Provider',
           'Recherche et filtrage avancés',
         ],
         detailedDescription:
-            'Prospectius est une plateforme CRM professionnelle développée en Flutter pour la gestion complète des prospects et clients. Utilise Firebase et Firestore pour le stockage des données en temps réel. Offre des outils de suivi, d\'analyse et de gestion des pipelines de vente avec une interface intuitive et multiplateforme.',
+            'Prospectius est une plateforme CRM professionnelle développée en Flutter pour la gestion complète des prospects et clients. ELle utilise une base de données SQL pour le stockage des données en temps réel. La plateforme offre des outils de suivi, d\'analyse et de gestion des pipelines de vente avec une interface intuitive et multiplateforme.',
       ),
       Project(
         name: 'elasticsearch-config',
