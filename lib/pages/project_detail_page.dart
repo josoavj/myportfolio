@@ -1,5 +1,4 @@
 import 'dart:ui' show PointerDeviceKind;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -12,8 +11,6 @@ import 'package:myportfolio/utils/category_style.dart';
 import 'package:myportfolio/utils/language_colors.dart';
 import 'package:myportfolio/utils/project_navigation.dart';
 
-/// Fiche projet en étude de cas. Chaque section n'apparaît que si le projet
-/// contient la donnée correspondante (voir `Project`).
 class ProjectDetailPage extends ConsumerWidget {
   final Project project;
 
