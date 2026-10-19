@@ -223,6 +223,33 @@ class GitHubService {
     );
   }
 
+  /// Octets par langage d'un dépôt (réponse de GitHub), en cache 12 h.
+  /// Renvoie une table vide si l'API est indisponible.
+  static Future<Map<String, int>> getRepoLanguages(String repo) {
+    return _cacheService.getOrCompute<Map<String, int>>(
+      'github_languages_$repo',
+      () async {
+        try {
+          final response = await http
+              .get(
+                Uri.parse('$_restApiUrl/repos/$_username/$repo/languages'),
+                headers: _publicHeaders,
+              )
+              .timeout(const Duration(seconds: 10));
+          if (response.statusCode == 200) {
+            final data = jsonDecode(response.body) as Map<String, dynamic>;
+            return {
+              for (final entry in data.entries)
+                if (entry.value is int) entry.key: entry.value as int,
+            };
+          }
+        } catch (_) {}
+        return <String, int>{};
+      },
+      ttl: const Duration(hours: 12),
+    );
+  }
+
   /// Récupère le total des stars de tous les repos
   static Future<int> getTotalStars() async {
     try {
