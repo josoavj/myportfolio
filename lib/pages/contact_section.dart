@@ -55,66 +55,69 @@ class _ContactSectionState extends State<ContactSection> {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          content: Text(text, style: AppTheme.lexendRegular(14, color: Colors.white)),
+          content: Text(
+              text, style: AppTheme.lexendRegular(14, color: Colors.white)),
           backgroundColor: const Color(0xFF1C2230),
           behavior: SnackBarBehavior.floating,
           duration: const Duration(seconds: 3),
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(14)),
         ),
       );
   }
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.sizeOf(context).width < 600;
+    final isMobile = MediaQuery
+        .sizeOf(context)
+        .width < 600;
 
     return Stack(
       clipBehavior: Clip.hardEdge,
       children: [
-          // Lueurs d'ambiance : dégradés radiaux statiques (aucun flou coûteux).
-          const Positioned(top: -140, right: -120, child: _Glow(color: _accent, size: 460)),
-          const Positioned(bottom: -160, left: -140, child: _Glow(color: _accentAlt, size: 420)),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: isMobile ? 16 : 24,
-              vertical: isMobile ? 60 : 90,
-            ),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 1200),
-                child: Column(
-                  children: [
-                    const SectionTitle(title: 'Contactez-moi'),
-                    SizedBox(height: isMobile ? 32 : 56),
-                    LayoutBuilder(
-                      builder: (context, constraints) {
-                        final wide = constraints.maxWidth >= 900;
-                        if (wide) {
-                          return Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(flex: 5, child: _buildIntro(isMobile: false)),
-                              const SizedBox(width: 64),
-                              Expanded(flex: 6, child: _buildFormCard(isMobile: false)),
-                            ],
-                          );
-                        }
-                        return Column(
+        Padding(
+          padding: EdgeInsets.symmetric(
+            horizontal: isMobile ? 16 : 24,
+            vertical: isMobile ? 60 : 90,
+          ),
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 1200),
+              child: Column(
+                children: [
+                  const SectionTitle(title: 'Contactez-moi'),
+                  SizedBox(height: isMobile ? 32 : 56),
+                  LayoutBuilder(
+                    builder: (context, constraints) {
+                      final wide = constraints.maxWidth >= 900;
+                      if (wide) {
+                        return Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            _buildIntro(isMobile: isMobile),
-                            SizedBox(height: isMobile ? 32 : 40),
-                            _buildFormCard(isMobile: isMobile),
+                            Expanded(
+                                flex: 5, child: _buildIntro(isMobile: false)),
+                            const SizedBox(width: 64),
+                            Expanded(flex: 6,
+                                child: _buildFormCard(isMobile: false)),
                           ],
                         );
-                      },
-                    ),
-                  ],
-                ),
+                      }
+                      return Column(
+                        children: [
+                          _buildIntro(isMobile: isMobile),
+                          SizedBox(height: isMobile ? 32 : 40),
+                          _buildFormCard(isMobile: isMobile),
+                        ],
+                      );
+                    },
+                  ),
+                ],
               ),
             ),
           ),
-        ],
-      );
+        ),
+      ],
+    );
   }
 
   Widget _buildIntro({required bool isMobile}) {
@@ -177,8 +180,10 @@ class _ContactSectionState extends State<ContactSection> {
           spacing: 10,
           runSpacing: 10,
           children: [
-            _InfoPill(icon: Icons.location_on_outlined, label: AppConstants.location),
-            _InfoPill(icon: Icons.rocket_launch_outlined, label: 'Side project · APEXNova Labs'),
+            _InfoPill(
+                icon: Icons.location_on_outlined, label: AppConstants.location),
+            _InfoPill(icon: Icons.rocket_launch_outlined,
+                label: 'Side project · APEXNova Labs'),
           ],
         ).withFadeIn(delay: const Duration(milliseconds: 550)),
       ],
@@ -219,7 +224,9 @@ class _ContactSectionState extends State<ContactSection> {
                 autofillHints: const [AutofillHints.name],
                 textInputAction: TextInputAction.next,
                 validator: (value) {
-                  if (value == null || value.trim().length < 2) {
+                  if (value == null || value
+                      .trim()
+                      .length < 2) {
                     return 'Indiquez votre nom';
                   }
                   return null;
@@ -250,7 +257,9 @@ class _ContactSectionState extends State<ContactSection> {
                 maxLines: 8,
                 keyboardType: TextInputType.multiline,
                 validator: (value) {
-                  if (value == null || value.trim().length < 10) {
+                  if (value == null || value
+                      .trim()
+                      .length < 10) {
                     return 'Votre message est un peu court (10 caractères minimum)';
                   }
                   return null;
@@ -264,13 +273,15 @@ class _ContactSectionState extends State<ContactSection> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 2),
-                    child: Icon(Icons.info_outline, size: 14, color: Colors.grey.shade500),
+                    child: Icon(Icons.info_outline, size: 14,
+                        color: Colors.grey.shade500),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       'Votre application de messagerie s\'ouvrira avec le message prêt à envoyer.',
-                      style: AppTheme.lexendRegular(12, color: Colors.grey.shade500, height: 1.5),
+                      style: AppTheme.lexendRegular(
+                          12, color: Colors.grey.shade500, height: 1.5),
                     ),
                   ),
                 ],
@@ -314,8 +325,10 @@ class _ContactSectionState extends State<ContactSection> {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: AppTheme.lexendRegular(14, color: Colors.grey.shade400),
-        floatingLabelStyle: AppTheme.lexendRegular(14, color: Colors.blue.shade300),
-        errorStyle: AppTheme.lexendRegular(12, color: Colors.redAccent.shade100),
+        floatingLabelStyle: AppTheme.lexendRegular(
+            14, color: Colors.blue.shade300),
+        errorStyle: AppTheme.lexendRegular(
+            12, color: Colors.redAccent.shade100),
         // Champ multiligne : pas d'icône (elle serait centrée verticalement).
         prefixIcon: minLines > 1
             ? null
@@ -323,7 +336,8 @@ class _ContactSectionState extends State<ContactSection> {
         alignLabelWithHint: minLines > 1,
         filled: true,
         fillColor: AppConstants.primaryDark.withValues(alpha: 0.6),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: 16, vertical: 18),
         border: border(Colors.white.withValues(alpha: 0.12)),
         enabledBorder: border(Colors.white.withValues(alpha: 0.12)),
         focusedBorder: border(_accent, 1.6),
@@ -338,38 +352,28 @@ class _ContactSectionState extends State<ContactSection> {
       button: true,
       label: 'Envoyer le message',
       child: Material(
-        color: Colors.transparent,
+        color: Colors.blue.shade600,
         borderRadius: BorderRadius.circular(16),
         clipBehavior: Clip.antiAlias,
-        child: Ink(
-          decoration: BoxDecoration(
-            gradient: const LinearGradient(
-              begin: Alignment.centerLeft,
-              end: Alignment.centerRight,
-              colors: [_accent, _accentAlt],
-            ),
-            borderRadius: BorderRadius.circular(16),
-          ),
-          child: InkWell(
-            onTap: _submit,
-            child: SizedBox(
-              height: 56,
-              child: Center(
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Icon(Icons.send_rounded, color: Colors.white, size: 20),
-                    const SizedBox(width: 10),
-                    Text(
-                      'Envoyer le message',
-                      style: AppTheme.lexendRegular(
-                        16,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
+        child: InkWell(
+          onTap: _submit,
+          child: SizedBox(
+            height: 56,
+            child: Center(
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Icon(Icons.send_rounded, color: Colors.white, size: 20),
+                  const SizedBox(width: 10),
+                  Text(
+                    'Envoyer le message',
+                    style: AppTheme.lexendRegular(
+                      16,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
@@ -379,31 +383,6 @@ class _ContactSectionState extends State<ContactSection> {
   }
 }
 
-/// Lueur d'ambiance : disque à dégradé radial, sans flou.
-class _Glow extends StatelessWidget {
-  final Color color;
-  final double size;
-
-  const _Glow({required this.color, required this.size});
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(
-            colors: [color.withValues(alpha: 0.16), color.withValues(alpha: 0)],
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-/// Ligne de contact : pastille d'icône, titre, sous-titre et flèche.
 class _ChannelTile extends StatefulWidget {
   final Widget icon;
   final String title;
