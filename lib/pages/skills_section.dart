@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -18,7 +17,6 @@ class SkillsSection extends StatefulWidget {
 
 class _SkillsSectionState extends State<SkillsSection> {
   late final Map<String, List<Skill>> _skillsByCategory;
-  // Créé une seule fois : évite de relancer loadLibrary() à chaque rebuild.
   late final Future<void> _githubStatsLoader;
 
   @override
@@ -37,7 +35,6 @@ class _SkillsSectionState extends State<SkillsSection> {
         horizontal: isMobile ? 16 : 40,
         vertical: 100,
       ),
-      color: AppConstants.secondaryDark,
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 1200),
@@ -79,7 +76,6 @@ class _SkillsSectionState extends State<SkillsSection> {
   }
 
   Widget _buildSkillCategoryCard(String category, List<Skill> skills) {
-    // Pas de BackdropFilter : coûteux sur le Web, et le fond est uni de toute façon.
     return RepaintBoundary(
       child: Container(
         padding: const EdgeInsets.all(30),
@@ -139,7 +135,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             StatCard(
               icon: Icons.hub_outlined,
               title: 'APEXNova Labs',
-              subtitle: 'Membre Core',
+              subtitle: 'Side project',
               color: Colors.purple,
               width: cardWidth,
             ),

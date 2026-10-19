@@ -3,7 +3,7 @@ import 'package:myportfolio/services/url_launcher_service.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
 class SocialButton extends StatefulWidget {
-  final IconData icon;
+  final Widget icon;
   final String label;
   final String url;
 
@@ -35,10 +35,12 @@ class _SocialButtonState extends State<SocialButton> {
         ),
         child: ElevatedButton.icon(
           onPressed: () => UrlLauncherService.launchURL(widget.url),
-          icon: Icon(
-            widget.icon,
-            size: 20,
-            color: isHovered ? Colors.blue.shade300 : Colors.white,
+          icon: IconTheme(
+            data: IconThemeData(
+              size: 20,
+              color: isHovered ? Colors.blue.shade300 : Colors.white,
+            ),
+            child: widget.icon,
           ),
           label: Text(
             widget.label,

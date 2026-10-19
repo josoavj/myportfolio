@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/social_button.dart';
@@ -210,10 +211,26 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
       alignment: isMobile ? WrapAlignment.center : WrapAlignment.start,
       children: const [
         CVDownloadButton(),
-        SocialButton(icon: Icons.code, label: 'GitHub', url: AppConstants.githubUrl),
-        SocialButton(icon: Icons.work, label: 'LinkedIn', url: AppConstants.linkedinUrl),
-        SocialButton(icon: Icons.facebook, label: 'Facebook', url: AppConstants.facebookUrl),
-        SocialButton(icon: Icons.alternate_email, label: 'Twitter', url: AppConstants.twitterUrl),
+        SocialButton(
+          icon: FaIcon(FontAwesomeIcons.github, size: 15),
+          label: 'GitHub',
+          url: AppConstants.githubUrl,
+        ),
+        SocialButton(
+          icon: FaIcon(FontAwesomeIcons.linkedin, size: 15),
+          label: 'LinkedIn',
+          url: AppConstants.linkedinUrl,
+        ),
+        SocialButton(
+          icon: FaIcon(FontAwesomeIcons.facebook, size: 15),
+          label: 'Facebook',
+          url: AppConstants.facebookUrl,
+        ),
+        SocialButton(
+          icon: FaIcon(FontAwesomeIcons.xTwitter, size: 15),
+          label: 'Twitter',
+          url: AppConstants.twitterUrl,
+        ),
       ],
     );
   }

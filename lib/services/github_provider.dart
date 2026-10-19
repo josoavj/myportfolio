@@ -16,3 +16,9 @@ final githubUserProvider = FutureProvider<Map<String, dynamic>>((ref) async {
 final repoStarsProvider = FutureProvider<Map<String, int>>((ref) async {
   return GitHubService.getRepoStars();
 });
+
+/// Répartition des langages d'un dépôt (nom du repo -> octets par langage)
+final repoLanguagesProvider =
+    FutureProvider.family<Map<String, int>, String>((ref, repo) async {
+  return GitHubService.getRepoLanguages(repo);
+});

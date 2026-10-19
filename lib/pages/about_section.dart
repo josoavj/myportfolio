@@ -46,18 +46,12 @@ class AboutSection extends ConsumerWidget {
       child: Column(
         children: [
           Text(
-            'Développeur Full Stack & Passionné de Sécurité',
-            style: AppTheme.titleSmall(color: Colors.blue.shade300),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 30),
-          Text(
             'Je suis Josoa Vonjiniaina, développeur basé à Madagascar. J\'avance avec la volonté constante d\'apprendre et d\'innover. '
-            'Spécialisé dans l\'écosystème Flutter (apps mobiles & logiciels desktop) et les architectures backend, je crée et façonne des solutions logicielles complètes. '
+            'Je me suis spécialisé dans l\'écosystème Flutter (apps mobiles & logiciels desktop) et les architectures backend. Je crée et façonne des solutions logicielles et applications complètes. '
             '\n \n Ma priorité quand je développe ? Concevoir des interfaces soignées et intuitives, fluide et réactive avec une sécurité pensée dès la première ligne de code. '
             'Mon objectif n\'est pas juste de livrer un produit qui marche aujourd\'hui, mais de bâtir une architecture propre et évolutive, capable d\'absorber la croissance de demain sans perdre en qualité. '
             '\n \n Sur le point d\'achever mon Master II en Informatique & Télécommunications, je mets ce savoir-faire au service de projets ambitieux qu\'il s\'agisse de concevoir de nouvelles solutions de zéro ou d\'optimiser l\'existant pour offrir la meilleure expérience possible aux utilisateurs. '
-            'Mon engagement chez APEXNova Labs incarne cette vision à travers le développement collaboratif et l\'open source.',
+            'Mon engagement dans mon side project APEXNova Labs incarne cette vision à travers le développement collaboratif et l\'Open Source.',
             style: AppTheme.bodyLarge().copyWith(height: 1.8, fontSize: 18),
             textAlign: TextAlign.center,
           ),
@@ -127,9 +121,9 @@ class AboutSection extends ConsumerWidget {
     required double width,
   }) {
     return ClipRRect(
-      borderRadius: BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(20),
       child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
         child: Container(
           width: width,
           padding: const EdgeInsets.all(25),

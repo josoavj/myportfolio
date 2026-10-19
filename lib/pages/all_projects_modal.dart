@@ -4,7 +4,6 @@ import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/utils/project_navigation.dart';
 import 'package:myportfolio/widgets/category_chip.dart';
 import 'package:myportfolio/widgets/project_card.dart';
-
 import '../utils/app_theme.dart';
 
 class AllProjectsModal extends StatefulWidget {
