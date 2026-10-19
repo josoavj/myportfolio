@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/pages/about_section.dart';
 import 'package:myportfolio/pages/contact_section.dart';
 import 'package:myportfolio/pages/footer_section.dart';
@@ -75,7 +74,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
                   _buildSection(
                     key: _sectionKeys['Compétences']!,
                     child: const SkillsSection(),
-                    color: AppConstants.secondaryDark,
                   ),
                   _buildSection(
                     key: _sectionKeys['Projets']!,
@@ -84,7 +82,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
                   _buildSection(
                     key: _sectionKeys['Contact']!,
                     child: const ContactSection(),
-                    color: AppConstants.secondaryDark,
                   ),
                   const FooterSection(),
                 ],
