@@ -139,7 +139,7 @@ class _SkillsSectionState extends State<SkillsSection> {
             StatCard(
               icon: Icons.hub_outlined,
               title: 'APEXNova Labs',
-              subtitle: 'Membre Core',
+              subtitle: 'Side project',
               color: Colors.purple,
               width: cardWidth,
             ),
