@@ -15,7 +15,7 @@ class AppConstants {
   static const String appTitle = 'Josoa Vonjiniaina - Portfolio';
   static const String heroName = 'Josoa Vonjiniaina';
   static const String heroTitle =
-      'Full Stack Developer | Mobile & Backend Specialist | Cybersecurity Enthusiast';
+      'Full Stack Developer | Mobile & Backend Specialist';
   static const String location = 'Antananarivo, Madagascar';
 
   // URLs
