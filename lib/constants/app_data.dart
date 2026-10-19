@@ -22,7 +22,7 @@ class AppData {
             '\n J\'accorde également une place importante à la création d\'applications utilitaires et aux contributions Open Source.',
         highlights: [
           'Prospectius : plateforme CRM complète de gestion de prospects et clients',
-          'lanificator : Solution logicielle sur mesure pour l\'organisation des plannings d\'intervention et le suivi de facturation dans le secteur de l\'hygiène et de l\'assainissement.',
+          'Planificator : Solution logicielle sur mesure pour l\'organisation des plannings d\'intervention et le suivi de facturation dans le secteur de l\'hygiène et de l\'assainissement.',
           'Segma : logiciel de segmentation d\'images utilisant le modèle SAM de Meta',
           'Contributions actives aux projets Open Source de l\'équipe',
           'Configuration et optimisation avancée de serveurs Linux',
@@ -86,8 +86,9 @@ class AppData {
           'mloutfitSuggestion : Moteur de recommandation vestimentaire basé sur un modèle Random Forest et un pipeline RAG.',
           'orientIA : Plateforme d\'assistant virtuel d\'orientation pédagogique.'
           'mAIntenanceAssistance : Plateforme de maintenance et d\'assistance intelligente',
-          'Contribution à 43 projets open source sur GitHub',
+          'Contribution à plusieurs projets open source sur GitHub',
           'Participation à des TP avancés d\'algorithmique et de machine learning',
+          'Les projets auxquels j\'ai participé sont tous accessible dans mon GitHub'
         ],
         technologies: ['Flutter', 'Python', 'RAG', 'ML', 'Ontology'],
         relatedProjects: ['Levelmind', 'myportfolio', 'MagicMirror', 'mloutfitsuggestion'],
@@ -112,7 +113,7 @@ class AppData {
         highlights: [
           'Diplôme de Master 2 en Informatique et Télécommunication (en cours)',
           'Spécialisation en architecture logicielle, sécurité des systèmes, Machine Learning et Ontologie',
-          'Parcours ESIIA (Électronique, Systèmes Informatiques, Informatique et Intelligence Artificielle)',
+          'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
         ],
       ),
       const TimelineEntry(
@@ -126,6 +127,8 @@ class AppData {
         summary:
             'Approfondissement en développement logiciel, réseaux et cybersécurité. '
             'Gestion des bases de données relationnelles, introduction au Machine Learning et optimisation des systèmes.',
+        highlights: [ 'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
+        ]
       ),
       const TimelineEntry(
         title: 'Licence en Informatique et Télécommunication',
@@ -137,6 +140,8 @@ class AppData {
         icon: Icons.workspace_premium_outlined,
         summary:
             'Formation en développement Web, le POO, les algorithmes et bases de données relationnels comme MySQL.',
+        highlights: [ 'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
+        ],
         thesisTitle:
             'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
         relatedProjects: ['sfiDashMonitoring', 'elasticsearch-config'],
@@ -177,68 +182,76 @@ class AppData {
 
   static List<Project> getProjects() {
     return [
-      // Projets principaux (affichés en premier)
       Project(
-        name: 'Levelmind',
+        name: 'MagicMirror',
         category: 'Mobile',
         description:
-            'Application mobile e-learning innovante conçue pour centraliser les ressources pédagogiques et faciliter la communication académique',
+        'Miroir intelligent modulaire : caméra temps réel, météo, agenda et suggestions de tenues par IA selon la morphologie et le contexte du jour',
         language: 'Dart',
-        stars: 19,
-        url: 'https://github.com/josoavj/lvlmindapp',
-        tagline: 'Application mobile d\'e-learning pour les écoles et universités',
-        status: 'Bêta (v1.0.0-beta.1)',
+        stars: 0,
+        url: 'https://github.com/josoavj/magicmirror',
+        tagline: 'Miroir intelligent qui suggère des tenues selon la météo, l\'agenda et la morphologie',
+        status: 'En maintenance (v1.1.0)',
         problem:
-            'Centraliser les ressources pédagogiques, les emplois du temps et la communication entre étudiants et enseignants dans une seule application mobile fluide, sécurisée et capable de grandir.',
+        'Aider à choisir sa tenue chaque matin en tenant compte de la météo, de l\'agenda de la journée, de la morphologie et de la garde-robe.',
         solution:
-            'Une application Flutter avec authentification locale, gestion de profil, partage de cours organisé par matière, emploi du temps avec notifications et stockage Hive intégré.',
+        'Un miroir connecté et intelligente : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
         architecture:
-            'Trois couches : présentation (pages et widgets), métier (providers et services : UserNotifier, ThemeNotifier, EnhancedAuthService) et données (LocalDbService, base Hive, modèle UserProfile). Patterns utilisés : MVVM avec Provider, service locator (singleton), observer et repository.',
+        'Architecture feature-first en couches, inspirée de la Clean Architecture : chaque fonctionnalité est isolée en domain (entités, services métier), data (modèles, services techniques) et presentation (providers, widgets, écrans). État géré avec Riverpod (providers séparés des widgets, FutureProvider et AsyncNotifier) et design system commun « glassmorphism ».',
         challenges: [
           const ProjectChallenge(
-            challenge: 'Authentification et session sans serveur',
+            challenge: 'Respecter la vie privée de l\'utilisateur',
             solution:
-                'Inscription et connexion avec mot de passe haché (SHA-256), session conservée dans une box Hive et récupérée automatiquement au lancement, données supprimées à la déconnexion.',
+            'Détection de la morphologie traitée localement avec Google ML Kit, politiques RLS strictes côté Supabase et stockage local chiffré.',
           ),
-         const ProjectChallenge(
-            challenge: 'Garder le code évolutif',
+          const ProjectChallenge(
+            challenge: 'Produire des suggestions pertinentes',
             solution:
-                'Séparation en trois couches, avec LocalDbService comme repository : l\'accès aux données reste isolé du reste de l\'application.',
+            'Ranking hybride combinant heuristique, modèle ML (LightGBM) et LLM, alimenté par la météo, l\'agenda et le profil.',
+          ),
+          const ProjectChallenge(
+            challenge: 'Garder une base de code testable',
+            solution:
+            'Architecture feature-first avec providers Riverpod isolés, couverte par plus de 20 tests unitaires et de widgets.',
           ),
         ],
         results: [
-          const ProjectMetric(label: 'Version', value: 'v1.0.0-beta.1'),
+          const ProjectMetric(label: 'Tests', value: '20+'),
+          const ProjectMetric(label: 'Plateformes', value: 'Android, iOS'),
         ],
         roadmap: [
-          'Annonces et actualités',
-          'Messagerie entre utilisateurs',
-          'Suivi de progression académique',
-          'Système d\'évaluation',
-          'Notifications push',
+          'Implémentation d\'une garde-robe pour une meilleure suggestion de tenues basé sur les données de l\'utilisateur',
+          'Implémentation du modèle mlOutfitSuggestion à l\'application'
         ],
         stackByLayer: {
-          'Application': ['Flutter', 'Dart', 'Provider'],
-          'Données': ['Hive'],
-          'Sécurité': ['SHA-256'],
+          'Application': ['Flutter', 'Dart', 'Riverpod'],
+          'Données & cloud': ['Supabase'],
+          'IA': ['Google ML Kit', 'LightGBM'],
+          'Services': ['OpenWeatherMap', 'Flutter TTS'],
         },
-        releaseUrl: 'https://github.com/josoavj/lvlmindapp/releases',
+        relatedProjects: ['mlOutfitSuggestion'],
+        releaseUrl: 'https://github.com/josoavj/magicmirror/releases',
         technologies: [
           'Flutter',
           'Dart',
-          'Provider (MVVM)',
-          'Hive (NoSQL)',
-          'SHA256 Security',
+          'Riverpod',
+          'Supabase',
+          'Google ML Kit',
+          'OpenWeatherMap',
+          'LightGBM',
+          'Flutter TTS',
         ],
         features: [
-          'Authentification sécurisée (SHA256 & Session Recovery)',
-          'Gestion de profil avec persistance automatique',
-          'Partage et consultation de cours hiérarchisés',
-          'Visualisation des emplois du temps',
-          'Base de données locale Hive ultra-rapide',
-          'Architecture scalable (Singleton, Repository, Observer)',
+          'Miroir caméra temps réel avec contrôles de zoom et d\'exposition',
+          'Agenda cloud Supabase avec gestion complète (CRUD)',
+          'Météo en temps réel et géolocalisation (OpenWeatherMap)',
+          'Profil utilisateur synchronisé dans le cloud',
+          'Détection de la morphologie par IA (Google ML Kit)',
+          'Suggestions de tenues : ranking hybride Heuristique + ML + LLM',
+          'Sécurité : RLS Supabase strict et stockage local chiffré',
         ],
         detailedDescription:
-            'LevelMind est un écosystème numérique complet pour étudiants et enseignants. Actuellement en phase BETA, l\'application offre une expérience mobile fluide et sécurisée. Elle repose sur une architecture MVVM rigoureuse et utilise Hive pour garantir un accès rapide aux données, même hors connexion. Le projet met un accent fort sur l\'extensibilité pour inclure prochainement de la messagerie et du suivi académique.',
+        'Magic Mirror est un miroir intelligent modulaire développé en Flutter. Il combine un rendu caméra plein écran, la météo et l\'agenda de la journée pour proposer des tenues adaptées à la morphologie de l\'utilisateur et à sa garde-robe. L\'application suit une architecture feature-first stricte avec Riverpod, synchronise profil et agenda via Supabase, et traite la détection de pose localement avec Google ML Kit. Elle fonctionne sur Android, iOS et macOS (support partiel sur Linux et Windows) et dispose d\'une suite de plus de 20 tests unitaires et de widgets. Le projet est actuellement en phase de maintenance.',
       ),
       Project(
         name: 'segma',
@@ -360,77 +373,67 @@ class AppData {
         detailedDescription:
             'sfiDashMonitoring est une solution complète de monitoring réseau conçue pour transformer les journaux bruts d\'Elasticsearch en visualisations exploitables. Développée avec un focus majeur sur la sécurité (protection XSS/CSRF, rotation de tokens) et l\'observabilité, la plateforme permet un suivi en temps réel des flux réseau Fortigate. Elle intègre des tests unitaires et de sécurité rigoureux via Vitest.',
       ),
-
       Project(
-        name: 'MagicMirror',
+        name: 'Levelmind',
         category: 'Mobile',
         description:
-            'Miroir intelligent modulaire : caméra temps réel, météo, agenda et suggestions de tenues par IA selon la morphologie et le contexte du jour',
+        'Application mobile e-learning innovante conçue pour centraliser les ressources pédagogiques et faciliter la communication académique',
         language: 'Dart',
-        stars: 0,
-        url: 'https://github.com/josoavj/magicmirror',
-        tagline: 'Miroir intelligent qui suggère des tenues selon la météo, l\'agenda et la morphologie',
-        status: 'En maintenance (v1.1.0)',
+        stars: 19,
+        url: 'https://github.com/josoavj/lvlmindapp',
+        tagline: 'Application mobile d\'e-learning pour les écoles et universités',
+        status: 'Bêta (v1.0.0-beta.1)',
         problem:
-            'Aider à choisir sa tenue chaque matin en tenant compte de la météo, de l\'agenda de la journée, de la morphologie et de la garde-robe.',
+        'Centraliser les ressources pédagogiques, les emplois du temps et la communication entre étudiants et enseignants dans une seule application mobile fluide, sécurisée et capable de grandir.',
         solution:
-            'Un miroir connecté et intelligente : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
+        'Une application Flutter avec authentification locale, gestion de profil, partage de cours organisé par matière, emploi du temps avec notifications et stockage Hive intégré.',
         architecture:
-            'Architecture feature-first en couches, inspirée de la Clean Architecture : chaque fonctionnalité est isolée en domain (entités, services métier), data (modèles, services techniques) et presentation (providers, widgets, écrans). État géré avec Riverpod (providers séparés des widgets, FutureProvider et AsyncNotifier) et design system commun « glassmorphism ».',
+        'Trois couches : présentation (pages et widgets), métier (providers et services : UserNotifier, ThemeNotifier, EnhancedAuthService) et données (LocalDbService, base Hive, modèle UserProfile). Patterns utilisés : MVVM avec Provider, service locator (singleton), observer et repository.',
         challenges: [
           const ProjectChallenge(
-            challenge: 'Respecter la vie privée de l\'utilisateur',
+            challenge: 'Authentification et session sans serveur',
             solution:
-                'Détection de la morphologie traitée localement avec Google ML Kit, politiques RLS strictes côté Supabase et stockage local chiffré.',
+            'Inscription et connexion avec mot de passe haché (SHA-256), session conservée dans une box Hive et récupérée automatiquement au lancement, données supprimées à la déconnexion.',
           ),
           const ProjectChallenge(
-            challenge: 'Produire des suggestions pertinentes',
+            challenge: 'Garder le code évolutif',
             solution:
-                'Ranking hybride combinant heuristique, modèle ML (LightGBM) et LLM, alimenté par la météo, l\'agenda et le profil.',
-          ),
-          const ProjectChallenge(
-            challenge: 'Garder une base de code testable',
-            solution:
-                'Architecture feature-first avec providers Riverpod isolés, couverte par plus de 20 tests unitaires et de widgets.',
+            'Séparation en trois couches, avec LocalDbService comme repository : l\'accès aux données reste isolé du reste de l\'application.',
           ),
         ],
         results: [
-          const ProjectMetric(label: 'Tests', value: '20+'),
-          const ProjectMetric(label: 'Plateformes', value: 'Android, iOS'),
+          const ProjectMetric(label: 'Version', value: 'v1.0.0-beta.1'),
         ],
         roadmap: [
-          'Implémentation d\'une garde-robe pour une meilleure suggestion de tenues basé sur les données de l\'utilisateur',
-          'Implémentation du modèle mlOutfitSuggestion à l\'application'
+          'Annonces et actualités',
+          'Messagerie entre utilisateurs',
+          'Suivi de progression académique',
+          'Système d\'évaluation',
+          'Notifications push',
         ],
         stackByLayer: {
-          'Application': ['Flutter', 'Dart', 'Riverpod'],
-          'Données & cloud': ['Supabase'],
-          'IA': ['Google ML Kit', 'LightGBM'],
-          'Services': ['OpenWeatherMap', 'Flutter TTS'],
+          'Application': ['Flutter', 'Dart', 'Provider'],
+          'Données': ['Hive'],
+          'Sécurité': ['SHA-256'],
         },
-        relatedProjects: ['mlOutfitSuggestion'],
-        releaseUrl: 'https://github.com/josoavj/magicmirror/releases',
+        releaseUrl: 'https://github.com/josoavj/lvlmindapp/releases',
         technologies: [
           'Flutter',
           'Dart',
-          'Riverpod',
-          'Supabase',
-          'Google ML Kit',
-          'OpenWeatherMap',
-          'LightGBM',
-          'Flutter TTS',
+          'Provider (MVVM)',
+          'Hive (NoSQL)',
+          'SHA256 Security',
         ],
         features: [
-          'Miroir caméra temps réel avec contrôles de zoom et d\'exposition',
-          'Agenda cloud Supabase avec gestion complète (CRUD)',
-          'Météo en temps réel et géolocalisation (OpenWeatherMap)',
-          'Profil utilisateur synchronisé dans le cloud',
-          'Détection de la morphologie par IA (Google ML Kit)',
-          'Suggestions de tenues : ranking hybride Heuristique + ML + LLM',
-          'Sécurité : RLS Supabase strict et stockage local chiffré',
+          'Authentification sécurisée (SHA256 & Session Recovery)',
+          'Gestion de profil avec persistance automatique',
+          'Partage et consultation de cours hiérarchisés',
+          'Visualisation des emplois du temps',
+          'Base de données locale Hive ultra-rapide',
+          'Architecture scalable (Singleton, Repository, Observer)',
         ],
         detailedDescription:
-            'Magic Mirror est un miroir intelligent modulaire développé en Flutter. Il combine un rendu caméra plein écran, la météo et l\'agenda de la journée pour proposer des tenues adaptées à la morphologie de l\'utilisateur et à sa garde-robe. L\'application suit une architecture feature-first stricte avec Riverpod, synchronise profil et agenda via Supabase, et traite la détection de pose localement avec Google ML Kit. Elle fonctionne sur Android, iOS et macOS (support partiel sur Linux et Windows) et dispose d\'une suite de plus de 20 tests unitaires et de widgets. Le projet est actuellement en phase de maintenance.',
+        'LevelMind est un écosystème numérique complet pour étudiants et enseignants. Actuellement en phase BETA, l\'application offre une expérience mobile fluide et sécurisée. Elle repose sur une architecture MVVM rigoureuse et utilise Hive pour garantir un accès rapide aux données, même hors connexion. Le projet met un accent fort sur l\'extensibilité pour inclure prochainement de la messagerie et du suivi académique.',
       ),
       Project(
         name: 'mlOutfitSuggestion',
@@ -548,7 +551,7 @@ class AppData {
           'Responsive Design'
         ],
         features: [
-          'Interface multiplateforme (iOS, Android, Web, Windows, Linux, macOS)',
+          'Interface multiplateforme (iOS, Android, Web, Linux)',
           'Intégration en temps réel avec l\'API GitHub',
           'Affichage dynamique des projets et contributions',
           'Statistiques GitHub en direct',
@@ -556,7 +559,7 @@ class AppData {
           'Cache service pour optimisation',
         ],
         detailedDescription:
-            'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de mes réalisations. Accessible sur tous les appareils avec une interface cohérente et professionnelle.',
+            'Portfolio personnel multiplateforme développé en Flutter qui affiche dynamiquement les projets et les statistiques GitHub. Utilise l\'API GitHub pour récupérer les données en temps réel, offrant une présentation moderne et interactive de mes réalisations.',
       ),
       Project(
         name: 'Prospectius',
