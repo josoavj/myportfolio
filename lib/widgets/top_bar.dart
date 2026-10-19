@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/constants/app_constants.dart';
-import 'package:myportfolio/services/url_launcher_service.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 
 /// Barre du haut flottante et centrée :
@@ -101,7 +99,7 @@ class _TopBarState extends State<TopBar> {
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         final curved =
-            CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+        CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
         return FadeTransition(
           opacity: curved,
           child: SlideTransition(
@@ -236,67 +234,61 @@ class _MenuPanel extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.only(
           top: isMobile ? 76 : 84,
+          left: isMobile ? 12 : 0,
+          right: isMobile ? 12 : 0,
         ),
         child: Align(
           alignment: Alignment.topCenter,
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 1200),
-            child: Padding(
-              padding: EdgeInsets.symmetric(horizontal: isMobile ? 12 : 20),
-              child: Align(
-                alignment: isMobile ? Alignment.topCenter : Alignment.topRight,
-                child: CallbackShortcuts(
-                  bindings: {
-                    const SingleActivator(LogicalKeyboardKey.escape): () =>
-                        Navigator.of(context).pop(),
-                  },
-                  child: Focus(
-                    autofocus: true,
-                    child: Material(
-                      color: AppConstants.secondaryDark,
-                      elevation: 16,
-                      borderRadius: BorderRadius.circular(20),
-                      clipBehavior: Clip.antiAlias,
-                      child: Container(
-                        width: panelWidth,
-                        decoration: BoxDecoration(
-                          color: AppConstants.secondaryDark,
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: Colors.blue.withValues(alpha: 0.3),
-                          ),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withValues(alpha: 0.5),
-                              blurRadius: 20,
-                              spreadRadius: 2,
-                              offset: const Offset(0, 6),
-                            ),
-                          ],
+            child: Align(
+              alignment: isMobile ? Alignment.topCenter : Alignment.topRight,
+              child: CallbackShortcuts(
+                bindings: {
+                  const SingleActivator(LogicalKeyboardKey.escape): () =>
+                      Navigator.of(context).pop(),
+                },
+                child: Focus(
+                  autofocus: true,
+                  child: Material(
+                    color: AppConstants.secondaryDark,
+                    elevation: 16,
+                    borderRadius: BorderRadius.circular(20),
+                    clipBehavior: Clip.antiAlias,
+                    child: Container(
+                      width: panelWidth,
+                      decoration: BoxDecoration(
+                        color: AppConstants.secondaryDark,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: Colors.blue.withValues(alpha: 0.3),
                         ),
-                        child: SingleChildScrollView(
-                          padding: const EdgeInsets.all(12),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              _buildHeader(context),
-                              const SizedBox(height: 4),
-                              for (var i = 0; i < sections.length; i++)
-                                _MenuItem(
-                                  index: i + 1,
-                                  label: sections[i],
-                                  isActive: sections[i] == active,
-                                  onTap: () =>
-                                      Navigator.of(context).pop(sections[i]),
-                                ),
-                              const Padding(
-                                padding: EdgeInsets.symmetric(vertical: 8),
-                                child: Divider(height: 1, color: Colors.white12),
-                              ),
-                              _buildSocials(),
-                            ],
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.5),
+                            blurRadius: 20,
+                            spreadRadius: 2,
+                            offset: const Offset(0, 6),
                           ),
+                        ],
+                      ),
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            _buildHeader(context),
+                            const SizedBox(height: 4),
+                            for (var i = 0; i < sections.length; i++)
+                              _MenuItem(
+                                index: i + 1,
+                                label: sections[i],
+                                isActive: sections[i] == active,
+                                onTap: () =>
+                                    Navigator.of(context).pop(sections[i]),
+                              ),
+                          ],
                         ),
                       ),
                     ),
@@ -328,33 +320,6 @@ class _MenuPanel extends StatelessWidget {
             tooltip: 'Fermer le menu',
             icon: const Icon(Icons.close, color: Colors.white70, size: 22),
             onPressed: () => Navigator.of(context).pop(),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSocials() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 4),
-      child: Row(
-        children: [
-          _SocialIcon(
-            icon: FaIcon(FontAwesomeIcons.github, color: Colors.white70, size: 20),
-            label: 'GitHub',
-            url: AppConstants.githubUrl,
-          ),
-          SizedBox(width: 8),
-          _SocialIcon(
-            icon: FaIcon(FontAwesomeIcons.linkedin, color: Colors.white70, size: 20),
-            label: 'LinkedIn',
-            url: AppConstants.linkedinUrl,
-          ),
-          SizedBox(width: 8),
-          _SocialIcon(
-            icon: Icon(Icons.mail_outline, color: Colors.white70, size: 20),
-            label: 'Email',
-            url: AppConstants.emailUrl,
           ),
         ],
       ),
@@ -418,39 +383,6 @@ class _MenuItem extends StatelessWidget {
                 Icon(Icons.circle, size: 8, color: Colors.blue.shade300),
             ],
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _SocialIcon extends StatelessWidget {
-  final Widget icon;
-  final String label;
-  final String url;
-
-  const _SocialIcon({
-    required this.icon,
-    required this.label,
-    required this.url,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Tooltip(
-      message: label,
-      child: InkWell(
-        onTap: () => UrlLauncherService.launchURL(url),
-        borderRadius: BorderRadius.circular(12),
-        child: Container(
-          width: 44,
-          height: 44,
-          decoration: BoxDecoration(
-            color: Colors.blueGrey.withValues(alpha: 0.18),
-            borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.white12),
-          ),
-          child: Center(child: icon),
         ),
       ),
     );
