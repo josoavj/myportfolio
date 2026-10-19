@@ -17,7 +17,6 @@ class SkillsSection extends StatefulWidget {
 
 class _SkillsSectionState extends State<SkillsSection> {
   late final Map<String, List<Skill>> _skillsByCategory;
-  // Créé une seule fois : évite de relancer loadLibrary() à chaque rebuild.
   late final Future<void> _githubStatsLoader;
 
   @override
@@ -77,7 +76,6 @@ class _SkillsSectionState extends State<SkillsSection> {
   }
 
   Widget _buildSkillCategoryCard(String category, List<Skill> skills) {
-    // Pas de BackdropFilter : coûteux sur le Web, et le fond est uni de toute façon.
     return RepaintBoundary(
       child: Container(
         padding: const EdgeInsets.all(30),
