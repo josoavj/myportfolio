@@ -2,16 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/pages/about_section.dart';
 import 'package:myportfolio/pages/contact_section.dart';
-import 'package:myportfolio/pages/education_section.dart';
-import 'package:myportfolio/pages/experience_section.dart';
 import 'package:myportfolio/pages/footer_section.dart';
 import 'package:myportfolio/pages/header_section.dart';
+import 'package:myportfolio/pages/journey_section.dart';
 import 'package:myportfolio/pages/projects_section.dart';
 import 'package:myportfolio/pages/skills_section.dart';
 import 'package:myportfolio/widgets/animated_scroll_section.dart';
-import 'package:myportfolio/widgets/nav_bar.dart';
-
-import 'package:myportfolio/widgets/mobile_nav_bar.dart';
+import 'package:myportfolio/widgets/top_bar.dart';
 
 class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
@@ -28,8 +25,7 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
   final Map<String, GlobalKey> _sectionKeys = {
     'Accueil': GlobalKey(),
     'À propos': GlobalKey(),
-    'Expérience': GlobalKey(),
-    'Formation': GlobalKey(),
+    'Parcours': GlobalKey(),
     'Compétences': GlobalKey(),
     'Projets': GlobalKey(),
     'Contact': GlobalKey(),
@@ -55,9 +51,6 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final bool isCompact = width < 1000;
-
     return Scaffold(
       body: Stack(
         children: [
@@ -76,13 +69,8 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
                     child: const AboutSection(),
                   ),
                   _buildSection(
-                    key: _sectionKeys['Expérience']!,
-                    child: const ExperienceSection(),
-                    color: AppConstants.secondaryDark,
-                  ),
-                  _buildSection(
-                    key: _sectionKeys['Formation']!,
-                    child: const EducationSection(),
+                    key: _sectionKeys['Parcours']!,
+                    child: const JourneySection(),
                   ),
                   _buildSection(
                     key: _sectionKeys['Compétences']!,
@@ -99,34 +87,20 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
                     color: AppConstants.secondaryDark,
                   ),
                   const FooterSection(),
-                  if (isCompact)
-                    const SizedBox(height: 100),
                 ],
               ),
             ),
           ),
-          // Navbar Desktop
-          if (!isCompact)
-            Positioned(
-              top: 0,
-              left: 0,
-              right: 0,
-              child: NavBar(
-                sections: _sectionKeys,
-                scrollController: _scrollController,
-              ),
+          // Barre du haut : JV à gauche, menu à droite (tous écrans)
+          Positioned(
+            top: 0,
+            left: 0,
+            right: 0,
+            child: TopBar(
+              sections: _sectionKeys,
+              scrollController: _scrollController,
             ),
-          // Navbar Mobile/Tablet
-          if (isCompact)
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: MobileNavBar(
-                sections: _sectionKeys,
-                scrollController: _scrollController,
-              ),
-            ),
+          ),
         ],
       ),
     );
