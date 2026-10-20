@@ -11,7 +11,7 @@ class AppData {
         title: 'Développeur Full Stack',
         organization: 'APEXNova Labs',
         location: 'Antananarivo, Madagascar',
-        period: '2023 - Présent',
+        period: 'Depuis 2023',
         badge: 'Side project',
         status: 'En cours',
         isOngoing: true,
