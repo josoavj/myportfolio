@@ -1,5 +1,5 @@
 import 'dart:ui' show PointerDeviceKind;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/constants/app_data.dart';
@@ -135,7 +135,8 @@ class ProjectDetailPage extends ConsumerWidget {
           _Section(
             title: 'Ce que j\'ai appris',
             isSmall: isSmall,
-            child: _BulletList(items: p.learnings, icon: Icons.lightbulb_outline),
+            child:
+                _BulletList(items: p.learnings, icon: Icons.lightbulb_outline),
           ),
         if (p.stackByLayer.isNotEmpty || p.technologies.isNotEmpty)
           _Section(
@@ -143,8 +144,7 @@ class ProjectDetailPage extends ConsumerWidget {
             isSmall: isSmall,
             child: _buildStack(),
           ),
-        if (p.relatedProjects.isNotEmpty)
-          _buildRelated(context, isSmall),
+        if (p.relatedProjects.isNotEmpty) _buildRelated(context, isSmall),
         const SizedBox(height: 60),
       ],
     );
@@ -161,8 +161,12 @@ class ProjectDetailPage extends ConsumerWidget {
           spacing: 8,
           runSpacing: 8,
           children: [
-            _Pill(label: p.category, color: catColor, faIcon: categoryIcon(p.category)),
-            if (p.status.isNotEmpty) _Pill(label: p.status, color: Colors.amber),
+            _Pill(
+                label: p.category,
+                color: catColor,
+                faIcon: categoryIcon(p.category)),
+            if (p.status.isNotEmpty)
+              _Pill(label: p.status, color: Colors.amber),
             if (p.stars > 0)
               _Pill(
                 label: '${p.stars} ${p.stars > 1 ? 'stars' : 'star'}',
@@ -197,11 +201,20 @@ class ProjectDetailPage extends ConsumerWidget {
               primary: true,
             ),
             if (p.demoUrl != null)
-              _ActionButton(label: 'Démo', icon: Icons.play_arrow_rounded, url: p.demoUrl!),
+              _ActionButton(
+                  label: 'Démo',
+                  icon: Icons.play_arrow_rounded,
+                  url: p.demoUrl!),
             if (p.releaseUrl != null)
-              _ActionButton(label: 'Release', icon: Icons.download_rounded, url: p.releaseUrl!),
+              _ActionButton(
+                  label: 'Release',
+                  icon: Icons.download_rounded,
+                  url: p.releaseUrl!),
             if (p.docsUrl != null)
-              _ActionButton(label: 'Documentation', icon: Icons.menu_book_outlined, url: p.docsUrl!),
+              _ActionButton(
+                  label: 'Documentation',
+                  icon: Icons.menu_book_outlined,
+                  url: p.docsUrl!),
           ],
         ),
       ],
@@ -243,7 +256,8 @@ class ProjectDetailPage extends ConsumerWidget {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(top: 2),
-                      child: Icon(Icons.check_circle_outline, size: 18, color: Colors.blue.shade300),
+                      child: Icon(Icons.check_circle_outline,
+                          size: 18, color: Colors.blue.shade300),
                     ),
                     const SizedBox(width: 10),
                     Expanded(
@@ -272,7 +286,8 @@ class ProjectDetailPage extends ConsumerWidget {
         spacing: 10,
         runSpacing: 10,
         children: [
-          for (final t in p.technologies) _Pill(label: t, color: Colors.blueGrey),
+          for (final t in p.technologies)
+            _Pill(label: t, color: Colors.blueGrey),
         ],
       );
     }
@@ -295,7 +310,8 @@ class ProjectDetailPage extends ConsumerWidget {
                   spacing: 10,
                   runSpacing: 10,
                   children: [
-                    for (final t in entry.value) _Pill(label: t, color: Colors.blue),
+                    for (final t in entry.value)
+                      _Pill(label: t, color: Colors.blue),
                   ],
                 ),
               ],
@@ -333,7 +349,8 @@ class ProjectDetailPage extends ConsumerWidget {
                 onTap: () => openProject(context, r),
                 borderRadius: BorderRadius.circular(14),
                 child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                   decoration: AppTheme.glassDecoration(
                     color: Colors.blueGrey,
                     opacity: 0.1,
@@ -343,7 +360,8 @@ class ProjectDetailPage extends ConsumerWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      FaIcon(categoryIcon(r.category), size: 16, color: categoryColor(r.category)),
+                      FaIcon(categoryIcon(r.category),
+                          size: 16, color: categoryColor(r.category)),
                       const SizedBox(width: 10),
                       Text(
                         r.name,
@@ -354,7 +372,8 @@ class ProjectDetailPage extends ConsumerWidget {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Icon(Icons.arrow_outward, size: 14, color: Colors.blue.shade300),
+                      Icon(Icons.arrow_outward,
+                          size: 14, color: Colors.blue.shade300),
                     ],
                   ),
                 ),
@@ -386,14 +405,16 @@ class _Section extends StatelessWidget {
         children: [
           Text(
             title,
-            style: isSmall ? AppTheme.titleMediumMobile() : AppTheme.titleMedium(),
+            style:
+                isSmall ? AppTheme.titleMediumMobile() : AppTheme.titleMedium(),
           ),
           const SizedBox(height: 8),
           Container(
             width: 48,
             height: 4,
             decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [Colors.blue, Colors.cyan]),
+              gradient:
+                  const LinearGradient(colors: [Colors.blue, Colors.cyan]),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -414,7 +435,8 @@ class _Paragraph extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: AppTheme.lexendRegular(15, color: Colors.grey.shade300, height: 1.7),
+      style:
+          AppTheme.lexendRegular(15, color: Colors.grey.shade300, height: 1.7),
     );
   }
 }
@@ -447,7 +469,8 @@ class _ArchitectureList extends StatelessWidget {
                 item: items[i],
                 wide: wide,
               ),
-            if (items.isNotEmpty) const Divider(height: 1, color: Colors.white12),
+            if (items.isNotEmpty)
+              const Divider(height: 1, color: Colors.white12),
           ],
         );
       },
@@ -470,15 +493,18 @@ class _ArchitectureRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final number = Text(
       index.toString().padLeft(2, '0'),
-      style: AppTheme.lexendRegular(12, color: Colors.blue.shade300, fontWeight: FontWeight.w600),
+      style: AppTheme.lexendRegular(12,
+          color: Colors.blue.shade300, fontWeight: FontWeight.w600),
     );
     final label = Text(
       item.label,
-      style: AppTheme.lexendRegular(15, color: Colors.white, fontWeight: FontWeight.bold, height: 1.4),
+      style: AppTheme.lexendRegular(15,
+          color: Colors.white, fontWeight: FontWeight.bold, height: 1.4),
     );
     final detail = Text(
       item.detail,
-      style: AppTheme.lexendRegular(14, color: Colors.grey.shade300, height: 1.6),
+      style:
+          AppTheme.lexendRegular(14, color: Colors.grey.shade300, height: 1.6),
     );
 
     return Column(
@@ -491,7 +517,11 @@ class _ArchitectureRow extends StatelessWidget {
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(width: 40, child: Padding(padding: const EdgeInsets.only(top: 3), child: number)),
+                    SizedBox(
+                        width: 40,
+                        child: Padding(
+                            padding: const EdgeInsets.only(top: 3),
+                            child: number)),
                     SizedBox(width: 220, child: label),
                     Expanded(child: detail),
                   ],
@@ -597,7 +627,8 @@ class _LanguageBreakdown extends ConsumerWidget {
         const SizedBox(width: 8),
         Text(
           name,
-          style: AppTheme.lexendRegular(13, color: Colors.white, fontWeight: FontWeight.w600),
+          style: AppTheme.lexendRegular(13,
+              color: Colors.white, fontWeight: FontWeight.w600),
         ),
         const SizedBox(width: 6),
         Text(
@@ -640,7 +671,8 @@ class _BulletList extends StatelessWidget {
                 Expanded(
                   child: Text(
                     item,
-                    style: AppTheme.lexendRegular(14, color: Colors.grey.shade300, height: 1.5),
+                    style: AppTheme.lexendRegular(14,
+                        color: Colors.grey.shade300, height: 1.5),
                   ),
                 ),
               ],
@@ -693,7 +725,8 @@ class _ChallengeCard extends StatelessWidget {
             padding: const EdgeInsets.only(left: 30),
             child: Text(
               challenge.solution,
-              style: AppTheme.lexendRegular(14, color: Colors.grey.shade300, height: 1.6),
+              style: AppTheme.lexendRegular(14,
+                  color: Colors.grey.shade300, height: 1.6),
             ),
           ),
         ],
@@ -757,7 +790,8 @@ class _FactCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(label.toUpperCase(), style: AppTheme.labelSmall(color: Colors.grey)),
+          Text(label.toUpperCase(),
+              style: AppTheme.labelSmall(color: Colors.grey)),
           const SizedBox(height: 6),
           Text(
             value,
@@ -780,7 +814,8 @@ class _Pill extends StatelessWidget {
   final IconData? icon;
   final FaIconData? faIcon;
 
-  const _Pill({required this.label, required this.color, this.icon, this.faIcon});
+  const _Pill(
+      {required this.label, required this.color, this.icon, this.faIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -804,7 +839,8 @@ class _Pill extends StatelessWidget {
           Flexible(
             child: Text(
               label,
-              style: AppTheme.lexendRegular(12, color: color, fontWeight: FontWeight.w600),
+              style: AppTheme.lexendRegular(12,
+                  color: color, fontWeight: FontWeight.w600),
             ),
           ),
         ],
