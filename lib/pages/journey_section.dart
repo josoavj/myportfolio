@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/timeline_entry.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -116,7 +116,8 @@ class _JourneySectionState extends State<JourneySection> {
             color: selected ? color.withValues(alpha: 0.2) : Colors.transparent,
             borderRadius: BorderRadius.circular(25),
             border: Border.all(
-              color: selected ? color.withValues(alpha: 0.6) : Colors.transparent,
+              color:
+                  selected ? color.withValues(alpha: 0.6) : Colors.transparent,
             ),
           ),
           child: Row(
