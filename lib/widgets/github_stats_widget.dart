@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:myportfolio/services/github_provider.dart';
@@ -50,7 +50,7 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
       child: Column(
         children: [
           const CircularProgressIndicator(
-            valueColor:  AlwaysStoppedAnimation<Color>(Colors.blue),
+            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
           ),
           const SizedBox(height: 12),
           Text('Chargement des stats GitHub...', style: AppTheme.subtitle()),
@@ -204,7 +204,9 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
               children: [
                 const Icon(Icons.open_in_new, size: 14, color: Colors.blue),
                 const SizedBox(width: 4),
-                Text('Consulter', style: AppTheme.lexendRegular(11, color: Colors.blue, fontWeight: FontWeight.w600)),
+                Text('Consulter',
+                    style: AppTheme.lexendRegular(11,
+                        color: Colors.blue, fontWeight: FontWeight.w600)),
               ],
             ),
           ),
@@ -405,8 +407,10 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
                 },
               ),
             ),
-            topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-            rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            topTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+            rightTitles:
+                const AxisTitles(sideTitles: SideTitles(showTitles: false)),
           ),
           gridData: FlGridData(
             show: true,
@@ -491,13 +495,14 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
                     Expanded(
                       child: Text(
                         repo.name,
-                        style: AppTheme.subtitleSmall(color: Colors.blue.shade300),
+                        style:
+                            AppTheme.subtitleSmall(color: Colors.blue.shade300),
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     Container(
-                      padding:
-                          const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 8, vertical: 4),
                       decoration: BoxDecoration(
                         color: Colors.amber.withValues(alpha: 0.15),
                         borderRadius: BorderRadius.circular(6),
@@ -505,7 +510,8 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Icon(Icons.star_rounded, size: 14, color: Colors.amber),
+                          const Icon(Icons.star_rounded,
+                              size: 14, color: Colors.amber),
                           const SizedBox(width: 4),
                           Text(
                             repo.stars.toString(),
@@ -525,7 +531,8 @@ class _GitHubStatsWidgetState extends ConsumerState<GitHubStatsWidget>
                 ),
                 const SizedBox(height: 6),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: Colors.cyan.withValues(alpha: 0.15),
                     borderRadius: BorderRadius.circular(6),
