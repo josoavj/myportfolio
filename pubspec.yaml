@@ -20,39 +20,17 @@ dependencies:
   responsive_framework: ^1.5.1
 
 
+  material_ui: any
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
   flutter_lints: ^6.0.0
   flutter_launcher_icons: ^0.14.4
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter packages.
 flutter:
 
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
-#fonts:
-#    - family: TiltNeon
-#      fonts:
-#       - asset: assets/fonts/TiltNeon-Regular-VariableFont_XROT,YROT.ttf
-#    - family: Josefin
-#      fonts:
-#        - asset: assets/fonts/JosefinSans-VariableFont_wght.ttf
-#        - asset: assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf
-#    - family: PatrickHand
-#      fonts:
-#        - assets/asset: fonts/PatrickHandSC-Regular.ttf
 
   assets:
     - assets/
@@ -66,7 +44,7 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/LogoPrincipalFinal.png"
-  image_path_android: "assets/AndroidLogo.svg"
+  image_path: "assets/icons/icon-1024.png"
+  image_path_android: "assets/icons/icon-1024.png"
   min_sdk_android: 21
   remove_alpha_ios: true

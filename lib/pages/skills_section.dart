@@ -1,10 +1,11 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/widgets/section_title.dart';
 import 'package:myportfolio/widgets/stat_card.dart';
-import 'package:myportfolio/widgets/github_stats_widget.dart' deferred as github_stats;
+import 'package:myportfolio/widgets/github_stats_widget.dart'
+    deferred as github_stats;
 import 'package:myportfolio/widgets/tech_badge.dart';
 import 'package:myportfolio/widgets/responsive_layout.dart';
 
@@ -58,7 +59,8 @@ class _SkillsSectionState extends State<SkillsSection> {
     return LayoutBuilder(
       builder: (context, constraints) {
         final columns = isMobile ? 1 : (constraints.maxWidth > 1000 ? 3 : 2);
-        final cardWidth = (constraints.maxWidth - (50 * (columns - 1))) / columns;
+        final cardWidth =
+            (constraints.maxWidth - (50 * (columns - 1))) / columns;
 
         return Wrap(
           spacing: 50,
@@ -97,7 +99,8 @@ class _SkillsSectionState extends State<SkillsSection> {
               spacing: 12,
               runSpacing: 12,
               children: skills
-                  .map((skill) => TechBadge(name: skill.name, color: skill.color))
+                  .map((skill) =>
+                      TechBadge(name: skill.name, color: skill.color))
                   .toList(),
             ),
           ],

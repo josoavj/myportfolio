@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/constants/app_constants.dart';
@@ -55,22 +55,20 @@ class _ContactSectionState extends State<ContactSection> {
       ..hideCurrentSnackBar()
       ..showSnackBar(
         SnackBar(
-          content: Text(
-              text, style: AppTheme.lexendRegular(14, color: Colors.white)),
+          content: Text(text,
+              style: AppTheme.lexendRegular(14, color: Colors.white)),
           backgroundColor: const Color(0xFF1C2230),
           behavior: SnackBarBehavior.floating,
           duration: const Duration(seconds: 3),
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(14)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
         ),
       );
   }
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery
-        .sizeOf(context)
-        .width < 600;
+    final isMobile = MediaQuery.sizeOf(context).width < 600;
 
     return Stack(
       clipBehavior: Clip.hardEdge,
@@ -97,7 +95,8 @@ class _ContactSectionState extends State<ContactSection> {
                             Expanded(
                                 flex: 5, child: _buildIntro(isMobile: false)),
                             const SizedBox(width: 64),
-                            Expanded(flex: 6,
+                            Expanded(
+                                flex: 6,
                                 child: _buildFormCard(isMobile: false)),
                           ],
                         );
@@ -182,7 +181,8 @@ class _ContactSectionState extends State<ContactSection> {
           children: [
             _InfoPill(
                 icon: Icons.location_on_outlined, label: AppConstants.location),
-            _InfoPill(icon: Icons.rocket_launch_outlined,
+            _InfoPill(
+                icon: Icons.rocket_launch_outlined,
                 label: 'Side project · APEXNova Labs'),
           ],
         ).withFadeIn(delay: const Duration(milliseconds: 550)),
@@ -224,9 +224,7 @@ class _ContactSectionState extends State<ContactSection> {
                 autofillHints: const [AutofillHints.name],
                 textInputAction: TextInputAction.next,
                 validator: (value) {
-                  if (value == null || value
-                      .trim()
-                      .length < 2) {
+                  if (value == null || value.trim().length < 2) {
                     return 'Indiquez votre nom';
                   }
                   return null;
@@ -257,9 +255,7 @@ class _ContactSectionState extends State<ContactSection> {
                 maxLines: 8,
                 keyboardType: TextInputType.multiline,
                 validator: (value) {
-                  if (value == null || value
-                      .trim()
-                      .length < 10) {
+                  if (value == null || value.trim().length < 10) {
                     return 'Votre message est un peu court (10 caractères minimum)';
                   }
                   return null;
@@ -273,15 +269,15 @@ class _ContactSectionState extends State<ContactSection> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 2),
-                    child: Icon(Icons.info_outline, size: 14,
-                        color: Colors.grey.shade500),
+                    child: Icon(Icons.info_outline,
+                        size: 14, color: Colors.grey.shade500),
                   ),
                   const SizedBox(width: 8),
                   Expanded(
                     child: Text(
                       'Votre application de messagerie s\'ouvrira avec le message prêt à envoyer.',
-                      style: AppTheme.lexendRegular(
-                          12, color: Colors.grey.shade500, height: 1.5),
+                      style: AppTheme.lexendRegular(12,
+                          color: Colors.grey.shade500, height: 1.5),
                     ),
                   ),
                 ],
@@ -325,10 +321,10 @@ class _ContactSectionState extends State<ContactSection> {
       decoration: InputDecoration(
         labelText: label,
         labelStyle: AppTheme.lexendRegular(14, color: Colors.grey.shade400),
-        floatingLabelStyle: AppTheme.lexendRegular(
-            14, color: Colors.blue.shade300),
-        errorStyle: AppTheme.lexendRegular(
-            12, color: Colors.redAccent.shade100),
+        floatingLabelStyle:
+            AppTheme.lexendRegular(14, color: Colors.blue.shade300),
+        errorStyle:
+            AppTheme.lexendRegular(12, color: Colors.redAccent.shade100),
         // Champ multiligne : pas d'icône (elle serait centrée verticalement).
         prefixIcon: minLines > 1
             ? null
@@ -336,8 +332,8 @@ class _ContactSectionState extends State<ContactSection> {
         alignLabelWithHint: minLines > 1,
         filled: true,
         fillColor: AppConstants.primaryDark.withValues(alpha: 0.6),
-        contentPadding: const EdgeInsets.symmetric(
-            horizontal: 16, vertical: 18),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
         border: border(Colors.white.withValues(alpha: 0.12)),
         enabledBorder: border(Colors.white.withValues(alpha: 0.12)),
         focusedBorder: border(_accent, 1.6),
@@ -469,7 +465,8 @@ class _ChannelTileState extends State<_ChannelTile> {
                             widget.subtitle,
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: AppTheme.lexendRegular(12, color: Colors.grey.shade400),
+                            style: AppTheme.lexendRegular(12,
+                                color: Colors.grey.shade400),
                           ),
                         ],
                       ),
@@ -477,7 +474,8 @@ class _ChannelTileState extends State<_ChannelTile> {
                     if (widget.trailing != null) widget.trailing!,
                     AnimatedSlide(
                       duration: const Duration(milliseconds: 200),
-                      offset: _hovered ? const Offset(0.15, -0.15) : Offset.zero,
+                      offset:
+                          _hovered ? const Offset(0.15, -0.15) : Offset.zero,
                       child: Icon(
                         Icons.arrow_outward_rounded,
                         size: 18,
@@ -533,7 +531,8 @@ class _InfoPill extends StatelessWidget {
           Flexible(
             child: Text(
               label,
-              style: AppTheme.lexendRegular(12, color: Colors.grey.shade300, fontWeight: FontWeight.w500),
+              style: AppTheme.lexendRegular(12,
+                  color: Colors.grey.shade300, fontWeight: FontWeight.w500),
             ),
           ),
         ],

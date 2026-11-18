@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myportfolio/services/github_provider.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -60,7 +60,8 @@ class AboutSection extends ConsumerWidget {
     );
   }
 
-  Widget _buildAchievementDashboard(bool isMobile, AsyncValue githubStatsAsync) {
+  Widget _buildAchievementDashboard(
+      bool isMobile, AsyncValue githubStatsAsync) {
     return githubStatsAsync.when(
       data: (stats) {
         const int rank = 9;
@@ -69,8 +70,8 @@ class AboutSection extends ConsumerWidget {
 
         return LayoutBuilder(
           builder: (context, constraints) {
-            final double cardWidth = isMobile 
-                ? constraints.maxWidth 
+            final double cardWidth = isMobile
+                ? constraints.maxWidth
                 : (constraints.maxWidth - 40) / 3;
 
             return Wrap(

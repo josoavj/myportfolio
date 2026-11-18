@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/constants/app_data.dart';
@@ -19,7 +19,8 @@ class ProjectsSection extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // Étoiles réelles depuis l'API GitHub ; valeurs de app_data en repli.
-    final liveStars = ref.watch(repoStarsProvider).asData?.value ?? const <String, int>{};
+    final liveStars =
+        ref.watch(repoStarsProvider).asData?.value ?? const <String, int>{};
     final projects = AppData.getProjects().map((p) {
       final stars = liveStars[p.repoName];
       return stars == null ? p : p.withStars(stars);
@@ -101,8 +102,7 @@ class ProjectsSection extends ConsumerWidget {
                 initialDisplayCount: _displayCount,
               );
             },
-            transitionBuilder:
-                (context, animation, secondaryAnimation, child) {
+            transitionBuilder: (context, animation, secondaryAnimation, child) {
               return FadeTransition(
                 opacity: animation,
                 child: ScaleTransition(

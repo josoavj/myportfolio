@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Widget pour ajouter un délai à une animation sans casser le layout
 class DelayedAnimation extends StatefulWidget {
@@ -170,7 +170,8 @@ extension AnimationExtension on Widget {
     Duration duration = const Duration(milliseconds: 800),
     Duration delay = Duration.zero,
   }) {
-    return AnimationUtils.scaleIn(child: this, duration: duration, delay: delay);
+    return AnimationUtils.scaleIn(
+        child: this, duration: duration, delay: delay);
   }
 
   Widget withPulse({bool enabled = true}) {

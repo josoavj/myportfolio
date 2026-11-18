@@ -56,3 +56,4 @@ lib/config/secrets.dart
 .env.local
 .macos/
 releases/**/*.apk
+.vscode/settings.json

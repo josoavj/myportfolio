@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Couleurs de langages (palette GitHub) pour la barre de répartition.
 Color languageBarColor(String language) {

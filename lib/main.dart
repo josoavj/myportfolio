@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -10,7 +10,7 @@ void main() {
   // Bloquer absolument tout appel réseau pour les polices
   WidgetsFlutterBinding.ensureInitialized();
   GoogleFonts.config.allowRuntimeFetching = false;
-  
+
   // Initialiser les services
   GitHubService.initializeServerlessUrl();
   runApp(

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/utils/app_theme.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
 
@@ -20,7 +20,9 @@ class SectionTitle extends StatelessWidget {
       children: [
         Text(
           emoji != null ? '$emoji $title' : title,
-          style: isSmall ? AppTheme.titleMediumMobile() : AppTheme.titleLarge(size: 36),
+          style: isSmall
+              ? AppTheme.titleMediumMobile()
+              : AppTheme.titleLarge(size: 36),
         ).withSlideUp(
           delay: Duration.zero,
           distance: 20.0,

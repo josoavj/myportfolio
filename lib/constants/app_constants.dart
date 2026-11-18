@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 class AppConstants {
   // Couleurs
@@ -29,7 +29,8 @@ class AppConstants {
   static const String emailUrl = 'mailto:josoavonjiniaina13@gmail.com';
 
   // CV
-  static const String cvUrl = 'https://drive.google.com/file/d/1zcxx-zbkDN_hWH4BYb2Em6KLpVFIT3Ze/view?usp=sharing';
+  static const String cvUrl =
+      'https://drive.google.com/file/d/1zcxx-zbkDN_hWH4BYb2Em6KLpVFIT3Ze/view?usp=sharing';
 
   // Animations
   static const int fadeAnimationDuration = 1500;

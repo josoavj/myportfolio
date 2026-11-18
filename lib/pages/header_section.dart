@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -13,7 +13,8 @@ class HeaderSection extends StatefulWidget {
   State<HeaderSection> createState() => _HeaderSectionState();
 }
 
-class _HeaderSectionState extends State<HeaderSection> with SingleTickerProviderStateMixin {
+class _HeaderSectionState extends State<HeaderSection>
+    with SingleTickerProviderStateMixin {
   late AnimationController _glowController;
   late Animation<double> _glowAnimation;
   late Animation<double> _haloOpacity;
@@ -160,7 +161,8 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
 
   Widget _buildHeaderText({required bool isMobile}) {
     return Column(
-      crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
+      crossAxisAlignment:
+          isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.start,
       children: [
         Text(
           'Hello, je suis',
@@ -174,7 +176,9 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
         const SizedBox(height: 10),
         Text(
           AppConstants.heroName,
-          style: isMobile ? AppTheme.titleLargeMobile() : AppTheme.titleLarge(size: 60),
+          style: isMobile
+              ? AppTheme.titleLargeMobile()
+              : AppTheme.titleLarge(size: 60),
           textAlign: isMobile ? TextAlign.center : TextAlign.left,
         ),
         const SizedBox(height: 15),
@@ -182,14 +186,17 @@ class _HeaderSectionState extends State<HeaderSection> with SingleTickerProvider
           AppConstants.heroTitle,
           style: isMobile
               ? AppTheme.subtitleMobile()
-              : AppTheme.subtitle(color: Colors.grey.shade300).copyWith(fontSize: 22),
+              : AppTheme.subtitle(color: Colors.grey.shade300)
+                  .copyWith(fontSize: 22),
           textAlign: isMobile ? TextAlign.center : TextAlign.left,
         ),
         const SizedBox(height: 20),
         Row(
-          mainAxisAlignment: isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
+          mainAxisAlignment:
+              isMobile ? MainAxisAlignment.center : MainAxisAlignment.start,
           children: [
-            Icon(Icons.location_on, color: Colors.blue.shade300, size: isMobile ? 18 : 22),
+            Icon(Icons.location_on,
+                color: Colors.blue.shade300, size: isMobile ? 18 : 22),
             const SizedBox(width: 8),
             Text(
               AppConstants.location,

@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/models/skill.dart';
 import 'package:myportfolio/models/timeline_entry.dart';
@@ -17,7 +17,8 @@ class AppData {
         isOngoing: true,
         icon: Icons.rocket_launch_outlined,
         summary:
-            'Side project mené en parallèle de mes études, en dehors de tout cadre salarié : développement de plateformes ERP et CRM, et d\'autres plateformes''Digitaliser et centraliser la gestion d\'entreprise (comme la facturation et planification de tâches)'
+            'Side project mené en parallèle de mes études, en dehors de tout cadre salarié : développement de plateformes ERP et CRM, et d\'autres plateformes'
+            'Digitaliser et centraliser la gestion d\'entreprise (comme la facturation et planification de tâches)'
             ' et optimiser le suivi de la relation client grâce à des interfaces intuitives et performantes. '
             '\n J\'accorde également une place importante à la création d\'applications utilitaires et aux contributions Open Source.',
         highlights: [
@@ -65,7 +66,11 @@ class AppData {
           'Socket.IO',
           'Fortinet',
         ],
-        relatedProjects: ['sfiDashMonitoring', 'elasticsearch-nodejs-server', 'elasticsearch-config'],
+        relatedProjects: [
+          'sfiDashMonitoring',
+          'elasticsearch-nodejs-server',
+          'elasticsearch-config'
+        ],
       ),
       const TimelineEntry(
         title: 'Développeur Full Stack',
@@ -83,15 +88,20 @@ class AppData {
           'Levelmind : application e-learning mobile Flutter.',
           'myportfolio : portfolio developpé avec Flutter, intégré à l\'API GitHub.',
           'magicmirror : Miroir intelligent pour la suggestion de tenues basé sur le profil utilisateur, ainsi que la météo.'
-          'mloutfitSuggestion : Moteur de recommandation vestimentaire basé sur un modèle Random Forest et un pipeline RAG.',
+              'mloutfitSuggestion : Moteur de recommandation vestimentaire basé sur un modèle Random Forest et un pipeline RAG.',
           'orientIA : Plateforme d\'assistant virtuel d\'orientation pédagogique.'
-          'mAIntenanceAssistance : Plateforme de maintenance et d\'assistance intelligente',
+              'mAIntenanceAssistance : Plateforme de maintenance et d\'assistance intelligente',
           'Contribution à plusieurs projets open source sur GitHub',
           'Participation à des TP avancés d\'algorithmique et de machine learning',
           'Les projets auxquels j\'ai participé sont tous accessible dans mon GitHub'
         ],
         technologies: ['Flutter', 'Python', 'RAG', 'ML', 'Ontology'],
-        relatedProjects: ['Levelmind', 'myportfolio', 'MagicMirror', 'mloutfitsuggestion'],
+        relatedProjects: [
+          'Levelmind',
+          'myportfolio',
+          'MagicMirror',
+          'mloutfitsuggestion'
+        ],
       ),
     ];
   }
@@ -117,19 +127,19 @@ class AppData {
         ],
       ),
       const TimelineEntry(
-        title: 'Master 1 en Informatique et Télécommunication',
-        organization: 'ISPM',
-        location: 'Antananarivo, Madagascar',
-        period: '2023 - 2024',
-        badge: 'Master',
-        status: 'Terminé',
-        icon: Icons.school_outlined,
-        summary:
-            'Approfondissement en développement logiciel, réseaux et cybersécurité. '
-            'Gestion des bases de données relationnelles, introduction au Machine Learning et optimisation des systèmes.',
-        highlights: [ 'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
-        ]
-      ),
+          title: 'Master 1 en Informatique et Télécommunication',
+          organization: 'ISPM',
+          location: 'Antananarivo, Madagascar',
+          period: '2023 - 2024',
+          badge: 'Master',
+          status: 'Terminé',
+          icon: Icons.school_outlined,
+          summary:
+              'Approfondissement en développement logiciel, réseaux et cybersécurité. '
+              'Gestion des bases de données relationnelles, introduction au Machine Learning et optimisation des systèmes.',
+          highlights: [
+            'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
+          ]),
       const TimelineEntry(
         title: 'Licence en Informatique et Télécommunication',
         organization: 'ISPM',
@@ -140,7 +150,8 @@ class AppData {
         icon: Icons.workspace_premium_outlined,
         summary:
             'Formation en développement Web, le POO, les algorithmes et bases de données relationnels comme MySQL.',
-        highlights: [ 'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
+        highlights: [
+          'Parcours ESIIA (Électronique, Systèmes Informatiques et Intelligence Artificielle)',
         ],
         thesisTitle:
             'PLATEFORME DE MONITORING DE BANDE PASSANTE ET SERVEUR DE TRAITEMENT DE JOURNAUX FORTIGATE',
@@ -156,7 +167,7 @@ class AppData {
         isOngoing: true,
         icon: Icons.menu_book_outlined,
         summary:
-        'Apprentissage autodidacte du développement d\'applications (Flutter), de Python, '
+            'Apprentissage autodidacte du développement d\'applications (Flutter), de Python, '
             'd\'Elasticsearch, Kibana et Grafana, de l\'administration Linux et du développement '
             'd\'APIs avec Node.js et Express.js, avec une petite base en cybersécurité.',
         technologies: [
@@ -186,33 +197,34 @@ class AppData {
         name: 'MagicMirror',
         category: 'Mobile',
         description:
-        'Miroir intelligent modulaire : caméra temps réel, météo, agenda et suggestions de tenues par IA selon la morphologie et le contexte du jour',
+            'Miroir intelligent modulaire : caméra temps réel, météo, agenda et suggestions de tenues par IA selon la morphologie et le contexte du jour',
         language: 'Dart',
         stars: 0,
         url: 'https://github.com/josoavj/magicmirror',
-        tagline: 'Miroir intelligent qui suggère des tenues selon la météo, l\'agenda et la morphologie',
+        tagline:
+            'Miroir intelligent qui suggère des tenues selon la météo, l\'agenda et la morphologie',
         status: 'En maintenance (v1.1.0)',
         problem:
-        'Aider à choisir sa tenue chaque matin en tenant compte de la météo, de l\'agenda de la journée, de la morphologie et de la garde-robe.',
+            'Aider à choisir sa tenue chaque matin en tenant compte de la météo, de l\'agenda de la journée, de la morphologie et de la garde-robe.',
         solution:
-        'Un miroir connecté et intelligente : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
+            'Un miroir connecté et intelligente : rendu caméra plein écran, météo et agenda en direct, et suggestions de tenues issues d\'un ranking hybride (heuristique, ML et LLM).',
         architecture:
-        'Architecture feature-first en couches, inspirée de la Clean Architecture : chaque fonctionnalité est isolée en domain (entités, services métier), data (modèles, services techniques) et presentation (providers, widgets, écrans). État géré avec Riverpod (providers séparés des widgets, FutureProvider et AsyncNotifier) et design system commun « glassmorphism ».',
+            'Architecture feature-first en couches, inspirée de la Clean Architecture : chaque fonctionnalité est isolée en domain (entités, services métier), data (modèles, services techniques) et presentation (providers, widgets, écrans). État géré avec Riverpod (providers séparés des widgets, FutureProvider et AsyncNotifier) et design system commun « glassmorphism ».',
         challenges: [
           const ProjectChallenge(
             challenge: 'Respecter la vie privée de l\'utilisateur',
             solution:
-            'Détection de la morphologie traitée localement avec Google ML Kit, politiques RLS strictes côté Supabase et stockage local chiffré.',
+                'Détection de la morphologie traitée localement avec Google ML Kit, politiques RLS strictes côté Supabase et stockage local chiffré.',
           ),
           const ProjectChallenge(
             challenge: 'Produire des suggestions pertinentes',
             solution:
-            'Ranking hybride combinant heuristique, modèle ML (LightGBM) et LLM, alimenté par la météo, l\'agenda et le profil.',
+                'Ranking hybride combinant heuristique, modèle ML (LightGBM) et LLM, alimenté par la météo, l\'agenda et le profil.',
           ),
           const ProjectChallenge(
             challenge: 'Garder une base de code testable',
             solution:
-            'Architecture feature-first avec providers Riverpod isolés, couverte par plus de 20 tests unitaires et de widgets.',
+                'Architecture feature-first avec providers Riverpod isolés, couverte par plus de 20 tests unitaires et de widgets.',
           ),
         ],
         results: [
@@ -251,7 +263,7 @@ class AppData {
           'Sécurité : RLS Supabase strict et stockage local chiffré',
         ],
         detailedDescription:
-        'Magic Mirror est un miroir intelligent modulaire développé en Flutter. Il combine un rendu caméra plein écran, la météo et l\'agenda de la journée pour proposer des tenues adaptées à la morphologie de l\'utilisateur et à sa garde-robe. L\'application suit une architecture feature-first stricte avec Riverpod, synchronise profil et agenda via Supabase, et traite la détection de pose localement avec Google ML Kit. Elle fonctionne sur Android, iOS et macOS (support partiel sur Linux et Windows) et dispose d\'une suite de plus de 20 tests unitaires et de widgets. Le projet est actuellement en phase de maintenance.',
+            'Magic Mirror est un miroir intelligent modulaire développé en Flutter. Il combine un rendu caméra plein écran, la météo et l\'agenda de la journée pour proposer des tenues adaptées à la morphologie de l\'utilisateur et à sa garde-robe. L\'application suit une architecture feature-first stricte avec Riverpod, synchronise profil et agenda via Supabase, et traite la détection de pose localement avec Google ML Kit. Elle fonctionne sur Android, iOS et macOS (support partiel sur Linux et Windows) et dispose d\'une suite de plus de 20 tests unitaires et de widgets. Le projet est actuellement en phase de maintenance.',
       ),
       Project(
         name: 'segma',
@@ -289,19 +301,13 @@ class AppData {
         language: 'Dart',
         stars: 4,
         url: 'https://github.com/josoavj/PlanificatorFinal',
-        technologies: [
-          'Flutter',
-          'Dart',
-          'Provider',
-          'SQL',
-          'Material Design'
-        ],
+        technologies: ['Flutter', 'Dart', 'Provider', 'SQL', 'Material Design'],
         features: [
           'Interface multiplateforme Flutter (Windows, Linux, macOS)',
           'Gestion complète des contrats et clients avec une cycle de vie complète',
           'Gestion complète des tâches et plannings',
           'Gestion et suivi des factures et paiements liés à chaque passage'
-          'Base de données SQL intégrée',
+              'Base de données SQL intégrée',
           'Opérations CRUD optimisées',
           'Système de notifications pour les prochaines tâches',
           'Design Material moderne et responsive',
@@ -317,7 +323,8 @@ class AppData {
         language: 'JavaScript',
         stars: 6,
         url: 'https://github.com/josoavj/sfiDashMonitoring',
-        tagline: 'Plateforme de monitoring des données Fortigate depuis Elasticsearch',
+        tagline:
+            'Plateforme de monitoring des données Fortigate depuis Elasticsearch',
         status: 'Prêt pour la production',
         origin: 'Stage SFI Ankorondrano · Mémoire de Licence',
         problem:
@@ -350,9 +357,16 @@ class AppData {
           'Frontend': ['React 19', 'Vite', 'Material-UI'],
           'Backend': ['Node.js', 'Express 5', 'Socket.io', 'JWT'],
           'Données': ['Elasticsearch 8'],
-          'Qualité & exploitation': ['Vitest', 'React Testing Library', 'ESLint'],
+          'Qualité & exploitation': [
+            'Vitest',
+            'React Testing Library',
+            'ESLint'
+          ],
         },
-        relatedProjects: ['elasticsearch-nodejs-server', 'elasticsearch-config'],
+        relatedProjects: [
+          'elasticsearch-nodejs-server',
+          'elasticsearch-config'
+        ],
         technologies: [
           'React 19',
           'Vite',
@@ -377,28 +391,29 @@ class AppData {
         name: 'Levelmind',
         category: 'Mobile',
         description:
-        'Application mobile e-learning innovante conçue pour centraliser les ressources pédagogiques et faciliter la communication académique',
+            'Application mobile e-learning innovante conçue pour centraliser les ressources pédagogiques et faciliter la communication académique',
         language: 'Dart',
         stars: 19,
         url: 'https://github.com/josoavj/lvlmindapp',
-        tagline: 'Application mobile d\'e-learning pour les écoles et universités',
+        tagline:
+            'Application mobile d\'e-learning pour les écoles et universités',
         status: 'Bêta (v1.0.0-beta.1)',
         problem:
-        'Centraliser les ressources pédagogiques, les emplois du temps et la communication entre étudiants et enseignants dans une seule application mobile fluide, sécurisée et capable de grandir.',
+            'Centraliser les ressources pédagogiques, les emplois du temps et la communication entre étudiants et enseignants dans une seule application mobile fluide, sécurisée et capable de grandir.',
         solution:
-        'Une application Flutter avec authentification locale, gestion de profil, partage de cours organisé par matière, emploi du temps avec notifications et stockage Hive intégré.',
+            'Une application Flutter avec authentification locale, gestion de profil, partage de cours organisé par matière, emploi du temps avec notifications et stockage Hive intégré.',
         architecture:
-        'Trois couches : présentation (pages et widgets), métier (providers et services : UserNotifier, ThemeNotifier, EnhancedAuthService) et données (LocalDbService, base Hive, modèle UserProfile). Patterns utilisés : MVVM avec Provider, service locator (singleton), observer et repository.',
+            'Trois couches : présentation (pages et widgets), métier (providers et services : UserNotifier, ThemeNotifier, EnhancedAuthService) et données (LocalDbService, base Hive, modèle UserProfile). Patterns utilisés : MVVM avec Provider, service locator (singleton), observer et repository.',
         challenges: [
           const ProjectChallenge(
             challenge: 'Authentification et session sans serveur',
             solution:
-            'Inscription et connexion avec mot de passe haché (SHA-256), session conservée dans une box Hive et récupérée automatiquement au lancement, données supprimées à la déconnexion.',
+                'Inscription et connexion avec mot de passe haché (SHA-256), session conservée dans une box Hive et récupérée automatiquement au lancement, données supprimées à la déconnexion.',
           ),
           const ProjectChallenge(
             challenge: 'Garder le code évolutif',
             solution:
-            'Séparation en trois couches, avec LocalDbService comme repository : l\'accès aux données reste isolé du reste de l\'application.',
+                'Séparation en trois couches, avec LocalDbService comme repository : l\'accès aux données reste isolé du reste de l\'application.',
           ),
         ],
         results: [
@@ -433,7 +448,7 @@ class AppData {
           'Architecture scalable (Singleton, Repository, Observer)',
         ],
         detailedDescription:
-        'LevelMind est un écosystème numérique complet pour étudiants et enseignants. Actuellement en phase BETA, l\'application offre une expérience mobile fluide et sécurisée. Elle repose sur une architecture MVVM rigoureuse et utilise Hive pour garantir un accès rapide aux données, même hors connexion. Le projet met un accent fort sur l\'extensibilité pour inclure prochainement de la messagerie et du suivi académique.',
+            'LevelMind est un écosystème numérique complet pour étudiants et enseignants. Actuellement en phase BETA, l\'application offre une expérience mobile fluide et sécurisée. Elle repose sur une architecture MVVM rigoureuse et utilise Hive pour garantir un accès rapide aux données, même hors connexion. Le projet met un accent fort sur l\'extensibilité pour inclure prochainement de la messagerie et du suivi académique.',
       ),
       Project(
         name: 'mlOutfitSuggestion',
@@ -443,7 +458,8 @@ class AppData {
         language: 'Python',
         stars: 0,
         url: 'https://github.com/josoavj/mlOutfitSuggestion',
-        tagline: 'Moteur de recommandation de tenues de MagicMirror, exposé en API',
+        tagline:
+            'Moteur de recommandation de tenues de MagicMirror, exposé en API',
         problem:
             'Proposer des tenues cohérentes à partir de la garde-robe, du profil (sexe, âge, taille, morphologie, préférences), de la météo et du planning du jour.',
         solution:
@@ -462,7 +478,8 @@ class AppData {
           ),
           const ProjectChallenge(
             challenge: 'Améliorer le modèle dans le temps',
-            solution: 'Collecte de feedback et réentraînement sur des données réelles.',
+            solution:
+                'Collecte de feedback et réentraînement sur des données réelles.',
           ),
           const ProjectChallenge(
             challenge: 'Protéger l\'API',
@@ -570,9 +587,9 @@ class AppData {
         stars: 7,
         url: 'https://github.com/josoavj/ProspectiusFinal',
         problem:
-        'Les prospections effectués par une entreprise sont tous gardés dans divers outils ou notes, et parfois répartis dans plusieurs dossiers. Le suivi de chaque prospect est aussi coûteux en matière de ressource et aussi de temps. On doit donc digitaliser la gestion des prospects avec une plateforme, en centralisant le suivi des prospects et leur cycle de vie.',
+            'Les prospections effectués par une entreprise sont tous gardés dans divers outils ou notes, et parfois répartis dans plusieurs dossiers. Le suivi de chaque prospect est aussi coûteux en matière de ressource et aussi de temps. On doit donc digitaliser la gestion des prospects avec une plateforme, en centralisant le suivi des prospects et leur cycle de vie.',
         solution:
-        'Une plateforme utilisant une base de données locale, et complète pour la gestion et suivi des prospects',
+            'Une plateforme utilisant une base de données locale, et complète pour la gestion et suivi des prospects',
         technologies: [
           'Flutter',
           'Dart',

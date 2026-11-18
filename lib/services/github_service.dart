@@ -22,7 +22,7 @@ class GitHubService {
   static void initializeServerlessUrl() {
     // Utilisation de String.fromEnvironment pour permettre l'injection via --dart-define
     const envUrl = String.fromEnvironment('GITHUB_API_URL');
-    
+
     if (envUrl.isNotEmpty) {
       _serverlessApiUrl = envUrl;
       return;

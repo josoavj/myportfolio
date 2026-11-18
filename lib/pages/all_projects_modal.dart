@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/models/project.dart';
 import 'package:myportfolio/utils/animation_utils.dart';
 import 'package:myportfolio/utils/project_navigation.dart';

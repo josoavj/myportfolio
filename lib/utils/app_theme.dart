@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 /// Configuration centralisée du thème et des polices (Optimisée pour le Web)
 class AppTheme {
@@ -170,21 +170,21 @@ class AppTheme {
 
   // ========== VARIANTES MOBILES ==========
 
-  static TextStyle titleLargeMobile({Color? color}) => 
-    titleLarge(color: color, size: 32);
+  static TextStyle titleLargeMobile({Color? color}) =>
+      titleLarge(color: color, size: 32);
 
-  static TextStyle titleMediumMobile({Color? color}) => 
-    titleMedium(color: color, size: 24);
+  static TextStyle titleMediumMobile({Color? color}) =>
+      titleMedium(color: color, size: 24);
 
-  static TextStyle titleSmallMobile({Color? color}) => 
-    titleSmall(color: color).copyWith(fontSize: 20);
+  static TextStyle titleSmallMobile({Color? color}) =>
+      titleSmall(color: color).copyWith(fontSize: 20);
 
-  static TextStyle subtitleMobile({Color? color}) => 
-    subtitle(color: color).copyWith(fontSize: 15);
+  static TextStyle subtitleMobile({Color? color}) =>
+      subtitle(color: color).copyWith(fontSize: 15);
 
-  static TextStyle subtitleSmallMobile({Color? color}) => 
-    subtitleSmall(color: color).copyWith(fontSize: 13);
+  static TextStyle subtitleSmallMobile({Color? color}) =>
+      subtitleSmall(color: color).copyWith(fontSize: 13);
 
-  static TextStyle bodyLargeMobile({Color? color}) => 
-    bodyLarge(color: color).copyWith(fontSize: 14);
+  static TextStyle bodyLargeMobile({Color? color}) =>
+      bodyLarge(color: color).copyWith(fontSize: 14);
 }
