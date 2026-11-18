@@ -44,7 +44,7 @@ flutter:
 flutter_launcher_icons:
   android: true
   ios: true
-  image_path: "assets/LogoPrincipalFinal.png"
-  image_path_android: "assets/AndroidLogo.svg"
+  image_path: "assets/icons/icon-1024.png"
+  image_path_android: "assets/icons/icon-1024.png"
   min_sdk_android: 21
   remove_alpha_ios: true
