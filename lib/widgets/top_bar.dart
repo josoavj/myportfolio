@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter/services.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/utils/app_theme.dart';
@@ -89,7 +89,8 @@ class _TopBarState extends State<TopBar> {
       context: context,
       barrierDismissible: true,
       barrierLabel: 'Fermer le menu',
-      barrierColor: isMobile ? Colors.black.withValues(alpha: 0.5) : Colors.transparent,
+      barrierColor:
+          isMobile ? Colors.black.withValues(alpha: 0.5) : Colors.transparent,
       transitionDuration: const Duration(milliseconds: 220),
       pageBuilder: (context, animation, secondaryAnimation) {
         return _MenuPanel(
@@ -99,7 +100,7 @@ class _TopBarState extends State<TopBar> {
       },
       transitionBuilder: (context, animation, secondaryAnimation, child) {
         final curved =
-        CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
+            CurvedAnimation(parent: animation, curve: Curves.easeOutCubic);
         return FadeTransition(
           opacity: curved,
           child: SlideTransition(
@@ -134,12 +135,15 @@ class _TopBarState extends State<TopBar> {
               constraints: const BoxConstraints(maxWidth: 1200),
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 decoration: BoxDecoration(
-                  color: AppConstants.secondaryDark.withValues(alpha: _scrolled ? 0.94 : 0.85),
+                  color: AppConstants.secondaryDark
+                      .withValues(alpha: _scrolled ? 0.94 : 0.85),
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(
-                    color: Colors.blue.withValues(alpha: _scrolled ? 0.35 : 0.20),
+                    color:
+                        Colors.blue.withValues(alpha: _scrolled ? 0.35 : 0.20),
                   ),
                   boxShadow: [
                     BoxShadow(
