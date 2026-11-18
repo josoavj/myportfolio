@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/constants/app_constants.dart';
 import 'package:myportfolio/constants/app_data.dart';
 import 'package:myportfolio/models/project.dart';
@@ -191,12 +191,14 @@ class _TrunkPainter extends CustomPainter {
 
     // Branche horizontale entre le nœud et la carte.
     final branchEnd = branch < 0 ? 0.0 : size.width;
-    canvas.drawLine(Offset(cx + branch * 9, nodeY), Offset(branchEnd, nodeY), line);
+    canvas.drawLine(
+        Offset(cx + branch * 9, nodeY), Offset(branchEnd, nodeY), line);
 
     // Nœud.
     final center = Offset(cx, nodeY);
     if (ongoing) {
-      canvas.drawCircle(center, 17, Paint()..color = color.withValues(alpha: 0.18));
+      canvas.drawCircle(
+          center, 17, Paint()..color = color.withValues(alpha: 0.18));
     }
     canvas.drawCircle(center, 10, Paint()..color = AppConstants.primaryDark);
     canvas.drawCircle(
@@ -275,7 +277,8 @@ class _TimelineCardState extends State<_TimelineCard> {
   Widget build(BuildContext context) {
     final entry = widget.entry;
     final color = widget.color;
-    final isOngoingStatus = entry.status == 'En cours' || entry.status == 'Continue';
+    final isOngoingStatus =
+        entry.status == 'En cours' || entry.status == 'Continue';
 
     return Container(
       width: double.infinity,
@@ -372,7 +375,8 @@ class _TimelineCardState extends State<_TimelineCard> {
               AnimatedRotation(
                 turns: _expanded ? 0.5 : 0,
                 duration: const Duration(milliseconds: 250),
-                child: Icon(Icons.expand_more, size: 20, color: Colors.blue.shade300),
+                child: Icon(Icons.expand_more,
+                    size: 20, color: Colors.blue.shade300),
               ),
             ],
           ),
@@ -425,7 +429,8 @@ class _TimelineCardState extends State<_TimelineCard> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(top: 2),
-                    child: Icon(Icons.check_circle_outline, size: 16, color: color),
+                    child: Icon(Icons.check_circle_outline,
+                        size: 16, color: color),
                   ),
                   const SizedBox(width: 10),
                   Expanded(
@@ -454,13 +459,15 @@ class _TimelineCardState extends State<_TimelineCard> {
           ],
           if (entry.relatedProjects.isNotEmpty) ...[
             const SizedBox(height: 16),
-            Text('PROJETS LIÉS', style: AppTheme.labelSmall(color: Colors.grey)),
+            Text('PROJETS LIÉS',
+                style: AppTheme.labelSmall(color: Colors.grey)),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
-                for (final name in entry.relatedProjects) _buildProjectChip(name),
+                for (final name in entry.relatedProjects)
+                  _buildProjectChip(name),
               ],
             ),
           ],
