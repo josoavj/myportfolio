@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:myportfolio/pages/about_section.dart';
 import 'package:myportfolio/pages/contact_section.dart';
 import 'package:myportfolio/pages/footer_section.dart';
