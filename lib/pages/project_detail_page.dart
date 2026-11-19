@@ -205,11 +205,11 @@ class ProjectDetailPage extends ConsumerWidget {
                   label: 'Démo',
                   icon: Icons.play_arrow_rounded,
                   url: p.demoUrl!),
-            if (p.releaseUrl != null)
+            if (p.pageUrl != null)
               _ActionButton(
-                  label: 'Release',
-                  icon: Icons.download_rounded,
-                  url: p.releaseUrl!),
+                  label: 'Site officielle',
+                  icon: Icons.web,
+                  url: p.pageUrl!),
             if (p.docsUrl != null)
               _ActionButton(
                   label: 'Documentation',

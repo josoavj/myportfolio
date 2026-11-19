@@ -1,4 +1,4 @@
-# Portfolio App
+# Portfolio
 
 Mon portfolio personnel, développé avec **Flutter** et **Dart**. Il présente mon parcours de développeur fullstack mobile et backend, mes compétences, mes projets et mes expériences.
 
@@ -6,7 +6,7 @@ Mon portfolio personnel, développé avec **Flutter** et **Dart**. Il présente 
 
 ## Plateformes
 
-Web, Android, Windows et Linux, à partir d'une seule base de code.
+Web, Android, et Linux, à partir d'une seule base de code.
 
 ## Stack
 

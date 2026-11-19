@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <base href="/">
+  <meta charset="UTF-8">
+  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
+  <meta name="description" content="Portfolio de Josoa Vonjiniaina - Développeur Full Stack, expert Flutter, Backend et Cybersécurité.">
+
+  <!-- Meta tags pour la Web App -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Josoa Portfolio">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+  <link rel="icon" type="image/png" href="favicon.ico"/>
+  <title>Josoa Vonjiniaina | Portfolio</title>
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    body {
+      background-color: #0D1117;
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    #loading-container {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background-color: #0D1117;
+      z-index: 9999;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .loader {
+      width: 40px;
+      height: 40px;
+      border: 3px solid rgba(255,255,255,0.1);
+      border-bottom-color: #2196F3;
+      border-radius: 50%;
+      animation: rotation 0.8s linear infinite;
+    }
+    @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    .loading-text {
+      color: #FFF;
+      font-family: sans-serif;
+      margin-top: 15px;
+      font-size: 14px;
+      letter-spacing: 1px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div id="loading-container">
+    <div class="loader"></div>
+    <div class="loading-text">Chargement...</div>
+  </div>
+
+  <script>
+    // Fonction simple pour retirer le loader
+    function removeLoader() {
+      var loader = document.querySelector('#loading-container');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() { loader.remove(); }, 500);
+      }
+    }
+
+    // Fail-safe : Masquer le loader après 10s max
+    var timeout = setTimeout(removeLoader, 10000);
+
+    // Événement natif de Flutter pour le premier rendu
+    window.addEventListener('flutter-first-frame', function() {
+      clearTimeout(timeout);
+      removeLoader();
+    });
+  </script>
+
+  <!-- Démarrage automatique optimisé pour Flutter 3.22+ -->
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>

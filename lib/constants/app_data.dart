@@ -242,7 +242,7 @@ class AppData {
           'Services': ['OpenWeatherMap', 'Flutter TTS'],
         },
         relatedProjects: ['mlOutfitSuggestion'],
-        releaseUrl: 'https://github.com/josoavj/magicmirror/releases',
+        pageUrl: 'https://github.com/josoavj/magicmirror/releases',
         technologies: [
           'Flutter',
           'Dart',
@@ -273,7 +273,7 @@ class AppData {
         language: 'Dart',
         stars: 6,
         url: 'https://github.com/josoavj/segma',
-        releaseUrl: 'https://github.com/josoavj/segma/releases',
+        pageUrl: 'https://josoavj.github.io/segma/',
         technologies: [
           'Flutter 3.6+',
           'Riverpod',
@@ -301,6 +301,7 @@ class AppData {
         language: 'Dart',
         stars: 4,
         url: 'https://github.com/josoavj/PlanificatorFinal',
+        pageUrl: 'https://josoavj.github.io/PlanificatorFinal',
         technologies: ['Flutter', 'Dart', 'Provider', 'SQL', 'Material Design'],
         features: [
           'Interface multiplateforme Flutter (Windows, Linux, macOS)',
@@ -431,7 +432,7 @@ class AppData {
           'Données': ['Hive'],
           'Sécurité': ['SHA-256'],
         },
-        releaseUrl: 'https://github.com/josoavj/lvlmindapp/releases',
+        pageUrl: 'https://github.com/josoavj/lvlmindapp/releases',
         technologies: [
           'Flutter',
           'Dart',
@@ -559,7 +560,7 @@ class AppData {
         language: 'Dart',
         stars: 9,
         url: 'https://github.com/josoavj/myportfolio',
-        releaseUrl: 'https://github.com/josoavj/myportfolio/releases',
+        pageUrl: 'https://github.com/josoavj/myportfolio/releases',
         technologies: [
           'Flutter',
           'Dart',
@@ -586,6 +587,7 @@ class AppData {
         language: 'Dart',
         stars: 7,
         url: 'https://github.com/josoavj/ProspectiusFinal',
+        pageUrl: 'https://josoavj.github.io/ProspectiusFinal',
         problem:
             'Les prospections effectués par une entreprise sont tous gardés dans divers outils ou notes, et parfois répartis dans plusieurs dossiers. Le suivi de chaque prospect est aussi coûteux en matière de ressource et aussi de temps. On doit donc digitaliser la gestion des prospects avec une plateforme, en centralisant le suivi des prospects et leur cycle de vie.',
         solution:
