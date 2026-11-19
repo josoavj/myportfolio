@@ -31,7 +31,7 @@ class Project {
   final List<String> technologies;
   final List<String> features;
   final String detailedDescription;
-  final String? releaseUrl;
+  final String? pageUrl;
   final String category; // Web, Mobile, Desktop, Backend, Tools
 
   // --- Étude de cas (tous les champs sont optionnels : une section vide
@@ -65,7 +65,7 @@ class Project {
     this.technologies = const [],
     this.features = const [],
     this.detailedDescription = '',
-    this.releaseUrl,
+    this.pageUrl,
     this.tagline = '',
     this.status = '',
     this.period = '',
@@ -100,7 +100,7 @@ class Project {
       technologies: technologies,
       features: features,
       detailedDescription: detailedDescription,
-      releaseUrl: releaseUrl,
+      pageUrl: pageUrl,
       tagline: tagline,
       status: status,
       period: period,
